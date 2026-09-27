@@ -1,0 +1,204 @@
+"""Score downloaded runs and date each model's world clock.
+
+Usage:
+    python analysis/date_the_clock.py [results/raw]
+
+Finds every `world_clock_answers.json` under the given directory (the layout that
+`kaggle b t download` produces, or a flat folder), joins each answer to the per-release
+answer key in `cases/cases.json`, and writes:
+
+    results/summary.json   everything below, machine-readable, the only source the post may quote
+    results/summary.md     the same as tables
+
+For each (model, condition):
+    accuracy overall and per family, on graded cases only
+    agreement with every tzdata release since 2022a, on the ladder cases (the ones whose
+        answer changed between releases); the release(s) with the highest agreement is the
+        date of the model's world clock
+    the unresolved Manitoba answers beside the official announcement
+    tool-call counts, for the tool condition
+"""
+
+from __future__ import annotations
+
+import json
+import sys
+from collections import defaultdict
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parent
+CASES = {c["id"]: c for c in json.loads((ROOT / "cases" / "cases.json").read_text(encoding="utf-8"))}
+INDEX = json.loads((ROOT / "tzhist" / "releases" / "index.json").read_text())
+RELEASES = sorted(INDEX, key=lambda v: tuple(int(x) for x in v.split(".")))
+
+# Release dates from the tz NEWS file, for the sentence "this model's clock stopped in ...".
+RELEASE_DATES = {
+    "2022a": "2022-03-15", "2022b": "2022-08-10", "2022c": "2022-08-15", "2022d": "2022-09-23",
+    "2022e": "2022-10-11", "2022f": "2022-10-28", "2022g": "2022-11-29",
+    "2023a": "2023-03-22", "2023b": "2023-03-23", "2023c": "2023-03-28", "2023d": "2023-12-21",
+    "2024a": "2024-02-01", "2024b": "2024-09-04",
+    "2025a": "2025-01-15", "2025b": "2025-03-22", "2025c": "2025-12-10",
+    "2026a": "2026-03-01", "2026b": "2026-04-22", "2026c": "2026-07-08", "2026d": "2026-09-11",
+}
+
+
+def canon(d: dict) -> str:
+    return json.dumps(d, sort_keys=True)
+
+
+def find_answer_files(root: Path) -> list[Path]:
+    return sorted(root.rglob("world_clock_answers.json"))
+
+
+def score_file(path: Path) -> dict:
+    data = json.loads(path.read_text(encoding="utf-8"))
+    model = data.get("model") or path.parent.name
+    condition = data.get("condition", "memory")
+    rows = data.get("rows", [])
+
+    per_family = defaultdict(lambda: {"correct": 0, "total": 0})
+    ladder_agree = {r: 0 for r in RELEASES}
+    ladder_total = 0
+    all_agree = {r: 0 for r in RELEASES}
+    all_total = 0
+    unresolved = []
+    tool_calls = []
+    wrong = []
+
+    for row in rows:
+        case = CASES.get(row["id"])
+        if case is None:
+            continue
+        got = canon(row["answer"])
+        if not case["graded"]:
+            unresolved.append(
+                {
+                    "id": row["id"],
+                    "prompt": case["prompt"],
+                    "model_answer": row["answer"],
+                    "tzdata_2026d": case["expected"],
+                    "official": case.get("official_answer"),
+                    "note": row.get("note", ""),
+                }
+            )
+            continue
+        fam = per_family[case["family"]]
+        fam["total"] += 1
+        fam["correct"] += int(row["correct"])
+        if not row["correct"]:
+            wrong.append({"id": row["id"], "family": case["family"], "expected": case["expected"], "got": row["answer"], "note": row.get("note", "")})
+        all_total += 1
+        for r in RELEASES:
+            if canon(case["by_release"][r]) == got:
+                all_agree[r] += 1
+        if case["discriminates"]:
+            ladder_total += 1
+            for r in RELEASES:
+                if canon(case["by_release"][r]) == got:
+                    ladder_agree[r] += 1
+        if condition == "tool":
+            tool_calls.append(int(row.get("tool_calls") or 0))
+
+    graded_total = sum(f["total"] for f in per_family.values())
+    graded_correct = sum(f["correct"] for f in per_family.values())
+
+    # Date the clock: releases tied at the maximum agreement on ladder cases.
+    if ladder_total:
+        best = max(ladder_agree.values())
+        tied = [r for r in RELEASES if ladder_agree[r] == best]
+        earliest, latest = tied[0], tied[-1]
+        clock = {
+            "ladder_cases": ladder_total,
+            "best_agreement": best,
+            "best_agreement_pct": round(100 * best / ladder_total, 1),
+            "releases_tied": [f"{r} ({INDEX[r]['iana']}, {RELEASE_DATES[INDEX[r]['iana']]})" for r in tied],
+            "earliest": {"pypi": earliest, "iana": INDEX[earliest]["iana"], "date": RELEASE_DATES[INDEX[earliest]["iana"]]},
+            "latest": {"pypi": latest, "iana": INDEX[latest]["iana"], "date": RELEASE_DATES[INDEX[latest]["iana"]]},
+            "current": latest == RELEASES[-1],
+            "agreement_by_release": {f"{r} ({INDEX[r]['iana']})": ladder_agree[r] for r in RELEASES},
+        }
+    else:
+        clock = None
+
+    return {
+        "model": model,
+        "condition": condition,
+        "source": str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path),
+        "graded_correct": graded_correct,
+        "graded_total": graded_total,
+        "accuracy_pct": round(100 * graded_correct / graded_total, 1) if graded_total else None,
+        "per_family": {k: {**v, "pct": round(100 * v["correct"] / v["total"], 1) if v["total"] else None} for k, v in sorted(per_family.items())},
+        "clock": clock,
+        "tool_calls": {
+            "cases": len(tool_calls),
+            "cases_with_a_call": sum(1 for t in tool_calls if t > 0),
+            "total_calls": sum(tool_calls),
+        } if condition == "tool" else None,
+        "unresolved": unresolved,
+        "wrong": wrong,
+        "errored": data.get("errored", []),
+    }
+
+
+def to_markdown(results: list[dict]) -> str:
+    lines = ["# World Clock results", ""]
+    lines.append("| Model | Condition | Graded | Accuracy | Clock dated to | Ladder agreement |")
+    lines.append("|---|---|---|---|---|---|")
+    for r in results:
+        clock = r["clock"]
+        dated = "n/a"
+        agree = "n/a"
+        if clock:
+            if clock["current"] and clock["earliest"] == clock["latest"]:
+                dated = f"current ({clock['latest']['iana']})"
+            elif clock["current"]:
+                dated = f"{clock['earliest']['iana']} to current"
+            else:
+                dated = f"{clock['earliest']['iana']} ({clock['earliest']['date']}) to {clock['latest']['iana']} ({clock['latest']['date']})"
+            agree = f"{clock['best_agreement']}/{clock['ladder_cases']}"
+        lines.append(
+            f"| {r['model']} | {r['condition']} | {r['graded_correct']}/{r['graded_total']} | "
+            f"{r['accuracy_pct']}% | {dated} | {agree} |"
+        )
+    lines.append("")
+    families = sorted({fam for r in results for fam in r["per_family"]})
+    lines.append("## Accuracy by family")
+    lines.append("")
+    lines.append("| Model | Condition | " + " | ".join(families) + " |")
+    lines.append("|---|---|" + "---|" * len(families))
+    for r in results:
+        cells = []
+        for fam in families:
+            f = r["per_family"].get(fam)
+            cells.append(f"{f['correct']}/{f['total']}" if f else "")
+        lines.append(f"| {r['model']} | {r['condition']} | " + " | ".join(cells) + " |")
+    lines.append("")
+    lines.append("## Manitoba (announced, not yet in tzdata)")
+    lines.append("")
+    for r in results:
+        for u in r["unresolved"]:
+            lines.append(f"- {r['model']} [{r['condition']}] {u['id']}: model {json.dumps(u['model_answer'])}; tzdata 2026d {json.dumps(u['tzdata_2026d'])}; official {json.dumps(u['official'])}. Note: {u['note']}")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def main() -> None:
+    root = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "results" / "raw"
+    files = find_answer_files(root)
+    if not files:
+        raise SystemExit(f"no world_clock_answers.json under {root}")
+    results = [score_file(p) for p in files]
+    results.sort(key=lambda r: (r["condition"], -(r["accuracy_pct"] or 0)))
+    out_dir = ROOT / "results"
+    out_dir.mkdir(exist_ok=True)
+    (out_dir / "summary.json").write_text(json.dumps(results, indent=1, ensure_ascii=False), encoding="utf-8")
+    (out_dir / "summary.md").write_text(to_markdown(results), encoding="utf-8")
+    for r in results:
+        clock = r["clock"]
+        dated = "n/a" if not clock else f"{clock['earliest']['iana']}..{clock['latest']['iana']}"
+        print(f"{r['model']:40s} {r['condition']:7s} {r['graded_correct']:3d}/{r['graded_total']}  clock {dated}")
+
+
+if __name__ == "__main__":
+    main()
