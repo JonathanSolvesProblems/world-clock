@@ -23,9 +23,15 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 CASES = json.loads((HERE.parent / "cases" / "cases.json").read_text(encoding="utf-8"))
 
+# The slug Kaggle sees is the slugified main function name, so `task_name` doubles as the
+# function name with hyphens turned into underscores. Slugs `world-clock-memory` and
+# `wc-push-probe` exist on Kaggle as broken shells from pushes made before the account was
+# phone-verified; they cannot be deleted, so the live tasks use different slugs.
 CONDITIONS = {
     "memory": {
-        "task_name": "world-clock-memory",
+        "task_name": "world-clock-from-memory",
+        "behaviour": "memory",
+        "default_limit": 0,
         "title": "from memory",
         "description": (
             "125 time-zone questions graded against the IANA tz database (tzdata 2026d). "
@@ -33,11 +39,23 @@ CONDITIONS = {
         ),
     },
     "tool": {
-        "task_name": "world-clock-tool",
+        "task_name": "world-clock-with-tzdata-tool",
+        "behaviour": "tool",
+        "default_limit": 0,
         "title": "with a tzdata tool it may ignore",
         "description": (
             "The same 125 time-zone questions graded against the IANA tz database (tzdata 2026d). "
             "The model may call zone_clock(), which reads tzdata 2026d, and is free not to."
+        ),
+    },
+    "smoke": {
+        "task_name": "world-clock-smoke",
+        "behaviour": "memory",
+        "default_limit": 20,
+        "title": "20-case smoke test, from memory",
+        "description": (
+            "A stratified 20-case subset of the from-memory task, graded against tzdata 2026d. "
+            "Used to check the pipeline before spending quota on the full lineup."
         ),
     },
 }
@@ -74,12 +92,12 @@ import pandas as pd
 import kaggle_benchmarks as kbench
 from kaggle_benchmarks.tools import base as tool_base
 
-CONDITION = "__CONDITION__"
+CONDITION = "__BEHAVIOUR__"
 TASK_NAME = "__TASK_NAME__"
 TZDATA_PYPI = "2026.4"
 TZDATA_IANA = "2026d"
-# Optional: run a stratified subset, e.g. WORLD_CLOCK_LIMIT=20 for a smoke test.
-LIMIT = int(os.environ.get("WORLD_CLOCK_LIMIT", "0") or 0)
+# A stratified subset when non-zero; the smoke task bakes in 20, the real tasks 0 (all).
+LIMIT = int(os.environ.get("WORLD_CLOCK_LIMIT", "__DEFAULT_LIMIT__") or 0)
 N_JOBS = int(os.environ.get("WORLD_CLOCK_JOBS", "4") or 4)
 
 # %%
@@ -389,7 +407,7 @@ def cases_frame() -> pd.DataFrame:
     name=TASK_NAME,
     description="__DESCRIPTION__",
 )
-def world_clock(llm) -> tuple[int, int]:
+def __FUNC_NAME__(llm) -> tuple[int, int]:
     df = cases_frame()
     with kbench.client.enable_cache():
         results = world_clock_case.evaluate(
@@ -436,7 +454,7 @@ def world_clock(llm) -> tuple[int, int]:
 
 
 # %%
-run = world_clock.run(kbench.llm)
+run = __FUNC_NAME__.run(kbench.llm)
 run
 '''
 
@@ -458,8 +476,11 @@ def render(condition: str) -> Path:
     assert '"""' not in cases_json
     text = (
         TEMPLATE.replace("__CASES_JSON__", cases_json)
-        .replace("__CONDITION__", condition)
+        .replace("__BEHAVIOUR__", meta["behaviour"])
+        .replace("__DEFAULT_LIMIT__", str(meta["default_limit"]))
         .replace("__TASK_NAME__", meta["task_name"])
+        # The CLI matches the push slug against the slugified function name.
+        .replace("__FUNC_NAME__", meta["task_name"].replace("-", "_"))
         .replace("__TITLE__", meta["title"])
         .replace("__DESCRIPTION__", meta["description"])
     )

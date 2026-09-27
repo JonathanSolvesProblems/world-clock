@@ -1,12 +1,12 @@
 # %% [markdown]
-# # World Clock: from memory
+# # World Clock: 20-case smoke test, from memory
 #
 # Every model is asked the same 125 questions about local time. Each expected answer was
 # computed by Python's `zoneinfo` against the IANA time zone database, release 2026d
 # (PyPI `tzdata` 2026.4), by `cases/build_cases.py` in the public repository. No answer in
 # the key was typed by a person.
 #
-# **Condition:** 125 time-zone questions graded against the IANA tz database (tzdata 2026d). The model answers from its own knowledge, with no tools.
+# **Condition:** A stratified 20-case subset of the from-memory task, graded against tzdata 2026d. Used to check the pipeline before spending quota on the full lineup.
 #
 # Families: `control` (textbook zones), `awkward_offset` (+05:45, +12:45, 30-minute DST),
 # `southern` (southern-hemisphere DST), `legislated_2022_2025` (Iran, Jordan, Mexico,
@@ -31,11 +31,11 @@ import kaggle_benchmarks as kbench
 from kaggle_benchmarks.tools import base as tool_base
 
 CONDITION = "memory"
-TASK_NAME = "world-clock-from-memory"
+TASK_NAME = "world-clock-smoke"
 TZDATA_PYPI = "2026.4"
 TZDATA_IANA = "2026d"
 # A stratified subset when non-zero; the smoke task bakes in 20, the real tasks 0 (all).
-LIMIT = int(os.environ.get("WORLD_CLOCK_LIMIT", "0") or 0)
+LIMIT = int(os.environ.get("WORLD_CLOCK_LIMIT", "20") or 0)
 N_JOBS = int(os.environ.get("WORLD_CLOCK_JOBS", "4") or 4)
 
 # %%
@@ -343,9 +343,9 @@ def cases_frame() -> pd.DataFrame:
 
 @kbench.task(
     name=TASK_NAME,
-    description="125 time-zone questions graded against the IANA tz database (tzdata 2026d). The model answers from its own knowledge, with no tools.",
+    description="A stratified 20-case subset of the from-memory task, graded against tzdata 2026d. Used to check the pipeline before spending quota on the full lineup.",
 )
-def world_clock_from_memory(llm) -> tuple[int, int]:
+def world_clock_smoke(llm) -> tuple[int, int]:
     df = cases_frame()
     with kbench.client.enable_cache():
         results = world_clock_case.evaluate(
@@ -392,5 +392,5 @@ def world_clock_from_memory(llm) -> tuple[int, int]:
 
 
 # %%
-run = world_clock_from_memory.run(kbench.llm)
+run = world_clock_smoke.run(kbench.llm)
 run

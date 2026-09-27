@@ -31,10 +31,10 @@ import kaggle_benchmarks as kbench
 from kaggle_benchmarks.tools import base as tool_base
 
 CONDITION = "tool"
-TASK_NAME = "world-clock-tool"
+TASK_NAME = "world-clock-with-tzdata-tool"
 TZDATA_PYPI = "2026.4"
 TZDATA_IANA = "2026d"
-# Optional: run a stratified subset, e.g. WORLD_CLOCK_LIMIT=20 for a smoke test.
+# A stratified subset when non-zero; the smoke task bakes in 20, the real tasks 0 (all).
 LIMIT = int(os.environ.get("WORLD_CLOCK_LIMIT", "0") or 0)
 N_JOBS = int(os.environ.get("WORLD_CLOCK_JOBS", "4") or 4)
 
@@ -345,7 +345,7 @@ def cases_frame() -> pd.DataFrame:
     name=TASK_NAME,
     description="The same 125 time-zone questions graded against the IANA tz database (tzdata 2026d). The model may call zone_clock(), which reads tzdata 2026d, and is free not to.",
 )
-def world_clock(llm) -> tuple[int, int]:
+def world_clock_with_tzdata_tool(llm) -> tuple[int, int]:
     df = cases_frame()
     with kbench.client.enable_cache():
         results = world_clock_case.evaluate(
@@ -392,5 +392,5 @@ def world_clock(llm) -> tuple[int, int]:
 
 
 # %%
-run = world_clock.run(kbench.llm)
+run = world_clock_with_tzdata_tool.run(kbench.llm)
 run

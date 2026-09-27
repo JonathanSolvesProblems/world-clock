@@ -1,0 +1,166 @@
+[
+ {
+  "model": "google/gemini-3.7-flash",
+  "condition": "memory",
+  "source": "results\\raw\\world-clock-smoke\\1\\gemini-3.7-flash\\3260268\\world_clock_answers.json",
+  "graded_correct": 15,
+  "graded_total": 17,
+  "accuracy_pct": 88.2,
+  "per_family": {
+   "awkward_offset": {
+    "correct": 4,
+    "total": 4,
+    "pct": 100.0
+   },
+   "control": {
+    "correct": 4,
+    "total": 4,
+    "pct": 100.0
+   },
+   "legislated_2022_2025": {
+    "correct": 3,
+    "total": 3,
+    "pct": 100.0
+   },
+   "southern": {
+    "correct": 3,
+    "total": 3,
+    "pct": 100.0
+   },
+   "wave_2026": {
+    "correct": 1,
+    "total": 3,
+    "pct": 33.3
+   }
+  },
+  "clock": {
+   "ladder_cases": 4,
+   "best_agreement": 4,
+   "best_agreement_pct": 100.0,
+   "releases_tied": [
+    "2022.5 (2022e, 2022-10-11)",
+    "2022.6 (2022f, 2022-10-28)",
+    "2022.7 (2022g, 2022-11-29)",
+    "2023.1 (2023a, 2023-03-22)",
+    "2023.2 (2023b, 2023-03-23)",
+    "2023.3 (2023c, 2023-03-28)",
+    "2023.4 (2023d, 2023-12-21)",
+    "2024.1 (2024a, 2024-02-01)",
+    "2024.2 (2024b, 2024-09-04)",
+    "2025.1 (2025a, 2025-01-15)",
+    "2025.2 (2025b, 2025-03-22)",
+    "2025.3 (2025c, 2025-12-10)",
+    "2026.1 (2026a, 2026-03-01)"
+   ],
+   "earliest": {
+    "pypi": "2022.5",
+    "iana": "2022e",
+    "date": "2022-10-11"
+   },
+   "latest": {
+    "pypi": "2026.1",
+    "iana": "2026a",
+    "date": "2026-03-01"
+   },
+   "current": false,
+   "agreement_by_release": {
+    "2022.1 (2022a)": 2,
+    "2022.2 (2022b)": 3,
+    "2022.3 (2022c)": 3,
+    "2022.4 (2022d)": 3,
+    "2022.5 (2022e)": 4,
+    "2022.6 (2022f)": 4,
+    "2022.7 (2022g)": 4,
+    "2023.1 (2023a)": 4,
+    "2023.2 (2023b)": 4,
+    "2023.3 (2023c)": 4,
+    "2023.4 (2023d)": 4,
+    "2024.1 (2024a)": 4,
+    "2024.2 (2024b)": 4,
+    "2025.1 (2025a)": 4,
+    "2025.2 (2025b)": 4,
+    "2025.3 (2025c)": 4,
+    "2026.1 (2026a)": 4,
+    "2026.2 (2026b)": 2,
+    "2026.3 (2026c)": 2,
+    "2026.4 (2026d)": 2
+   }
+  },
+  "tool_calls": null,
+  "unresolved": [
+   {
+    "id": "offset:winnipeg:2026-11-15:12:00",
+    "prompt": "What is the UTC offset in effect in Winnipeg, Manitoba, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
+    "model_answer": {
+     "utc_offset": "-06:00"
+    },
+    "tzdata_2026d": {
+     "utc_offset": "-06:00"
+    },
+    "official": {
+     "utc_offset": "-05:00"
+    },
+    "note": "Winnipeg observes Central Standard Time (UTC-06:00) after Daylight Saving Time ends on the first Sunday in November."
+   },
+   {
+    "id": "change_day:winnipeg:2026-11-01",
+    "prompt": "Do the clocks in Winnipeg, Manitoba, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
+    "model_answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "tzdata_2026d": {
+     "changes": true,
+     "direction": "back"
+    },
+    "official": {
+     "changes": false,
+     "direction": "none"
+    },
+    "note": "On November 1, 2026, clocks in Winnipeg fall back by one hour at 2:00 AM local time to return to Central Standard Time."
+   },
+   {
+    "id": "convert:winnipeg:toronto:2026-11-15:09:00",
+    "prompt": "It is 09:00 on 2026-11-15 in Winnipeg, Manitoba, Canada. What is the local date and time at that same moment in Toronto, Ontario, Canada? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
+    "model_answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "tzdata_2026d": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "official": {
+     "date": "2026-11-15",
+     "time": "09:00"
+    },
+    "note": "Winnipeg was on Central Standard Time (UTC-6) and Toronto was on Eastern Standard Time (UTC-5)."
+   }
+  ],
+  "wrong": [
+   {
+    "id": "offset:vancouver:2026-11-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "-07:00"
+    },
+    "got": {
+     "utc_offset": "-08:00"
+    },
+    "note": "Pacific Standard Time is observed following the end of daylight saving time on the first Sunday in November."
+   },
+   {
+    "id": "offset:vancouver:2026-12-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "-07:00"
+    },
+    "got": {
+     "utc_offset": "-08:00"
+    },
+    "note": "Pacific Standard Time is in effect in Vancouver during December."
+   }
+  ],
+  "errored": []
+ }
+]
