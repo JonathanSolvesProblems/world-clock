@@ -53,6 +53,6 @@ for cid in cases:
         row = next((r for r in d["rows"] if r["id"] == cid), None)
         if row is None:
             continue
-        mark = "ok " if row["correct"] else ("   " if not row["graded"] else "X  ")
+        mark = "~  " if not row["graded"] else ("ok " if row["correct"] else "X  ")
         model = d["model"].split("/")[-1].split("@")[0]
         print(f"{mark}{model:28s} {json.dumps(row['answer']):40s} {row['note']}")
