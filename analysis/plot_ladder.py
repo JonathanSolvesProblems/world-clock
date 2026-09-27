@@ -81,26 +81,43 @@ def main() -> None:
     for ax, name in zip(axes.flat, order):
         ax.set_facecolor(SURFACE)
         series = sorted(panels[name], key=lambda r: short(r["model"]))
-        for i, r in enumerate(series[:5]):
-            colour = SERIES[i]
+        # Models with identical curves share one line and one label: an identical
+        # ladder row means an identical clock, which is worth seeing as one line.
+        curves: dict[tuple, list[dict]] = {}
+        for r in series:
             agree = r["clock"]["agreement_by_release"]
-            y = [agree[f"{v} ({INDEX[v]['iana']})"] for v in RELEASES]
+            y = tuple(agree[f"{v} ({INDEX[v]['iana']})"] for v in RELEASES)
+            curves.setdefault(y, []).append(r)
+        distinct = sorted(curves.items(), key=lambda kv: -kv[0][-1])  # by end value, high to low
+
+        # End-label positions: keep labels at least `gap` apart, top down.
+        gap = 3.2
+        label_y: list[float] = []
+        for y, _ in distinct:
+            want = float(y[-1])
+            if label_y and want > label_y[-1] - gap:
+                want = label_y[-1] - gap
+            label_y.append(want)
+
+        for i, ((y, members), ly) in enumerate(zip(distinct, label_y)):
+            colour = SERIES[i % len(SERIES)]
             ax.plot(x, y, color=colour, linewidth=2, solid_joinstyle="round", solid_capstyle="round", zorder=3)
-            best = r["clock"]["best_agreement"]
-            peak_idx = [k for k, val in enumerate(y) if val == best]
-            # Marker on the latest release tied at the peak: that is the dated clock.
-            k = peak_idx[-1]
+            best = max(y)
+            k = max(idx for idx, val in enumerate(y) if val == best)  # latest release tied at the peak
             ax.scatter([k], [y[k]], s=64, color=colour, edgecolors=SURFACE, linewidths=2, zorder=4)
-            label = f"{short(r['model'])}  {IANA[k]}"
-            ax.annotate(
-                label, (x[-1], y[-1]), xytext=(6, 0), textcoords="offset points",
-                va="center", ha="left", fontsize=7.5, color=INK2,
-            )
-        ax.set_title(name, loc="left", fontsize=10, color=INK, pad=6)
+            names = ", ".join(short(m["model"]) for m in members)
+            label = f"{names}: {IANA[k]}"
+            xe = x[-1]
+            if abs(ly - y[-1]) > 0.1:
+                ax.plot([xe + 0.15, xe + 0.9], [y[-1], ly], color=AXIS, linewidth=0.8, zorder=2)
+            ax.text(xe + 1.05, ly, label, va="center", ha="left", fontsize=7, color=INK2)
+
+        ax.set_title(f"{name} ({len(series)} model{'s' if len(series) != 1 else ''})", loc="left", fontsize=10, color=INK, pad=6)
         ax.set_ylim(0, ladder_total + 2)
-        ax.set_xlim(-0.5, len(RELEASES) - 0.5 + 9)  # room for end labels
+        ax.set_xlim(-0.5, len(RELEASES) - 0.5 + 11)  # room for end labels
         ax.set_xticks(x)
-        ax.set_xticklabels([lab if lab.endswith("a") or lab in ("2026d",) else "" for lab in IANA], fontsize=7, color=MUTED)
+        shown = {"2022a", "2023a", "2024a", "2025a", "2026a", "2026d"}
+        ax.set_xticklabels([lab if lab in shown else "" for lab in IANA], fontsize=7, color=MUTED)
         ax.set_yticks([0, 10, 20, 30, 40, ladder_total])
         ax.set_yticklabels([str(t) for t in [0, 10, 20, 30, 40, ladder_total]], fontsize=7, color=MUTED)
         ax.grid(axis="y", color=GRID, linewidth=1)
@@ -109,25 +126,23 @@ def main() -> None:
         for spine in ("left", "bottom"):
             ax.spines[spine].set_color(AXIS)
         ax.tick_params(length=0)
-        # Hairlines at the 2026 wave releases, labelled once, recessive.
-        for iana_name, text in (("2026b", "BC"), ("2026c", "Alberta, Morocco"), ("2026d", "NWT")):
-            k = IANA.index(iana_name)
-            ax.axvline(k, color=GRID, linewidth=1, zorder=1)
-            ax.text(k, ladder_total + 1.2, text, fontsize=6.5, color=MUTED, ha="center", va="bottom")
+        for iana_name in ("2026b", "2026c", "2026d"):
+            ax.axvline(IANA.index(iana_name), color=GRID, linewidth=1, zorder=1)
 
     for ax in list(axes.flat)[len(order):]:
         ax.set_visible(False)
 
     fig.suptitle(
-        f"How many of the {ladder_total} changed answers each model agrees with, per tzdata release",
+        f"Answers matching each tzdata release, out of the {ladder_total} that changed since 2022",
         x=0.02, ha="left", fontsize=11, color=INK,
     )
     fig.text(
         0.02, 0.005,
-        "The peak is the release the model's clock is dated to. Answers from memory, no tools. Grader: tzdata 2026d.",
-        fontsize=7.5, color=INK2,
+        "The peak marks the release the model's clock is dated to. Vertical lines are the 2026 releases: 2026b (British Columbia),\n"
+        "2026c (Alberta and Morocco), 2026d (Northwest Territories). Answers from memory, no tools. Grader: tzdata 2026d.",
+        fontsize=7.5, color=INK2, va="bottom",
     )
-    fig.tight_layout(rect=(0, 0.03, 1, 0.95))
+    fig.tight_layout(rect=(0, 0.05, 1, 0.95))
     out.parent.mkdir(exist_ok=True)
     fig.savefig(out, facecolor=SURFACE)
     print(f"wrote {out} ({len(rows)} models, {n} panels)")
