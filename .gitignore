@@ -1,0 +1,20 @@
+# environment and credentials
+.venv/
+.env
+*.env
+kaggle.json
+
+# tzdata ladder is re-downloadable; keep only the index
+tzhist/wheels/
+tzhist/releases/*/
+!tzhist/releases/index.json
+
+# SDK run artefacts and caches
+*.run.json
+*.task.json
+.cache/
+__pycache__/
+*.pyc
+
+# downloaded Kaggle run outputs land here; summaries are committed separately
+results/raw/

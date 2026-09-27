@@ -1,0 +1,82 @@
+{
+  "2022.1": {
+    "iana": "2022a",
+    "wheel": "tzdata-2022.1-py2.py3-none-any.whl"
+  },
+  "2022.2": {
+    "iana": "2022b",
+    "wheel": "tzdata-2022.2-py2.py3-none-any.whl"
+  },
+  "2022.3": {
+    "iana": "2022c",
+    "wheel": "tzdata-2022.3-py2.py3-none-any.whl"
+  },
+  "2022.4": {
+    "iana": "2022d",
+    "wheel": "tzdata-2022.4-py2.py3-none-any.whl"
+  },
+  "2022.5": {
+    "iana": "2022e",
+    "wheel": "tzdata-2022.5-py2.py3-none-any.whl"
+  },
+  "2022.6": {
+    "iana": "2022f",
+    "wheel": "tzdata-2022.6-py2.py3-none-any.whl"
+  },
+  "2022.7": {
+    "iana": "2022g",
+    "wheel": "tzdata-2022.7-py2.py3-none-any.whl"
+  },
+  "2023.1": {
+    "iana": "2023a",
+    "wheel": "tzdata-2023.1-py2.py3-none-any.whl"
+  },
+  "2023.2": {
+    "iana": "2023b",
+    "wheel": "tzdata-2023.2-py2.py3-none-any.whl"
+  },
+  "2023.3": {
+    "iana": "2023c",
+    "wheel": "tzdata-2023.3-py2.py3-none-any.whl"
+  },
+  "2023.4": {
+    "iana": "2023d",
+    "wheel": "tzdata-2023.4-py2.py3-none-any.whl"
+  },
+  "2024.1": {
+    "iana": "2024a",
+    "wheel": "tzdata-2024.1-py2.py3-none-any.whl"
+  },
+  "2024.2": {
+    "iana": "2024b",
+    "wheel": "tzdata-2024.2-py2.py3-none-any.whl"
+  },
+  "2025.1": {
+    "iana": "2025a",
+    "wheel": "tzdata-2025.1-py2.py3-none-any.whl"
+  },
+  "2025.2": {
+    "iana": "2025b",
+    "wheel": "tzdata-2025.2-py2.py3-none-any.whl"
+  },
+  "2025.3": {
+    "iana": "2025c",
+    "wheel": "tzdata-2025.3-py2.py3-none-any.whl"
+  },
+  "2026.1": {
+    "iana": "2026a",
+    "wheel": "tzdata-2026.1-py2.py3-none-any.whl"
+  },
+  "2026.2": {
+    "iana": "2026b",
+    "wheel": "tzdata-2026.2-py2.py3-none-any.whl"
+  },
+  "2026.3": {
+    "iana": "2026c",
+    "wheel": "tzdata-2026.3-py2.py3-none-any.whl"
+  },
+  "2026.4": {
+    "iana": "2026d",
+    "wheel": "tzdata-2026.4-py2.py3-none-any.whl"
+  }
+}
