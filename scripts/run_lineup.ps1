@@ -1,15 +1,22 @@
-# Run one task against the lineup, wait, and download.
+# Run one task against the lineup in small batches, wait for each batch, then download.
 #
 #   .\scripts\run_lineup.ps1 world-clock-from-memory
-#   .\scripts\run_lineup.ps1 world-clock-with-tzdata-tool
+#   .\scripts\run_lineup.ps1 world-clock-tool -BatchSize 2
+#
+# Why batches: the Model Proxy reserves quota per in-flight request, and 19 runs at once
+# with 4 workers each blew through the account's available quota on the first attempt
+# (2026-09-27). Three models at a time with 2 workers each stays well inside it.
 #
 # The lineup mixes current frontier models with deliberately older ones (mid-2025), so the
-# dating ladder has known-old clocks to prove itself on. gemini-3.7-flash is left out here
-# because the push already ran it as the task's creation run.
+# dating ladder has known-old clocks to prove itself on. gemini-3.7-flash is the default
+# model and runs as the task's creation run, so it is not listed here.
+# claude-opus-4-1-20250805 and grok-4.6 are listed by `kaggle b t models` but return 404
+# from the proxy, so their nearest neighbours are used instead.
 
 param(
     [Parameter(Mandatory = $true)][string]$Task,
-    [int]$WaitSeconds = 5400
+    [int]$BatchSize = 3,
+    [int]$WaitSeconds = 3600
 )
 
 $proj = Split-Path -Parent $PSScriptRoot
@@ -25,7 +32,7 @@ $lineup = @(
     "claude-opus-5-default",
     "claude-sonnet-5-default",
     "claude-haiku-4-5-20251001",
-    "claude-opus-4-1-20250805",
+    "claude-opus-4-5-20251101",
     # OpenAI
     "gpt-6-astra",
     "gpt-5.6-terra",
@@ -33,7 +40,7 @@ $lineup = @(
     "gpt-5.4-mini-2026-03-17",
     "gpt-oss-120b",
     # xAI
-    "grok-4.6",
+    "grok-4.5-0708",
     "grok-4.20-0309-reasoning",
     # others
     "deepseek-r1-0528",
@@ -42,13 +49,15 @@ $lineup = @(
     "gemma-4-31b-it"
 )
 
-$args = @("benchmarks", "tasks", "run", $Task)
-foreach ($m in $lineup) { $args += @("-m", $m) }
-$args += @("--wait", "$WaitSeconds")
+for ($i = 0; $i -lt $lineup.Count; $i += $BatchSize) {
+    $batch = $lineup[$i..([Math]::Min($i + $BatchSize, $lineup.Count) - 1)]
+    $args = @("benchmarks", "tasks", "run", $Task)
+    foreach ($m in $batch) { $args += @("-m", $m) }
+    $args += @("--wait", "$WaitSeconds")
+    Write-Output "=== $Task batch $([int]($i / $BatchSize) + 1): $($batch -join ', ')"
+    & $kaggle @args
+}
 
-Write-Output "Running $Task on $($lineup.Count) models"
-& $kaggle @args
-
-Write-Output "Downloading"
+Write-Output "=== downloading"
 & $kaggle benchmarks tasks download $Task -o (Join-Path $proj "results\raw")
 & $kaggle benchmarks tasks status $Task

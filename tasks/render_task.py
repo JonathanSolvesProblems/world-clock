@@ -39,13 +39,16 @@ CONDITIONS = {
         ),
     },
     "tool": {
-        "task_name": "world-clock-with-tzdata-tool",
+        # world-clock-with-tzdata-tool and world-clock-with-tool are broken shells: both
+        # pushes failed server-side with a ~160-character description. Kaggle appears to cap
+        # the task description near 150 characters, so keep every description under 140.
+        "task_name": "world-clock-tool",
         "behaviour": "tool",
         "default_limit": 0,
         "title": "with a tzdata tool it may ignore",
         "description": (
-            "The same 125 time-zone questions graded against the IANA tz database (tzdata 2026d). "
-            "The model may call zone_clock(), which reads tzdata 2026d, and is free not to."
+            "Same 125 questions, graded against tzdata 2026d. The model may call zone_clock(), "
+            "which reads tzdata 2026d, or ignore it."
         ),
     },
     "smoke": {
@@ -85,6 +88,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 from dataclasses import dataclass
 
 import pandas as pd
@@ -98,7 +102,11 @@ TZDATA_PYPI = "2026.4"
 TZDATA_IANA = "2026d"
 # A stratified subset when non-zero; the smoke task bakes in 20, the real tasks 0 (all).
 LIMIT = int(os.environ.get("WORLD_CLOCK_LIMIT", "__DEFAULT_LIMIT__") or 0)
-N_JOBS = int(os.environ.get("WORLD_CLOCK_JOBS", "4") or 4)
+N_JOBS = int(os.environ.get("WORLD_CLOCK_JOBS", "2") or 2)
+# The Model Proxy reserves quota per request from the output-token cap, so an uncapped
+# request on a frontier model can reserve several dollars and be refused. 2500 tokens is
+# generous for a two-field answer plus a sentence, and leaves room for reasoning tokens.
+MAX_TOKENS = int(os.environ.get("WORLD_CLOCK_MAX_TOKENS", "2500") or 2500)
 
 # %%
 CASES = json.loads(r"""__CASES_JSON__""")
@@ -320,6 +328,43 @@ def count_tool_calls(chat) -> int:
     return n
 
 
+TRANSIENT = ("429", "rate_limit", "heavy load", "exceeds your available quota", "502", "503", "overloaded", "timeout")
+CAP_NAMES = ("max_tokens", "max_completion_tokens")
+
+
+def ask(llm, prompt: str, schema, tools=None):
+    """llm.prompt with an output-token cap and retries.
+
+    Nested evaluations run with max_attempts=1 whatever the caller asks, so transient
+    proxy errors (429 under load, quota reservation refused) have to be retried here.
+    Some backends reject `max_tokens` and want `max_completion_tokens`; the cap name
+    falls through on that error. Anything else is raised as is.
+    """
+    cap_index = 0
+    delay = 5
+    last: Exception | None = None
+    for _ in range(7):
+        extra = {CAP_NAMES[cap_index]: MAX_TOKENS} if cap_index < len(CAP_NAMES) else None
+        try:
+            if tools:
+                return llm.prompt(prompt, schema=schema, tools=tools, extra_api_params=extra)
+            return llm.prompt(prompt, schema=schema, extra_api_params=extra)
+        except Exception as exc:  # noqa: BLE001
+            last = exc
+            msg = str(exc)
+            low = msg.lower()
+            if "unsupported" in low and any(name in low for name in CAP_NAMES):
+                cap_index += 1
+                continue
+            if any(t in low for t in TRANSIENT):
+                time.sleep(delay)
+                delay = min(delay * 2, 60)
+                continue
+            raise
+    assert last is not None
+    raise last
+
+
 # %% [markdown]
 # ## One case
 
@@ -332,10 +377,10 @@ def world_clock_case(llm, id, family, kind, prompt, expected_json, graded) -> di
     tool_calls = 0
     with kbench.chats.new(f"case {id}", system_instructions=SYSTEM) as chat:
         if CONDITION == "tool":
-            answer = llm.prompt(full_prompt, schema=schema, tools=[zone_clock])
+            answer = ask(llm, full_prompt, schema, tools=[zone_clock])
             tool_calls = count_tool_calls(chat)
         else:
-            answer = llm.prompt(full_prompt, schema=schema)
+            answer = ask(llm, full_prompt, schema)
         usage = getattr(chat, "usage", None)
     got = normalise(kind, answer)
     correct = got == expected
@@ -422,7 +467,14 @@ def __FUNC_NAME__(llm) -> tuple[int, int]:
         )
     completed = results.completed_runs
     rows = [r.result for r in completed]
-    errored = [{"params": {k: v for k, v in r.params.items() if k != "llm"}, "error": str(getattr(r, "error_message", ""))[:300]} for r in results.errored_runs]
+    def _tail(msg) -> str:
+        lines = [ln for ln in str(msg or "").strip().splitlines() if ln.strip()]
+        return lines[-1][:400] if lines else ""
+
+    errored = [
+        {"params": {k: v for k, v in r.params.items() if k != "llm"}, "error": _tail(getattr(r, "error_message", ""))}
+        for r in results.errored_runs
+    ]
 
     graded_rows = [r for r in rows if r["graded"]]
     correct = sum(1 for r in graded_rows if r["correct"])

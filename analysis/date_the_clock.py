@@ -47,6 +47,35 @@ def canon(d: dict) -> str:
     return json.dumps(d, sort_keys=True)
 
 
+CARDS_PATH = HERE / "model_cards.json"
+CARDS = {k: v for k, v in json.loads(CARDS_PATH.read_text(encoding="utf-8")).items() if not k.startswith("_")} if CARDS_PATH.exists() else {}
+
+
+def card_key(model: str) -> str:
+    """Reduce a proxy model string to the shape used in model_cards.json.
+
+    'anthropic/claude-opus-5@default' -> 'claude-opus-5'
+    'openai/gpt-5.5-2026-04-23'       -> 'gpt-5.5'
+    'xai/grok-4.20-0309-reasoning'    -> 'grok-4.20-reasoning'
+    """
+    import re as _re
+
+    name = model.split("/")[-1].split("@")[0].lower()
+    name = name.replace("-default", "")
+    name = _re.sub(r"-\d{4}-\d{2}-\d{2}", "", name)
+    name = _re.sub(r"-\d{8}", "", name)
+    name = _re.sub(r"-\d{4}(?=-|$)", "", name)
+    return name
+
+
+def card_for(model: str) -> dict | None:
+    want = card_key(model)
+    for key, card in CARDS.items():
+        if card_key(key) == want:
+            return card
+    return None
+
+
 def find_answer_files(root: Path) -> list[Path]:
     return sorted(root.rglob("world_clock_answers.json"))
 
@@ -55,7 +84,12 @@ def score_file(path: Path) -> dict:
     data = json.loads(path.read_text(encoding="utf-8"))
     model = data.get("model") or path.parent.name
     condition = data.get("condition", "memory")
+    task = data.get("task", "")
     rows = data.get("rows", [])
+    calgary_falls_back = None
+    for row in rows:
+        if row["id"] == "change_day:calgary:2026-11-01":
+            calgary_falls_back = bool(row["answer"].get("changes"))
 
     per_family = defaultdict(lambda: {"correct": 0, "total": 0})
     ladder_agree = {r: 0 for r in RELEASES}
@@ -121,9 +155,13 @@ def score_file(path: Path) -> dict:
     else:
         clock = None
 
+    card = card_for(model)
     return {
         "model": model,
         "condition": condition,
+        "task": task,
+        "card": card,
+        "calgary_still_falls_back_nov_1": calgary_falls_back,
         "source": str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path),
         "graded_correct": graded_correct,
         "graded_total": graded_total,
@@ -143,8 +181,8 @@ def score_file(path: Path) -> dict:
 
 def to_markdown(results: list[dict]) -> str:
     lines = ["# World Clock results", ""]
-    lines.append("| Model | Condition | Graded | Accuracy | Clock dated to | Ladder agreement |")
-    lines.append("|---|---|---|---|---|---|")
+    lines.append("| Model | Condition | Graded | Accuracy | Clock dated to | Ladder agreement | Vendor says cutoff | Calgary falls back Nov 1? |")
+    lines.append("|---|---|---|---|---|---|---|---|")
     for r in results:
         clock = r["clock"]
         dated = "n/a"
@@ -157,9 +195,12 @@ def to_markdown(results: list[dict]) -> str:
             else:
                 dated = f"{clock['earliest']['iana']} ({clock['earliest']['date']}) to {clock['latest']['iana']} ({clock['latest']['date']})"
             agree = f"{clock['best_agreement']}/{clock['ladder_cases']}"
+        card = r.get("card") or {}
+        stated = card.get("stated_cutoff") or "not published"
+        calgary = {True: "yes (wrong)", False: "no (right)", None: "n/a"}[r.get("calgary_still_falls_back_nov_1")]
         lines.append(
             f"| {r['model']} | {r['condition']} | {r['graded_correct']}/{r['graded_total']} | "
-            f"{r['accuracy_pct']}% | {dated} | {agree} |"
+            f"{r['accuracy_pct']}% | {dated} | {agree} | {stated} | {calgary} |"
         )
     lines.append("")
     families = sorted({fam for r in results for fam in r["per_family"]})
@@ -188,7 +229,10 @@ def main() -> None:
     files = find_answer_files(root)
     if not files:
         raise SystemExit(f"no world_clock_answers.json under {root}")
+    include_smoke = "--include-smoke" in sys.argv
     results = [score_file(p) for p in files]
+    if not include_smoke:
+        results = [r for r in results if "smoke" not in (r.get("task") or "")]
     results.sort(key=lambda r: (r["condition"], -(r["accuracy_pct"] or 0)))
     out_dir = ROOT / "results"
     out_dir.mkdir(exist_ok=True)
