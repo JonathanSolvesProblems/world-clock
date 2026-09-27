@@ -22,10 +22,13 @@ Entry for the DEV x Kaggle Benchmarking Challenge (September 23 to October 11, 2
 | `cases/specs.py` | The curated case list: places, dates, question kinds. No answers. |
 | `cases/build_cases.py` | Computes every expected answer with `zoneinfo` under every tzdata release in `tzhist/releases/`. Writes `cases.json`, `answer_key.csv`, `ladder.csv`. |
 | `tzhist/fetch_releases.py` | Downloads every tzdata wheel from PyPI since 2022 and unpacks its zoneinfo tree. |
-| `tasks/render_task.py` | Renders the two self-contained Kaggle task files from the answer key. |
-| `tasks/world_clock_memory.py` | Task: the model answers from its own knowledge. |
-| `tasks/world_clock_tool.py` | Task: the model may call `zone_clock()`, which reads tzdata 2026d, and is free not to. |
-| `tests/test_grading.py` | Tests for the answer normalisers, run against the rendered task file. |
+| `tasks/render_task.py` | Renders the self-contained Kaggle task files from the answer key. |
+| `tasks/world_clock_memory.py` | Kaggle task `world-clock-from-memory`: the model answers from its own knowledge. |
+| `tasks/world_clock_tool.py` | Kaggle task `world-clock-with-tzdata-tool`: the model may call `zone_clock()`, which reads tzdata 2026d, and is free not to. |
+| `tasks/world_clock_smoke.py` | Kaggle task `world-clock-smoke`: a stratified 20-case subset, used once to prove the pipeline. |
+| `analysis/date_the_clock.py` | Scores downloaded runs, dates each model's clock against the tzdata ladder, writes `results/summary.json` and `results/summary.md`. |
+| `check_claims.py` | Fails if a number in the README or the post disagrees with the data. |
+| `tests/` | Tests for the answer normalisers and for the dating ladder on synthetic answer sheets. |
 | `SCRIPT.md` | The post outline, written before the first commit. |
 
 ## Reproduce the answer key
@@ -38,13 +41,21 @@ python tasks/render_task.py
 
 ## Run on Kaggle
 
+The account needs Kaggle phone verification first; without it, task creation fails
+server-side and the Model Proxy token is refused.
+
 ```
-kaggle b init -y
-WORLD_CLOCK_LIMIT=20 python tasks/world_clock_memory.py    # smoke test against the default model
-kaggle b t push world-clock-memory -f tasks/world_clock_memory.py --wait
-kaggle b t run world-clock-memory -m <model> --wait
-kaggle b t download world-clock-memory -o results/raw
+kaggle auth login
+kaggle b t push world-clock-from-memory -f tasks/world_clock_memory.py --wait   # also runs it once on the default model
+kaggle b t run world-clock-from-memory -m gemini-3.8-flash -m claude-opus-5-default --wait
+kaggle b t download world-clock-from-memory -o results/raw
+python analysis/date_the_clock.py results/raw
+python check_claims.py
 ```
+
+Each run leaves `world_clock_answers.json` in its output folder with every case, the
+model's normalised answer, its one-sentence note, and token counts. That file is what the
+analysis and the post are built from.
 
 ## What is not in the answer key
 
