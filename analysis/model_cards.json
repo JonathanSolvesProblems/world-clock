@@ -1,0 +1,23 @@
+{
+  "_note": "Release dates and stated knowledge cutoffs for the lineup, gathered 2026-09-27 from vendor pages where available and third-party trackers otherwise. Used to set the vendor's date beside the date the tzdata ladder assigns to each model's clock. 'cutoff_source' says who stated it. Anything marked third-party is reported, not vendor-confirmed.",
+  "google/gemini-3.8-flash": {"vendor": "Google", "released": "2026-09-02", "stated_cutoff": "2026-03", "cutoff_source": "Google model card (some domains limited to January 2025)"},
+  "google/gemini-3.7-flash": {"vendor": "Google", "released": "2026-08", "stated_cutoff": "2026-03", "cutoff_source": "Google model card (some domains limited to January 2025)"},
+  "google/gemini-3.5-flash-lite": {"vendor": "Google", "released": "2026", "stated_cutoff": null, "cutoff_source": "not found"},
+  "google/gemini-3.1-pro-preview": {"vendor": "Google", "released": "2026-02-19", "stated_cutoff": "2025-01", "cutoff_source": "Google developer docs"},
+  "google/gemini-2.5-pro": {"vendor": "Google", "released": "2025-06", "stated_cutoff": "2025-01", "cutoff_source": "Google model card"},
+  "anthropic/claude-opus-5": {"vendor": "Anthropic", "released": "2026-07-24", "stated_cutoff": "2026-05", "cutoff_source": "Anthropic system card"},
+  "anthropic/claude-sonnet-5": {"vendor": "Anthropic", "released": "2026-06-30", "stated_cutoff": "2026-01", "cutoff_source": "Anthropic platform docs (reliable cutoff)"},
+  "anthropic/claude-haiku-4-5": {"vendor": "Anthropic", "released": "2025-10-15", "stated_cutoff": "2025-02", "cutoff_source": "Anthropic platform docs (reliable cutoff; training data to July 2025)"},
+  "anthropic/claude-opus-4-1": {"vendor": "Anthropic", "released": "2025-08-05", "stated_cutoff": "2025-03", "cutoff_source": "Anthropic platform docs"},
+  "openai/gpt-6-astra": {"vendor": "OpenAI", "released": "2026-09-03", "stated_cutoff": "2026-04-30", "cutoff_source": "OpenAI system card"},
+  "openai/gpt-5.6-terra": {"vendor": "OpenAI", "released": "2026-07-09", "stated_cutoff": "2026-02-16", "cutoff_source": "OpenAI model docs"},
+  "openai/gpt-5.5": {"vendor": "OpenAI", "released": "2026-04-23", "stated_cutoff": "2025-12-01", "cutoff_source": "OpenAI model docs"},
+  "openai/gpt-5.4-mini": {"vendor": "OpenAI", "released": "2026-03-17", "stated_cutoff": "2025-08-31", "cutoff_source": "OpenAI model docs"},
+  "openai/gpt-oss-120b": {"vendor": "OpenAI", "released": "2025-08-05", "stated_cutoff": "2024-06-30", "cutoff_source": "OpenAI model card"},
+  "xai/grok-4.6": {"vendor": "xAI", "released": "2026-08-12", "stated_cutoff": "2026-02-01", "cutoff_source": "third-party trackers"},
+  "xai/grok-4.20-reasoning": {"vendor": "xAI", "released": "2026-03", "stated_cutoff": "2025-09-01", "cutoff_source": "third-party trackers (reports vary)"},
+  "deepseek/deepseek-r1-0528": {"vendor": "DeepSeek", "released": "2025-05-28", "stated_cutoff": "2025-03-31", "cutoff_source": "third-party trackers (reports vary)"},
+  "zai/glm-5": {"vendor": "Z.ai (Zhipu)", "released": "2026-02-11", "stated_cutoff": null, "cutoff_source": "not found"},
+  "qwen/qwen3-next-80b-a3b-thinking": {"vendor": "Alibaba Qwen", "released": "2025-09-11", "stated_cutoff": "2025-09-30", "cutoff_source": "third-party trackers"},
+  "google/gemma-4-31b-it": {"vendor": "Google", "released": "2026-04-02", "stated_cutoff": "2025-01", "cutoff_source": "third-party trackers"}
+}
