@@ -24,7 +24,7 @@ Entry for the DEV x Kaggle Benchmarking Challenge (September 23 to October 11, 2
 | `tzhist/fetch_releases.py` | Downloads every tzdata wheel from PyPI since 2022 and unpacks its zoneinfo tree. |
 | `tasks/render_task.py` | Renders the self-contained Kaggle task files from the answer key. |
 | `tasks/world_clock_memory.py` | Kaggle task `world-clock-from-memory`: the model answers from its own knowledge. |
-| `tasks/world_clock_tool.py` | Kaggle task `world-clock-with-tzdata-tool`: the model may call `zone_clock()`, which reads tzdata 2026d, and is free not to. |
+| `tasks/world_clock_tool.py` | Kaggle task `world-clock-tool-v2`: the model may call `zone_clock()`, which reads tzdata 2026d, and is free not to. (The `-v2` is a scar: Kaggle caps how many tasks an account can create in a short window, and the first slugs died as empty shells.) |
 | `tasks/world_clock_smoke.py` | Kaggle task `world-clock-smoke`: a stratified 20-case subset, used once to prove the pipeline. |
 | `analysis/date_the_clock.py` | Scores downloaded runs, dates each model's clock against the tzdata ladder, writes `results/summary.json` and `results/summary.md`. |
 | `check_claims.py` | Fails if a number in the README or the post disagrees with the data. |

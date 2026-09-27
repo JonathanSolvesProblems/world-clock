@@ -32,7 +32,7 @@ import kaggle_benchmarks as kbench
 from kaggle_benchmarks.tools import base as tool_base
 
 CONDITION = "tool"
-TASK_NAME = "world-clock-tool"
+TASK_NAME = "world-clock-tool-v2"
 TZDATA_PYPI = "2026.4"
 TZDATA_IANA = "2026d"
 # A stratified subset when non-zero; the smoke task bakes in 20, the real tasks 0 (all).
@@ -387,7 +387,7 @@ def cases_frame() -> pd.DataFrame:
     name=TASK_NAME,
     description="Same 125 questions, graded against tzdata 2026d. The model may call zone_clock(), which reads tzdata 2026d, or ignore it.",
 )
-def world_clock_tool(llm) -> tuple[int, int]:
+def world_clock_tool_v2(llm) -> tuple[int, int]:
     df = cases_frame()
     with kbench.client.enable_cache():
         results = world_clock_case.evaluate(
@@ -441,5 +441,5 @@ def world_clock_tool(llm) -> tuple[int, int]:
 
 
 # %%
-run = world_clock_tool.run(kbench.llm)
+run = world_clock_tool_v2.run(kbench.llm)
 run

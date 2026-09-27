@@ -42,7 +42,7 @@ CONDITIONS = {
         # world-clock-with-tzdata-tool and world-clock-with-tool are broken shells: both
         # pushes failed server-side with a ~160-character description. Kaggle appears to cap
         # the task description near 150 characters, so keep every description under 140.
-        "task_name": "world-clock-tool",
+        "task_name": "world-clock-tool-v2",
         "behaviour": "tool",
         "default_limit": 0,
         "title": "with a tzdata tool it may ignore",
