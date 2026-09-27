@@ -77,7 +77,33 @@ def card_for(model: str) -> dict | None:
 
 
 def find_answer_files(root: Path) -> list[Path]:
-    return sorted(root.rglob("world_clock_answers.json"))
+    """Latest task version, and within it the latest run per model.
+
+    The download layout is results/raw/<task>/<version>/<model>/<run_id>/... . Older
+    versions are kept on disk as history but must not be scored beside the current one:
+    version 1 of the from-memory task ran with no retry and most of its runs errored out.
+    """
+    files = sorted(root.rglob("world_clock_answers.json"))
+    best: dict[tuple[str, str], tuple[int, int, Path]] = {}
+    for p in files:
+        parts = p.parts
+        try:
+            run_id = int(parts[-2])
+            model = parts[-3]
+            version = int(parts[-4])
+            task = parts[-5]
+        except (ValueError, IndexError):
+            best[(str(p), "")] = (0, 0, p)
+            continue
+        key = (task, model)
+        cur = best.get(key)
+        if cur is None or (version, run_id) > (cur[0], cur[1]):
+            best[key] = (version, run_id, p)
+    # Only the highest version per task survives.
+    top_version: dict[str, int] = {}
+    for (task, _model), (version, _run, _p) in best.items():
+        top_version[task] = max(top_version.get(task, 0), version)
+    return sorted(p for (task, _m), (v, _r, p) in best.items() if v == top_version.get(task, v))
 
 
 def score_file(path: Path) -> dict:
