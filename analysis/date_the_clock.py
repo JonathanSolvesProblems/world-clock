@@ -76,15 +76,21 @@ def card_for(model: str) -> dict | None:
     return None
 
 
-def find_answer_files(root: Path) -> list[Path]:
-    """Latest task version, and within it the latest run per model.
+# Versions below these ran with a broken harness (no retry, per-job timeout) and are history.
+MIN_VERSION = {"world-clock-from-memory": 2, "world-clock-tool-v2": 1}
 
-    The download layout is results/raw/<task>/<version>/<model>/<run_id>/... . Older
-    versions are kept on disk as history but must not be scored beside the current one:
-    version 1 of the from-memory task ran with no retry and most of its runs errored out.
+
+def find_answer_files(root: Path) -> list[Path]:
+    """One run per (task, model): the most complete, then the latest.
+
+    The download layout is results/raw/<task>/<version>/<model>/<run_id>/... . Task
+    versions 2 and 3 of the from-memory task ask identical questions and grade them the
+    same way; they differ only in how the harness survives proxy errors. So a model is
+    represented by whichever of its runs completed the most graded cases, and only by a
+    later run when it completed at least as many. Versions below MIN_VERSION are skipped.
     """
     files = sorted(root.rglob("world_clock_answers.json"))
-    best: dict[tuple[str, str], tuple[int, int, Path]] = {}
+    best: dict[tuple[str, str], tuple[int, int, int, Path]] = {}
     for p in files:
         parts = p.parts
         try:
@@ -93,17 +99,20 @@ def find_answer_files(root: Path) -> list[Path]:
             version = int(parts[-4])
             task = parts[-5]
         except (ValueError, IndexError):
-            best[(str(p), "")] = (0, 0, p)
+            best[(str(p), "")] = (0, 0, 0, p)
             continue
+        if version < MIN_VERSION.get(task, 1):
+            continue
+        try:
+            data = json.loads(p.read_text(encoding="utf-8"))
+            completed = len(data.get("rows", []))
+        except (OSError, ValueError):
+            completed = 0
         key = (task, model)
         cur = best.get(key)
-        if cur is None or (version, run_id) > (cur[0], cur[1]):
-            best[key] = (version, run_id, p)
-    # Only the highest version per task survives.
-    top_version: dict[str, int] = {}
-    for (task, _model), (version, _run, _p) in best.items():
-        top_version[task] = max(top_version.get(task, 0), version)
-    return sorted(p for (task, _m), (v, _r, p) in best.items() if v == top_version.get(task, v))
+        if cur is None or (completed, version, run_id) > (cur[0], cur[1], cur[2]):
+            best[key] = (completed, version, run_id, p)
+    return sorted(p for (_c, _v, _r, p) in best.values())
 
 
 def score_file(path: Path) -> dict:

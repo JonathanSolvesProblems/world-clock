@@ -95,6 +95,7 @@ import pandas as pd
 
 import kaggle_benchmarks as kbench
 from kaggle_benchmarks.tools import base as tool_base
+from kaggle_benchmarks.tools import native as tool_native
 
 CONDITION = "__BEHAVIOUR__"
 TASK_NAME = "__TASK_NAME__"
@@ -106,7 +107,12 @@ N_JOBS = int(os.environ.get("WORLD_CLOCK_JOBS", "2") or 2)
 # The Model Proxy reserves quota per request from the output-token cap, so an uncapped
 # request on a frontier model can reserve several dollars and be refused. 2500 tokens is
 # generous for a two-field answer plus a sentence, and leaves room for reasoning tokens.
+# A model that still runs out of room gets one more try at double the cap, up to MAX_CAP.
 MAX_TOKENS = int(os.environ.get("WORLD_CLOCK_MAX_TOKENS", "2500") or 2500)
+MAX_CAP = 10000
+# Tool-calling rounds per case. The SDK default of 10 was exhausted by a model that checked
+# every zone twice; 30 leaves room for that without letting a loop run forever.
+MAX_TOOL_ROUNDS = 30
 
 # %%
 CASES = json.loads(r"""__CASES_JSON__""")
@@ -219,11 +225,21 @@ def zone_clock(iana_zone: str, local_datetime: str) -> dict:
     try:
         tz = zoneinfo.ZoneInfo(iana_zone)
     except Exception:
-        return {"error": f"unknown IANA zone key: {iana_zone!r}"}
+        return {
+            "isError": True,
+            "errorCategory": "validation",
+            "isRetryable": False,
+            "message": f"{iana_zone!r} is not an IANA zone key in tzdata {TZDATA_LOADED}. Use a key such as 'America/Edmonton'.",
+        }
     try:
         local = datetime.fromisoformat(local_datetime)
     except ValueError:
-        return {"error": f"could not parse local_datetime: {local_datetime!r}; use ISO 8601 like 2026-11-15T09:00"}
+        return {
+            "isError": True,
+            "errorCategory": "validation",
+            "isRetryable": False,
+            "message": f"could not parse local_datetime {local_datetime!r}; use ISO 8601 such as '2026-11-15T09:00'.",
+        }
     local = local.replace(tzinfo=tz)
 
     def fmt(td: timedelta) -> str:
@@ -332,29 +348,53 @@ TRANSIENT = ("429", "rate_limit", "heavy load", "exceeds your available quota", 
 CAP_NAMES = ("max_tokens", "max_completion_tokens")
 
 
+def _call(llm, prompt: str, schema, tools, extra: dict | None):
+    """One attempt. Without tools this is llm.prompt. With tools it is the SDK's own tool
+    loop, called directly so the round limit can be raised above prompt()'s fixed 10."""
+    if not tools:
+        return llm.prompt(prompt, schema=schema, extra_api_params=extra)
+    kbench.user.send(prompt)
+    kwargs = {
+        "seed": 0,
+        "temperature": 0 if getattr(llm, "support_temperature", False) else None,
+        "reasoning": None,
+    }
+    if extra:
+        kwargs.update(extra)
+    message = tool_native.native_tool_agent(
+        llm, tools, schema=schema, max_tool_rounds=MAX_TOOL_ROUNDS, **kwargs
+    )
+    return message.content
+
+
 def ask(llm, prompt: str, schema, tools=None):
-    """llm.prompt with an output-token cap and retries.
+    """A model call with an output-token cap and retries.
 
     Nested evaluations run with max_attempts=1 whatever the caller asks, so transient
     proxy errors (429 under load, quota reservation refused) have to be retried here.
     Some backends reject `max_tokens` and want `max_completion_tokens`; the cap name
-    falls through on that error. Anything else is raised as is.
+    falls through on that error. A response cut off by the cap gets one more try at
+    double the cap. Anything else is raised as is.
     """
     cap_index = 0
+    cap = MAX_TOKENS
     delay = 5
     last: Exception | None = None
-    for _ in range(7):
-        extra = {CAP_NAMES[cap_index]: MAX_TOKENS} if cap_index < len(CAP_NAMES) else None
+    for _ in range(8):
+        extra = {CAP_NAMES[cap_index]: cap} if cap_index < len(CAP_NAMES) else None
         try:
-            if tools:
-                return llm.prompt(prompt, schema=schema, tools=tools, extra_api_params=extra)
-            return llm.prompt(prompt, schema=schema, extra_api_params=extra)
+            return _call(llm, prompt, schema, tools, extra)
         except Exception as exc:  # noqa: BLE001
             last = exc
             msg = str(exc)
             low = msg.lower()
             if "unsupported" in low and any(name in low for name in CAP_NAMES):
                 cap_index += 1
+                continue
+            if "length limit was reached" in low or "lengthfinishreason" in low:
+                if cap >= MAX_CAP:
+                    raise
+                cap = min(cap * 2, MAX_CAP)
                 continue
             if any(t in low for t in TRANSIENT):
                 time.sleep(delay)
@@ -455,14 +495,15 @@ def cases_frame() -> pd.DataFrame:
 def __FUNC_NAME__(llm) -> tuple[int, int]:
     df = cases_frame()
     with kbench.client.enable_cache():
+        # No per-job timeout: joblib's TimeoutError escapes on_failure="continue" and
+        # kills the whole run, which is how eleven models were lost on 2026-09-27.
         results = world_clock_case.evaluate(
             llm=[llm],
             evaluation_data=df,
             n_jobs=N_JOBS,
-            timeout=240,
+            timeout=None,
             on_failure="continue",
-            max_attempts=2,
-            retry_delay=10,
+            max_attempts=1,
             remove_run_files=True,
         )
     completed = results.completed_runs
