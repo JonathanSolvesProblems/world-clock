@@ -59,24 +59,48 @@ CASES = json.loads(r"""[{"id":"offset:new_york:2026-07-15:12:00","family":"contr
 # sentence about which rule it applied; it is recorded, never graded.
 
 # %%
-@dataclass
+def _lenient_init(self, **kwargs):
+    """Build an answer from whatever keys the model sent.
+
+    The SDK parses the model's JSON and calls the dataclass with it as keyword arguments,
+    so a key with a stray space (Qwen3-Next sent `" time"`) or a missing field raises a
+    TypeError and the case errors out instead of being graded. Keys are stripped and
+    lowercased here, unknown keys are dropped, and a missing field becomes an empty value,
+    which grades as wrong. A wrong answer is a result; a crash is not.
+    """
+    fields = self.__dataclass_fields__
+    cleaned = {str(k).strip().lower(): v for k, v in kwargs.items()}
+    for name, field in fields.items():
+        if name in cleaned:
+            setattr(self, name, cleaned[name])
+        else:
+            setattr(self, name, False if field.type in (bool, "bool") else "")
+
+
+@dataclass(init=False)
 class OffsetAnswer:
     utc_offset: str  # "+HH:MM" or "-HH:MM"
     note: str  # one sentence naming the rule applied
 
+    __init__ = _lenient_init
 
-@dataclass
+
+@dataclass(init=False)
 class ConvertAnswer:
     date: str  # YYYY-MM-DD
     time: str  # HH:MM, 24-hour
     note: str  # one sentence naming the offsets used
 
+    __init__ = _lenient_init
 
-@dataclass
+
+@dataclass(init=False)
 class ChangeDayAnswer:
     changes: bool
     direction: str  # "forward", "back" or "none"
     note: str  # one sentence
+
+    __init__ = _lenient_init
 
 
 SCHEMAS = {"offset": OffsetAnswer, "convert": ConvertAnswer, "change_day": ChangeDayAnswer}
@@ -358,6 +382,7 @@ def ask(llm, prompt: str, schema, tools=None):
     cap_index = 0
     cap = MAX_TOKENS
     delay = 5
+    _type_retries = 0
     last: Exception | None = None
     for _ in range(10):
         extra = {CAP_NAMES[cap_index]: cap} if cap_index < len(CAP_NAMES) else None
@@ -382,6 +407,13 @@ def ask(llm, prompt: str, schema, tools=None):
                 if cap >= MAX_CAP:
                     raise
                 cap = min(cap * 2, MAX_CAP)
+                continue
+            if isinstance(exc, TypeError) and "argument" in low:
+                # The SDK built the answer from keys the schema did not expect. The
+                # schemas accept almost anything now, so this is rare; ask once more.
+                if _type_retries >= 2:
+                    raise
+                _type_retries += 1
                 continue
             if any(t in low for t in TRANSIENT):
                 time.sleep(delay)
