@@ -65,6 +65,18 @@ $toolModels = @(
     "gemma-4-31b-it"
 )
 
+# Models that already have a Completed run on the task's current version are skipped, so a
+# restart after an interruption only runs what is missing. `status` reports the latest
+# version's runs, one row per model.
+function Get-DoneModels($task) {
+    $done = @()
+    $rows = & $kaggle benchmarks tasks status $task 2>&1
+    foreach ($row in $rows) {
+        if ("$row" -match '^(\S+)\s+Completed\s') { $done += $matches[1] }
+    }
+    return $done
+}
+
 Push-Location $proj
 try {
     if (-not $NoPush) {
@@ -74,14 +86,18 @@ try {
         & $kaggle benchmarks tasks push world-clock-tool-v2 -f tasks/world_clock_tool.py --wait 1800 2>&1 | ForEach-Object { Log "  $_" }
     }
 
+    $doneMemory = Get-DoneModels "world-clock-from-memory"
     foreach ($m in $memoryModels) {
+        if ($doneMemory -contains $m) { Log "skip world-clock-from-memory on $m (already completed)"; continue }
         Log "run world-clock-from-memory on $m"
         & $kaggle benchmarks tasks run world-clock-from-memory -m $m --wait $WaitSeconds 2>&1 | ForEach-Object { Log "  $_" }
     }
     Log "download world-clock-from-memory"
     & $kaggle benchmarks tasks download world-clock-from-memory -o (Join-Path $proj "results\raw") 2>&1 | ForEach-Object { Log "  $_" }
 
+    $doneTool = Get-DoneModels "world-clock-tool-v2"
     foreach ($m in $toolModels) {
+        if ($doneTool -contains $m) { Log "skip world-clock-tool-v2 on $m (already completed)"; continue }
         Log "run world-clock-tool-v2 on $m"
         & $kaggle benchmarks tasks run world-clock-tool-v2 -m $m --wait $WaitSeconds 2>&1 | ForEach-Object { Log "  $_" }
     }
