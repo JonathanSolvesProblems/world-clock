@@ -68,6 +68,6 @@ Two choices in that lineup were deliberate. I included models from mid-2025 on p
 
 - Benchmark on Kaggle, from memory: https://www.kaggle.com/benchmarks/tasks/jonathanandrei/world-clock-from-memory
 - Benchmark on Kaggle, with the tzdata tool: https://www.kaggle.com/benchmarks/tasks/jonathanandrei/world-clock-tool-v2
-- Code, answer key, and every downloaded run: [repo URL]
+- Code, answer key, and every result: https://github.com/JonathanSolvesProblems/world-clock
 
 The repo has a script called `check_claims.py`. It reads the results and fails if any number in this post disagrees with them. It ran before this was published.
