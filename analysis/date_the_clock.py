@@ -135,10 +135,13 @@ def score_file(path: Path) -> dict:
     tool_calls = []
     wrong = []
 
+    unparsed = 0
     for row in rows:
         case = CASES.get(row["id"])
         if case is None:
             continue
+        if any(str(v).startswith("unparsed") for v in row["answer"].values()):
+            unparsed += 1
         got = canon(row["answer"])
         if not case["graded"]:
             unresolved.append(
@@ -200,6 +203,7 @@ def score_file(path: Path) -> dict:
         "source": str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path),
         "graded_correct": graded_correct,
         "graded_total": graded_total,
+        "unparsed_answers": unparsed,
         "accuracy_pct": round(100 * graded_correct / graded_total, 1) if graded_total else None,
         "per_family": {k: {**v, "pct": round(100 * v["correct"] / v["total"], 1) if v["total"] else None} for k, v in sorted(per_family.items())},
         "clock": clock,
@@ -268,6 +272,13 @@ def main() -> None:
     results = [score_file(p) for p in files]
     if not include_smoke:
         results = [r for r in results if "smoke" not in (r.get("task") or "")]
+    # A run with no completed cases is a model the proxy could not serve at all (404, or
+    # tool calling unsupported). Report it once on stderr and keep it out of the tables.
+    empty = [r for r in results if r["graded_total"] == 0]
+    for r in empty:
+        first = r["errored"][0]["error"] if r["errored"] else "no rows"
+        print(f"skipping {r['model']} [{r['condition']}]: {first[:120]}", file=sys.stderr)
+    results = [r for r in results if r["graded_total"] > 0]
     results.sort(key=lambda r: (r["condition"], -(r["accuracy_pct"] or 0)))
     out_dir = ROOT / "results"
     out_dir.mkdir(exist_ok=True)
@@ -276,7 +287,8 @@ def main() -> None:
     for r in results:
         clock = r["clock"]
         dated = "n/a" if not clock else f"{clock['earliest']['iana']}..{clock['latest']['iana']}"
-        print(f"{r['model']:40s} {r['condition']:7s} {r['graded_correct']:3d}/{r['graded_total']}  clock {dated}")
+        flag = f"  unparsed={r['unparsed_answers']}" if r["unparsed_answers"] else ""
+        print(f"{r['model']:40s} {r['condition']:7s} {r['graded_correct']:3d}/{r['graded_total']}  clock {dated}{flag}")
 
 
 if __name__ == "__main__":

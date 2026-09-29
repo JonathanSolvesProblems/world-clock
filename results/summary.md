@@ -10,11 +10,8 @@
 | google/gemini-3.5-flash-lite | memory | 91/122 | 74.6% | 2024a (2024-02-01) to 2024b (2024-09-04) | 36/46 | not published | yes (wrong) |
 | anthropic/claude-sonnet-5@default | memory | 86/122 | 70.5% | 2022f (2022-10-28) to 2022f (2022-10-28) | 39/46 | 2026-01 | yes (wrong) |
 | anthropic/claude-haiku-4-5@20251001 | memory | 69/122 | 56.6% | 2022b (2022-08-10) to 2022d (2022-09-23) | 37/46 | 2025-02 | yes (wrong) |
-| xai/grok-4.5-0708 | memory | 0/0 | None% | n/a | n/a | not published | n/a |
 | google/gemini-3.8-flash | tool | 110/111 | 99.1% | current (2026d) | 34/35 | 2026-03 | n/a |
 | google/gemini-3.7-flash | tool | 118/120 | 98.3% | current (2026d) | 42/44 | 2026-03 | n/a |
-| deepseek-ai/deepseek-r1-0528 | tool | 0/0 | None% | n/a | n/a | 2025-03-31 | n/a |
-| xai/grok-4.5-0708 | tool | 0/0 | None% | n/a | n/a | not published | n/a |
 
 ## Accuracy by family
 
@@ -28,11 +25,8 @@
 | google/gemini-3.5-flash-lite | memory | 22/22 | 25/26 | 21/31 | 16/18 | 7/25 |
 | anthropic/claude-sonnet-5@default | memory | 22/22 | 26/26 | 15/31 | 18/18 | 5/25 |
 | anthropic/claude-haiku-4-5@20251001 | memory | 17/22 | 24/26 | 9/31 | 13/18 | 6/25 |
-| xai/grok-4.5-0708 | memory |  |  |  |  |  |
 | google/gemini-3.8-flash | tool | 22/22 | 26/26 | 30/31 | 18/18 | 14/14 |
 | google/gemini-3.7-flash | tool | 22/22 | 26/26 | 30/31 | 18/18 | 22/23 |
-| deepseek-ai/deepseek-r1-0528 | tool |  |  |  |  |  |
-| xai/grok-4.5-0708 | tool |  |  |  |  |  |
 
 ## Manitoba (announced, not yet in tzdata)
 
