@@ -194,8 +194,19 @@ def manitoba(condition: str) -> str:
     return "\n".join(out)
 
 
+TRACE_PATH = ROOT / "results" / "tool_trace.json"
+TRACE = json.loads(TRACE_PATH.read_text(encoding="utf-8")) if TRACE_PATH.exists() else {}
+
+
 def tool_vs_memory() -> str:
-    """The post's tool table. Scores are 'N' when every graded case was answered, else 'N of M'."""
+    """The post's tool table. Scores are 'N' when every graded case was answered, else 'N of M'.
+
+    The last four columns come from analysis/tool_trace.py, which reads the conversations:
+    how many graded cases the model asked the tool about at all, how many times it asked
+    about the right place and date and then answered something else, how many times it
+    only asked about some other zone, and how many answers changed between the model's own
+    words and the JSON it produced when the SDK asked it to restate the answer.
+    """
     mem = {short(r["model"]): r for r in SUMMARY if r["condition"] == "memory" and r["graded_total"]}
     tool = {short(r["model"]): r for r in SUMMARY if r["condition"] == "tool" and r["graded_total"]}
 
@@ -204,14 +215,20 @@ def tool_vs_memory() -> str:
             return "n/a"
         return str(r["graded_correct"]) if r["graded_total"] == N_GRADED else f"{r['graded_correct']} of {r['graded_total']}"
 
-    out = ["| Model | From memory | With the tool | Cases where it called the tool | Total tool calls |", "|---|---|---|---|---|"]
+    out = [
+        "| Model | From memory | With the tool | Asked the tool | Overrode it | Asked about another zone only | Answer changed when restated |",
+        "|---|---|---|---|---|---|---|",
+    ]
     for name in sorted(tool, key=lambda n: (-tool[n]["graded_correct"], n)):
         t = tool[name]
-        tc = t.get("tool_calls") or {}
-        out.append(
-            f"| {display(t['model'])} | {score(mem.get(name))} | {score(t)} | "
-            f"{tc.get('cases_with_a_call', 0)} of {tc.get('cases', 0)} | {tc.get('total_calls', 0)} |"
-        )
+        s = (TRACE.get(t["model"]) or {}).get("summary") or {}
+        if s:
+            asked = f"{s['with_call']} of {s['cases']}"
+            trace_cells = f"{asked} | {s['overrode']} | {s['other_zone_only']} | {s['changed_when_restated']}"
+        else:
+            tc = t.get("tool_calls") or {}
+            trace_cells = f"{tc.get('cases_with_a_call', 0)} of {tc.get('cases', 0)} | n/a | n/a | n/a"
+        out.append(f"| {display(t['model'])} | {score(mem.get(name))} | {score(t)} | {trace_cells} |")
     return "\n".join(out)
 
 

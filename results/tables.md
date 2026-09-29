@@ -120,10 +120,10 @@ Models scored from memory: 18. Put Calgary on Mountain Standard Time (-07:00) on
 
 ## With the tool
 
-| Model | From memory | With the tool | Cases where it called the tool | Total tool calls |
-|---|---|---|---|---|
-| Gemini 3.7 Flash | 99 | 120 | 122 of 122 | 230 |
-| Gemini 3.8 Flash | 99 | 110 of 111 | 111 of 111 | 201 |
+| Model | From memory | With the tool | Asked the tool | Overrode it | Asked about another zone only | Answer changed when restated |
+|---|---|---|---|---|---|---|
+| Gemini 3.7 Flash | 99 | 120 | 122 of 122 | 1 | 1 | 2 |
+| Gemini 3.8 Flash | 99 | 110 of 111 | 111 of 111 | 0 | 1 | 0 |
 
 ## By family, with the tool
 
