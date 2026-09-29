@@ -59,14 +59,22 @@ def main() -> None:
 
     bar_h = 0.34
     gap = 0.04  # surface gap between the two bars of one model
+
+    def label(fam: dict) -> str:
+        """A run that lost cases to errors is scored out of what it answered, and says so."""
+        c, t = fam.get("correct", 0), fam.get("total", 0)
+        return str(c) if t == total else f"{c} of {t} answered"
+
     for i, name in enumerate(names):
-        m = mem[name]["per_family"].get("wave_2026", {}).get("correct", 0)
+        fam = mem[name]["per_family"].get("wave_2026", {})
+        m = fam.get("correct", 0)
         ax.barh(i + (bar_h + gap) / 2, m, height=bar_h, color=MEMORY, zorder=3)
-        ax.text(m + 0.3, i + (bar_h + gap) / 2, str(m), va="center", ha="left", fontsize=7.5, color=INK2)
+        ax.text(m + 0.3, i + (bar_h + gap) / 2, label(fam), va="center", ha="left", fontsize=7.5, color=INK2)
         if name in tool:
-            t = tool[name]["per_family"].get("wave_2026", {}).get("correct", 0)
+            fam_t = tool[name]["per_family"].get("wave_2026", {})
+            t = fam_t.get("correct", 0)
             ax.barh(i - (bar_h + gap) / 2, t, height=bar_h, color=TOOL, zorder=3)
-            ax.text(t + 0.3, i - (bar_h + gap) / 2, str(t), va="center", ha="left", fontsize=7.5, color=INK2)
+            ax.text(t + 0.3, i - (bar_h + gap) / 2, label(fam_t), va="center", ha="left", fontsize=7.5, color=INK2)
 
     ax.set_yticks(range(len(names)))
     ax.set_yticklabels(names, fontsize=8, color=INK)

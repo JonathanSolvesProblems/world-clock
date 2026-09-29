@@ -46,16 +46,27 @@ server-side and the Model Proxy token is refused.
 
 ```
 kaggle auth login
-kaggle b t push world-clock-from-memory -f tasks/world_clock_memory.py --wait   # also runs it once on the default model
-kaggle b t run world-clock-from-memory -m gemini-3.8-flash -m claude-opus-5-default --wait
-kaggle b t download world-clock-from-memory -o results/raw
+powershell -File scripts\run_all.ps1        # push both tasks, run every model one at a time, download
 python analysis/date_the_clock.py results/raw
+python analysis/render_tables.py > results/tables.md
+python analysis/plot_ladder.py
+python analysis/plot_wave.py
 python check_claims.py
 ```
 
+One model at a time is deliberate. The Model Proxy reserves quota per in-flight request
+from the output-token cap, and the account's daily allowance is small enough that nineteen
+parallel runs drained it in minutes and every later request was refused. Each run also
+caps output at 2,500 tokens (doubling once if a model runs out of room) and retries
+transient proxy errors itself, because nested evaluations ignore the SDK's retry setting.
+
 Each run leaves `world_clock_answers.json` in its output folder with every case, the
-model's normalised answer, its one-sentence note, and token counts. That file is what the
-analysis and the post are built from.
+model's normalised answer, its one-sentence note, whether it called the tool, and token
+counts. That file is what the analysis, the tables, the charts and the post are built from.
+
+Models the proxy lists but cannot serve are reported and left out: `claude-opus-4-1`,
+`grok-4.6` and `grok-4.5-0708` return 404, and `deepseek-r1-0528` rejects tool calling, so
+it appears in the from-memory table only.
 
 ## What is not in the answer key
 
