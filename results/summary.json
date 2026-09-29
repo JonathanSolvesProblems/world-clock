@@ -6647,7 +6647,12 @@
   "model": "anthropic/claude-opus-4-5@20251101",
   "condition": "memory",
   "task": "world-clock-from-memory",
-  "card": null,
+  "card": {
+   "vendor": "Anthropic",
+   "released": "2025-11",
+   "stated_cutoff": null,
+   "cutoff_source": "not found (release month from the model slug 20251101)"
+  },
   "calgary_still_falls_back_nov_1": true,
   "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\3\\claude-opus-4-5-20251101\\3517983\\world_clock_answers.json",
@@ -8155,7 +8160,12 @@
   "model": "xai/grok-4.20-0309-non-reasoning",
   "condition": "memory",
   "task": "world-clock-from-memory",
-  "card": null,
+  "card": {
+   "vendor": "xAI",
+   "released": "2026-03",
+   "stated_cutoff": "2025-09-01",
+   "cutoff_source": "third-party trackers (reports vary); same base as grok-4.20-reasoning"
+  },
   "calgary_still_falls_back_nov_1": true,
   "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\3\\grok-4.20-0309-non-reasoning\\3529908\\world_clock_answers.json",

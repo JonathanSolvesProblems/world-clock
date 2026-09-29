@@ -4,26 +4,49 @@ Models scored from memory: 18. Put Calgary on Mountain Standard Time (-07:00) on
 
 ## Headline, from memory
 
-| Model | Score (of 122) | 2026 wave (of 25) | Clock dated by the ladder | Vendor's stated cutoff | Calgary on Nov 15, 2026 |
+| Model | Released | Score (of 122) | 2026 wave (of 25) | Clock dated by the ladder | Vendor's stated cutoff | Calgary on Nov 15, 2026 |
+|---|---|---|---|---|---|---|
+| gpt-6-astra | 2026-09-03 | 106 | 9/25 | 2026b (2026-04), agrees on 46 of 46 | 2026-04-30 | -07:00 (wrong) |
+| gpt-5.5-2026-04-23 | 2026-04-23 | 102 | 5/25 | 2025b to 2026a (2025-03 to 2026-03), agrees on 46 of 46 | 2025-12-01 | -07:00 (wrong) |
+| gpt-5.6-terra | 2026-07-09 | 102 | 5/25 | 2025b to 2026a (2025-03 to 2026-03), agrees on 46 of 46 | 2026-02-16 | -07:00 (wrong) |
+| claude-opus-5 | 2026-07-24 | 101 (of 121, 1 errored) | 5/25 | 2025b to 2026a (2025-03 to 2026-03), agrees on 46 of 46 | 2026-05 | -07:00 (wrong) |
+| gemini-3.1-pro-preview | 2026-02-19 | 100 | 5/25 | 2025a (2025-01), agrees on 45 of 46 | 2025-01 | -07:00 (wrong) |
+| gemini-3.8-flash | 2026-09-02 | 99 | 5/25 | 2025a (2025-01), agrees on 44 of 46 | 2026-03 | -07:00 (wrong) |
+| gemini-3.7-flash | 2026-08 | 99 | 5/25 | 2025a (2025-01), agrees on 44 of 46 | 2026-03 | -07:00 (wrong) |
+| gemini-2.5-pro | 2025-06 | 98 | 5/25 | 2025a (2025-01), agrees on 44 of 46 | 2025-01 | -07:00 (wrong) |
+| gemini-3.5-flash-lite | 2026 | 91 | 7/25 | 2024a to 2024b (2024-02 to 2024-09), agrees on 36 of 46 | not published | -07:00 (wrong) |
+| glm-5 | 2026-02-11 | 90 | 5/25 | 2024a to 2024b (2024-02 to 2024-09), agrees on 40 of 46 | not published | -07:00 (wrong) |
+| gpt-5.4-mini-2026-03-17 | 2026-03-17 | 90 | 6/25 | 2024a to 2026a (2024-02 to 2026-03), agrees on 37 of 46 | 2025-08-31 | -07:00 (wrong) |
+| grok-4.20-0309-reasoning | 2026-03 | 89 | 4/25 | 2023d to 2024b (2023-12 to 2024-09), agrees on 38 of 46 | 2025-09-01 | -07:00 (wrong) |
+| claude-sonnet-5 | 2026-06-30 | 86 | 5/25 | 2022f (2022-10), agrees on 39 of 46 | 2026-01 | -07:00 (wrong) |
+| claude-opus-4-5 | 2025-11 | 85 | 5/25 | 2022g to 2024b (2022-11 to 2024-09), agrees on 35 of 46 | not published | -07:00 (wrong) |
+| grok-4.20-0309-non-reasoning | 2026-03 | 79 | 7/25 | 2022b to 2022d (2022-08 to 2022-09), agrees on 33 of 46 | 2025-09-01 | -07:00 (wrong) |
+| claude-haiku-4-5 | 2025-10-15 | 69 | 6/25 | 2022b to 2022d (2022-08 to 2022-09), agrees on 37 of 46 | 2025-02 | -07:00 (wrong) |
+| deepseek-r1-0528 | 2025-05-28 | 65 (of 93, 32 errored) | 3/17 | 2023a to 2023c (2023-03 to 2023-03), agrees on 28 of 33 | 2025-03-31 | -07:00 (wrong) |
+| qwen3-next-80b-a3b-thinking | 2025-09-11 | 53 (of 81, 42 errored) | 5/18 | 2022f (2022-10), agrees on 29 of 34 | 2025-09-30 | -07:00 (wrong) |
+
+## The post's table, from memory (POST.md must carry this verbatim)
+
+| Model | Released | Score (of 122) | 2026 questions right (of 25) | Clock dated by the ladder | Vendor's stated cutoff |
 |---|---|---|---|---|---|
-| gpt-6-astra | 106 | 9/25 | 2026b (2026-04), agrees on 46 of 46 | 2026-04-30 | -07:00 (wrong) |
-| gpt-5.5-2026-04-23 | 102 | 5/25 | 2025b to 2026a (2025-03 to 2026-03), agrees on 46 of 46 | 2025-12-01 | -07:00 (wrong) |
-| gpt-5.6-terra | 102 | 5/25 | 2025b to 2026a (2025-03 to 2026-03), agrees on 46 of 46 | 2026-02-16 | -07:00 (wrong) |
-| claude-opus-5 | 101 (of 121, 1 errored) | 5/25 | 2025b to 2026a (2025-03 to 2026-03), agrees on 46 of 46 | 2026-05 | -07:00 (wrong) |
-| gemini-3.1-pro-preview | 100 | 5/25 | 2025a (2025-01), agrees on 45 of 46 | 2025-01 | -07:00 (wrong) |
-| gemini-3.8-flash | 99 | 5/25 | 2025a (2025-01), agrees on 44 of 46 | 2026-03 | -07:00 (wrong) |
-| gemini-3.7-flash | 99 | 5/25 | 2025a (2025-01), agrees on 44 of 46 | 2026-03 | -07:00 (wrong) |
-| gemini-2.5-pro | 98 | 5/25 | 2025a (2025-01), agrees on 44 of 46 | 2025-01 | -07:00 (wrong) |
-| gemini-3.5-flash-lite | 91 | 7/25 | 2024a to 2024b (2024-02 to 2024-09), agrees on 36 of 46 | not published | -07:00 (wrong) |
-| glm-5 | 90 | 5/25 | 2024a to 2024b (2024-02 to 2024-09), agrees on 40 of 46 | not published | -07:00 (wrong) |
-| gpt-5.4-mini-2026-03-17 | 90 | 6/25 | 2024a to 2026a (2024-02 to 2026-03), agrees on 37 of 46 | 2025-08-31 | -07:00 (wrong) |
-| grok-4.20-0309-reasoning | 89 | 4/25 | 2023d to 2024b (2023-12 to 2024-09), agrees on 38 of 46 | 2025-09-01 | -07:00 (wrong) |
-| claude-sonnet-5 | 86 | 5/25 | 2022f (2022-10), agrees on 39 of 46 | 2026-01 | -07:00 (wrong) |
-| claude-opus-4-5 | 85 | 5/25 | 2022g to 2024b (2022-11 to 2024-09), agrees on 35 of 46 | not published | -07:00 (wrong) |
-| grok-4.20-0309-non-reasoning | 79 | 7/25 | 2022b to 2022d (2022-08 to 2022-09), agrees on 33 of 46 | not published | -07:00 (wrong) |
-| claude-haiku-4-5 | 69 | 6/25 | 2022b to 2022d (2022-08 to 2022-09), agrees on 37 of 46 | 2025-02 | -07:00 (wrong) |
-| deepseek-r1-0528 | 65 (of 93, 32 errored) | 3/17 | 2023a to 2023c (2023-03 to 2023-03), agrees on 28 of 33 | 2025-03-31 | -07:00 (wrong) |
-| qwen3-next-80b-a3b-thinking | 53 (of 81, 42 errored) | 5/18 | 2022f (2022-10), agrees on 29 of 34 | 2025-09-30 | -07:00 (wrong) |
+| GPT-6 Astra | 2026-09-03 | 106 | 9 | 2026b (April 2026), agrees on 46 of 46 | 2026-04-30 |
+| GPT-5.5 | 2026-04-23 | 102 | 5 | 2025b to 2026a (March 2025 to March 2026), agrees on 46 of 46 | 2025-12-01 |
+| GPT-5.6 Terra | 2026-07-09 | 102 | 5 | 2025b to 2026a (March 2025 to March 2026), agrees on 46 of 46 | 2026-02-16 |
+| Claude Opus 5 | 2026-07-24 | 101 of 121 | 5 | 2025b to 2026a (March 2025 to March 2026), agrees on 46 of 46 | 2026-05 |
+| Gemini 3.1 Pro | 2026-02-19 | 100 | 5 | 2025a (January 2025), agrees on 45 of 46 | 2025-01 |
+| Gemini 3.7 Flash | 2026-08 | 99 | 5 | 2025a (January 2025), agrees on 44 of 46 | 2026-03 |
+| Gemini 3.8 Flash | 2026-09-02 | 99 | 5 | 2025a (January 2025), agrees on 44 of 46 | 2026-03 |
+| Gemini 2.5 Pro | 2025-06 | 98 | 5 | 2025a (January 2025), agrees on 44 of 46 | 2025-01 |
+| Gemini 3.5 Flash-Lite | 2026 | 91 | 7 | 2024a to 2024b (February 2024 to September 2024), agrees on 36 of 46 | not published |
+| GLM-5 | 2026-02-11 | 90 | 5 | 2024a to 2024b (February 2024 to September 2024), agrees on 40 of 46 | not published |
+| GPT-5.4 mini | 2026-03-17 | 90 | 6 | 2024a to 2026a (February 2024 to March 2026), agrees on 37 of 46 | 2025-08-31 |
+| Grok 4.20 Reasoning | 2026-03 | 89 | 4 | 2023d to 2024b (December 2023 to September 2024), agrees on 38 of 46 | 2025-09-01 |
+| Claude Sonnet 5 | 2026-06-30 | 86 | 5 | 2022f (October 2022), agrees on 39 of 46 | 2026-01 |
+| Claude Opus 4.5 | 2025-11 | 85 | 5 | 2022g to 2024b (November 2022 to September 2024), agrees on 35 of 46 | not published |
+| Grok 4.20 | 2026-03 | 79 | 7 | 2022b to 2022d (August 2022 to September 2022), agrees on 33 of 46 | 2025-09-01 |
+| Claude Haiku 4.5 | 2025-10-15 | 69 | 6 | 2022b to 2022d (August 2022 to September 2022), agrees on 37 of 46 | 2025-02 |
+| DeepSeek-R1 | 2025-05-28 | 65 of 93 | 3 of 17 | 2023a to 2023c (March 2023 to March 2023), agrees on 28 of 33 | 2025-03-31 |
+| Qwen3-Next 80B Thinking | 2025-09-11 | 53 of 81 | 5 of 18 | 2022f (October 2022), agrees on 29 of 34 | 2025-09-30 |
 
 ## By family, from memory
 
@@ -91,7 +114,7 @@ Models scored from memory: 18. Put Calgary on Mountain Standard Time (-07:00) on
 | claude-opus-4-5 | -06:00 | yes, back | 10:00 |
 | grok-4.20-0309-non-reasoning | -06:00 | yes, back | 10:00 |
 | claude-haiku-4-5 | -06:00 | yes, back | 10:00 |
-| qwen3-next-80b-a3b-thinking | -06:00 | no | 10:00 |
+| qwen3-next-80b-a3b-thinking | -06:00 | no answer | 10:00 |
 | tzdata 2026d says | -06:00 | yes, back | 10:00 |
 | Manitoba says | -05:00 | no | 09:00 |
 
@@ -99,8 +122,8 @@ Models scored from memory: 18. Put Calgary on Mountain Standard Time (-07:00) on
 
 | Model | From memory | With the tool | Cases where it called the tool | Total tool calls |
 |---|---|---|---|---|
-| gemini-3.7-flash | 99 | 118 | 120/120 | 217 |
-| gemini-3.8-flash | 99 | 110 | 111/111 | 201 |
+| Gemini 3.7 Flash | 99 | 118 of 120 | 120 of 120 | 217 |
+| Gemini 3.8 Flash | 99 | 110 of 111 | 111 of 111 | 201 |
 
 ## By family, with the tool
 

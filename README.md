@@ -27,7 +27,12 @@ Entry for the DEV x Kaggle Benchmarking Challenge (September 23 to October 11, 2
 | `tasks/world_clock_tool.py` | Kaggle task `world-clock-tool-v2`: the model may call `zone_clock()`, which reads tzdata 2026d, and is free not to. (The `-v2` is a scar: Kaggle caps how many tasks an account can create in a short window, and the first slugs died as empty shells.) |
 | `tasks/world_clock_smoke.py` | Kaggle task `world-clock-smoke`: a stratified 20-case subset, used once to prove the pipeline. |
 | `analysis/date_the_clock.py` | Scores downloaded runs, dates each model's clock against the tzdata ladder, writes `results/summary.json` and `results/summary.md`. |
-| `check_claims.py` | Fails if a number in the README or the post disagrees with the data. |
+| `analysis/model_cards.json` | Release dates and vendor-stated knowledge cutoffs, with the source of each, to set beside the ladder's date. |
+| `analysis/render_tables.py` | Renders every table from `summary.json`, including the post's tables with the display names the post uses. |
+| `analysis/paste_tables.py` | Pastes the generated tables into `POST.md` over the ones already there. |
+| `analysis/plot_ladder.py`, `analysis/plot_wave.py` | The two charts in the post. |
+| `analysis/quotes.py`, `analysis/wave_detail.py`, `analysis/inspect_runs.py` | Pull each model's own notes for the cases the post talks about, list which 2026 answers each model got right, and eyeball a downloaded run. |
+| `check_claims.py` | Fails if a number in the README or the post disagrees with the data, if the post's tables differ from the generated ones, or if a quotation in the post is not in a model's recorded note. |
 | `tests/` | Tests for the answer normalisers and for the dating ladder on synthetic answer sheets. |
 | `SCRIPT.md` | The post outline, written before the first commit. |
 
@@ -49,8 +54,10 @@ kaggle auth login
 powershell -File scripts\run_all.ps1        # push both tasks, run every model one at a time, download
 python analysis/date_the_clock.py results/raw
 python analysis/render_tables.py > results/tables.md
+python analysis/paste_tables.py
 python analysis/plot_ladder.py
 python analysis/plot_wave.py
+python analysis/quotes.py > results/quotes.md
 python check_claims.py
 ```
 

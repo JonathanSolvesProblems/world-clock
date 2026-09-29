@@ -18,7 +18,7 @@
 | deepseek-ai/deepseek-r1-0528 | memory | 65/93 | 69.9% | 2023a (2023-03-22) to 2023c (2023-03-28) | 28/33 | 2025-03-31 | yes (wrong) |
 | anthropic/claude-opus-4-5@20251101 | memory | 85/122 | 69.7% | 2022g (2022-11-29) to 2024b (2024-09-04) | 35/46 | not published | yes (wrong) |
 | qwen/qwen3-next-80b-a3b-thinking | memory | 53/81 | 65.4% | 2022f (2022-10-28) to 2022f (2022-10-28) | 29/34 | 2025-09-30 | no (right) |
-| xai/grok-4.20-0309-non-reasoning | memory | 79/122 | 64.8% | 2022b (2022-08-10) to 2022d (2022-09-23) | 33/46 | not published | yes (wrong) |
+| xai/grok-4.20-0309-non-reasoning | memory | 79/122 | 64.8% | 2022b (2022-08-10) to 2022d (2022-09-23) | 33/46 | 2025-09-01 | yes (wrong) |
 | anthropic/claude-haiku-4-5@20251001 | memory | 69/122 | 56.6% | 2022b (2022-08-10) to 2022d (2022-09-23) | 37/46 | 2025-02 | yes (wrong) |
 | google/gemini-3.8-flash | tool | 110/111 | 99.1% | current (2026d) | 34/35 | 2026-03 | n/a |
 | google/gemini-3.7-flash | tool | 118/120 | 98.3% | current (2026d) | 42/44 | 2026-03 | n/a |

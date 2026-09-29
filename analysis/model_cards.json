@@ -8,6 +8,8 @@
   "anthropic/claude-opus-5": {"vendor": "Anthropic", "released": "2026-07-24", "stated_cutoff": "2026-05", "cutoff_source": "Anthropic system card"},
   "anthropic/claude-sonnet-5": {"vendor": "Anthropic", "released": "2026-06-30", "stated_cutoff": "2026-01", "cutoff_source": "Anthropic platform docs (reliable cutoff)"},
   "anthropic/claude-haiku-4-5": {"vendor": "Anthropic", "released": "2025-10-15", "stated_cutoff": "2025-02", "cutoff_source": "Anthropic platform docs (reliable cutoff; training data to July 2025)"},
+  "anthropic/claude-opus-4-5": {"vendor": "Anthropic", "released": "2025-11", "stated_cutoff": null, "cutoff_source": "not found (release month from the model slug 20251101)"},
+  "xai/grok-4.20-non-reasoning": {"vendor": "xAI", "released": "2026-03", "stated_cutoff": "2025-09-01", "cutoff_source": "third-party trackers (reports vary); same base as grok-4.20-reasoning"},
   "anthropic/claude-opus-4-1": {"vendor": "Anthropic", "released": "2025-08-05", "stated_cutoff": "2025-03", "cutoff_source": "Anthropic platform docs"},
   "openai/gpt-6-astra": {"vendor": "OpenAI", "released": "2026-09-03", "stated_cutoff": "2026-04-30", "cutoff_source": "OpenAI system card"},
   "openai/gpt-5.6-terra": {"vendor": "OpenAI", "released": "2026-07-09", "stated_cutoff": "2026-02-16", "cutoff_source": "OpenAI model docs"},

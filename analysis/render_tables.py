@@ -14,7 +14,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SUMMARY = json.loads((ROOT / "results" / "summary.json").read_text(encoding="utf-8"))
-INDEX = json.loads((ROOT / "tzhist" / "releases" / "index.json").read_text())
+INDEX = json.loads((ROOT / "tzhist" / "releases" / "index.json").read_text(encoding="utf-8"))
+CASES = json.loads((ROOT / "cases" / "cases.json").read_text(encoding="utf-8"))
 RELEASES = sorted(INDEX, key=lambda v: tuple(int(x) for x in v.split(".")))
 
 FAMILY_LABEL = {
@@ -26,8 +27,90 @@ FAMILY_LABEL = {
 }
 
 
+N_GRADED = sum(1 for c in CASES if c["graded"])
+N_WAVE = sum(1 for c in CASES if c["graded"] and c["family"] == "wave_2026")
+
+# How the post names each model. Anything not listed is shown by its slug.
+DISPLAY = {
+    "gpt-6-astra": "GPT-6 Astra",
+    "gpt-5.6-terra": "GPT-5.6 Terra",
+    "gpt-5.5-2026-04-23": "GPT-5.5",
+    "gpt-5.4-mini-2026-03-17": "GPT-5.4 mini",
+    "gpt-oss-120b": "gpt-oss-120b",
+    "claude-opus-5": "Claude Opus 5",
+    "claude-sonnet-5": "Claude Sonnet 5",
+    "claude-haiku-4-5": "Claude Haiku 4.5",
+    "claude-opus-4-5": "Claude Opus 4.5",
+    "gemini-3.8-flash": "Gemini 3.8 Flash",
+    "gemini-3.7-flash": "Gemini 3.7 Flash",
+    "gemini-3.5-flash-lite": "Gemini 3.5 Flash-Lite",
+    "gemini-3.1-pro-preview": "Gemini 3.1 Pro",
+    "gemini-2.5-pro": "Gemini 2.5 Pro",
+    "gemma-4-31b-it": "Gemma 4 31B",
+    "grok-4.20-0309-reasoning": "Grok 4.20 Reasoning",
+    "grok-4.20-0309-non-reasoning": "Grok 4.20",
+    "deepseek-r1-0528": "DeepSeek-R1",
+    "glm-5": "GLM-5",
+    "qwen3-next-80b-a3b-thinking": "Qwen3-Next 80B Thinking",
+}
+
+MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+
 def short(model: str) -> str:
     return model.split("/")[-1].split("@")[0]
+
+
+def display(model: str) -> str:
+    return DISPLAY.get(short(model), short(model))
+
+
+def month(date: str) -> str:
+    """'2026-04-22' -> 'April 2026'; '2026-04' -> 'April 2026'; '2026' -> '2026'."""
+    parts = date.split("-")
+    if len(parts) == 1:
+        return parts[0]
+    return f"{MONTHS[int(parts[1]) - 1]} {parts[0]}"
+
+
+def long_date(date: str) -> str:
+    """'2026-04-22' -> 'April 22, 2026'."""
+    y, m, d = date.split("-")
+    return f"{MONTHS[int(m) - 1]} {int(d)}, {y}"
+
+
+def dated_post(r: dict) -> str:
+    """The clock cell as the post prints it, with month names."""
+    c = r.get("clock")
+    if not c:
+        return "n/a"
+    peak = f", agrees on {c['best_agreement']} of {c['ladder_cases']}"
+    e, l = c["earliest"], c["latest"]
+    if c["current"]:
+        return ("current (2026d)" if e["iana"] == "2026d" else f"{e['iana']} to current") + peak
+    if e["iana"] == l["iana"]:
+        return f"{e['iana']} ({month(e['date'])})" + peak
+    return f"{e['iana']} to {l['iana']} ({month(e['date'])} to {month(l['date'])})" + peak
+
+
+def post_table(condition: str = "memory") -> str:
+    """The headline table exactly as POST.md must carry it. check_claims.py compares them byte for byte."""
+    rows = [r for r in SUMMARY if r["condition"] == condition and r["graded_total"]]
+    rows.sort(key=lambda r: (-r["graded_correct"], short(r["model"])))
+    out = [
+        f"| Model | Released | Score (of {N_GRADED}) | 2026 questions right (of {N_WAVE}) | Clock dated by the ladder | Vendor's stated cutoff |",
+        "|---|---|---|---|---|---|",
+    ]
+    for r in rows:
+        wave = r["per_family"].get("wave_2026", {})
+        card = r.get("card") or {}
+        score = str(r["graded_correct"]) if r["graded_total"] == N_GRADED else f"{r['graded_correct']} of {r['graded_total']}"
+        w = str(wave.get("correct", 0)) if wave.get("total") == N_WAVE else f"{wave.get('correct', 0)} of {wave.get('total', 0)}"
+        out.append(
+            f"| {display(r['model'])} | {card.get('released') or 'not published'} | {score} | {w} | {dated_post(r)} | "
+            f"{card.get('stated_cutoff') or 'not published'} |"
+        )
+    return "\n".join(out)
 
 
 def dated(r: dict) -> str:
@@ -46,7 +129,7 @@ def dated(r: dict) -> str:
 def headline(condition: str) -> str:
     rows = [r for r in SUMMARY if r["condition"] == condition and r["graded_total"]]
     rows.sort(key=lambda r: -r["graded_correct"])
-    out = ["| Model | Score (of 122) | 2026 wave (of 25) | Clock dated by the ladder | Vendor's stated cutoff | Calgary on Nov 15, 2026 |", "|---|---|---|---|---|---|"]
+    out = ["| Model | Released | Score (of 122) | 2026 wave (of 25) | Clock dated by the ladder | Vendor's stated cutoff | Calgary on Nov 15, 2026 |", "|---|---|---|---|---|---|---|"]
     for r in rows:
         wave = r["per_family"].get("wave_2026", {})
         card = r.get("card") or {}
@@ -55,7 +138,7 @@ def headline(condition: str) -> str:
         if r["graded_total"] != 122:
             score += f" (of {r['graded_total']}, {len(r.get('errored', []))} errored)"
         out.append(
-            f"| {short(r['model'])} | {score} | {wave.get('correct', 0)}/{wave.get('total', 0)} | {dated(r)} | "
+            f"| {short(r['model'])} | {card.get('released') or '?'} | {score} | {wave.get('correct', 0)}/{wave.get('total', 0)} | {dated(r)} | "
             f"{card.get('stated_cutoff') or 'not published'} | {calgary} |"
         )
     return "\n".join(out)
@@ -98,10 +181,13 @@ def manitoba(condition: str) -> str:
     out = ["| Model | Winnipeg offset, Nov 15 | Clocks change Nov 1? | 09:00 Winnipeg in Toronto |", "|---|---|---|---|"]
     for r in rows:
         u = {x["id"]: x for x in r["unresolved"]}
-        off = u.get("offset:winnipeg:2026-11-15:12:00", {}).get("model_answer", {}).get("utc_offset", "")
-        ch = u.get("change_day:winnipeg:2026-11-01", {}).get("model_answer", {})
-        conv = u.get("convert:winnipeg:toronto:2026-11-15:09:00", {}).get("model_answer", {}).get("time", "")
-        ch_s = ("yes, " + ch.get("direction", "")) if ch.get("changes") else "no"
+        off = u.get("offset:winnipeg:2026-11-15:12:00", {}).get("model_answer", {}).get("utc_offset", "no answer")
+        conv = u.get("convert:winnipeg:toronto:2026-11-15:09:00", {}).get("model_answer", {}).get("time", "no answer")
+        if "change_day:winnipeg:2026-11-01" in u:
+            ch = u["change_day:winnipeg:2026-11-01"].get("model_answer") or {}
+            ch_s = ("yes, " + ch.get("direction", "")) if ch.get("changes") else "no"
+        else:
+            ch_s = "no answer"
         out.append(f"| {short(r['model'])} | {off} | {ch_s} | {conv} |")
     out.append("| tzdata 2026d says | -06:00 | yes, back | 10:00 |")
     out.append("| Manitoba says | -05:00 | no | 09:00 |")
@@ -109,16 +195,22 @@ def manitoba(condition: str) -> str:
 
 
 def tool_vs_memory() -> str:
+    """The post's tool table. Scores are 'N' when every graded case was answered, else 'N of M'."""
     mem = {short(r["model"]): r for r in SUMMARY if r["condition"] == "memory" and r["graded_total"]}
     tool = {short(r["model"]): r for r in SUMMARY if r["condition"] == "tool" and r["graded_total"]}
+
+    def score(r: dict | None) -> str:
+        if not r:
+            return "n/a"
+        return str(r["graded_correct"]) if r["graded_total"] == N_GRADED else f"{r['graded_correct']} of {r['graded_total']}"
+
     out = ["| Model | From memory | With the tool | Cases where it called the tool | Total tool calls |", "|---|---|---|---|---|"]
-    for name in sorted(tool, key=lambda n: -tool[n]["graded_correct"]):
+    for name in sorted(tool, key=lambda n: (-tool[n]["graded_correct"], n)):
         t = tool[name]
-        m = mem.get(name)
         tc = t.get("tool_calls") or {}
         out.append(
-            f"| {name} | {m['graded_correct'] if m else 'n/a'} | {t['graded_correct']} | "
-            f"{tc.get('cases_with_a_call', 0)}/{tc.get('cases', 0)} | {tc.get('total_calls', 0)} |"
+            f"| {display(t['model'])} | {score(mem.get(name))} | {score(t)} | "
+            f"{tc.get('cases_with_a_call', 0)} of {tc.get('cases', 0)} | {tc.get('total_calls', 0)} |"
         )
     return "\n".join(out)
 
@@ -141,6 +233,8 @@ if __name__ == "__main__":
     print(counts())
     print("\n## Headline, from memory\n")
     print(headline("memory"))
+    print("\n## The post's table, from memory (POST.md must carry this verbatim)\n")
+    print(post_table("memory"))
     print("\n## By family, from memory\n")
     print(by_family("memory"))
     print("\n## Ladder agreement, from memory (bold = the release the clock is dated to)\n")
