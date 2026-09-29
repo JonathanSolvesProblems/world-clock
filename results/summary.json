@@ -10,6 +10,7 @@
    "cutoff_source": "OpenAI system card"
   },
   "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\3\\gpt-6-astra\\3502591\\world_clock_answers.json",
   "graded_correct": 106,
   "graded_total": 122,
@@ -345,6 +346,7 @@
    "cutoff_source": "OpenAI model docs"
   },
   "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\3\\gpt-5.5-2026-04-23\\3503934\\world_clock_answers.json",
   "graded_correct": 102,
   "graded_total": 122,
@@ -730,6 +732,7 @@
    "cutoff_source": "OpenAI model docs"
   },
   "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\3\\gpt-5.6-terra\\3503039\\world_clock_answers.json",
   "graded_correct": 102,
   "graded_total": 122,
@@ -1115,6 +1118,7 @@
    "cutoff_source": "Anthropic system card"
   },
   "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\2\\claude-opus-5-default\\3262427\\world_clock_answers.json",
   "graded_correct": 101,
   "graded_total": 121,
@@ -1512,6 +1516,7 @@
    "cutoff_source": "Google developer docs"
   },
   "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\2\\gemini-3.1-pro-preview\\3261848\\world_clock_answers.json",
   "graded_correct": 100,
   "graded_total": 122,
@@ -1917,6 +1922,7 @@
    "cutoff_source": "Google model card (some domains limited to January 2025)"
   },
   "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\2\\gemini-3.8-flash\\3261829\\world_clock_answers.json",
   "graded_correct": 99,
   "graded_total": 122,
@@ -2333,6 +2339,7 @@
    "cutoff_source": "Google model card (some domains limited to January 2025)"
   },
   "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\3\\gemini-3.7-flash\\3502091\\world_clock_answers.json",
   "graded_correct": 99,
   "graded_total": 122,
@@ -2749,6 +2756,7 @@
    "cutoff_source": "Google model card"
   },
   "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\2\\gemini-2.5-pro\\3261849\\world_clock_answers.json",
   "graded_correct": 98,
   "graded_total": 122,
@@ -3178,6 +3186,7 @@
    "cutoff_source": "not found"
   },
   "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\2\\gemini-3.5-flash-lite\\3262426\\world_clock_answers.json",
   "graded_correct": 91,
   "graded_total": 122,
@@ -3695,6 +3704,7 @@
    "cutoff_source": "not found"
   },
   "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\3\\glm-5\\3547399\\world_clock_answers.json",
   "graded_correct": 90,
   "graded_total": 122,
@@ -4219,6 +4229,7 @@
    "cutoff_source": "OpenAI model docs"
   },
   "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\3\\gpt-5.4-mini-2026-03-17\\3512030\\world_clock_answers.json",
   "graded_correct": 90,
   "graded_total": 122,
@@ -4754,6 +4765,7 @@
    "cutoff_source": "third-party trackers (reports vary)"
   },
   "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\3\\grok-4.20-0309-reasoning\\3519322\\world_clock_answers.json",
   "graded_correct": 89,
   "graded_total": 122,
@@ -5292,6 +5304,7 @@
    "cutoff_source": "Anthropic platform docs (reliable cutoff)"
   },
   "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\2\\claude-sonnet-5-default\\3262428\\world_clock_answers.json",
   "graded_correct": 86,
   "graded_total": 122,
@@ -5859,6 +5872,7 @@
    "cutoff_source": "third-party trackers (reports vary)"
   },
   "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\3\\deepseek-r1-0528\\3535988\\world_clock_answers.json",
   "graded_correct": 65,
   "graded_total": 93,
@@ -6635,6 +6649,7 @@
   "task": "world-clock-from-memory",
   "card": null,
   "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\3\\claude-opus-4-5-20251101\\3517983\\world_clock_answers.json",
   "graded_correct": 85,
   "graded_total": 122,
@@ -7221,6 +7236,7 @@
    "cutoff_source": "third-party trackers"
   },
   "calgary_still_falls_back_nov_1": false,
+  "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\3\\qwen3-next-80b-a3b-thinking\\3583273\\world_clock_answers.json",
   "graded_correct": 53,
   "graded_total": 81,
@@ -8141,6 +8157,7 @@
   "task": "world-clock-from-memory",
   "card": null,
   "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\3\\grok-4.20-0309-non-reasoning\\3529908\\world_clock_answers.json",
   "graded_correct": 79,
   "graded_total": 122,
@@ -8803,6 +8820,7 @@
    "cutoff_source": "Anthropic platform docs (reliable cutoff; training data to July 2025)"
   },
   "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": true,
   "source": "results\\raw\\world-clock-from-memory\\2\\claude-haiku-4-5-20251001\\3262511\\world_clock_answers.json",
   "graded_correct": 69,
   "graded_total": 122,
@@ -9593,6 +9611,7 @@
    "cutoff_source": "Google model card (some domains limited to January 2025)"
   },
   "calgary_still_falls_back_nov_1": null,
+  "calgary_on_standard_time_nov_15": false,
   "source": "results\\raw\\world-clock-tool-v2\\1\\gemini-3.8-flash\\3262405\\world_clock_answers.json",
   "graded_correct": 110,
   "graded_total": 111,
@@ -9869,6 +9888,7 @@
    "cutoff_source": "Google model card (some domains limited to January 2025)"
   },
   "calgary_still_falls_back_nov_1": null,
+  "calgary_on_standard_time_nov_15": false,
   "source": "results\\raw\\world-clock-tool-v2\\1\\gemini-3.7-flash\\3262312\\world_clock_answers.json",
   "graded_correct": 118,
   "graded_total": 120,

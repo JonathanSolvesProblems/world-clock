@@ -122,9 +122,16 @@ def score_file(path: Path) -> dict:
     task = data.get("task", "")
     rows = data.get("rows", [])
     calgary_falls_back = None
+    calgary_standard_time = None
     for row in rows:
         if row["id"] == "change_day:calgary:2026-11-01":
             calgary_falls_back = bool(row["answer"].get("changes"))
+        if row["id"] == "offset:calgary:2026-11-15:12:00":
+            # The headline count. -07:00 is Mountain Standard Time, the offset Alberta
+            # stopped using in June 2026. Unlike the change-day question it cannot be
+            # right by accident: a model that says -06:00 knows, and one that says
+            # -07:00 does not.
+            calgary_standard_time = row["answer"].get("utc_offset") == "-07:00"
 
     per_family = defaultdict(lambda: {"correct": 0, "total": 0})
     ladder_agree = {r: 0 for r in RELEASES}
@@ -200,6 +207,7 @@ def score_file(path: Path) -> dict:
         "task": task,
         "card": card,
         "calgary_still_falls_back_nov_1": calgary_falls_back,
+        "calgary_on_standard_time_nov_15": calgary_standard_time,
         "source": str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path),
         "graded_correct": graded_correct,
         "graded_total": graded_total,

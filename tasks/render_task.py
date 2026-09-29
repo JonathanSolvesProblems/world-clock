@@ -367,20 +367,64 @@ def _call(llm, prompt: str, schema, tools, extra: dict | None):
     return message.content
 
 
+def salvage(schema, error_text: str):
+    """Recover a structured answer from a parse failure the SDK gave up on.
+
+    Some models return visible reasoning before the JSON (DeepSeek-R1 wraps it in think
+    tags), which the SDK's parser rejects as "Expecting value: line 1 column 1". The
+    failure message carries the raw response, so the last complete JSON object in it is
+    parsed here and handed to the schema. Returns None when nothing usable is there,
+    which is what a response truncated mid-string looks like.
+    """
+    marker = "Input Value:"
+    body = error_text.split(marker, 1)[1] if marker in error_text else error_text
+    body = body.split("Target Schema:", 1)[0]
+    if "</think>" in body:
+        body = body.split("</think>")[-1]
+    end = body.rfind("}")
+    while end != -1:
+        depth = 0
+        start = None
+        for i in range(end, -1, -1):
+            if body[i] == "}":
+                depth += 1
+            elif body[i] == "{":
+                depth -= 1
+                if depth == 0:
+                    start = i
+                    break
+        if start is None:
+            return None
+        try:
+            data = json.loads(body[start : end + 1])
+        except ValueError:
+            end = body.rfind("}", 0, end)
+            continue
+        if isinstance(data, dict):
+            fields = {f for f in getattr(schema, "__dataclass_fields__", {})}
+            try:
+                return schema(**{k: v for k, v in data.items() if k in fields})
+            except TypeError:
+                return None
+        return None
+    return None
+
+
 def ask(llm, prompt: str, schema, tools=None):
     """A model call with an output-token cap and retries.
 
     Nested evaluations run with max_attempts=1 whatever the caller asks, so transient
     proxy errors (429 under load, quota reservation refused) have to be retried here.
     Some backends reject `max_tokens` and want `max_completion_tokens`; the cap name
-    falls through on that error. A response cut off by the cap gets one more try at
-    double the cap. Anything else is raised as is.
+    falls through on that error. A response cut off by the cap gets another try at
+    double the cap. A response the SDK could not parse is salvaged from its raw text
+    when a complete JSON object is in there. Anything else is raised as is.
     """
     cap_index = 0
     cap = MAX_TOKENS
     delay = 5
     last: Exception | None = None
-    for _ in range(8):
+    for _ in range(10):
         extra = {CAP_NAMES[cap_index]: cap} if cap_index < len(CAP_NAMES) else None
         try:
             return _call(llm, prompt, schema, tools, extra)
@@ -390,6 +434,14 @@ def ask(llm, prompt: str, schema, tools=None):
             low = msg.lower()
             if "unsupported" in low and any(name in low for name in CAP_NAMES):
                 cap_index += 1
+                continue
+            if "response parsing failed" in low:
+                recovered = salvage(schema, msg)
+                if recovered is not None:
+                    return recovered
+                if cap >= MAX_CAP:
+                    raise
+                cap = min(cap * 2, MAX_CAP)
                 continue
             if "length limit was reached" in low or "lengthfinishreason" in low:
                 if cap >= MAX_CAP:

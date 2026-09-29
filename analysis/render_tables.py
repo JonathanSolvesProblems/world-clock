@@ -46,11 +46,11 @@ def dated(r: dict) -> str:
 def headline(condition: str) -> str:
     rows = [r for r in SUMMARY if r["condition"] == condition and r["graded_total"]]
     rows.sort(key=lambda r: -r["graded_correct"])
-    out = ["| Model | Score (of 122) | 2026 wave (of 25) | Clock dated by the ladder | Vendor's stated cutoff | Falls back Calgary on Nov 1? |", "|---|---|---|---|---|---|"]
+    out = ["| Model | Score (of 122) | 2026 wave (of 25) | Clock dated by the ladder | Vendor's stated cutoff | Calgary on Nov 15, 2026 |", "|---|---|---|---|---|---|"]
     for r in rows:
         wave = r["per_family"].get("wave_2026", {})
         card = r.get("card") or {}
-        calgary = {True: "yes", False: "no", None: "n/a"}[r.get("calgary_still_falls_back_nov_1")]
+        calgary = {True: "-07:00 (wrong)", False: "-06:00 (right)", None: "no answer"}[r.get("calgary_on_standard_time_nov_15")]
         score = str(r["graded_correct"])
         if r["graded_total"] != 122:
             score += f" (of {r['graded_total']}, {len(r.get('errored', []))} errored)"
@@ -126,10 +126,13 @@ def tool_vs_memory() -> str:
 def counts() -> str:
     mem = [r for r in SUMMARY if r["condition"] == "memory" and r["graded_total"]]
     fall = sum(1 for r in mem if r.get("calgary_still_falls_back_nov_1"))
+    answered = [r for r in mem if r.get("calgary_on_standard_time_nov_15") is not None]
+    standard = sum(1 for r in answered if r["calgary_on_standard_time_nov_15"])
     current = sum(1 for r in mem if r.get("clock") and r["clock"]["current"])
     return (
-        f"Models scored from memory: {len(mem)}. Still fall back Calgary on November 1: {fall} of {len(mem)}. "
-        f"Clocks dated current: {current} of {len(mem)}."
+        f"Models scored from memory: {len(mem)}. Put Calgary on Mountain Standard Time (-07:00) on "
+        f"November 15, 2026: {standard} of {len(answered)} that answered. Assert a fall-back on November 1: "
+        f"{fall} of {len(mem)}. Clocks dated current: {current} of {len(mem)}."
     )
 
 

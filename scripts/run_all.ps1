@@ -14,7 +14,10 @@
 
 param(
     [switch]$NoPush,
-    [int]$WaitSeconds = 5400
+    [int]$WaitSeconds = 5400,
+    # Optional overrides: run only these models (comma-separated) on only this task.
+    [string]$Models = "",
+    [string]$Task = ""
 )
 
 $proj = Split-Path -Parent $PSScriptRoot
@@ -86,23 +89,35 @@ try {
         & $kaggle benchmarks tasks push world-clock-tool-v2 -f tasks/world_clock_tool.py --wait 1800 2>&1 | ForEach-Object { Log "  $_" }
     }
 
-    $doneMemory = Get-DoneModels "world-clock-from-memory"
-    foreach ($m in $memoryModels) {
-        if ($doneMemory -contains $m) { Log "skip world-clock-from-memory on $m (already completed)"; continue }
-        Log "run world-clock-from-memory on $m"
-        & $kaggle benchmarks tasks run world-clock-from-memory -m $m --wait $WaitSeconds 2>&1 | ForEach-Object { Log "  $_" }
+    if ($Models -ne "") {
+        $override = $Models.Split(",") | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" }
+        $memoryModels = $override
+        $toolModels = $override
     }
-    Log "download world-clock-from-memory"
-    & $kaggle benchmarks tasks download world-clock-from-memory -o (Join-Path $proj "results\raw") 2>&1 | ForEach-Object { Log "  $_" }
+    $runMemory = ($Task -eq "" -or $Task -eq "world-clock-from-memory")
+    $runTool = ($Task -eq "" -or $Task -eq "world-clock-tool-v2")
 
-    $doneTool = Get-DoneModels "world-clock-tool-v2"
-    foreach ($m in $toolModels) {
-        if ($doneTool -contains $m) { Log "skip world-clock-tool-v2 on $m (already completed)"; continue }
-        Log "run world-clock-tool-v2 on $m"
-        & $kaggle benchmarks tasks run world-clock-tool-v2 -m $m --wait $WaitSeconds 2>&1 | ForEach-Object { Log "  $_" }
+    if ($runMemory) {
+        $doneMemory = Get-DoneModels "world-clock-from-memory"
+        foreach ($m in $memoryModels) {
+            if ($doneMemory -contains $m) { Log "skip world-clock-from-memory on $m (already completed)"; continue }
+            Log "run world-clock-from-memory on $m"
+            & $kaggle benchmarks tasks run world-clock-from-memory -m $m --wait $WaitSeconds 2>&1 | ForEach-Object { Log "  $_" }
+        }
+        Log "download world-clock-from-memory"
+        & $kaggle benchmarks tasks download world-clock-from-memory -o (Join-Path $proj "results\raw") 2>&1 | ForEach-Object { Log "  $_" }
     }
-    Log "download world-clock-tool-v2"
-    & $kaggle benchmarks tasks download world-clock-tool-v2 -o (Join-Path $proj "results\raw") 2>&1 | ForEach-Object { Log "  $_" }
+
+    if ($runTool) {
+        $doneTool = Get-DoneModels "world-clock-tool-v2"
+        foreach ($m in $toolModels) {
+            if ($doneTool -contains $m) { Log "skip world-clock-tool-v2 on $m (already completed)"; continue }
+            Log "run world-clock-tool-v2 on $m"
+            & $kaggle benchmarks tasks run world-clock-tool-v2 -m $m --wait $WaitSeconds 2>&1 | ForEach-Object { Log "  $_" }
+        }
+        Log "download world-clock-tool-v2"
+        & $kaggle benchmarks tasks download world-clock-tool-v2 -o (Join-Path $proj "results\raw") 2>&1 | ForEach-Object { Log "  $_" }
+    }
     Log "done"
 }
 finally {
