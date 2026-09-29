@@ -6,7 +6,7 @@ tags: devchallenge, kagglechallenge, ai, machinelearning
 
 *This is a submission for the [Kaggle Benchmarking Challenge](https://dev.to/challenges/kaggle-2026-09-23)*
 
-On June 18, Alberta passed the Official Time Act and stopped changing its clocks. British Columbia had done it in March. The Northwest Territories followed in August, Morocco went back to plain UTC on September 20, and on September 17 Manitoba announced it will not fall back on November 1 either. [CBC is running stories](https://www.cbc.ca/news/canada/calgary/alberta-permanent-daylight-savings-businesses-calendars-9.7331872) about a Calgary hairstylist whose winter bookings all moved an hour. [Microsoft published interim guidance](https://techcommunity.microsoft.com/blog/dstblog/interim-guidance-for-alberta-time-zone-changes-2026/4545015) for Windows.
+On June 18, Alberta's [Official Time Act](https://www.alberta.ca/albertas-new-time-system-abt) came into force and the province stopped changing its clocks. British Columbia had done it in March. The [Northwest Territories followed in August](https://www.gov.nt.ca/en/newsroom/northwest-territories-ends-seasonal-time-change), [Morocco went back to plain UTC on September 20](https://www.timeanddate.com/news/time/morocco-abolish-dst.html), and on September 17 [Manitoba announced](https://news.gov.mb.ca/news/index.html?item=75397) it will not fall back on November 1 either. [CBC is running stories](https://www.cbc.ca/news/canada/calgary/alberta-permanent-daylight-savings-businesses-calendars-9.7331872) about a Calgary hairstylist whose winter bookings all moved an hour. [Microsoft published interim guidance](https://techcommunity.microsoft.com/blog/dstblog/interim-guidance-for-alberta-time-zone-changes-2026/4545015) for Windows.
 
 So I asked the question someone in Calgary is asking right now. It is 9 a.m. here on November 15. What time is that in Toronto?
 
@@ -93,7 +93,7 @@ The peak height matters as much as its position. A model at 46 of 46 has a sharp
 
 ### With the tool
 
-[TOOL RESULTS PENDING: the tool lineup is running. This section will report, for each model, the score with `zone_clock()` available, how many of the 122 cases it chose to call the tool on, and the cases where it called the tool and overrode the answer. Verified so far from the two Gemini runs that have finished: Gemini 3.7 Flash went from 99 to 118 of 120 and called the tool on every case. Its two misses: on Coyhaique it asked the tool about America/Santiago instead of America/Coyhaique and got Santiago's winter offset; on Casablanca in December it asked the tool about Africa/Casablanca six times, was told +00:00 each time, and answered +01:00 with the note "Under Moroccan Decree 2.18.855, Morocco permanently observes UTC+01:00 year-round outside the month of Ramadan." On Calgary it got -06:00 right and labelled it "Central Standard Time". Gemini 3.8 Flash went from 99 to 110 of 111.]
+[TOOL RESULTS PENDING: the tool lineup is running. This section will report, for each model, the score with `zone_clock()` available, how many of the 122 cases it chose to call the tool on, and the cases where it called the tool and overrode the answer. Verified so far from the two Gemini runs that have finished: Gemini 3.7 Flash went from 99 to 120 of 122. Its two misses: on Coyhaique it asked the tool about America/Santiago instead of America/Coyhaique and got Santiago's winter offset; on Calgary to Toronto it answered 11:00 from memory. Gemini 3.8 Flash went from 99 to 110 of 111.]
 
 ### Manitoba, which nobody can know yet
 

@@ -122,12 +122,12 @@ Models scored from memory: 18. Put Calgary on Mountain Standard Time (-07:00) on
 
 | Model | From memory | With the tool | Cases where it called the tool | Total tool calls |
 |---|---|---|---|---|
-| Gemini 3.7 Flash | 99 | 118 of 120 | 120 of 120 | 217 |
+| Gemini 3.7 Flash | 99 | 120 | 122 of 122 | 230 |
 | Gemini 3.8 Flash | 99 | 110 of 111 | 111 of 111 | 201 |
 
 ## By family, with the tool
 
 | Model | Controls | Awkward offsets | Southern DST | Changes 2022 to 2025 | 2026 wave |
 |---|---|---|---|---|---|
-| gemini-3.7-flash | 26/26 | 22/22 | 18/18 | 30/31 | 22/23 |
+| gemini-3.7-flash | 26/26 | 22/22 | 18/18 | 30/31 | 24/25 |
 | gemini-3.8-flash | 26/26 | 22/22 | 18/18 | 30/31 | 14/14 |

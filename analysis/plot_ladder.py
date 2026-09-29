@@ -21,9 +21,12 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from render_tables import display  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 SUMMARY = json.loads((ROOT / "results" / "summary.json").read_text(encoding="utf-8"))
-INDEX = json.loads((ROOT / "tzhist" / "releases" / "index.json").read_text())
+INDEX = json.loads((ROOT / "tzhist" / "releases" / "index.json").read_text(encoding="utf-8"))
 RELEASES = sorted(INDEX, key=lambda v: tuple(int(x) for x in v.split(".")))
 IANA = [INDEX[v]["iana"] for v in RELEASES]
 
@@ -105,7 +108,7 @@ def main() -> None:
             best = max(y)
             k = max(idx for idx, val in enumerate(y) if val == best)  # latest release tied at the peak
             ax.scatter([k], [y[k]], s=64, color=colour, edgecolors=SURFACE, linewidths=2, zorder=4)
-            names = ", ".join(short(m["model"]) for m in members)
+            names = ", ".join(display(m["model"]) for m in members)
             label = f"{names}: {IANA[k]}"
             xe = x[-1]
             if abs(ly - y[-1]) > 0.1:

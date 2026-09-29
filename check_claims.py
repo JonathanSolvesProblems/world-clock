@@ -313,7 +313,8 @@ def check_results() -> None:
         if not r["graded_total"]:
             continue
         name = re.escape(display(r["model"]))
-        expect(rf"{name}[^.\n|]{{0,80}}?\b<N> of {r['graded_total']}\b", r["graded_correct"], required=False)
+        # "X went from A to B of N" is the tool sentence, checked separately below.
+        expect(rf"{name}(?:(?!went from)[^.\n|]){{0,80}}?\b<N> of {r['graded_total']}\b", r["graded_correct"], required=False)
 
     # With the tool.
     for t in tool:

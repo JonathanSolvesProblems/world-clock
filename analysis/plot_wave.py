@@ -22,6 +22,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.patches import Patch  # noqa: E402
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from render_tables import DISPLAY  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 SUMMARY = json.loads((ROOT / "results" / "summary.json").read_text(encoding="utf-8"))
 
@@ -77,7 +80,7 @@ def main() -> None:
             ax.text(t + 0.3, i - (bar_h + gap) / 2, label(fam_t), va="center", ha="left", fontsize=7.5, color=INK2)
 
     ax.set_yticks(range(len(names)))
-    ax.set_yticklabels(names, fontsize=8, color=INK)
+    ax.set_yticklabels([DISPLAY.get(n, n) for n in names], fontsize=8, color=INK)
     ax.set_xlim(0, total + 2)
     ax.set_xticks([0, 5, 10, 15, 20, total])
     ax.set_xticklabels([str(t) for t in [0, 5, 10, 15, 20, total]], fontsize=7.5, color=MUTED)
