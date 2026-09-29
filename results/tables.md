@@ -6,14 +6,14 @@ Models scored from memory: 8. Still fall back Calgary on November 1: 8 of 8. Clo
 
 | Model | Score (of 122) | 2026 wave (of 25) | Clock dated by the ladder | Vendor's stated cutoff | Falls back Calgary on Nov 1? |
 |---|---|---|---|---|---|
-| claude-opus-5 | 101 (of 121, 1 errored) | 5/25 | 2025b to 2026a (2025-03 to 2026-03) | 2026-05 | yes |
-| gemini-3.1-pro-preview | 100 | 5/25 | 2025a (2025-01) | 2025-01 | yes |
-| gemini-3.7-flash | 99 | 5/25 | 2025a (2025-01) | 2026-03 | yes |
-| gemini-3.8-flash | 99 | 5/25 | 2025a (2025-01) | 2026-03 | yes |
-| gemini-2.5-pro | 98 | 5/25 | 2025a (2025-01) | 2025-01 | yes |
-| gemini-3.5-flash-lite | 91 | 7/25 | 2024a to 2024b (2024-02 to 2024-09) | not published | yes |
-| claude-sonnet-5 | 86 | 5/25 | 2022f (2022-10) | 2026-01 | yes |
-| claude-haiku-4-5 | 69 | 6/25 | 2022b to 2022d (2022-08 to 2022-09) | 2025-02 | yes |
+| claude-opus-5 | 101 (of 121, 1 errored) | 5/25 | 2025b to 2026a (2025-03 to 2026-03), agrees on 46 of 46 | 2026-05 | yes |
+| gemini-3.1-pro-preview | 100 | 5/25 | 2025a (2025-01), agrees on 45 of 46 | 2025-01 | yes |
+| gemini-3.7-flash | 99 | 5/25 | 2025a (2025-01), agrees on 44 of 46 | 2026-03 | yes |
+| gemini-3.8-flash | 99 | 5/25 | 2025a (2025-01), agrees on 44 of 46 | 2026-03 | yes |
+| gemini-2.5-pro | 98 | 5/25 | 2025a (2025-01), agrees on 44 of 46 | 2025-01 | yes |
+| gemini-3.5-flash-lite | 91 | 7/25 | 2024a to 2024b (2024-02 to 2024-09), agrees on 36 of 46 | not published | yes |
+| claude-sonnet-5 | 86 | 5/25 | 2022f (2022-10), agrees on 39 of 46 | 2026-01 | yes |
+| claude-haiku-4-5 | 69 | 6/25 | 2022b to 2022d (2022-08 to 2022-09), agrees on 37 of 46 | 2025-02 | yes |
 
 ## By family, from memory
 

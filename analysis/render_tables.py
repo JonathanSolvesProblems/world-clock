@@ -34,11 +34,13 @@ def dated(r: dict) -> str:
     c = r.get("clock")
     if not c:
         return "n/a"
+    peak = f", agrees on {c['best_agreement']} of {c['ladder_cases']}"
     if c["current"]:
-        return "current (2026d)" if c["earliest"]["iana"] == "2026d" else f"{c['earliest']['iana']} to current"
+        base = "current (2026d)" if c["earliest"]["iana"] == "2026d" else f"{c['earliest']['iana']} to current"
+        return base + peak
     if c["earliest"]["iana"] == c["latest"]["iana"]:
-        return f"{c['earliest']['iana']} ({c['earliest']['date'][:7]})"
-    return f"{c['earliest']['iana']} to {c['latest']['iana']} ({c['earliest']['date'][:7]} to {c['latest']['date'][:7]})"
+        return f"{c['earliest']['iana']} ({c['earliest']['date'][:7]})" + peak
+    return f"{c['earliest']['iana']} to {c['latest']['iana']} ({c['earliest']['date'][:7]} to {c['latest']['date'][:7]})" + peak
 
 
 def headline(condition: str) -> str:
