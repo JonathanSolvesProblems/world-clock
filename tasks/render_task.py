@@ -621,7 +621,7 @@ def cases_frame() -> pd.DataFrame:
     name=TASK_NAME,
     description="__DESCRIPTION__",
 )
-def __FUNC_NAME__(llm) -> tuple[int, int]:
+def __FUNC_NAME__(llm) -> float:
     df = cases_frame()
     with kbench.client.enable_cache():
         # No per-job timeout: joblib's TimeoutError escapes on_failure="continue" and
@@ -672,7 +672,10 @@ def __FUNC_NAME__(llm) -> tuple[int, int]:
     for fam, s in summary.items():
         print(f"  {fam:22s} {s['correct']:3d}/{s['total']}")
     print("WORLD_CLOCK_ANSWERS_JSON " + json.dumps(out, ensure_ascii=True))
-    return correct, total
+    # The score Kaggle's leaderboard shows: the fraction of graded questions answered
+    # correctly. Earlier versions returned (correct, total); the backend does not support
+    # that pair yet and showed the count as a percentage (98 correct read as "9800%").
+    return round(correct / total, 4) if total else 0.0
 
 
 # %%
