@@ -269,7 +269,7 @@ def check_results() -> None:
     assert_clock("Claude Sonnet 5", "2022f", "2022f", 39)
     assert_clock("Claude Haiku 4.5", "2022b", "2022d", 37)
     expect(r"agrees with tzdata 2026b on all <N> changed answers", 46)
-    expect(r"identical to the answer, <N> of <N> at the peak", 44, 46)
+    expect(r"identical, point for point, <N> of <N> at the peak", 44, 46)
     expect(r"at 2024a to 2024b with a blurry <N> of <N>", 36, 46)
 
     def curve(name: str) -> str:
@@ -347,6 +347,7 @@ def check_results() -> None:
         return ((trace.get(t["model"]) if t else None) or {}).get("summary") or {}
 
     expect(r"asks <N> of the <N> questions: every question about 2026", N_SUBSET, len(CASES))
+    expect(r"Then I asked <N> of the questions a second time", N_SUBSET)
     expect(r"<N> of the <N> are graded", N_SUBSET_GRADED, N_SUBSET)
 
     flash = ("Gemini 3.7 Flash", "Gemini 3.8 Flash")
