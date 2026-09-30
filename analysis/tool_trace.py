@@ -96,10 +96,13 @@ def free_text_value(kind: str, text: str, case_id: str) -> str | bool | None:
         if m:
             h, mm = m.group(1).split(":")
             return f"{int(h):02d}:{mm}"
+        # A clock time, not an offset: skip anything written as +05:00, -05:00 or UTC-05:00,
+        # drop the time the question itself gave, and take the first one left (models state
+        # the answer, then explain it with offsets).
         input_time = case_id.split(":")[-2] + ":" + case_id.split(":")[-1]
-        toks = [t for t in re.findall(r"\b(\d{1,2}:\d{2})\b", text) if t != input_time]
+        toks = [t for t in re.findall(r"(?<![+\-:\d])(\d{1,2}:\d{2})(?![:\d])", text) if f"{int(t.split(':')[0]):02d}:{t.split(':')[1]}" != input_time]
         if toks:
-            h, mm = toks[-1].split(":")
+            h, mm = toks[0].split(":")
             return f"{int(h):02d}:{mm}"
         return None
     if kind == "change_day":
@@ -240,7 +243,7 @@ def main() -> int:
                 "changed_when_restated": (ft is not None and sv is not None and ft != sv),
                 "right_before_restating": (row["graded"] and not row["correct"] and ft is not None and ft == ev),
                 "note": row.get("note", ""),
-                "free_text": (t["free_text"] or "")[:400],
+                "free_text": (t["free_text"] or "")[:1500],
             }
             records.append(rec)
 

@@ -128,15 +128,38 @@ Models scored from memory: 19. Put Calgary on Mountain Standard Time (-07:00) on
 
 | Model | From memory (of 43) | With the tool (of 43) | Asked the tool | Overrode it | Asked about another zone only | Answer changed when restated |
 |---|---|---|---|---|---|---|
-| Gemini 3.7 Flash | 21 | 42 | 43 of 43 | 0 | 1 | 0 |
+| Claude Haiku 4.5 | 18 | 43 | 43 of 43 | 0 | 3 | 1 |
+| Claude Opus 4.5 | 18 | 42 | 43 of 43 | 1 | 1 | 2 |
 | Gemini 3.8 Flash | 21 | 42 | 43 of 43 | 0 | 1 | 0 |
+| GPT-5.6 Terra | 23 | 42 | 42 of 43 | 1 | 0 | 0 |
+| Grok 4.20 Reasoning | 18 | 42 | 43 of 43 | 0 | 1 | 0 |
+| Claude Opus 5 | 23 | 41 | 43 of 43 | 2 | 0 | 3 |
+| GPT-5.4 mini | 22 | 41 | 43 of 43 | 2 | 0 | 3 |
+| Gemini 3.7 Flash | 21 | 39 | 43 of 43 | 3 | 1 | 1 |
+| Gemma 4 31B | 17 | 36 | 43 of 43 | 6 | 3 | 4 |
+| GLM-5 | 18 | 36 | 43 of 43 | 6 | 1 | 4 |
+| Grok 4.20 | 21 | 36 | 43 of 43 | 6 | 1 | 7 |
+| Claude Sonnet 5 | 17 | 34 | 40 of 43 | 6 | 2 | 6 |
+| Gemini 3.5 Flash-Lite | 22 | 31 | 43 of 43 | 11 | 4 | 2 |
+| Qwen3-Next 80B Thinking | 21 | 19 | 2 of 43 | 0 | 1 | 0 |
 | Gemini 3.1 Pro | 22 | 15 of 15 | 12 of 15 | 0 | 0 | 0 |
 
 ## By family, with the tool
 
 | Model | Controls | Awkward offsets | Southern DST | Changes 2022 to 2025 | 2026 wave |
 |---|---|---|---|---|---|
-| gemini-3.7-flash | 6/6 | 2/2 | 2/2 | 7/8 | 25/25 |
+| claude-haiku-4-5 | 6/6 | 2/2 | 2/2 | 8/8 | 25/25 |
 | gemini-3.8-flash | 6/6 | 2/2 | 2/2 | 7/8 | 25/25 |
+| claude-opus-4-5 | 6/6 | 2/2 | 2/2 | 8/8 | 24/25 |
+| gpt-5.6-terra | 6/6 | 2/2 | 2/2 | 8/8 | 24/25 |
+| grok-4.20-0309-reasoning | 6/6 | 2/2 | 2/2 | 7/8 | 25/25 |
+| claude-opus-5 | 6/6 | 2/2 | 2/2 | 8/8 | 23/25 |
+| gpt-5.4-mini-2026-03-17 | 6/6 | 2/2 | 2/2 | 8/8 | 23/25 |
+| gemini-3.7-flash | 6/6 | 2/2 | 2/2 | 7/8 | 22/25 |
+| grok-4.20-0309-non-reasoning | 6/6 | 2/2 | 2/2 | 7/8 | 19/25 |
+| gemma-4-31b | 6/6 | 2/2 | 2/2 | 7/8 | 19/25 |
+| glm-5 | 6/6 | 2/2 | 2/2 | 7/8 | 19/25 |
+| claude-sonnet-5 | 6/6 | 2/2 | 2/2 | 7/8 | 17/25 |
+| gemini-3.5-flash-lite | 6/6 | 2/2 | 2/2 | 7/8 | 14/25 |
+| qwen3-next-80b-a3b-thinking | 6/6 | 2/2 | 2/2 | 2/8 | 7/25 |
 | gemini-3.1-pro-preview | 6/6 | 2/2 | 2/2 | 5/5 |  |
-| gemini-3.5-flash-lite | 4/4 |  |  |  |  |

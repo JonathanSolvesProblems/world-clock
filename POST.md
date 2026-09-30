@@ -98,21 +98,39 @@ The peak height matters as much as its position. A model at 46 of 46 has a sharp
 
 Then I asked again with a tool on the table. `zone_clock(iana_zone, local_datetime)` reads tzdata 2026d and returns the offset in force. The system prompt says the tool exists and that the model may call it or answer without it. Nothing tells the model its knowledge might be out of date.
 
-This half asks 46 of the 125 questions: every question about 2026, the three about Manitoba, and eighteen older ones as a control group. 43 of the 46 are graded. The reason it is a subset is money, which I get to below.
+This half asks 46 of the 125 questions: every question about 2026, the three about Manitoba, and eighteen older ones as a control group. 43 of the 46 are graded. The reason it is a subset is money, which I get to below. 14 models finished it.
 
 | Model | From memory (of 43) | With the tool (of 43) | Asked the tool | Overrode it | Asked about another zone only | Answer changed when restated |
 |---|---|---|---|---|---|---|
-| Gemini 3.7 Flash | 21 | 42 | 43 of 43 | 0 | 1 | 0 |
+| Claude Haiku 4.5 | 18 | 43 | 43 of 43 | 0 | 3 | 1 |
+| Claude Opus 4.5 | 18 | 42 | 43 of 43 | 1 | 1 | 2 |
 | Gemini 3.8 Flash | 21 | 42 | 43 of 43 | 0 | 1 | 0 |
+| GPT-5.6 Terra | 23 | 42 | 42 of 43 | 1 | 0 | 0 |
+| Grok 4.20 Reasoning | 18 | 42 | 43 of 43 | 0 | 1 | 0 |
+| Claude Opus 5 | 23 | 41 | 43 of 43 | 2 | 0 | 3 |
+| GPT-5.4 mini | 22 | 41 | 43 of 43 | 2 | 0 | 3 |
+| Gemini 3.7 Flash | 21 | 39 | 43 of 43 | 3 | 1 | 1 |
+| Gemma 4 31B | 17 | 36 | 43 of 43 | 6 | 3 | 4 |
+| GLM-5 | 18 | 36 | 43 of 43 | 6 | 1 | 4 |
+| Grok 4.20 | 21 | 36 | 43 of 43 | 6 | 1 | 7 |
+| Claude Sonnet 5 | 17 | 34 | 40 of 43 | 6 | 2 | 6 |
+| Gemini 3.5 Flash-Lite | 22 | 31 | 43 of 43 | 11 | 4 | 2 |
+| Qwen3-Next 80B Thinking | 21 | 19 | 2 of 43 | 0 | 1 | 0 |
 | Gemini 3.1 Pro | 22 | 15 of 15 | 12 of 15 | 0 | 0 | 0 |
 
-Gemini 3.7 Flash and 3.8 Flash asked the tool on every question and went from 21 right to 42. The ladder now dates both clocks as current. Their one miss is the same question, and it is my favourite failure in the benchmark. Chile's Aysén region got its own zone, America/Coyhaique, in tzdata 2025b, which is after Gemini's clock stopped. So the model asks the database about America/Santiago, gets a true answer about the wrong place, and reports it: "Coyhaique and the Aysén Region follow continental Chile standard time (America/Santiago), observing UTC-4 during southern hemisphere winter." A lookup tool fixes what the model knows to look up.
+**Almost everyone checks.** Eleven of the 14 asked the tool on every one of the 43 questions, GPT-5.6 Terra on 42 and Claude Sonnet 5 on 40. Qwen asked on 2, answered the rest from memory, and scored 19, which is lower than the 21 it got without the tool.
 
-Gemini 3.1 Pro got through 15 of the 43 before the quota ran out. It answered all 15 correctly and asked the tool on 12 of them.
+**Checking mostly works.** Twelve of the 14 got at least 34 of 43 with the tool, and nobody got more than 23 from memory. Claude Haiku 4.5, whose clock dated to 2022 in the memory half, is the only model that got all 43. It never once answered against the database.
 
-The transcripts show one more thing. Kaggle's SDK runs the tool loop, then sends a final message, "Now format your previous answer using the requested schema.", and the benchmark grades that restated answer. In an earlier run of this task, Gemini 3.7 Flash asked the tool about Calgary and Toronto, wrote 10:00 in its own words with Calgary at UTC-6, and then restated it as 11:00 with Calgary at UTC-7. In the run scored here it did not. `analysis/tool_trace.py` counts every case where the model's own words and its restated answer differ, and the last column of the table is that count.
+**Checking is not believing.** Take the question this post opened with. With the database one call away, 9 of the 14 still said 11:00. Three of those nine wrote the correct offsets in the same sentence. GPT-5.6 Terra's note reads "Calgary used UTC−06:00 and Toronto used UTC−05:00." Its answer was 11:00.
 
-Why a subset. Kaggle gives each account a model quota of $10 a day, and a tool loop is expensive because every round sends the whole conversation again. Gemini 3.8 Flash cost $0.15 for the 125 questions from memory and $0.99 for the same 125 with the tool. My first full tool lineup ran out of quota partway through Gemini 3.1 Pro, and the runs queued behind it failed on a 403 from the proxy. The models from OpenAI, Anthropic, xAI and the open-weight group are not in this table yet for that reason.
+Claude Opus 5 argued with the tool in so many words. On Calgary's offset it wrote "the tool reports -06:00 with abbreviation CST, which does not match Alberta's actual rules" before coming round to the tool's answer. On Casablanca in December it did not come round. It answered +01:00 and left this note: "the zone_clock lookup returned +00:00, which conflicts with this known rule". Gemini 3.5 Flash-Lite called the tool 5 times about Calgary's clocks on November 1, was told they do not change, and answered that they fall back. Across the 14 models there were 44 answers like that, where the model asked about the right place on the right date and then answered something else.
+
+**Some of it is a second chance to be wrong.** Kaggle's SDK runs the tool loop, then sends a final message, "Now format your previous answer using the requested schema.", and the benchmark grades that restated answer. `analysis/tool_trace.py` compares the two, and the last column of the table counts the cases where they differ. In 22 cases the model's own words had the right answer and the restated one did not. Claude Sonnet 5 wrote "Per IANA tzdata 2026d, Vancouver is on permanent standard time (abbreviated MST, no DST) at -07:00 for this date", then restated the offset as -08:00. 11 answers went the other way and were fixed at that step. Gemini 3.7 Flash ran this task three times while I was fixing the harness and scored 42, 40 and 39.
+
+**The failure I like best is Coyhaique.** Chile's Aysén region got its own zone, America/Coyhaique, in tzdata 2025b. A model whose clock stopped before that does not know the zone exists, so it asks the database about America/Santiago, gets a true answer about the wrong place, and reports it. 9 of the 14 missed the question, and only three asked about America/Coyhaique at all. Gemini 3.8 Flash: "Coyhaique in the Aysén Region observes mainland Chile standard time (America/Santiago), which is UTC-04:00 during the winter months." A lookup tool fixes what the model knows to look up.
+
+**Why a subset, and who is missing.** Kaggle gives each account a model quota of $10 a day, and a tool loop is expensive because every round sends the whole conversation again. Gemini 3.8 Flash cost $0.15 for the 125 questions from memory and $0.99 for the same 125 with the tool. My first full tool lineup ran out of quota partway through, and the runs queued behind it failed on a 403 from the proxy. So the tool half is 46 questions. GPT-6 Astra is missing for a different reason: the API refuses function tools for that model unless reasoning is off, and refuses to switch its reasoning off, so Kaggle's SDK has no way to hand it a tool. GPT-5.6 Terra has the same rule and does allow reasoning off, so it ran this half that way. DeepSeek-R1 does not support tool calling at all.
 
 ### Manitoba, which nobody can know yet
 
@@ -126,13 +144,17 @@ Knowing about a law is not knowing its date. Opus 5 can tell you British Columbi
 
 The models agree with each other more than with the world. On the Calgary to Toronto question, all 19 models gave the same wrong answer, with the same confidence, and most of them cited the same rule: daylight saving ends on the first Sunday in November. That rule was true in Alberta for 55 years. It stopped being true on June 18.
 
+Checking is not believing. Thirteen of the 14 models that had the database asked it on at least 40 of the 43 questions, and nine of the 14 still told Calgary it was 11:00 in Toronto. Claude Opus 5 told the database it was wrong about Alberta.
+
 ## What I would measure next
 
 Run the same 125 questions again after tzdata 2027a, without changing a line, and see which vendors' clocks moved. The answer key updates itself; the benchmark is designed to be re-run.
 
 Tell the model the current date in the prompt and see whether any of them hedge. Not one of the 19 said "as of my training data" on a question about November 2026.
 
-Add a web-search condition beside the tzdata tool, because the interesting question is not whether a tool fixes it. It is whether a model that believes it knows the answer bothers to check.
+Add a web-search condition beside the tzdata tool. With a database one call away, nearly every model looked. The open question is whether a model goes looking when nothing on the table suggests it should.
+
+Grade the model's own words as well as the restated answer, as two scores. The gap between them is a measurement of the harness, and I only found it by reading transcripts.
 
 ## Where to see it
 

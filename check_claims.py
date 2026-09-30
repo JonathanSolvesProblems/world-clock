@@ -337,7 +337,7 @@ def check_results() -> None:
     # With the tool. Everything here is scored on the tool task's subset of questions.
     from render_tables import N_SUBSET, N_SUBSET_GRADED, tool_rows
     from run_costs import walk_requests
-    from tool_trace import FORMAT_PROMPT, free_text_value, trace_case, walk_cases
+    from tool_trace import FORMAT_PROMPT
 
     trace_path = ROOT / "results" / "tool_trace.json"
     trace = json.loads(trace_path.read_text(encoding="utf-8")) if trace_path.exists() else {}
@@ -351,38 +351,76 @@ def check_results() -> None:
     expect(r"Then I asked <N> of the questions a second time", N_SUBSET)
     expect(r"<N> of the <N> are graded", N_SUBSET_GRADED, N_SUBSET)
 
-    flash = ("Gemini 3.7 Flash", "Gemini 3.8 Flash")
-    mem_scores = {by_name[n]["tool_subset"]["correct"] for n in flash if n in by_name}
-    tool_scores = {tool_by_name[n]["graded_correct"] for n in flash if n in tool_by_name}
-    data(len(mem_scores) == 1 and len(tool_scores) == 1, f"the post gives one memory score and one tool score for both Flash models; the data has {mem_scores} and {tool_scores}")
-    if len(mem_scores) == 1 and len(tool_scores) == 1:
-        expect(r"went from <N> right to <N>\.", next(iter(mem_scores)), next(iter(tool_scores)))
-    for n in flash:
-        t, s = tool_by_name.get(n), trace_summary(n)
-        if not t:
-            failures.append(f"the post describes {n}'s tool run but there is no scored tool run for it")
-            continue
-        data(t["graded_total"] == N_SUBSET_GRADED, f"{n}'s tool run did not answer all {N_SUBSET_GRADED} graded subset questions")
-        data(s.get("with_call") == s.get("cases"), f"{n} did not ask the tool on every question ({s.get('with_call')} of {s.get('cases')})")
-        data(bool(t.get("clock")) and t["clock"]["current"], f"{n}'s tool-run clock is not dated current")
-        data(s.get("wrong") == ["offset:coyhaique:2025-07-15:12:00"], f"{n}'s only tool-run miss is no longer Coyhaique: {s.get('wrong')}")
-    pro, pro_s = tool_by_name.get("Gemini 3.1 Pro"), trace_summary("Gemini 3.1 Pro")
-    if pro:
-        expect(r"Gemini 3\.1 Pro got through <N> of the <N> before", pro["graded_total"], N_SUBSET_GRADED, required=pro["graded_total"] < N_SUBSET_GRADED)
-        expect(r"answered all <N> correctly and asked the tool on <N> of them", pro["graded_correct"], pro_s.get("with_call", -1), required=pro["graded_total"] < N_SUBSET_GRADED)
+    # The tool section's numbers all come from analysis/tool_facts.py.
+    from tool_facts import facts as tool_facts
+
+    f = tool_facts()
+    n_full = f["n_full"]
+    qwen = "Qwen3-Next 80B Thinking"
+    expect(r"<N> models finished it", n_full)
+    expect(r"<N> of the <N> asked the tool on every one of the <N> questions", len(f["asked_every_question"]), n_full, N_SUBSET_GRADED)
+    expect(r"GPT-5\.6 Terra on <N> and Claude Sonnet 5 on <N>", f["asked"].get("GPT-5.6 Terra", -1), f["asked"].get("Claude Sonnet 5", -1))
+    expect(
+        r"Qwen asked on <N>, answered the rest from memory, and scored <N>, which is lower than the <N> it got without the tool",
+        f["asked"].get(qwen, -1), f["tool_score"].get(qwen, -1), f["memory_score"].get(qwen, -1),
+    )
+    not_all = sorted(set(f["models"]) - set(f["asked_every_question"]))
+    data(not_all == sorted(["GPT-5.6 Terra", "Claude Sonnet 5", qwen]), f"the post names Terra, Sonnet 5 and Qwen as the ones that did not ask on every question; the data says {not_all}")
+    expect(r"<N> of the <N> got at least 34 of 43 with the tool", len(f["at_least_34"]), n_full)
+    expect(r"nobody got more than <N> from memory", f["max_memory"])
+    data(f["perfect"] == ["Claude Haiku 4.5"], f"the post says Claude Haiku 4.5 is the only model with all {N_SUBSET_GRADED}; the data says {f['perfect']}")
+    data(f["overrode"].get("Claude Haiku 4.5") == 0, "the post says Haiku 4.5 never answered against the database; the trace says it did")
+
+    expect(r"<N> of the <N> still said 11:00", len(f["hook_said_11"]), n_full)
+    expect(r"<N> of those <N> wrote the correct offsets in the same sentence", len(f["hook_said_11_with_right_offsets"]), len(f["hook_said_11"]))
+    data("GPT-5.6 Terra" in f["hook_said_11_with_right_offsets"], "GPT-5.6 Terra is quoted as writing the right offsets and answering 11:00; the data disagrees")
+    expect(r"Across the <N> models there were <N> answers like that", n_full, f["overrode_total"])
+    expect(r"In <N> cases the model's own words had the right answer and the restated one did not", f["right_before_restating"])
+    expect(r"<N> answers went the other way", f["fixed_by_restating"])
+    if len(f["gemini_3_7_flash_three_runs"]) == 3:
+        expect(r"scored <N>, <N> and <N>\.", *f["gemini_3_7_flash_three_runs"])
+    expect(
+        r"<N> of the <N> missed the question, and only <N> asked about America/Coyhaique at all",
+        len(f["coyhaique_missed"]), n_full, n_full - len(f["coyhaique_never_asked_the_zone"]),
+    )
+    asked_40 = sum(1 for v in f["asked"].values() if v >= 40)
+    expect(r"<N> of the <N> models that had the database asked it on at least 40 of the 43 questions", asked_40, n_full)
+    expect(r"<N> of the <N> still told Calgary it was 11:00 in Toronto", len(f["hook_said_11"]), n_full)
+    if f["reasoning_off"] is not None:
+        data(f["reasoning_off"] == ["GPT-5.6 Terra"], f"the post says only GPT-5.6 Terra ran the tool half with reasoning off; the runs say {f['reasoning_off']}")
+    data("GPT-6 Astra" not in f["models"], "the post says GPT-6 Astra is missing from the tool half, but it has a scored tool run")
+
+    def tcase(name: str, case_id: str) -> dict:
+        t = tool_by_name.get(name)
+        cases = {c["id"]: c for c in ((trace.get(t["model"]) if t else None) or {}).get("cases", [])}
+        return cases.get(case_id, {})
+
+    opus_calgary, opus_morocco = tcase("Claude Opus 5", "offset:calgary:2026-11-15:12:00"), tcase("Claude Opus 5", "offset:casablanca:2026-12-15:12:00")
+    data(opus_calgary.get("correct") is True, "the post says Claude Opus 5 came round to the tool's answer on Calgary's offset; it is graded wrong")
+    data(opus_morocco.get("correct") is False and opus_morocco.get("structured_value") == "+01:00", "the post says Claude Opus 5 answered +01:00 on Casablanca in December; the data disagrees")
+    lite = tcase("Gemini 3.5 Flash-Lite", "change_day:calgary:2026-11-01")
+    expect(r"called the tool <N> times about Calgary's clocks on November 1", lite.get("n_calls", -1))
+    data(lite.get("own_place_calls", 0) >= 1 and lite.get("structured_value") is True, "the post says Flash-Lite asked about Calgary on November 1 and still answered that the clocks change; the data disagrees")
+    sonnet_van = tcase("Claude Sonnet 5", "offset:vancouver:2026-11-15:12:00")
+    data(sonnet_van.get("free_text_value") == "-07:00" and sonnet_van.get("structured_value") == "-08:00", f"the post says Claude Sonnet 5 wrote -07:00 for Vancouver and restated it as -08:00; the trace says {sonnet_van.get('free_text_value')} then {sonnet_van.get('structured_value')}")
 
     # What the two conditions cost, from the per-request costs in the downloaded runs.
-    def run_cost(r: dict | None) -> float | None:
-        if not r:
-            return None
-        runs = list((ROOT / r["source"]).parent.glob("*.run.json"))
-        if not runs:
+    def run_cost(folder: Path) -> float | None:
+        """Cost of the run whose files are in `folder`, provided it answered all 125 questions."""
+        runs = list(folder.glob("*.run.json"))
+        answers = folder / "world_clock_answers.json"
+        if not runs or not answers.exists() or len(json.loads(answers.read_text(encoding="utf-8"))["rows"]) != len(CASES):
             return None
         reqs: list = []
         walk_requests(json.loads(runs[0].read_text(encoding="utf-8")), reqs)
         return sum(int(m.get("inputTokensCostNanodollars", 0) or 0) + int(m.get("outputTokensCostNanodollars", 0) or 0) for m in reqs) / 1e9
 
-    mem_cost, tool_cost = run_cost(by_name.get("Gemini 3.8 Flash")), run_cost(tool_by_name.get("Gemini 3.8 Flash"))
+    # Gemini 3.8 Flash on all 125 questions: its scored memory run, and its version 4 tool
+    # run (the last tool version that asked all 125).
+    flash38 = by_name.get("Gemini 3.8 Flash")
+    mem_cost = run_cost((ROOT / flash38["source"]).parent) if flash38 else None
+    v4_dirs = [p for p in (ROOT / "results" / "raw" / "world-clock-tool-v2" / "4" / "gemini-3.8-flash").glob("*") if p.is_dir()]
+    tool_cost = run_cost(v4_dirs[0]) if v4_dirs else None
     if mem_cost is not None and tool_cost is not None:
         require_text(f"Gemini 3.8 Flash cost ${mem_cost:.2f} for the 125 questions from memory and ${tool_cost:.2f} for the same 125 with the tool")
     else:
@@ -390,18 +428,6 @@ def check_results() -> None:
     # The daily quota the post names is what analysis/quota.py read from Kaggle's API on
     # 2026-09-30 ($9.9939 used of $10.00). It cannot be re-read offline; the sentence is pinned.
     require_text("a model quota of $10 a day")
-
-    # The restating anecdote comes from a superseded run; re-check it when that run is on disk.
-    v3 = list((ROOT / "results" / "raw" / "world-clock-tool-v2" / "3" / "gemini-3.7-flash").glob("*/*.run.json"))
-    if v3:
-        case_id = "convert:calgary:toronto:2026-11-15:09:00"
-        convs = walk_cases(json.loads(v3[0].read_text(encoding="utf-8")))
-        conv = next((c for cid, c in convs.items() if cid.startswith(f"case {case_id}")), None)
-        answers = json.loads((v3[0].parent / "world_clock_answers.json").read_text(encoding="utf-8"))
-        row_v3 = next((r for r in answers["rows"] if r["id"] == case_id), None)
-        words = free_text_value("convert", trace_case(conv)["free_text"], case_id) if conv else None
-        data(words == "10:00" and row_v3 is not None and row_v3["answer"].get("time") == "11:00", f"the earlier-run anecdote (10:00 in its own words, 11:00 restated) is not what the version 3 run shows: words {words}, restated {row_v3 and row_v3['answer']}")
-    require_text("wrote 10:00 in its own words with Calgary at UTC-6, and then restated it as 11:00 with Calgary at UTC-7")
 
     # Tables.
     data(post_table("memory") in text, "POST.md's headline table differs from analysis/render_tables.py post_table(); regenerate it and paste")
@@ -414,6 +440,14 @@ def check_results() -> None:
             for r in rows.values():
                 if r.get("note"):
                     notes.add(norm(r["note"]))
+    # In the tool condition a model also answers in its own words before the SDK asks it to
+    # restate the answer in the schema. Those words are in results/tool_trace.json.
+    for rep in trace.values():
+        for c in rep.get("cases", []):
+            if c.get("free_text"):
+                notes.add(norm(c["free_text"]))
+            if c.get("note"):
+                notes.add(norm(c["note"]))
     body = text.split("---", 2)[-1]
     for q in re.findall(r'"([^"\n]{40,})"', body):
         if q == FORMAT_PROMPT:

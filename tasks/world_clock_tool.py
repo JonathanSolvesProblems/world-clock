@@ -307,16 +307,24 @@ TRANSIENT = ("429", "rate_limit", "heavy load", "exceeds your available quota", 
 CAP_NAMES = ("max_tokens", "max_completion_tokens")
 
 
-def _call(llm, prompt: str, schema, tools, extra: dict | None):
+# Models that refused function tools until reasoning was switched off, remembered so later
+# cases in the same worker skip the refused first attempt.
+_REASONING_OFF: set[str] = set()
+
+
+def _call(llm, prompt: str, schema, tools, extra: dict | None, state: dict):
     """One attempt. Without tools this is llm.prompt. With tools it is the SDK's own tool
-    loop, called directly so the round limit can be raised above prompt()'s fixed 10."""
+    loop, called directly so the round limit can be raised above prompt()'s fixed 10.
+    The question is sent to the chat once, however many attempts follow."""
     if not tools:
         return llm.prompt(prompt, schema=schema, extra_api_params=extra)
-    kbench.user.send(prompt)
+    if not state.get("sent"):
+        kbench.user.send(prompt)
+        state["sent"] = True
     kwargs = {
         "seed": 0,
         "temperature": 0 if getattr(llm, "support_temperature", False) else None,
-        "reasoning": None,
+        "reasoning": "none" if state.get("reasoning_off") else None,
     }
     if extra:
         kwargs.update(extra)
@@ -369,7 +377,7 @@ def salvage(schema, error_text: str):
     return None
 
 
-def ask(llm, prompt: str, schema, tools=None):
+def ask(llm, prompt: str, schema, tools=None, meta: dict | None = None):
     """A model call with an output-token cap and retries.
 
     Nested evaluations run with max_attempts=1 whatever the caller asks, so transient
@@ -377,27 +385,41 @@ def ask(llm, prompt: str, schema, tools=None):
     Some backends reject `max_tokens` and want `max_completion_tokens`; the cap name
     falls through on that error. A response cut off by the cap gets another try at
     double the cap. A response the SDK could not parse is salvaged from its raw text
-    when a complete JSON object is in there. Anything else is raised as is.
+    when a complete JSON object is in there. GPT-6 Astra and GPT-5.6 Terra refuse function
+    tools on this endpoint unless reasoning is off ("set reasoning_effort to 'none'"), so
+    that refusal switches reasoning off for the model and is recorded in `meta`. Anything
+    else is raised as is.
     """
     cap_index = 0
     cap = MAX_TOKENS
     delay = 5
     _type_retries = 0
+    model_name = str(getattr(llm, "model", "") or getattr(llm, "name", ""))
+    state = {"sent": False, "reasoning_off": model_name in _REASONING_OFF}
     last: Exception | None = None
     for _ in range(10):
         extra = {CAP_NAMES[cap_index]: cap} if cap_index < len(CAP_NAMES) else None
         try:
-            return _call(llm, prompt, schema, tools, extra)
+            answer = _call(llm, prompt, schema, tools, extra, state)
+            if meta is not None:
+                meta["reasoning_off"] = bool(state["reasoning_off"])
+            return answer
         except Exception as exc:  # noqa: BLE001
             last = exc
             msg = str(exc)
             low = msg.lower()
+            if "reasoning_effort" in low and "not supported" in low and not state["reasoning_off"]:
+                state["reasoning_off"] = True
+                _REASONING_OFF.add(model_name)
+                continue
             if "unsupported" in low and any(name in low for name in CAP_NAMES):
                 cap_index += 1
                 continue
             if "response parsing failed" in low:
                 recovered = salvage(schema, msg)
                 if recovered is not None:
+                    if meta is not None:
+                        meta["reasoning_off"] = bool(state["reasoning_off"])
                     return recovered
                 if cap >= MAX_CAP:
                     raise
@@ -434,12 +456,13 @@ def world_clock_case(llm, id, family, kind, prompt, expected_json, graded) -> di
     schema = SCHEMAS[kind]
     full_prompt = prompt + FIELD_HINTS[kind]
     tool_calls = 0
+    meta: dict = {}
     with kbench.chats.new(f"case {id}", system_instructions=SYSTEM) as chat:
         if CONDITION == "tool":
-            answer = ask(llm, full_prompt, schema, tools=[zone_clock])
+            answer = ask(llm, full_prompt, schema, tools=[zone_clock], meta=meta)
             tool_calls = count_tool_calls(chat)
         else:
-            answer = ask(llm, full_prompt, schema)
+            answer = ask(llm, full_prompt, schema, meta=meta)
         usage = getattr(chat, "usage", None)
     got = normalise(kind, answer)
     correct = got == expected
@@ -462,6 +485,7 @@ def world_clock_case(llm, id, family, kind, prompt, expected_json, graded) -> di
         "correct": bool(correct),
         "note": note,
         "tool_calls": tool_calls,
+        "reasoning_off": bool(meta.get("reasoning_off")),
         "input_tokens": getattr(usage, "input_tokens", None),
         "output_tokens": getattr(usage, "output_tokens", None),
         "latency_ms": getattr(usage, "total_backend_latency_ms", None),
