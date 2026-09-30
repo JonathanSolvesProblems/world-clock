@@ -75,7 +75,9 @@ function Get-DoneModels($task) {
     $done = @()
     $rows = & $kaggle benchmarks tasks status $task 2>&1
     foreach ($row in $rows) {
-        if ("$row" -match '^(\S+)\s+Completed\s') { $done += $matches[1] }
+        # Completed runs are done; Running or Scheduled ones are already submitted and must
+        # not be submitted again (the CLI wait can expire while a slow model keeps running).
+        if ("$row" -match '^(\S+)\s+(Completed|Running|Scheduled)\s') { $done += $matches[1] }
     }
     return $done
 }
