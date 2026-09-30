@@ -387,6 +387,9 @@ def check_results() -> None:
         require_text(f"Gemini 3.8 Flash cost ${mem_cost:.2f} for the 125 questions from memory and ${tool_cost:.2f} for the same 125 with the tool")
     else:
         print("note: results/raw is not present, so the two cost figures in the post were not re-checked")
+    # The daily quota the post names is what analysis/quota.py read from Kaggle's API on
+    # 2026-09-30 ($9.9939 used of $10.00). It cannot be re-read offline; the sentence is pinned.
+    require_text("a model quota of $10 a day")
 
     # The restating anecdote comes from a superseded run; re-check it when that run is on disk.
     v3 = list((ROOT / "results" / "raw" / "world-clock-tool-v2" / "3" / "gemini-3.7-flash").glob("*/*.run.json"))

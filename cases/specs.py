@@ -230,9 +230,10 @@ OFFICIAL_ANSWERS: dict[tuple[str, tuple], dict] = {
     ("convert", ("winnipeg", "toronto", "2026-11-15", "09:00")): {"date": "2026-11-15", "time": "09:00"},
 }
 
-# The with-the-tool task asks a subset. A tool loop costs four to eight times what a plain
-# answer does (Gemini 3.8 Flash: $0.31 for the 125 questions from memory, $1.99 with the
-# tool), and Kaggle's model quota ran out partway through the first full tool lineup. The
+# The with-the-tool task asks a subset. A tool loop costs four to seven times what a plain
+# answer does (Gemini 3.8 Flash: $0.15 for the 125 questions from memory, $0.99 with the
+# tool), and Kaggle's $10-a-day model quota ran out partway through the first full tool
+# lineup. The
 # subset keeps every question the tool condition exists to answer: all 25 about the 2026
 # changes and the three about Manitoba, plus eighteen older questions as a control group
 # (one per country in the 2022 to 2025 changes, and a spread of textbook, awkward-offset

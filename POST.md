@@ -112,7 +112,7 @@ Gemini 3.1 Pro got through 15 of the 43 before the quota ran out. It answered al
 
 The transcripts show one more thing. Kaggle's SDK runs the tool loop, then sends a final message, "Now format your previous answer using the requested schema.", and the benchmark grades that restated answer. In an earlier run of this task, Gemini 3.7 Flash asked the tool about Calgary and Toronto, wrote 10:00 in its own words with Calgary at UTC-6, and then restated it as 11:00 with Calgary at UTC-7. In the run scored here it did not. `analysis/tool_trace.py` counts every case where the model's own words and its restated answer differ, and the last column of the table is that count.
 
-Why a subset. Kaggle gives each account a model quota, and a tool loop is expensive because every round sends the whole conversation again. Gemini 3.8 Flash cost $0.31 for the 125 questions from memory and $1.99 for the same 125 with the tool. My first full tool lineup ran out of quota partway through Gemini 3.1 Pro, and the runs queued behind it failed on a 403 from the proxy. The models from OpenAI, Anthropic, xAI and the open-weight group are not in this table yet for that reason.
+Why a subset. Kaggle gives each account a model quota of $10 a day, and a tool loop is expensive because every round sends the whole conversation again. Gemini 3.8 Flash cost $0.15 for the 125 questions from memory and $0.99 for the same 125 with the tool. My first full tool lineup ran out of quota partway through Gemini 3.1 Pro, and the runs queued behind it failed on a 403 from the proxy. The models from OpenAI, Anthropic, xAI and the open-weight group are not in this table yet for that reason.
 
 ### Manitoba, which nobody can know yet
 

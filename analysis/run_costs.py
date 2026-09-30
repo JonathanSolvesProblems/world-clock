@@ -20,12 +20,26 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def walk_requests(node, out: list) -> None:
+    """Collect the metrics of every model request in a run file.
+
+    Only members of a `requests` list count. A conversation also carries a `metrics` block
+    that totals its own requests, and counting both doubles every cost. That is what the
+    first version of this script did; the account's quota (analysis/quota.py) read half
+    of what it reported, which is how the mistake was found.
+    """
     if isinstance(node, dict):
-        metrics = node.get("metrics")
-        if isinstance(metrics, dict) and ("inputTokensCostNanodollars" in metrics or "outputTokensCostNanodollars" in metrics):
-            out.append(metrics)
-        for v in node.values():
-            walk_requests(v, out)
+        for key, value in node.items():
+            if key == "requests" and isinstance(value, list):
+                for req in value:
+                    if isinstance(req, dict):
+                        metrics = req.get("metrics")
+                        if isinstance(metrics, dict) and ("inputTokensCostNanodollars" in metrics or "outputTokensCostNanodollars" in metrics):
+                            out.append(metrics)
+                        for k2, v2 in req.items():
+                            if k2 != "metrics":
+                                walk_requests(v2, out)
+            else:
+                walk_requests(value, out)
     elif isinstance(node, list):
         for v in node:
             walk_requests(v, out)

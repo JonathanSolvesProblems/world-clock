@@ -35,7 +35,8 @@ Entry for the DEV x Kaggle Benchmarking Challenge (September 23 to October 11, 2
 | `analysis/quotes.py`, `analysis/wave_detail.py`, `analysis/inspect_runs.py` | Pull each model's own notes for the cases the post talks about, list which 2026 answers each model got right, and eyeball a downloaded run. |
 | `analysis/tool_trace.py` | Reads the tool-run conversations: which zone each model asked about, whether it followed or overrode the tool, and whether its answer changed when the SDK asked it to restate the answer in the schema. Writes `results/tool_trace.json`. |
 | `analysis/dump_conversation.py` | Prints one case's full conversation from a downloaded run, tool calls included. |
-| `analysis/run_costs.py` | Sums what each downloaded run cost from the per-request costs in its `.run.json`, and totals per day. Run it before launching a lineup: the Model Proxy has a quota, and once it is gone every queued run fails all its questions on a 403. |
+| `analysis/run_costs.py` | Sums what each downloaded run cost from the per-request costs in its `.run.json`, and totals per day. |
+| `analysis/quota.py` | Prints the account's model quota (used and allowed, in dollars) through the SDK call the CLI does not expose. Run both before launching a lineup: the quota is $10 a day, and once it is gone every queued run fails all its questions on a 403. |
 | `check_claims.py` | Fails if a number in the README or the post disagrees with the data, if the post's tables differ from the generated ones, or if a quotation in the post is not in a model's recorded note. |
 | `tests/` | Tests for the answer normalisers and for the dating ladder on synthetic answer sheets. |
 | `SCRIPT.md` | The post outline, written before the first commit. |
