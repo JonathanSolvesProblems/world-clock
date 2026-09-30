@@ -94,7 +94,23 @@ The peak height matters as much as its position. A model at 46 of 46 has a sharp
 
 ### With the tool
 
-[TOOL RESULTS PENDING: the tool lineup is running. This section will report, for each model, the score with `zone_clock()` available, how many of the 122 cases it chose to call the tool on, and the cases where it called the tool and overrode the answer. Verified so far from the two Gemini runs that have finished: Gemini 3.7 Flash went from 99 to 120 of 122. Its two misses: on Coyhaique it asked the tool about America/Santiago instead of America/Coyhaique and got Santiago's winter offset; on Calgary to Toronto it answered 11:00 from memory. Gemini 3.8 Flash went from 99 to 110 of 111.]
+Then I asked again with a tool on the table. `zone_clock(iana_zone, local_datetime)` reads tzdata 2026d and returns the offset in force. The system prompt says the tool exists and that the model may call it or answer without it. Nothing tells the model its knowledge might be out of date.
+
+This half asks 46 of the 125 questions: every question about 2026, the three about Manitoba, and eighteen older ones as a control group. 43 of the 46 are graded. The reason it is a subset is money, which I get to below.
+
+| Model | From memory (of 43) | With the tool (of 43) | Asked the tool | Overrode it | Asked about another zone only | Answer changed when restated |
+|---|---|---|---|---|---|---|
+| Gemini 3.7 Flash | 21 | 42 | 43 of 43 | 0 | 1 | 0 |
+| Gemini 3.8 Flash | 21 | 42 | 43 of 43 | 0 | 1 | 0 |
+| Gemini 3.1 Pro | 22 | 15 of 15 | 12 of 15 | 0 | 0 | 0 |
+
+Gemini 3.7 Flash and 3.8 Flash asked the tool on every question and went from 21 right to 42. The ladder now dates both clocks as current. Their one miss is the same question, and it is my favourite failure in the benchmark. Chile's Aysén region got its own zone, America/Coyhaique, in tzdata 2025b, which is after Gemini's clock stopped. So the model asks the database about America/Santiago, gets a true answer about the wrong place, and reports it: "Coyhaique and the Aysén Region follow continental Chile standard time (America/Santiago), observing UTC-4 during southern hemisphere winter." A lookup tool fixes what the model knows to look up.
+
+Gemini 3.1 Pro got through 15 of the 43 before the quota ran out. It answered all 15 correctly and asked the tool on 12 of them.
+
+The transcripts show one more thing. Kaggle's SDK runs the tool loop, then sends a final message, "Now format your previous answer using the requested schema.", and the benchmark grades that restated answer. In an earlier run of this task, Gemini 3.7 Flash asked the tool about Calgary and Toronto, wrote 10:00 in its own words with Calgary at UTC-6, and then restated it as 11:00 with Calgary at UTC-7. In the run scored here it did not. `analysis/tool_trace.py` counts every case where the model's own words and its restated answer differ, and the last column of the table is that count.
+
+Why a subset. Kaggle gives each account a model quota, and a tool loop is expensive because every round sends the whole conversation again. Gemini 3.8 Flash cost $0.31 for the 125 questions from memory and $1.99 for the same 125 with the tool. My first full tool lineup ran out of quota partway through Gemini 3.1 Pro, and the runs queued behind it failed on a 403 from the proxy. The models from OpenAI, Anthropic, xAI and the open-weight group are not in this table yet for that reason.
 
 ### Manitoba, which nobody can know yet
 

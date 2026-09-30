@@ -21,8 +21,10 @@
 | qwen/qwen3-next-80b-a3b-thinking | memory | 85/122 | 69.7% | 2022f (2022-10-28) to 2022f (2022-10-28) | 37/46 | 2025-09-30 | no (right) |
 | xai/grok-4.20-0309-non-reasoning | memory | 79/122 | 64.8% | 2022b (2022-08-10) to 2022d (2022-09-23) | 33/46 | 2025-09-01 | yes (wrong) |
 | anthropic/claude-haiku-4-5@20251001 | memory | 69/122 | 56.6% | 2022b (2022-08-10) to 2022d (2022-09-23) | 37/46 | 2025-02 | yes (wrong) |
-| google/gemini-3.7-flash | tool | 121/122 | 99.2% | current (2026d) | 45/46 | 2026-03 | no (right) |
-| google/gemini-3.8-flash | tool | 121/122 | 99.2% | current (2026d) | 45/46 | 2026-03 | no (right) |
+| google/gemini-3.1-pro-preview | tool | 15/15 | 100.0% | 2023a to current | 5/5 | 2025-01 | n/a |
+| google/gemini-3.5-flash-lite | tool | 4/4 | 100.0% | n/a | n/a | not published | n/a |
+| google/gemini-3.7-flash | tool | 42/43 | 97.7% | current (2026d) | 27/28 | 2026-03 | no (right) |
+| google/gemini-3.8-flash | tool | 42/43 | 97.7% | current (2026d) | 27/28 | 2026-03 | no (right) |
 
 ## Accuracy by family
 
@@ -47,8 +49,10 @@
 | qwen/qwen3-next-80b-a3b-thinking | memory | 20/22 | 26/26 | 14/31 | 16/18 | 9/25 |
 | xai/grok-4.20-0309-non-reasoning | memory | 19/22 | 24/26 | 14/31 | 15/18 | 7/25 |
 | anthropic/claude-haiku-4-5@20251001 | memory | 17/22 | 24/26 | 9/31 | 13/18 | 6/25 |
-| google/gemini-3.7-flash | tool | 22/22 | 26/26 | 30/31 | 18/18 | 25/25 |
-| google/gemini-3.8-flash | tool | 22/22 | 26/26 | 30/31 | 18/18 | 25/25 |
+| google/gemini-3.1-pro-preview | tool | 2/2 | 6/6 | 5/5 | 2/2 |  |
+| google/gemini-3.5-flash-lite | tool |  | 4/4 |  |  |  |
+| google/gemini-3.7-flash | tool | 2/2 | 6/6 | 7/8 | 2/2 | 25/25 |
+| google/gemini-3.8-flash | tool | 2/2 | 6/6 | 7/8 | 2/2 | 25/25 |
 
 ## Manitoba (announced, not yet in tzdata)
 

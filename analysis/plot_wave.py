@@ -23,7 +23,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.patches import Patch  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from render_tables import DISPLAY  # noqa: E402
+from render_tables import DISPLAY, tool_rows  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SUMMARY = json.loads((ROOT / "results" / "summary.json").read_text(encoding="utf-8"))
@@ -48,7 +48,7 @@ def main() -> None:
         out = Path(sys.argv[sys.argv.index("--out") + 1])
 
     mem = {short(r["model"]): r for r in SUMMARY if r["condition"] == "memory" and r["graded_total"]}
-    tool = {short(r["model"]): r for r in SUMMARY if r["condition"] == "tool" and r["graded_total"]}
+    tool = {short(r["model"]): r for r in tool_rows()}
     names = sorted(mem, key=lambda n: (mem[n]["per_family"].get("wave_2026", {}).get("correct", 0), n))
     if not names:
         raise SystemExit("nothing to plot")
@@ -73,8 +73,8 @@ def main() -> None:
         m = fam.get("correct", 0)
         ax.barh(i + (bar_h + gap) / 2, m, height=bar_h, color=MEMORY, zorder=3)
         ax.text(m + 0.3, i + (bar_h + gap) / 2, label(fam), va="center", ha="left", fontsize=7.5, color=INK2)
-        if name in tool:
-            fam_t = tool[name]["per_family"].get("wave_2026", {})
+        fam_t = tool[name]["per_family"].get("wave_2026", {}) if name in tool else {}
+        if fam_t.get("total", 0) > 0:  # a tool run that died before any 2026 question has no bar
             t = fam_t.get("correct", 0)
             ax.barh(i - (bar_h + gap) / 2, t, height=bar_h, color=TOOL, zorder=3)
             ax.text(t + 0.3, i - (bar_h + gap) / 2, label(fam_t), va="center", ha="left", fontsize=7.5, color=INK2)

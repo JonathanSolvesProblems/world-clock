@@ -21,7 +21,7 @@ POST = ROOT / "POST.md"
 
 HEADERS = {
     "| Model | Released | Score": post_table("memory"),
-    "| Model | From memory | With the tool |": tool_vs_memory() if any(r["condition"] == "tool" and r["graded_total"] for r in SUMMARY) else None,
+    "| Model | From memory (of": tool_vs_memory() if any(r["condition"] == "tool" and r["graded_total"] for r in SUMMARY) else None,
 }
 
 

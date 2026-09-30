@@ -18,10 +18,19 @@ dating ladder stay out of the task file; that analysis runs offline on downloade
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent))
+from cases.specs import in_tool_subset  # noqa: E402
+
 CASES = json.loads((HERE.parent / "cases" / "cases.json").read_text(encoding="utf-8"))
+N_ALL = len(CASES)
+N_ALL_GRADED = sum(1 for c in CASES if c["graded"])
+SUBSET = [c for c in CASES if in_tool_subset(c["id"], c["family"])]
+N_SUBSET = len(SUBSET)
+N_SUBSET_GRADED = sum(1 for c in SUBSET if c["graded"])
 
 # The slug Kaggle sees is the slugified main function name, so `task_name` doubles as the
 # function name with hyphens turned into underscores. Slugs `world-clock-memory` and
@@ -32,11 +41,13 @@ CONDITIONS = {
         "task_name": "world-clock-from-memory",
         "behaviour": "memory",
         "default_limit": 0,
+        "subset": False,
         "title": "from memory",
         "description": (
             "125 time-zone questions graded against the IANA tz database (tzdata 2026d). "
             "The model answers from its own knowledge, with no tools."
         ),
+        "scope": "Every model is asked the same 125 questions about local time.",
     },
     "tool": {
         # world-clock-with-tzdata-tool and world-clock-with-tool are broken shells: both
@@ -45,16 +56,26 @@ CONDITIONS = {
         "task_name": "world-clock-tool-v2",
         "behaviour": "tool",
         "default_limit": 0,
+        # A tool loop costs several times a plain answer, so this task asks the subset in
+        # cases/specs.py: every 2026 question, Manitoba, and eighteen older ones.
+        "subset": True,
         "title": "with a tzdata tool it may ignore",
         "description": (
-            "Same 125 questions, graded against tzdata 2026d. The model may call zone_clock(), "
-            "which reads tzdata 2026d, or ignore it."
+            f"{N_SUBSET} of the 125 questions, every 2026 one included. The model may call "
+            "zone_clock(), which reads tzdata 2026d, or ignore it."
+        ),
+        "scope": (
+            f"The from-memory task asks 125 questions about local time. This task asks {N_SUBSET} of them "
+            "again, with a tool on the table: every question about the 2026 changes, the three about "
+            "Manitoba, and eighteen older ones as a control group."
         ),
     },
     "smoke": {
         "task_name": "world-clock-smoke",
         "behaviour": "memory",
         "default_limit": 20,
+        "subset": False,
+        "scope": "A stratified 20-question sample of the from-memory task's 125 questions about local time.",
         "title": "20-case smoke test, from memory",
         "description": (
             "A stratified 20-case subset of the from-memory task, graded against tzdata 2026d. "
@@ -66,7 +87,7 @@ CONDITIONS = {
 TEMPLATE = r'''# %% [markdown]
 # # World Clock: __TITLE__
 #
-# Every model is asked the same 125 questions about local time. Each expected answer was
+# __SCOPE__ Each expected answer was
 # computed by Python's `zoneinfo` against the IANA time zone database, release 2026d
 # (PyPI `tzdata` 2026.4), by `cases/build_cases.py` in the public repository. No answer in
 # the key was typed by a person.
@@ -80,7 +101,7 @@ TEMPLATE = r'''# %% [markdown]
 # (Manitoba announced permanent daylight time on 2026-09-17; no tzdata release has it yet,
 # so those three cases are recorded and never counted).
 #
-# Score = correct answers over the 122 graded cases.
+# Score = correct answers over the __N_GRADED__ graded questions this task asks.
 
 # %%
 import json
@@ -647,12 +668,15 @@ def render(condition: str) -> Path:
             "expected": c["expected"],
             "graded": c["graded"],
         }
-        for c in CASES
+        for c in (SUBSET if meta["subset"] else CASES)
     ]
     cases_json = json.dumps(slim, ensure_ascii=True, separators=(",", ":"))
     assert '"""' not in cases_json
+    n_graded = N_SUBSET_GRADED if meta["subset"] else (meta["default_limit"] or N_ALL_GRADED)
     text = (
         TEMPLATE.replace("__CASES_JSON__", cases_json)
+        .replace("__SCOPE__", meta["scope"])
+        .replace("__N_GRADED__", str(n_graded) if not meta["default_limit"] else "sampled")
         .replace("__BEHAVIOUR__", meta["behaviour"])
         .replace("__DEFAULT_LIMIT__", str(meta["default_limit"]))
         .replace("__TASK_NAME__", meta["task_name"])

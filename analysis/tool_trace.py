@@ -33,7 +33,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from date_the_clock import find_answer_files  # noqa: E402
 from render_tables import display  # noqa: E402
-from cases.specs import PLACES  # noqa: E402
+from cases.specs import PLACES, in_tool_subset  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 CASES = {c["id"]: c for c in json.loads((ROOT / "cases" / "cases.json").read_text(encoding="utf-8"))}
@@ -213,6 +213,8 @@ def main() -> int:
         records = []
         for case_id, row in rows.items():
             case = CASES[case_id]
+            if not in_tool_subset(case_id, case["family"]):
+                continue  # three models ran all 125 with the tool; compare on the subset
             kind = case["kind"]
             places, date = case_places(case_id)
             own_zones = set().union(*(zones_for(p) for p in places))

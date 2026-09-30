@@ -24,7 +24,7 @@ Entry for the DEV x Kaggle Benchmarking Challenge (September 23 to October 11, 2
 | `tzhist/fetch_releases.py` | Downloads every tzdata wheel from PyPI since 2022 and unpacks its zoneinfo tree. |
 | `tasks/render_task.py` | Renders the self-contained Kaggle task files from the answer key. |
 | `tasks/world_clock_memory.py` | Kaggle task `world-clock-from-memory`: the model answers from its own knowledge. |
-| `tasks/world_clock_tool.py` | Kaggle task `world-clock-tool-v2`: the model may call `zone_clock()`, which reads tzdata 2026d, and is free not to. (The `-v2` is a scar: Kaggle caps how many tasks an account can create in a short window, and the first slugs died as empty shells.) |
+| `tasks/world_clock_tool.py` | Kaggle task `world-clock-tool-v2`: the model may call `zone_clock()`, which reads tzdata 2026d, and is free not to. It asks a subset of the questions (every 2026 one, Manitoba, and eighteen older ones; the list is in `cases/specs.py`) because a tool loop costs several times a plain answer. (The `-v2` is a scar: Kaggle caps how many tasks an account can create in a short window, and the first slugs died as empty shells.) |
 | `tasks/world_clock_smoke.py` | Kaggle task `world-clock-smoke`: a stratified 20-case subset, used once to prove the pipeline. |
 | `analysis/date_the_clock.py` | Scores downloaded runs, dates each model's clock against the tzdata ladder, writes `results/summary.json` and `results/summary.md`. |
 | `analysis/model_cards.json` | Release dates and vendor-stated knowledge cutoffs, with the source of each, to set beside the ladder's date. |
@@ -34,6 +34,7 @@ Entry for the DEV x Kaggle Benchmarking Challenge (September 23 to October 11, 2
 | `analysis/quotes.py`, `analysis/wave_detail.py`, `analysis/inspect_runs.py` | Pull each model's own notes for the cases the post talks about, list which 2026 answers each model got right, and eyeball a downloaded run. |
 | `analysis/tool_trace.py` | Reads the tool-run conversations: which zone each model asked about, whether it followed or overrode the tool, and whether its answer changed when the SDK asked it to restate the answer in the schema. Writes `results/tool_trace.json`. |
 | `analysis/dump_conversation.py` | Prints one case's full conversation from a downloaded run, tool calls included. |
+| `analysis/run_costs.py` | Sums what each downloaded run cost from the per-request costs in its `.run.json`, and totals per day. Run it before launching a lineup: the Model Proxy has a quota, and once it is gone every queued run fails all its questions on a 403. |
 | `check_claims.py` | Fails if a number in the README or the post disagrees with the data, if the post's tables differ from the generated ones, or if a quotation in the post is not in a model's recorded note. |
 | `tests/` | Tests for the answer normalisers and for the dating ladder on synthetic answer sheets. |
 | `SCRIPT.md` | The post outline, written before the first commit. |

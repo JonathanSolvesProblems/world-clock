@@ -15,7 +15,7 @@
 # (Manitoba announced permanent daylight time on 2026-09-17; no tzdata release has it yet,
 # so those three cases are recorded and never counted).
 #
-# Score = correct answers over the 122 graded cases.
+# Score = correct answers over the 122 graded questions this task asks.
 
 # %%
 import json

@@ -1,7 +1,7 @@
 # %% [markdown]
 # # World Clock: 20-case smoke test, from memory
 #
-# Every model is asked the same 125 questions about local time. Each expected answer was
+# A stratified 20-question sample of the from-memory task's 125 questions about local time. Each expected answer was
 # computed by Python's `zoneinfo` against the IANA time zone database, release 2026d
 # (PyPI `tzdata` 2026.4), by `cases/build_cases.py` in the public repository. No answer in
 # the key was typed by a person.
@@ -15,7 +15,7 @@
 # (Manitoba announced permanent daylight time on 2026-09-17; no tzdata release has it yet,
 # so those three cases are recorded and never counted).
 #
-# Score = correct answers over the 122 graded cases.
+# Score = correct answers over the sampled graded questions this task asks.
 
 # %%
 import json

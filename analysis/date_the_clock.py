@@ -29,6 +29,15 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 CASES = {c["id"]: c for c in json.loads((ROOT / "cases" / "cases.json").read_text(encoding="utf-8"))}
+
+sys.path.insert(0, str(ROOT))
+from cases.specs import in_tool_subset  # noqa: E402
+
+
+def is_subset_row(row: dict) -> bool:
+    """Is this answer one of the questions the with-the-tool task asks?"""
+    case = CASES.get(row["id"])
+    return bool(case) and in_tool_subset(case["id"], case["family"])
 INDEX = json.loads((ROOT / "tzhist" / "releases" / "index.json").read_text())
 RELEASES = sorted(INDEX, key=lambda v: tuple(int(x) for x in v.split(".")))
 
@@ -105,7 +114,10 @@ def find_answer_files(root: Path) -> list[Path]:
             continue
         try:
             data = json.loads(p.read_text(encoding="utf-8"))
-            completed = len(data.get("rows", []))
+            rows = data.get("rows", [])
+            # Tool runs are compared on the tool task's subset, so a run that finished all
+            # of the subset beats a longer run that lost part of it.
+            completed = sum(1 for r in rows if is_subset_row(r)) if data.get("condition") == "tool" else len(rows)
         except (OSError, ValueError):
             completed = 0
         key = (task, model)
@@ -121,6 +133,13 @@ def score_file(path: Path) -> dict:
     condition = data.get("condition", "memory")
     task = data.get("task", "")
     rows = data.get("rows", [])
+    # Every run's score on the questions the tool task asks, so memory and tool can be
+    # set side by side on the same questions. Tool runs are scored on that subset only:
+    # three models ran all 125 with the tool before the task was cut down.
+    subset_graded = [r for r in rows if is_subset_row(r) and CASES[r["id"]]["graded"]]
+    tool_subset = {"correct": sum(1 for r in subset_graded if r["correct"]), "total": len(subset_graded)}
+    if condition == "tool":
+        rows = [r for r in rows if is_subset_row(r)]
     calgary_falls_back = None
     calgary_standard_time = None
     for row in rows:
@@ -212,6 +231,7 @@ def score_file(path: Path) -> dict:
         "graded_correct": graded_correct,
         "graded_total": graded_total,
         "unparsed_answers": unparsed,
+        "tool_subset": tool_subset,
         "accuracy_pct": round(100 * graded_correct / graded_total, 1) if graded_total else None,
         "per_family": {k: {**v, "pct": round(100 * v["correct"] / v["total"], 1) if v["total"] else None} for k, v in sorted(per_family.items())},
         "clock": clock,

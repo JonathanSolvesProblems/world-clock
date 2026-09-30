@@ -333,20 +333,74 @@ def check_results() -> None:
         # "X went from A to B of N" is the tool sentence, checked separately below.
         expect(rf"{name}(?:(?!went from)[^.\n|]){{0,80}}?\b<N> of {r['graded_total']}\b", r["graded_correct"], required=False)
 
-    # With the tool.
-    for t in tool:
-        name = display(t["model"])
-        m = by_name.get(name)
-        if m:
-            expect(rf"{re.escape(name)} went from <N> to <N> of <N>", m["graded_correct"], t["graded_correct"], t["graded_total"], required=False)
-        tc = t.get("tool_calls") or {}
-        if re.search(rf"{re.escape(name)}[^.]*?called the tool on every case", text):
-            data(tc.get("cases_with_a_call") == tc.get("cases"), f"{name} did not call the tool on every case ({tc.get('cases_with_a_call')} of {tc.get('cases')})")
+    # With the tool. Everything here is scored on the tool task's subset of questions.
+    from render_tables import N_SUBSET, N_SUBSET_GRADED, tool_rows
+    from run_costs import walk_requests
+    from tool_trace import FORMAT_PROMPT, free_text_value, trace_case, walk_cases
+
+    trace_path = ROOT / "results" / "tool_trace.json"
+    trace = json.loads(trace_path.read_text(encoding="utf-8")) if trace_path.exists() else {}
+    tool_by_name = {display(t["model"]): t for t in tool_rows()}
+
+    def trace_summary(name: str) -> dict:
+        t = tool_by_name.get(name)
+        return ((trace.get(t["model"]) if t else None) or {}).get("summary") or {}
+
+    expect(r"asks <N> of the <N> questions: every question about 2026", N_SUBSET, len(CASES))
+    expect(r"<N> of the <N> are graded", N_SUBSET_GRADED, N_SUBSET)
+
+    flash = ("Gemini 3.7 Flash", "Gemini 3.8 Flash")
+    mem_scores = {by_name[n]["tool_subset"]["correct"] for n in flash if n in by_name}
+    tool_scores = {tool_by_name[n]["graded_correct"] for n in flash if n in tool_by_name}
+    data(len(mem_scores) == 1 and len(tool_scores) == 1, f"the post gives one memory score and one tool score for both Flash models; the data has {mem_scores} and {tool_scores}")
+    if len(mem_scores) == 1 and len(tool_scores) == 1:
+        expect(r"went from <N> right to <N>\.", next(iter(mem_scores)), next(iter(tool_scores)))
+    for n in flash:
+        t, s = tool_by_name.get(n), trace_summary(n)
+        if not t:
+            failures.append(f"the post describes {n}'s tool run but there is no scored tool run for it")
+            continue
+        data(t["graded_total"] == N_SUBSET_GRADED, f"{n}'s tool run did not answer all {N_SUBSET_GRADED} graded subset questions")
+        data(s.get("with_call") == s.get("cases"), f"{n} did not ask the tool on every question ({s.get('with_call')} of {s.get('cases')})")
+        data(bool(t.get("clock")) and t["clock"]["current"], f"{n}'s tool-run clock is not dated current")
+        data(s.get("wrong") == ["offset:coyhaique:2025-07-15:12:00"], f"{n}'s only tool-run miss is no longer Coyhaique: {s.get('wrong')}")
+    pro, pro_s = tool_by_name.get("Gemini 3.1 Pro"), trace_summary("Gemini 3.1 Pro")
+    if pro:
+        expect(r"Gemini 3\.1 Pro got through <N> of the <N> before", pro["graded_total"], N_SUBSET_GRADED, required=pro["graded_total"] < N_SUBSET_GRADED)
+        expect(r"answered all <N> correctly and asked the tool on <N> of them", pro["graded_correct"], pro_s.get("with_call", -1), required=pro["graded_total"] < N_SUBSET_GRADED)
+
+    # What the two conditions cost, from the per-request costs in the downloaded runs.
+    def run_cost(r: dict | None) -> float | None:
+        if not r:
+            return None
+        runs = list((ROOT / r["source"]).parent.glob("*.run.json"))
+        if not runs:
+            return None
+        reqs: list = []
+        walk_requests(json.loads(runs[0].read_text(encoding="utf-8")), reqs)
+        return sum(int(m.get("inputTokensCostNanodollars", 0) or 0) + int(m.get("outputTokensCostNanodollars", 0) or 0) for m in reqs) / 1e9
+
+    mem_cost, tool_cost = run_cost(by_name.get("Gemini 3.8 Flash")), run_cost(tool_by_name.get("Gemini 3.8 Flash"))
+    if mem_cost is not None and tool_cost is not None:
+        require_text(f"Gemini 3.8 Flash cost ${mem_cost:.2f} for the 125 questions from memory and ${tool_cost:.2f} for the same 125 with the tool")
+    else:
+        print("note: results/raw is not present, so the two cost figures in the post were not re-checked")
+
+    # The restating anecdote comes from a superseded run; re-check it when that run is on disk.
+    v3 = list((ROOT / "results" / "raw" / "world-clock-tool-v2" / "3" / "gemini-3.7-flash").glob("*/*.run.json"))
+    if v3:
+        case_id = "convert:calgary:toronto:2026-11-15:09:00"
+        convs = walk_cases(json.loads(v3[0].read_text(encoding="utf-8")))
+        conv = next((c for cid, c in convs.items() if cid.startswith(f"case {case_id}")), None)
+        answers = json.loads((v3[0].parent / "world_clock_answers.json").read_text(encoding="utf-8"))
+        row_v3 = next((r for r in answers["rows"] if r["id"] == case_id), None)
+        words = free_text_value("convert", trace_case(conv)["free_text"], case_id) if conv else None
+        data(words == "10:00" and row_v3 is not None and row_v3["answer"].get("time") == "11:00", f"the earlier-run anecdote (10:00 in its own words, 11:00 restated) is not what the version 3 run shows: words {words}, restated {row_v3 and row_v3['answer']}")
+    require_text("wrote 10:00 in its own words with Calgary at UTC-6, and then restated it as 11:00 with Calgary at UTC-7")
 
     # Tables.
     data(post_table("memory") in text, "POST.md's headline table differs from analysis/render_tables.py post_table(); regenerate it and paste")
-    if "| Model | From memory | With the tool |" in text:
-        data(tool_vs_memory() in text, "POST.md's tool table differs from analysis/render_tables.py tool_vs_memory(); regenerate it and paste")
+    data("| Model | From memory (of" in text and tool_vs_memory() in text, "POST.md's tool table differs from analysis/render_tables.py tool_vs_memory(); run analysis/paste_tables.py")
 
     # Quotations.
     notes = set()
@@ -357,6 +411,8 @@ def check_results() -> None:
                     notes.add(norm(r["note"]))
     body = text.split("---", 2)[-1]
     for q in re.findall(r'"([^"\n]{40,})"', body):
+        if q == FORMAT_PROMPT:
+            continue  # the SDK's own message, quoted from analysis/tool_trace.py, not a model's words
         nq = norm(q)
         if not any(nq in n for n in notes):
             failures.append(f"quotation is not in any model's recorded note: \"{q[:90]}\"")

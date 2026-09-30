@@ -229,3 +229,39 @@ OFFICIAL_ANSWERS: dict[tuple[str, tuple], dict] = {
     ("change_day", ("winnipeg", "2026-11-01")): {"changes": False, "direction": "none"},
     ("convert", ("winnipeg", "toronto", "2026-11-15", "09:00")): {"date": "2026-11-15", "time": "09:00"},
 }
+
+# The with-the-tool task asks a subset. A tool loop costs four to eight times what a plain
+# answer does (Gemini 3.8 Flash: $0.31 for the 125 questions from memory, $1.99 with the
+# tool), and Kaggle's model quota ran out partway through the first full tool lineup. The
+# subset keeps every question the tool condition exists to answer: all 25 about the 2026
+# changes and the three about Manitoba, plus eighteen older questions as a control group
+# (one per country in the 2022 to 2025 changes, and a spread of textbook, awkward-offset
+# and southern-hemisphere zones). Case ids are as written in cases.json.
+TOOL_SUBSET_FAMILIES = {"wave_2026", "unresolved"}
+TOOL_SUBSET_EXTRA = {
+    # changes legislated 2022 to 2025, one per country
+    "offset:tehran:2023-07-15:12:00",
+    "offset:amman:2023-01-15:12:00",
+    "offset:mexico_city:2023-07-15:12:00",
+    "offset:nuuk:2024-07-15:12:00",
+    "offset:cairo:2023-07-15:12:00",
+    "offset:almaty:2024-07-15:12:00",
+    "offset:asuncion:2025-06-15:12:00",
+    "offset:coyhaique:2025-07-15:12:00",
+    # textbook controls, two of each question kind
+    "offset:new_york:2026-12-15:12:00",
+    "offset:tokyo:2026-07-15:12:00",
+    "convert:new_york:london:2026-07-15:09:00",
+    "convert:toronto:paris:2026-11-15:09:00",
+    "change_day:new_york:2026-11-01",
+    "change_day:phoenix:2026-03-08",
+    # awkward offsets and the southern hemisphere
+    "offset:kathmandu:2026-07-15:12:00",
+    "offset:chatham:2026-01-15:12:00",
+    "offset:santiago:2026-07-15:12:00",
+    "change_day:sydney:2026-10-04",
+}
+
+
+def in_tool_subset(case_id: str, family: str) -> bool:
+    return family in TOOL_SUBSET_FAMILIES or case_id in TOOL_SUBSET_EXTRA

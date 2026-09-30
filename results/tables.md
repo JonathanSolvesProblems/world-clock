@@ -126,14 +126,17 @@ Models scored from memory: 19. Put Calgary on Mountain Standard Time (-07:00) on
 
 ## With the tool
 
-| Model | From memory | With the tool | Asked the tool | Overrode it | Asked about another zone only | Answer changed when restated |
+| Model | From memory (of 43) | With the tool (of 43) | Asked the tool | Overrode it | Asked about another zone only | Answer changed when restated |
 |---|---|---|---|---|---|---|
-| Gemini 3.7 Flash | 99 | 120 | 122 of 122 | 1 | 1 | 2 |
-| Gemini 3.8 Flash | 99 | 110 of 111 | 111 of 111 | 0 | 1 | 0 |
+| Gemini 3.7 Flash | 21 | 42 | 43 of 43 | 0 | 1 | 0 |
+| Gemini 3.8 Flash | 21 | 42 | 43 of 43 | 0 | 1 | 0 |
+| Gemini 3.1 Pro | 22 | 15 of 15 | 12 of 15 | 0 | 0 | 0 |
 
 ## By family, with the tool
 
 | Model | Controls | Awkward offsets | Southern DST | Changes 2022 to 2025 | 2026 wave |
 |---|---|---|---|---|---|
-| gemini-3.7-flash | 26/26 | 22/22 | 18/18 | 30/31 | 24/25 |
-| gemini-3.8-flash | 26/26 | 22/22 | 18/18 | 30/31 | 14/14 |
+| gemini-3.7-flash | 6/6 | 2/2 | 2/2 | 7/8 | 25/25 |
+| gemini-3.8-flash | 6/6 | 2/2 | 2/2 | 7/8 | 25/25 |
+| gemini-3.1-pro-preview | 6/6 | 2/2 | 2/2 | 5/5 |  |
+| gemini-3.5-flash-lite | 4/4 |  |  |  |  |

@@ -10,10 +10,11 @@ tables and check_claims.py catches any sentence that did not follow.
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SUMMARY = json.loads((ROOT / "results" / "summary.json").read_text(encoding="utf-8"))
+SUMMARY =json.loads((ROOT / "results" / "summary.json").read_text(encoding="utf-8"))
 INDEX = json.loads((ROOT / "tzhist" / "releases" / "index.json").read_text(encoding="utf-8"))
 CASES = json.loads((ROOT / "cases" / "cases.json").read_text(encoding="utf-8"))
 RELEASES = sorted(INDEX, key=lambda v: tuple(int(x) for x in v.split(".")))
@@ -29,6 +30,12 @@ FAMILY_LABEL = {
 
 N_GRADED = sum(1 for c in CASES if c["graded"])
 N_WAVE = sum(1 for c in CASES if c["graded"] and c["family"] == "wave_2026")
+
+sys.path.insert(0, str(ROOT))
+from cases.specs import in_tool_subset  # noqa: E402
+
+N_SUBSET = sum(1 for c in CASES if in_tool_subset(c["id"], c["family"]))
+N_SUBSET_GRADED = sum(1 for c in CASES if c["graded"] and in_tool_subset(c["id"], c["family"]))
 
 # How the post names each model. Anything not listed is shown by its slug.
 DISPLAY = {
@@ -198,6 +205,14 @@ def manitoba(condition: str) -> str:
 TRACE_PATH = ROOT / "results" / "tool_trace.json"
 TRACE = json.loads(TRACE_PATH.read_text(encoding="utf-8")) if TRACE_PATH.exists() else {}
 
+# A tool run that answered fewer graded questions than this before it died says nothing
+# about the model and is left out of the tables and charts.
+TOOL_MIN_CASES = 10
+
+
+def tool_rows() -> list[dict]:
+    return [r for r in SUMMARY if r["condition"] == "tool" and r["graded_total"] >= TOOL_MIN_CASES]
+
 
 def tool_vs_memory() -> str:
     """The post's tool table. Scores are 'N' when every graded case was answered, else 'N of M'.
@@ -209,18 +224,20 @@ def tool_vs_memory() -> str:
     words and the JSON it produced when the SDK asked it to restate the answer.
     """
     mem = {short(r["model"]): r for r in SUMMARY if r["condition"] == "memory" and r["graded_total"]}
-    tool = {short(r["model"]): r for r in SUMMARY if r["condition"] == "tool" and r["graded_total"]}
+    tool = {short(r["model"]): r for r in tool_rows()}
 
     def score(r: dict | None) -> str:
+        """Score on the tool task's questions: 'N' when all of them were answered, else 'N of M'."""
         if not r:
             return "n/a"
-        return str(r["graded_correct"]) if r["graded_total"] == N_GRADED else f"{r['graded_correct']} of {r['graded_total']}"
+        s = r.get("tool_subset") or {"correct": r["graded_correct"], "total": r["graded_total"]}
+        return str(s["correct"]) if s["total"] == N_SUBSET_GRADED else f"{s['correct']} of {s['total']}"
 
     out = [
-        "| Model | From memory | With the tool | Asked the tool | Overrode it | Asked about another zone only | Answer changed when restated |",
+        f"| Model | From memory (of {N_SUBSET_GRADED}) | With the tool (of {N_SUBSET_GRADED}) | Asked the tool | Overrode it | Asked about another zone only | Answer changed when restated |",
         "|---|---|---|---|---|---|---|",
     ]
-    for name in sorted(tool, key=lambda n: (-tool[n]["graded_correct"], n)):
+    for name in sorted(tool, key=lambda n: (-tool[n]["graded_total"], -tool[n]["graded_correct"], n)):
         t = tool[name]
         s = (TRACE.get(t["model"]) or {}).get("summary") or {}
         if s:
