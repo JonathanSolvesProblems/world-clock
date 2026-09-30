@@ -9618,22 +9618,22 @@
   "errored": []
  },
  {
-  "model": "google/gemini-3.8-flash",
+  "model": "google/gemini-3.7-flash",
   "condition": "tool",
   "task": "world-clock-tool-v2",
   "card": {
    "vendor": "Google",
-   "released": "2026-09-02",
+   "released": "2026-08",
    "stated_cutoff": "2026-03",
    "cutoff_source": "Google model card (some domains limited to January 2025)"
   },
-  "calgary_still_falls_back_nov_1": null,
+  "calgary_still_falls_back_nov_1": false,
   "calgary_on_standard_time_nov_15": false,
-  "source": "results\\raw\\world-clock-tool-v2\\1\\gemini-3.8-flash\\3262405\\world_clock_answers.json",
-  "graded_correct": 110,
-  "graded_total": 111,
+  "source": "results\\raw\\world-clock-tool-v2\\4\\gemini-3.7-flash\\3633450\\world_clock_answers.json",
+  "graded_correct": 121,
+  "graded_total": 122,
   "unparsed_answers": 0,
-  "accuracy_pct": 99.1,
+  "accuracy_pct": 99.2,
   "per_family": {
    "awkward_offset": {
     "correct": 22,
@@ -9656,15 +9656,15 @@
     "pct": 100.0
    },
    "wave_2026": {
-    "correct": 14,
-    "total": 14,
+    "correct": 25,
+    "total": 25,
     "pct": 100.0
    }
   },
   "clock": {
-   "ladder_cases": 35,
-   "best_agreement": 34,
-   "best_agreement_pct": 97.1,
+   "ladder_cases": 46,
+   "best_agreement": 45,
+   "best_agreement_pct": 97.8,
    "releases_tied": [
     "2026.4 (2026d, 2026-09-11)"
    ],
@@ -9698,14 +9698,14 @@
     "2025.3 (2025c)": 25,
     "2026.1 (2026a)": 25,
     "2026.2 (2026b)": 29,
-    "2026.3 (2026c)": 33,
-    "2026.4 (2026d)": 34
+    "2026.3 (2026c)": 42,
+    "2026.4 (2026d)": 45
    }
   },
   "tool_calls": {
-   "cases": 111,
-   "cases_with_a_call": 111,
-   "total_calls": 201
+   "cases": 122,
+   "cases_with_a_call": 122,
+   "total_calls": 233
   },
   "unresolved": [
    {
@@ -9720,7 +9720,7 @@
     "official": {
      "utc_offset": "-05:00"
     },
-    "note": "Standard time (Central Standard Time, CST) is in effect following the end of daylight saving time on the first Sunday in November."
+    "note": "Central Standard Time (CST) is in effect following the end of daylight saving time on the first Sunday of November."
    },
    {
     "id": "change_day:winnipeg:2026-11-01",
@@ -9737,7 +9737,7 @@
      "changes": false,
      "direction": "none"
     },
-    "note": "Clocks in Winnipeg fall back by one hour on November 1, 2026, marking the end of daylight saving time."
+    "note": "Clocks in Winnipeg fall back by one hour at 2:00 AM on November 1, 2026, transitioning from Daylight Saving Time to standard time."
    },
    {
     "id": "convert:winnipeg:toronto:2026-11-15:09:00",
@@ -9754,7 +9754,7 @@
      "date": "2026-11-15",
      "time": "09:00"
     },
-    "note": "Winnipeg was at UTC-06:00 (CST) and Toronto was at UTC-05:00 (EST)."
+    "note": "Winnipeg is in Central Standard Time at UTC-6, while Toronto is in Eastern Standard Time at UTC-5."
    }
   ],
   "wrong": [
@@ -9767,150 +9767,28 @@
     "got": {
      "utc_offset": "-04:00"
     },
-    "note": "Coyhaique follows continental Chile standard time, which observes UTC-04:00 during the southern hemisphere winter."
+    "note": "Coyhaique observes Chile Standard Time (UTC-4) during the winter months."
    }
   ],
-  "errored": [
-   {
-    "params": {
-     "id": "offset:yellowknife:2026-11-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Yellowknife, Northwest Territories, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-06:00\"}",
-     "graded": true
-    },
-    "error": "kaggle_benchmarks.tools.base.ToolInvocationLimitExhausted: Tool invocation limit of 10 rounds exhausted"
-   },
-   {
-    "params": {
-     "id": "offset:inuvik:2026-11-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Inuvik, Northwest Territories, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-06:00\"}",
-     "graded": true
-    },
-    "error": "kaggle_benchmarks.tools.base.ToolInvocationLimitExhausted: Tool invocation limit of 10 rounds exhausted"
-   },
-   {
-    "params": {
-     "id": "offset:casablanca:2026-10-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Casablanca, Morocco at 12:00 local time on 2026-10-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+00:00\"}",
-     "graded": true
-    },
-    "error": "kaggle_benchmarks.tools.base.ToolInvocationLimitExhausted: Tool invocation limit of 10 rounds exhausted"
-   },
-   {
-    "params": {
-     "id": "offset:casablanca:2026-12-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Casablanca, Morocco at 12:00 local time on 2026-12-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+00:00\"}",
-     "graded": true
-    },
-    "error": "kaggle_benchmarks.tools.base.ToolInvocationLimitExhausted: Tool invocation limit of 10 rounds exhausted"
-   },
-   {
-    "params": {
-     "id": "convert:casablanca:paris:2026-10-15:09:00",
-     "family": "wave_2026",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-10-15 in Casablanca, Morocco. What is the local date and time at that same moment in Paris, France? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-10-15\", \"time\": \"11:00\"}",
-     "graded": true
-    },
-    "error": "kaggle_benchmarks.tools.base.ToolInvocationLimitExhausted: Tool invocation limit of 10 rounds exhausted"
-   },
-   {
-    "params": {
-     "id": "convert:casablanca:london:2026-12-15:09:00",
-     "family": "wave_2026",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-12-15 in Casablanca, Morocco. What is the local date and time at that same moment in London, United Kingdom? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-12-15\", \"time\": \"09:00\"}",
-     "graded": true
-    },
-    "error": "kaggle_benchmarks.tools.base.ToolInvocationLimitExhausted: Tool invocation limit of 10 rounds exhausted"
-   },
-   {
-    "params": {
-     "id": "change_day:calgary:2026-11-01",
-     "family": "wave_2026",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Calgary, Alberta, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": false, \"direction\": \"none\"}",
-     "graded": true
-    },
-    "error": "kaggle_benchmarks.tools.base.ToolInvocationLimitExhausted: Tool invocation limit of 10 rounds exhausted"
-   },
-   {
-    "params": {
-     "id": "change_day:edmonton:2026-11-01",
-     "family": "wave_2026",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Edmonton, Alberta, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": false, \"direction\": \"none\"}",
-     "graded": true
-    },
-    "error": "kaggle_benchmarks.tools.base.ToolInvocationLimitExhausted: Tool invocation limit of 10 rounds exhausted"
-   },
-   {
-    "params": {
-     "id": "change_day:yellowknife:2026-11-01",
-     "family": "wave_2026",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Yellowknife, Northwest Territories, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": false, \"direction\": \"none\"}",
-     "graded": true
-    },
-    "error": "kaggle_benchmarks.tools.base.ToolInvocationLimitExhausted: Tool invocation limit of 10 rounds exhausted"
-   },
-   {
-    "params": {
-     "id": "change_day:inuvik:2026-11-01",
-     "family": "wave_2026",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Inuvik, Northwest Territories, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": false, \"direction\": \"none\"}",
-     "graded": true
-    },
-    "error": "kaggle_benchmarks.tools.base.ToolInvocationLimitExhausted: Tool invocation limit of 10 rounds exhausted"
-   },
-   {
-    "params": {
-     "id": "change_day:casablanca:2026-09-20",
-     "family": "wave_2026",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Casablanca, Morocco change at any point during the local calendar day of 2026-09-20, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": true, \"direction\": \"back\"}",
-     "graded": true
-    },
-    "error": "kaggle_benchmarks.tools.base.ToolInvocationLimitExhausted: Tool invocation limit of 10 rounds exhausted"
-   }
-  ]
+  "errored": []
  },
  {
-  "model": "google/gemini-3.7-flash",
+  "model": "google/gemini-3.8-flash",
   "condition": "tool",
   "task": "world-clock-tool-v2",
   "card": {
    "vendor": "Google",
-   "released": "2026-08",
+   "released": "2026-09-02",
    "stated_cutoff": "2026-03",
    "cutoff_source": "Google model card (some domains limited to January 2025)"
   },
   "calgary_still_falls_back_nov_1": false,
   "calgary_on_standard_time_nov_15": false,
-  "source": "results\\raw\\world-clock-tool-v2\\3\\gemini-3.7-flash\\3614934\\world_clock_answers.json",
-  "graded_correct": 120,
+  "source": "results\\raw\\world-clock-tool-v2\\4\\gemini-3.8-flash\\3636506\\world_clock_answers.json",
+  "graded_correct": 121,
   "graded_total": 122,
   "unparsed_answers": 0,
-  "accuracy_pct": 98.4,
+  "accuracy_pct": 99.2,
   "per_family": {
    "awkward_offset": {
     "correct": 22,
@@ -9933,15 +9811,15 @@
     "pct": 100.0
    },
    "wave_2026": {
-    "correct": 24,
+    "correct": 25,
     "total": 25,
-    "pct": 96.0
+    "pct": 100.0
    }
   },
   "clock": {
    "ladder_cases": 46,
-   "best_agreement": 44,
-   "best_agreement_pct": 95.7,
+   "best_agreement": 45,
+   "best_agreement_pct": 97.8,
    "releases_tied": [
     "2026.4 (2026d, 2026-09-11)"
    ],
@@ -9957,32 +9835,32 @@
    },
    "current": true,
    "agreement_by_release": {
-    "2022.1 (2022a)": 2,
-    "2022.2 (2022b)": 5,
-    "2022.3 (2022c)": 5,
-    "2022.4 (2022d)": 5,
-    "2022.5 (2022e)": 8,
-    "2022.6 (2022f)": 13,
-    "2022.7 (2022g)": 14,
-    "2023.1 (2023a)": 19,
-    "2023.2 (2023b)": 19,
-    "2023.3 (2023c)": 19,
-    "2023.4 (2023d)": 20,
-    "2024.1 (2024a)": 24,
-    "2024.2 (2024b)": 24,
-    "2025.1 (2025a)": 27,
-    "2025.2 (2025b)": 26,
-    "2025.3 (2025c)": 26,
-    "2026.1 (2026a)": 26,
-    "2026.2 (2026b)": 30,
-    "2026.3 (2026c)": 41,
-    "2026.4 (2026d)": 44
+    "2022.1 (2022a)": 1,
+    "2022.2 (2022b)": 4,
+    "2022.3 (2022c)": 4,
+    "2022.4 (2022d)": 4,
+    "2022.5 (2022e)": 7,
+    "2022.6 (2022f)": 12,
+    "2022.7 (2022g)": 13,
+    "2023.1 (2023a)": 18,
+    "2023.2 (2023b)": 18,
+    "2023.3 (2023c)": 18,
+    "2023.4 (2023d)": 19,
+    "2024.1 (2024a)": 23,
+    "2024.2 (2024b)": 23,
+    "2025.1 (2025a)": 26,
+    "2025.2 (2025b)": 25,
+    "2025.3 (2025c)": 25,
+    "2026.1 (2026a)": 25,
+    "2026.2 (2026b)": 29,
+    "2026.3 (2026c)": 42,
+    "2026.4 (2026d)": 45
    }
   },
   "tool_calls": {
    "cases": 122,
    "cases_with_a_call": 122,
-   "total_calls": 230
+   "total_calls": 352
   },
   "unresolved": [
    {
@@ -9997,7 +9875,7 @@
     "official": {
      "utc_offset": "-05:00"
     },
-    "note": "Winnipeg observes Central Standard Time (UTC-6) during standard time following the end of Daylight Saving Time on the first Sunday in November."
+    "note": "Standard time (Central Standard Time) is in effect following the end of Daylight Saving Time on the first Sunday in November."
    },
    {
     "id": "change_day:winnipeg:2026-11-01",
@@ -10014,7 +9892,7 @@
      "changes": false,
      "direction": "none"
     },
-    "note": "Clocks in Winnipeg fall back by one hour at 2:00 AM on November 1, 2026, returning to Central Standard Time."
+    "note": "Clocks in Winnipeg fall back one hour from 2:00 a.m. CDT to 1:00 a.m. CST on November 1, 2026, marking the end of daylight saving time."
    },
    {
     "id": "convert:winnipeg:toronto:2026-11-15:09:00",
@@ -10031,7 +9909,7 @@
      "date": "2026-11-15",
      "time": "09:00"
     },
-    "note": "Winnipeg observes Central Standard Time at UTC-6, while Toronto observes Eastern Standard Time at UTC-5."
+    "note": "Winnipeg is at UTC-6 (Central Standard Time) and Toronto is at UTC-5 (Eastern Standard Time)."
    }
   ],
   "wrong": [
@@ -10044,20 +9922,7 @@
     "got": {
      "utc_offset": "-04:00"
     },
-    "note": "Coyhaique observes mainland Chile standard time (America/Santiago) with a UTC offset of -04:00 during the winter months."
-   },
-   {
-    "id": "convert:calgary:toronto:2026-11-15:09:00",
-    "family": "wave_2026",
-    "expected": {
-     "date": "2026-11-15",
-     "time": "10:00"
-    },
-    "got": {
-     "date": "2026-11-15",
-     "time": "11:00"
-    },
-    "note": "The calculation uses UTC-7 for Calgary (Mountain Standard Time) and UTC-5 for Toronto (Eastern Standard Time)."
+    "note": "Coyhaique and the Aysén Region follow continental Chile standard time (America/Santiago), observing UTC-4 during southern hemisphere winter."
    }
   ],
   "errored": []

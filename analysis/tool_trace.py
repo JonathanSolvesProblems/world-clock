@@ -78,6 +78,16 @@ def free_text_value(kind: str, text: str, case_id: str) -> str | bool | None:
                     return structured_value(kind, obj)
         except Exception:
             pass
+    # Field written as markdown ("* **changes**: false", "**utc_offset**: +01:00").
+    labelled = {
+        "offset": (r"utc_offset\W{0,8}([+-]\d{1,2}:\d{2})", lambda v: norm_offset(v)),
+        "convert": (r"\btime\W{0,8}(\d{1,2}:\d{2})", lambda v: f"{int(v.split(':')[0]):02d}:{v.split(':')[1]}"),
+        "change_day": (r"\bchanges\W{0,8}(true|false)", lambda v: v.lower() == "true"),
+    }
+    pattern, convert = labelled[kind]
+    m = re.search(pattern, text, re.IGNORECASE)
+    if m:
+        return convert(m.group(1))
     if kind == "offset":
         toks = re.findall(r"(?<![\w:])[+-]\d{1,2}:\d{2}\b", text)
         return norm_offset(toks[-1]) if toks else None
