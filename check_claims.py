@@ -196,11 +196,9 @@ def check_results() -> None:
     conv = "convert:calgary:toronto:2026-11-15:09:00"
     conv_rows = [rows[conv] for rows in rows_mem.values() if conv in rows]
     conv_1100 = sum(1 for r in conv_rows if (r.get("answer") or {}).get("time") == "11:00")
-    expect(r"<N> of the <N> answered that one", len(conv_rows), n_mem)
-    expect(r"the other <N> dropped it", n_mem - len(conv_rows))
-    expect(r"all <N> said 11:00", conv_1100)
-    data(conv_1100 == len(conv_rows), "the post says all of them said 11:00 on Calgary to Toronto, but some answered otherwise")
-    expect(r"On the Calgary to Toronto question, <N> models gave the same wrong answer", conv_1100)
+    expect(r"All <N> said 11:00", conv_1100)
+    data(conv_1100 == len(conv_rows) == n_mem, f"the post says all {n_mem} said 11:00 on Calgary to Toronto; {len(conv_rows)} answered and {conv_1100} said 11:00")
+    expect(r"On the Calgary to Toronto question, all <N> models gave the same wrong answer", conv_1100)
 
     # Controls and awkward offsets.
     n_control = sum(1 for c in CASES if c["graded"] and c["family"] == "control")
@@ -208,8 +206,9 @@ def check_results() -> None:
     full_control = [r["per_family"]["control"]["correct"] for r in mem if r["per_family"].get("control", {}).get("total") == n_control]
     awkward_perfect = sum(1 for r in mem if r["per_family"].get("awkward_offset", {}).get("correct") == r["per_family"].get("awkward_offset", {}).get("total"))
     expect(r"<N> of the <N> answered all <N> control questions correctly", control_perfect, n_mem, n_control)
-    expect(r"no complete run scored below <N> of <N>", min(full_control), n_control)
-    expect(r"<N> got every awkward-offset question they answered right", awkward_perfect)
+    expect(r"nobody scored below <N> of <N>", min(full_control), n_control)
+    data(len(full_control) == n_mem, f"the post says nobody scored below {min(full_control)} of {n_control} on the controls, but {n_mem - len(full_control)} runs did not answer every control")
+    expect(r"<N> got every awkward-offset question right", awkward_perfect)
 
     # The 2026 wave.
     changed_ids = [c["id"] for c in CASES if c["family"] == "wave_2026" and c["discriminates"]]
@@ -230,6 +229,17 @@ def check_results() -> None:
     expect(r"there were <N> correct answers", total_changed_right)
     expect(r"GPT-6 Astra produced <N> of them", astra_changed)
     expect(r"The other <N> came with reasons", total_changed_right - astra_changed)
+    expect(r"not one of those <N> notes says that anything changed in 2026", total_changed_right - astra_changed)
+    expect(r"I read every one of the <N>\.", total_changed_right - astra_changed)
+    astra_model = (row("GPT-6 Astra") or {}).get("model")
+    mentions_change = re.compile(r"(permanent|abolish|adopt|no longer|scrapp|ended|stopped).{0,80}2026|2026.{0,80}(permanent|abolish|adopt|no longer|scrapp|ended|stopped)", re.IGNORECASE | re.DOTALL)
+    for m, rows in rows_mem.items():
+        if m == astra_model:
+            continue
+        for i in changed_ids:
+            r = rows.get(i)
+            if r and r["correct"] and mentions_change.search(r.get("note") or ""):
+                failures.append(f"{display(m)}'s note on {i} does describe a 2026 change; the post says none of the non-Astra correct notes do: {r['note'][:120]}")
     for name in ("Claude Opus 5", "GPT-5.5", "GPT-5.6 Terra"):
         data(n_right(rows_of(name), changed_ids) == 0, f"{name} got a changed 2026 answer right; the post says it got none")
     astra_bc = [i for i in changed_ids if i in rows_of("GPT-6 Astra") and rows_of("GPT-6 Astra")[i]["correct"]]
@@ -299,8 +309,10 @@ def check_results() -> None:
     mb = "change_day:winnipeg:2026-11-01"
     mb_rows = {m: rows[mb] for m, rows in rows_mem.items() if mb in rows}
     mb_back = sum(1 for r in mb_rows.values() if (r.get("answer") or {}).get("changes") is True and (r.get("answer") or {}).get("direction") == "back")
-    expect(r"<N> answered and all <N> said the clocks fall back", len(mb_rows), mb_back)
-    data(mb_back == len(mb_rows), "the post says every model that answered the Winnipeg question said the clocks fall back; the data disagrees")
+    expect(r"<N> said the clocks fall back, which is also what tzdata 2026d says", mb_back)
+    data(len(mb_rows) == n_mem, f"the post says every model answered the Winnipeg question; {len(mb_rows)} of {n_mem} did")
+    not_back = [display(m) for m, r in mb_rows.items() if not ((r.get("answer") or {}).get("changes") is True and (r.get("answer") or {}).get("direction") == "back")]
+    data(not_back == ["Qwen3-Next 80B Thinking"], f"the post says only Qwen denied the Winnipeg fall-back; the data says {not_back}")
 
     # Hedging: the post says nobody flagged their training cutoff.
     hedge = re.compile(r"training data|knowledge cutoff|as of my|may have changed|might have changed|cannot know|can't know|subject to change", re.IGNORECASE)

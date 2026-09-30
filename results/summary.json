@@ -2340,7 +2340,7 @@
   },
   "calgary_still_falls_back_nov_1": true,
   "calgary_on_standard_time_nov_15": true,
-  "source": "results\\raw\\world-clock-from-memory\\3\\gemini-3.7-flash\\3502091\\world_clock_answers.json",
+  "source": "results\\raw\\world-clock-from-memory\\5\\gemini-3.7-flash\\3623698\\world_clock_answers.json",
   "graded_correct": 99,
   "graded_total": 122,
   "unparsed_answers": 0,
@@ -2427,7 +2427,7 @@
     "official": {
      "utc_offset": "-05:00"
     },
-    "note": "Winnipeg observes Central Standard Time (UTC-6) in mid-November following the end of Daylight Saving Time on the first Sunday of November."
+    "note": "Winnipeg observes Central Standard Time (UTC-06:00) after Daylight Saving Time ends on the first Sunday in November."
    },
    {
     "id": "change_day:winnipeg:2026-11-01",
@@ -2444,7 +2444,7 @@
      "changes": false,
      "direction": "none"
     },
-    "note": "On November 1, 2026, clocks in Winnipeg fall back one hour from 2:00 AM to 1:00 AM local time to end Daylight Saving Time."
+    "note": "Clocks in Winnipeg fall back by one hour at 2:00 a.m. on November 1, 2026, marking the end of Daylight Saving Time."
    },
    {
     "id": "convert:winnipeg:toronto:2026-11-15:09:00",
@@ -2461,7 +2461,7 @@
      "date": "2026-11-15",
      "time": "09:00"
     },
-    "note": "Winnipeg is on Central Standard Time (UTC-6) and Toronto is on Eastern Standard Time (UTC-5)."
+    "note": "Winnipeg is at UTC-6 (Central Standard Time) and Toronto is at UTC-5 (Eastern Standard Time)."
    }
   ],
   "wrong": [
@@ -2474,7 +2474,7 @@
     "got": {
      "utc_offset": "-02:00"
     },
-    "note": "Nuuk operates on year-round UTC-2 standard time following the time zone reform implemented in 2023."
+    "note": "Nuuk operates on permanent UTC-02:00 following Greenland's adoption of UTC-02:00 standard time without daylight saving time."
    },
    {
     "id": "offset:ittoqqortoormiit:2024-07-15:12:00",
@@ -2485,7 +2485,7 @@
     "got": {
      "utc_offset": "+00:00"
     },
-    "note": "Ittoqqortoormiit observes UTC-1 standard time with European daylight saving time, shifting to UTC+00:00 in the summer."
+    "note": "Ittoqqortoormiit observes East Greenland Summer Time (EGST) at UTC+00:00 during daylight saving time in the summer."
    },
    {
     "id": "offset:coyhaique:2025-07-15:12:00",
@@ -2496,7 +2496,7 @@
     "got": {
      "utc_offset": "-04:00"
     },
-    "note": "On July 15, 2025, Coyhaique is observing Chile Standard Time (CLT) during the winter period at UTC-4."
+    "note": "Chile Standard Time (CLT) is observed during the southern winter in the Aysén Region, setting the offset to UTC-4."
    },
    {
     "id": "offset:vancouver:2026-11-15:12:00",
@@ -2507,7 +2507,7 @@
     "got": {
      "utc_offset": "-08:00"
     },
-    "note": "Vancouver observes Pacific Standard Time (UTC-8) in mid-November after Daylight Saving Time ends on November 1, 2026."
+    "note": "Vancouver observes Pacific Standard Time (UTC-8) following the end of Daylight Saving Time on November 1, 2026."
    },
    {
     "id": "offset:vancouver:2026-12-15:12:00",
@@ -2518,7 +2518,7 @@
     "got": {
      "utc_offset": "-08:00"
     },
-    "note": "Vancouver observes Pacific Standard Time (UTC-8) during the winter months."
+    "note": "Vancouver observes Pacific Standard Time (UTC-8) during winter months."
    },
    {
     "id": "offset:calgary:2026-11-15:12:00",
@@ -2529,7 +2529,7 @@
     "got": {
      "utc_offset": "-07:00"
     },
-    "note": "Mountain Standard Time is observed following the end of Daylight Saving Time on the first Sunday of November."
+    "note": "Calgary observes Mountain Standard Time (UTC-07:00) in mid-November following the end of Daylight Saving Time on November 1, 2026."
    },
    {
     "id": "offset:edmonton:2026-12-15:12:00",
@@ -2540,7 +2540,7 @@
     "got": {
      "utc_offset": "-07:00"
     },
-    "note": "Mountain Standard Time (MST) is in effect in Edmonton, Alberta in December."
+    "note": "Edmonton observes Mountain Standard Time (UTC-07:00) during the winter months."
    },
    {
     "id": "offset:yellowknife:2026-11-15:12:00",
@@ -2551,7 +2551,7 @@
     "got": {
      "utc_offset": "-07:00"
     },
-    "note": "Yellowknife observes Mountain Standard Time (UTC-7) following the end of Daylight Saving Time on November 1, 2026."
+    "note": "Yellowknife observes Mountain Standard Time (MST) at UTC-07:00 following the end of Daylight Saving Time on the first Sunday in November."
    },
    {
     "id": "offset:inuvik:2026-11-15:12:00",
@@ -2562,7 +2562,7 @@
     "got": {
      "utc_offset": "-07:00"
     },
-    "note": "Inuvik observes Mountain Standard Time (UTC-7) following the end of Daylight Saving Time on the first Sunday in November."
+    "note": "Inuvik observes Mountain Standard Time (UTC-7) following the end of Daylight Saving Time on the first Sunday of November."
    },
    {
     "id": "offset:casablanca:2026-10-15:12:00",
@@ -2573,7 +2573,7 @@
     "got": {
      "utc_offset": "+01:00"
     },
-    "note": "Morocco operates on UTC+01:00 year-round except for a temporary return to UTC+00:00 during the month of Ramadan, which does not occur in October."
+    "note": "Morocco observes UTC+1 permanently year-round except for a temporary shift to UTC+0 during the month of Ramadan, which does not fall in October 2026."
    },
    {
     "id": "offset:casablanca:2026-12-15:12:00",
@@ -2584,7 +2584,7 @@
     "got": {
      "utc_offset": "+01:00"
     },
-    "note": "Morocco observes UTC+01:00 year-round except for temporary adjustments during the holy month of Ramadan."
+    "note": "Morocco permanently observes UTC+01:00 year-round except for a temporary return to UTC+00:00 during the month of Ramadan."
    },
    {
     "id": "convert:calgary:toronto:2026-11-15:09:00",
@@ -2597,7 +2597,7 @@
      "date": "2026-11-15",
      "time": "11:00"
     },
-    "note": "Calgary is on Mountain Standard Time (UTC-7) and Toronto is on Eastern Standard Time (UTC-5)."
+    "note": "Calgary is in Mountain Standard Time (UTC-7) and Toronto is in Eastern Standard Time (UTC-5)."
    },
    {
     "id": "convert:vancouver:seattle:2026-11-15:09:00",
@@ -2623,7 +2623,7 @@
      "date": "2026-11-15",
      "time": "09:00"
     },
-    "note": "Both Calgary and Denver observe Mountain Standard Time (UTC-7) on this date."
+    "note": "Both Calgary and Denver observe Mountain Standard Time with a UTC offset of UTC-7 on this date."
    },
    {
     "id": "convert:casablanca:paris:2026-10-15:09:00",
@@ -2636,7 +2636,7 @@
      "date": "2026-10-15",
      "time": "10:00"
     },
-    "note": "Casablanca is at UTC+1 and Paris is at UTC+2 (CEST) on this date."
+    "note": "Casablanca observes UTC+1 and Paris observes UTC+2 (CEST) on this date."
    },
    {
     "id": "convert:casablanca:london:2026-12-15:09:00",
@@ -2649,7 +2649,7 @@
      "date": "2026-12-15",
      "time": "08:00"
     },
-    "note": "Casablanca is at UTC+1 and London is at UTC+0 on this date."
+    "note": "Casablanca observes UTC+1 and London observes UTC+0 (GMT) in December."
    },
    {
     "id": "convert:inuvik:toronto:2026-11-15:09:00",
@@ -2675,7 +2675,7 @@
      "changes": true,
      "direction": "back"
     },
-    "note": "Clocks in Vancouver fall back by one hour at 2:00 a.m. on November 1, 2026, to return to Pacific Standard Time."
+    "note": "On November 1, 2026, clocks in Vancouver fall back one hour from 2:00 AM PDT to 1:00 AM PST to end Daylight Saving Time."
    },
    {
     "id": "change_day:calgary:2026-11-01",
@@ -2688,7 +2688,7 @@
      "changes": true,
      "direction": "back"
     },
-    "note": "On November 1, 2026, Calgary ends Daylight Saving Time and turns clocks back one hour at 2:00 AM."
+    "note": "Clocks in Calgary fall back by one hour at 2:00 AM on November 1, 2026, returning to Mountain Standard Time."
    },
    {
     "id": "change_day:edmonton:2026-11-01",
@@ -2701,7 +2701,7 @@
      "changes": true,
      "direction": "back"
     },
-    "note": "Clocks in Edmonton turn back one hour at 02:00 on November 1, 2026 to end daylight saving time."
+    "note": "On November 1, 2026, clocks in Edmonton fall back by one hour at 2:00 AM local time as Daylight Saving Time ends."
    },
    {
     "id": "change_day:yellowknife:2026-11-01",
@@ -2714,7 +2714,7 @@
      "changes": true,
      "direction": "back"
     },
-    "note": "On November 1, 2026, Yellowknife ends daylight saving time and turns clocks back one hour at 2:00 AM."
+    "note": "On November 1, 2026, clocks in Yellowknife turn back one hour at 2:00 a.m. from MDT to MST as daylight saving time ends."
    },
    {
     "id": "change_day:inuvik:2026-11-01",
@@ -2727,7 +2727,7 @@
      "changes": true,
      "direction": "back"
     },
-    "note": "On November 1, 2026, clocks in Inuvik turn back 1 hour at 2:00 AM local time as Daylight Saving Time ends."
+    "note": "On November 1, 2026, clocks in Inuvik turn back one hour at 2:00 AM as Daylight Saving Time ends."
    },
    {
     "id": "change_day:casablanca:2026-09-20",
@@ -2740,7 +2740,7 @@
      "changes": false,
      "direction": "none"
     },
-    "note": "Casablanca remains on UTC+1 on September 20, 2026, with no clock changes scheduled."
+    "note": "Clocks in Casablanca do not change on September 20, 2026, as Morocco remains on standard UTC+1 time outside of the month of Ramadan."
    }
   ],
   "errored": []
@@ -5873,83 +5873,136 @@
   },
   "calgary_still_falls_back_nov_1": true,
   "calgary_on_standard_time_nov_15": true,
-  "source": "results\\raw\\world-clock-from-memory\\3\\deepseek-r1-0528\\3535988\\world_clock_answers.json",
-  "graded_correct": 65,
-  "graded_total": 93,
+  "source": "results\\raw\\world-clock-from-memory\\4\\deepseek-r1-0528\\3615025\\world_clock_answers.json",
+  "graded_correct": 86,
+  "graded_total": 122,
   "unparsed_answers": 0,
-  "accuracy_pct": 69.9,
+  "accuracy_pct": 70.5,
   "per_family": {
    "awkward_offset": {
-    "correct": 16,
-    "total": 16,
-    "pct": 100.0
-   },
-   "control": {
     "correct": 22,
     "total": 22,
     "pct": 100.0
    },
+   "control": {
+    "correct": 26,
+    "total": 26,
+    "pct": 100.0
+   },
    "legislated_2022_2025": {
-    "correct": 12,
-    "total": 24,
-    "pct": 50.0
+    "correct": 16,
+    "total": 31,
+    "pct": 51.6
    },
    "southern": {
-    "correct": 12,
-    "total": 14,
-    "pct": 85.7
+    "correct": 17,
+    "total": 18,
+    "pct": 94.4
    },
    "wave_2026": {
-    "correct": 3,
-    "total": 17,
-    "pct": 17.6
+    "correct": 5,
+    "total": 25,
+    "pct": 20.0
    }
   },
   "clock": {
-   "ladder_cases": 33,
-   "best_agreement": 28,
-   "best_agreement_pct": 84.8,
+   "ladder_cases": 46,
+   "best_agreement": 34,
+   "best_agreement_pct": 73.9,
    "releases_tied": [
+    "2022.6 (2022f, 2022-10-28)",
     "2023.1 (2023a, 2023-03-22)",
     "2023.2 (2023b, 2023-03-23)",
-    "2023.3 (2023c, 2023-03-28)"
+    "2023.3 (2023c, 2023-03-28)",
+    "2023.4 (2023d, 2023-12-21)",
+    "2024.1 (2024a, 2024-02-01)",
+    "2024.2 (2024b, 2024-09-04)"
    ],
    "earliest": {
-    "pypi": "2023.1",
-    "iana": "2023a",
-    "date": "2023-03-22"
+    "pypi": "2022.6",
+    "iana": "2022f",
+    "date": "2022-10-28"
    },
    "latest": {
-    "pypi": "2023.3",
-    "iana": "2023c",
-    "date": "2023-03-28"
+    "pypi": "2024.2",
+    "iana": "2024b",
+    "date": "2024-09-04"
    },
    "current": false,
    "agreement_by_release": {
-    "2022.1 (2022a)": 25,
-    "2022.2 (2022b)": 27,
-    "2022.3 (2022c)": 27,
-    "2022.4 (2022d)": 27,
-    "2022.5 (2022e)": 27,
-    "2022.6 (2022f)": 26,
-    "2022.7 (2022g)": 26,
-    "2023.1 (2023a)": 28,
-    "2023.2 (2023b)": 28,
-    "2023.3 (2023c)": 28,
-    "2023.4 (2023d)": 27,
-    "2024.1 (2024a)": 23,
-    "2024.2 (2024b)": 23,
-    "2025.1 (2025a)": 22,
-    "2025.2 (2025b)": 21,
-    "2025.3 (2025c)": 21,
-    "2026.1 (2026a)": 21,
-    "2026.2 (2026b)": 20,
-    "2026.3 (2026c)": 11,
-    "2026.4 (2026d)": 8
+    "2022.1 (2022a)": 33,
+    "2022.2 (2022b)": 32,
+    "2022.3 (2022c)": 32,
+    "2022.4 (2022d)": 32,
+    "2022.5 (2022e)": 33,
+    "2022.6 (2022f)": 34,
+    "2022.7 (2022g)": 33,
+    "2023.1 (2023a)": 34,
+    "2023.2 (2023b)": 34,
+    "2023.3 (2023c)": 34,
+    "2023.4 (2023d)": 34,
+    "2024.1 (2024a)": 34,
+    "2024.2 (2024b)": 34,
+    "2025.1 (2025a)": 32,
+    "2025.2 (2025b)": 31,
+    "2025.3 (2025c)": 31,
+    "2026.1 (2026a)": 31,
+    "2026.2 (2026b)": 27,
+    "2026.3 (2026c)": 14,
+    "2026.4 (2026d)": 11
    }
   },
   "tool_calls": null,
-  "unresolved": [],
+  "unresolved": [
+   {
+    "id": "offset:winnipeg:2026-11-15:12:00",
+    "prompt": "What is the UTC offset in effect in Winnipeg, Manitoba, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
+    "model_answer": {
+     "utc_offset": "-06:00"
+    },
+    "tzdata_2026d": {
+     "utc_offset": "-06:00"
+    },
+    "official": {
+     "utc_offset": "-05:00"
+    },
+    "note": "Central Standard Time (CST) applies as daylight saving time ended on November 1, 2026."
+   },
+   {
+    "id": "change_day:winnipeg:2026-11-01",
+    "prompt": "Do the clocks in Winnipeg, Manitoba, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
+    "model_answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "tzdata_2026d": {
+     "changes": true,
+     "direction": "back"
+    },
+    "official": {
+     "changes": false,
+     "direction": "none"
+    },
+    "note": "Clocks fall back one hour at 2:00 AM CDT to 1:00 AM CST on November 1, 2026, ending Daylight Saving Time."
+   },
+   {
+    "id": "convert:winnipeg:toronto:2026-11-15:09:00",
+    "prompt": "It is 09:00 on 2026-11-15 in Winnipeg, Manitoba, Canada. What is the local date and time at that same moment in Toronto, Ontario, Canada? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
+    "model_answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "tzdata_2026d": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "official": {
+     "date": "2026-11-15",
+     "time": "09:00"
+    },
+    "note": "Used UTC-6 for Winnipeg (CST) and UTC-5 for Toronto (EST) as both locations were on standard time."
+   }
+  ],
   "wrong": [
    {
     "id": "offset:windhoek:2026-07-15:12:00",
@@ -5960,20 +6013,18 @@
     "got": {
      "utc_offset": "+01:00"
     },
-    "note": "Applied Namibia's year-round West Africa Time (UTC+01:00) after daylight saving discontinuation in 2017."
+    "note": "Standard time (WAT) observed during non-daylight saving period from first Sunday of April to first Sunday of September."
    },
    {
-    "id": "change_day:santiago:2026-09-06",
-    "family": "southern",
+    "id": "offset:amman:2023-01-15:12:00",
+    "family": "legislated_2022_2025",
     "expected": {
-     "changes": true,
-     "direction": "forward"
+     "utc_offset": "+03:00"
     },
     "got": {
-     "changes": false,
-     "direction": "none"
+     "utc_offset": "+02:00"
     },
-    "note": "Santiago's clocks changed to DST on September 5, 2026 (spring forward); no change occurs on September 6."
+    "note": "Standard time (Eastern European Time) observed, as daylight saving time in Jordan starts in late March."
    },
    {
     "id": "offset:chihuahua:2023-01-15:12:00",
@@ -5984,7 +6035,18 @@
     "got": {
      "utc_offset": "-07:00"
     },
-    "note": "Standard time observed in Chihuahua as daylight saving time starts on the first Sunday of April."
+    "note": "Chihuahua observed Mountain Standard Time (UTC-7) on 2023-01-15 as daylight saving time starts the second Sunday in March."
+   },
+   {
+    "id": "offset:nuuk:2024-01-15:12:00",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "utc_offset": "-02:00"
+    },
+    "got": {
+     "utc_offset": "-03:00"
+    },
+    "note": "Standard time (UTC-3) in effect, as the transition to permanent UTC-2 begins March 31, 2024."
    },
    {
     "id": "offset:nuuk:2024-07-15:12:00",
@@ -5995,7 +6057,7 @@
     "got": {
      "utc_offset": "-02:00"
     },
-    "note": "Daylight saving time (Western Greenland Summer Time) is in effect from March 30 to October 26, 2024."
+    "note": "Applied Greenland Summer Time (WGST) rule, observed from last Sunday in March to last Sunday in October."
    },
    {
     "id": "offset:ittoqqortoormiit:2024-07-15:12:00",
@@ -6004,9 +6066,20 @@
      "utc_offset": "-01:00"
     },
     "got": {
-     "utc_offset": "+00:00"
+     "utc_offset": "-02:00"
     },
-    "note": "East Greenland Summer Time (EGST) was in effect, as daylight saving time began on March 31, 2024."
+    "note": "Applied Greenland Daylight Time (WGST), which is UTC-2, as daylight saving time was in effect on 2024-07-15."
+   },
+   {
+    "id": "offset:cairo:2024-07-15:12:00",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "utc_offset": "+03:00"
+    },
+    "got": {
+     "utc_offset": "+02:00"
+    },
+    "note": "Egypt suspended daylight saving time in 2023 and observes Eastern European Time (EET) year-round with UTC+02:00."
    },
    {
     "id": "offset:almaty:2024-07-15:12:00",
@@ -6017,18 +6090,18 @@
     "got": {
      "utc_offset": "+06:00"
     },
-    "note": "Applied Kazakhstan's year-round UTC+6 time zone without daylight saving time, effective since 2005."
+    "note": "Almaty observes Kazakhstan Time (UTC+06:00) year-round without daylight saving time since 2005."
    },
    {
-    "id": "offset:almaty:2025-01-15:12:00",
+    "id": "offset:asuncion:2025-06-15:12:00",
     "family": "legislated_2022_2025",
     "expected": {
-     "utc_offset": "+05:00"
+     "utc_offset": "-03:00"
     },
     "got": {
-     "utc_offset": "+06:00"
+     "utc_offset": "-04:00"
     },
-    "note": "Applied permanent UTC+6 time zone rule for Almaty, Kazakhstan, as daylight saving time was abolished nationwide in 2005 and no seasonal changes occur."
+    "note": "Applied Paraguay's time rule: standard time (UTC-04:00) was in effect as daylight saving time ended on the second Sunday of March (March 9, 2025) and the next DST period starts on the first Sunday of October (October 5, 2025)."
    },
    {
     "id": "offset:coyhaique:2025-07-15:12:00",
@@ -6039,7 +6112,7 @@
     "got": {
      "utc_offset": "-04:00"
     },
-    "note": "Chile Standard Time (CLT) observed as daylight saving time starts on the first Saturday of September."
+    "note": "Chile Standard Time (CLT)"
    },
    {
     "id": "convert:mexico_city:chicago:2023-07-15:09:00",
@@ -6052,7 +6125,7 @@
      "date": "2023-07-15",
      "time": "09:00"
     },
-    "note": "Both Mexico City (UTC-5) and Chicago (UTC-5) were observing daylight saving time."
+    "note": "Used UTC offset UTC-5 for Mexico City and UTC-5 for Chicago."
    },
    {
     "id": "convert:almaty:moscow:2024-07-15:09:00",
@@ -6065,23 +6138,36 @@
      "date": "2024-07-15",
      "time": "06:00"
     },
-    "note": "Used UTC+6 for Almaty (Kazakhstan) and UTC+3 for Moscow (Russia) without DST changes."
+    "note": "Used UTC+6 for Almaty (Kazakhstan) and UTC+3 for Moscow (Russia), as neither observes DST in 2024."
    },
    {
-    "id": "convert:amman:jerusalem:2023-01-15:09:00",
+    "id": "convert:asuncion:buenos_aires:2025-06-15:09:00",
     "family": "legislated_2022_2025",
     "expected": {
-     "date": "2023-01-15",
-     "time": "08:00"
-    },
-    "got": {
-     "date": "2023-01-15",
+     "date": "2025-06-15",
      "time": "09:00"
     },
-    "note": "Both Amman (UTC+2 during EET winter time) and Jerusalem (UTC+2 during IST winter time) shared the same UTC offset on this date."
+    "got": {
+     "date": "2025-06-15",
+     "time": "16:00"
+    },
+    "note": "Used UTC-4 for Asunción (Paraguay Standard Time) and UTC-3 for Buenos Aires (Argentina Standard Time)."
    },
    {
-    "id": "change_day:mexico_city:2023-04-02",
+    "id": "convert:tehran:dubai:2023-07-15:09:00",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "date": "2023-07-15",
+     "time": "09:30"
+    },
+    "got": {
+     "date": "2023-07-15",
+     "time": "08:30"
+    },
+    "note": "Used UTC+4:30 for Tehran (Iran Daylight Time) and UTC+4 for Dubai (Gulf Standard Time)."
+   },
+   {
+    "id": "change_day:tehran:2023-03-22",
     "family": "legislated_2022_2025",
     "expected": {
      "changes": false,
@@ -6091,18 +6177,7 @@
      "changes": true,
      "direction": "forward"
     },
-    "note": "Clocks spring forward by 1 hour at 2:00 AM local time on April 2, 2023, marking the start of daylight saving time in Mexico City."
-   },
-   {
-    "id": "offset:almaty:2024-03-05:12:00",
-    "family": "legislated_2022_2025",
-    "expected": {
-     "utc_offset": "+05:00"
-    },
-    "got": {
-     "utc_offset": "+06:00"
-    },
-    "note": "Applied Kazakhstan's year-round UTC+6 time zone without daylight saving time, effective since 2005."
+    "note": "Clocks in Tehran sprang forward by 1 hour at midnight on 2023-03-22 for the start of Iran Daylight Time (IRDT), moving from 00:00 to 01:00."
    },
    {
     "id": "offset:asuncion:2025-03-25:12:00",
@@ -6113,7 +6188,29 @@
     "got": {
      "utc_offset": "-04:00"
     },
-    "note": "Standard time UTC-04:00 applied as daylight saving time ended on March 23, 2025."
+    "note": "Applied Paraguay standard time (PYT, UTC-04:00) as daylight saving time ended on March 23, 2025."
+   },
+   {
+    "id": "offset:vancouver:2026-11-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "-07:00"
+    },
+    "got": {
+     "utc_offset": "-08:00"
+    },
+    "note": "Pacific Standard Time (PST) is in effect as Daylight Saving Time ended on November 1, 2026."
+   },
+   {
+    "id": "offset:vancouver:2026-12-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "-07:00"
+    },
+    "got": {
+     "utc_offset": "-08:00"
+    },
+    "note": "Applied Pacific Standard Time (PST) rule as daylight saving time ended on November 1, 2026."
    },
    {
     "id": "offset:calgary:2026-11-15:12:00",
@@ -6124,7 +6221,7 @@
     "got": {
      "utc_offset": "-07:00"
     },
-    "note": "Mountain Standard Time (MST) is in effect, as daylight saving time ended on November 7, 2026, per Alberta's Time Act and federal Canadian time zone regulations."
+    "note": "Applied Alberta's daylight saving time rule ending on the first Sunday of November (November 1, 2026), placing Calgary on Mountain Standard Time."
    },
    {
     "id": "offset:edmonton:2026-12-15:12:00",
@@ -6135,7 +6232,18 @@
     "got": {
      "utc_offset": "-07:00"
     },
-    "note": "Mountain Standard Time (MST) is observed as daylight saving time ended on November 1, 2026."
+    "note": "Alberta observes Mountain Standard Time (MST) from the first Sunday in November until the second Sunday in March."
+   },
+   {
+    "id": "offset:yellowknife:2026-11-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "-06:00"
+    },
+    "got": {
+     "utc_offset": "-07:00"
+    },
+    "note": "Observes Mountain Standard Time (MST) as daylight saving time ended on November 1, 2026."
    },
    {
     "id": "offset:inuvik:2026-11-15:12:00",
@@ -6146,7 +6254,7 @@
     "got": {
      "utc_offset": "-07:00"
     },
-    "note": "Applied Northwest Territories' time rule: Mountain Standard Time (UTC-7) in effect after daylight saving ended on November 1, 2026."
+    "note": "Applied Mountain Standard Time (MST) rule effective after daylight saving ended on November 1, 2026."
    },
    {
     "id": "offset:casablanca:2026-10-15:12:00",
@@ -6157,7 +6265,7 @@
     "got": {
      "utc_offset": "+01:00"
     },
-    "note": "Applied Morocco's daylight saving time rules projecting DST to end on October 25, 2026, placing October 15 during UTC+1 observance."
+    "note": "Since October 2023, Morocco observes permanent standard time (UTC+01:00) year-round without daylight saving time changes."
    },
    {
     "id": "offset:casablanca:2026-12-15:12:00",
@@ -6168,7 +6276,33 @@
     "got": {
      "utc_offset": "+01:00"
     },
-    "note": "Applied Morocco's standard time (UTC+01:00) in effect from October 25, 2026, to March 28, 2027, excluding Ramadan adjustments, as December 15 falls outside DST and Ramadan periods."
+    "note": "Applied Morocco's current year-round UTC+1 time zone rule without daylight saving time changes, as established in 2018 and reaffirmed in subsequent years."
+   },
+   {
+    "id": "convert:calgary:toronto:2026-11-15:09:00",
+    "family": "wave_2026",
+    "expected": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "got": {
+     "date": "2026-11-15",
+     "time": "11:00"
+    },
+    "note": "Calgary was at UTC-7 (MST) and Toronto was at UTC-5 (EST), as daylight saving time had ended on November 7, 2026."
+   },
+   {
+    "id": "convert:vancouver:seattle:2026-11-15:09:00",
+    "family": "wave_2026",
+    "expected": {
+     "date": "2026-11-15",
+     "time": "08:00"
+    },
+    "got": {
+     "date": "2026-11-15",
+     "time": "09:00"
+    },
+    "note": "Both Vancouver (Canada) and Seattle (USA) were observing Pacific Standard Time (UTC-8) as daylight saving time had ended on November 1, 2026."
    },
    {
     "id": "convert:calgary:denver:2026-11-15:09:00",
@@ -6181,7 +6315,7 @@
      "date": "2026-11-15",
      "time": "09:00"
     },
-    "note": "Used UTC-7 for Calgary (Mountain Standard Time) and UTC-7 for Denver (Mountain Standard Time) as both locations were not observing daylight saving time on this date."
+    "note": "Used UTC-7 offset for Calgary (Mountain Standard Time) and UTC-7 offset for Denver (Mountain Standard Time)."
    },
    {
     "id": "convert:casablanca:paris:2026-10-15:09:00",
@@ -6194,7 +6328,20 @@
      "date": "2026-10-15",
      "time": "10:00"
     },
-    "note": "Used UTC+1 (WEST) for Casablanca and UTC+2 (CEST) for Paris, as both locations observed daylight saving time until October 25, 2026."
+    "note": "Used UTC+1 for Casablanca (still observing DST until October 25) and UTC+2 for Paris (still observing DST until October 25)."
+   },
+   {
+    "id": "convert:casablanca:london:2026-12-15:09:00",
+    "family": "wave_2026",
+    "expected": {
+     "date": "2026-12-15",
+     "time": "09:00"
+    },
+    "got": {
+     "date": "2026-12-15",
+     "time": "08:00"
+    },
+    "note": "Casablanca uses UTC+1 year-round (except Ramadan, not applicable); London uses UTC+0 during standard time."
    },
    {
     "id": "convert:inuvik:toronto:2026-11-15:09:00",
@@ -6207,7 +6354,7 @@
      "date": "2026-11-15",
      "time": "11:00"
     },
-    "note": "Used UTC-7 for Inuvik (Mountain Standard Time) and UTC-5 for Toronto (Eastern Standard Time) as daylight saving time ended on November 1, 2026."
+    "note": "Used UTC-7 (MST) for Inuvik and UTC-5 (EST) for Toronto on this date, as DST ended on November 1, 2026."
    },
    {
     "id": "change_day:vancouver:2026-11-01",
@@ -6220,7 +6367,7 @@
      "changes": true,
      "direction": "back"
     },
-    "note": "On November 1, 2026, daylight saving time ends in Vancouver at 2:00 AM PDT; clocks fall back to 1:00 AM PST."
+    "note": "Clocks in Vancouver fall back from Pacific Daylight Time to Pacific Standard Time at 2:00 AM local time on November 1, 2026."
    },
    {
     "id": "change_day:calgary:2026-11-01",
@@ -6233,7 +6380,7 @@
      "changes": true,
      "direction": "back"
     },
-    "note": "Clocks fall back from 2:00 AM to 1:00 AM on November 1, 2026, ending daylight saving time in Calgary."
+    "note": "Clocks in Calgary fall back from 2:00 AM to 1:00 AM on November 1, 2026, ending daylight saving time."
    },
    {
     "id": "change_day:edmonton:2026-11-01",
@@ -6246,7 +6393,20 @@
      "changes": true,
      "direction": "back"
     },
-    "note": "On November 1, 2026, clocks in Edmonton fall back from 2:00 AM MDT to 1:00 AM MST, ending Daylight Saving Time."
+    "note": "Clocks in Edmonton fall back one hour at 2:00 AM local time on November 1, 2026, ending daylight saving time."
+   },
+   {
+    "id": "change_day:yellowknife:2026-11-01",
+    "family": "wave_2026",
+    "expected": {
+     "changes": false,
+     "direction": "none"
+    },
+    "got": {
+     "changes": true,
+     "direction": "back"
+    },
+    "note": "On November 1, 2026, clocks in Yellowknife fall back by one hour at 2:00 AM local daylight time, marking the end of Daylight Saving Time and returning to Mountain Standard Time."
    },
    {
     "id": "change_day:inuvik:2026-11-01",
@@ -6259,7 +6419,7 @@
      "changes": true,
      "direction": "back"
     },
-    "note": "Clocks in Inuvik fall back one hour at 2:00 AM on November 1, 2026, ending daylight saving time."
+    "note": "Clocks in Inuvik fall back one hour at 2:00 AM to 1:00 AM MST on November 1, 2026, ending daylight saving time."
    },
    {
     "id": "change_day:casablanca:2026-09-20",
@@ -6272,376 +6432,10 @@
      "changes": false,
      "direction": "none"
     },
-    "note": "On 2026-09-20, Casablanca remains on daylight saving time (UTC+1) with no clock change, as the next scheduled fallback occurs on October 25, 2026."
-   },
-   {
-    "id": "change_day:fort_nelson:2026-11-01",
-    "family": "wave_2026",
-    "expected": {
-     "changes": false,
-     "direction": "none"
-    },
-    "got": {
-     "changes": true,
-     "direction": "back"
-    },
-    "note": "Clocks fall back from 2:00 AM PDT to 1:00 AM PST on November 1, 2026, ending daylight saving time."
+    "note": "Morocco observes DST from late March to late October; on 2026-09-20, clocks remain on UTC+1 with no changes scheduled."
    }
   ],
-  "errored": [
-   {
-    "params": {
-     "id": "convert:new_york:london:2026-07-15:09:00",
-     "family": "control",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-07-15 in New York City, USA. What is the local date and time at that same moment in London, United Kingdom? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-07-15\", \"time\": \"14:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:tokyo:los_angeles:2026-03-10:09:00",
-     "family": "control",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-03-10 in Tokyo, Japan. What is the local date and time at that same moment in Los Angeles, USA? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-03-09\", \"time\": \"17:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:london:sydney:2026-01-15:09:00",
-     "family": "control",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-01-15 in London, United Kingdom. What is the local date and time at that same moment in Sydney, New South Wales, Australia? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-01-15\", \"time\": \"20:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "change_day:toronto:2026-11-01",
-     "family": "control",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Toronto, Ontario, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": true, \"direction\": \"back\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:st_johns:2026-07-15:12:00",
-     "family": "awkward_offset",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in St. John's, Newfoundland and Labrador, Canada at 12:00 local time on 2026-07-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-02:30\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:kathmandu:new_york:2026-07-15:09:00",
-     "family": "awkward_offset",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-07-15 in Kathmandu, Nepal. What is the local date and time at that same moment in New York City, USA? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-07-14\", \"time\": \"23:15\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:chatham:auckland:2026-01-15:09:00",
-     "family": "awkward_offset",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-01-15 in Waitangi, Chatham Islands, New Zealand. What is the local date and time at that same moment in Auckland, New Zealand? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-01-15\", \"time\": \"08:15\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:lord_howe:sydney:2026-07-15:09:00",
-     "family": "awkward_offset",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-07-15 in Lord Howe Island, Australia. What is the local date and time at that same moment in Sydney, New South Wales, Australia? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-07-15\", \"time\": \"08:30\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "change_day:chatham:2026-09-27",
-     "family": "awkward_offset",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Waitangi, Chatham Islands, New Zealand change at any point during the local calendar day of 2026-09-27, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": true, \"direction\": \"forward\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "change_day:st_johns:2026-11-01",
-     "family": "awkward_offset",
-     "kind": "change_day",
-     "prompt": "Do the clocks in St. John's, Newfoundland and Labrador, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": true, \"direction\": \"back\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:santiago:2026-07-15:12:00",
-     "family": "southern",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Santiago, Chile at 12:00 local time on 2026-07-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-04:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:sydney:london:2026-04-01:09:00",
-     "family": "southern",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-04-01 in Sydney, New South Wales, Australia. What is the local date and time at that same moment in London, United Kingdom? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-03-31\", \"time\": \"23:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:santiago:2026-04-10:12:00",
-     "family": "southern",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Santiago, Chile at 12:00 local time on 2026-04-10? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-04:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "change_day:auckland:2026-09-27",
-     "family": "southern",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Auckland, New Zealand change at any point during the local calendar day of 2026-09-27, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": true, \"direction\": \"forward\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:amman:2023-01-15:12:00",
-     "family": "legislated_2022_2025",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Amman, Jordan at 12:00 local time on 2023-01-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+03:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:nuuk:2024-01-15:12:00",
-     "family": "legislated_2022_2025",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Nuuk, Greenland at 12:00 local time on 2024-01-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-02:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:asuncion:2025-06-15:12:00",
-     "family": "legislated_2022_2025",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Asunción, Paraguay at 12:00 local time on 2025-06-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-03:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:asuncion:2025-01-15:12:00",
-     "family": "legislated_2022_2025",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Asunción, Paraguay at 12:00 local time on 2025-01-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-03:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:asuncion:buenos_aires:2025-06-15:09:00",
-     "family": "legislated_2022_2025",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2025-06-15 in Asunción, Paraguay. What is the local date and time at that same moment in Buenos Aires, Argentina? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2025-06-15\", \"time\": \"09:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "change_day:tehran:2023-03-22",
-     "family": "legislated_2022_2025",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Tehran, Iran change at any point during the local calendar day of 2023-03-22, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": false, \"direction\": \"none\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "change_day:cairo:2023-04-28",
-     "family": "legislated_2022_2025",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Cairo, Egypt change at any point during the local calendar day of 2023-04-28, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": true, \"direction\": \"forward\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:vancouver:2026-11-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Vancouver, British Columbia, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-07:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:vancouver:2026-12-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Vancouver, British Columbia, Canada at 12:00 local time on 2026-12-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-07:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:fort_nelson:2026-11-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Fort Nelson, British Columbia, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-07:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:yellowknife:2026-11-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Yellowknife, Northwest Territories, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-06:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:calgary:toronto:2026-11-15:09:00",
-     "family": "wave_2026",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-11-15 in Calgary, Alberta, Canada. What is the local date and time at that same moment in Toronto, Ontario, Canada? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-11-15\", \"time\": \"10:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:vancouver:seattle:2026-11-15:09:00",
-     "family": "wave_2026",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-11-15 in Vancouver, British Columbia, Canada. What is the local date and time at that same moment in Seattle, Washington, USA? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-11-15\", \"time\": \"08:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:casablanca:london:2026-12-15:09:00",
-     "family": "wave_2026",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-12-15 in Casablanca, Morocco. What is the local date and time at that same moment in London, United Kingdom? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-12-15\", \"time\": \"09:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "change_day:yellowknife:2026-11-01",
-     "family": "wave_2026",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Yellowknife, Northwest Territories, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": false, \"direction\": \"none\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:winnipeg:2026-11-15:12:00",
-     "family": "unresolved",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Winnipeg, Manitoba, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-06:00\"}",
-     "graded": false
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "change_day:winnipeg:2026-11-01",
-     "family": "unresolved",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Winnipeg, Manitoba, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": true, \"direction\": \"back\"}",
-     "graded": false
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:winnipeg:toronto:2026-11-15:09:00",
-     "family": "unresolved",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-11-15 in Winnipeg, Manitoba, Canada. What is the local date and time at that same moment in Toronto, Ontario, Canada? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-11-15\", \"time\": \"10:00\"}",
-     "graded": false
-    },
-    "error": "---"
-   }
-  ]
+  "errored": []
  },
  {
   "model": "anthropic/claude-opus-4-5@20251101",
@@ -7242,42 +7036,42 @@
   },
   "calgary_still_falls_back_nov_1": false,
   "calgary_on_standard_time_nov_15": true,
-  "source": "results\\raw\\world-clock-from-memory\\3\\qwen3-next-80b-a3b-thinking\\3583273\\world_clock_answers.json",
-  "graded_correct": 53,
-  "graded_total": 81,
+  "source": "results\\raw\\world-clock-from-memory\\5\\qwen3-next-80b-a3b-thinking\\3633527\\world_clock_answers.json",
+  "graded_correct": 85,
+  "graded_total": 122,
   "unparsed_answers": 0,
-  "accuracy_pct": 65.4,
+  "accuracy_pct": 69.7,
   "per_family": {
    "awkward_offset": {
-    "correct": 16,
-    "total": 16,
-    "pct": 100.0
+    "correct": 20,
+    "total": 22,
+    "pct": 90.9
    },
    "control": {
-    "correct": 11,
-    "total": 13,
-    "pct": 84.6
+    "correct": 26,
+    "total": 26,
+    "pct": 100.0
    },
    "legislated_2022_2025": {
-    "correct": 13,
-    "total": 24,
-    "pct": 54.2
+    "correct": 14,
+    "total": 31,
+    "pct": 45.2
    },
    "southern": {
-    "correct": 8,
-    "total": 10,
-    "pct": 80.0
+    "correct": 16,
+    "total": 18,
+    "pct": 88.9
    },
    "wave_2026": {
-    "correct": 5,
-    "total": 18,
-    "pct": 27.8
+    "correct": 9,
+    "total": 25,
+    "pct": 36.0
    }
   },
   "clock": {
-   "ladder_cases": 34,
-   "best_agreement": 29,
-   "best_agreement_pct": 85.3,
+   "ladder_cases": 46,
+   "best_agreement": 37,
+   "best_agreement_pct": 80.4,
    "releases_tied": [
     "2022.6 (2022f, 2022-10-28)"
    ],
@@ -7293,26 +7087,26 @@
    },
    "current": false,
    "agreement_by_release": {
-    "2022.1 (2022a)": 21,
-    "2022.2 (2022b)": 23,
-    "2022.3 (2022c)": 23,
-    "2022.4 (2022d)": 23,
-    "2022.5 (2022e)": 26,
-    "2022.6 (2022f)": 29,
-    "2022.7 (2022g)": 28,
-    "2023.1 (2023a)": 24,
-    "2023.2 (2023b)": 24,
-    "2023.3 (2023c)": 24,
-    "2023.4 (2023d)": 24,
-    "2024.1 (2024a)": 22,
-    "2024.2 (2024b)": 22,
-    "2025.1 (2025a)": 21,
-    "2025.2 (2025b)": 21,
-    "2025.3 (2025c)": 21,
-    "2026.1 (2026a)": 21,
-    "2026.2 (2026b)": 17,
-    "2026.3 (2026c)": 12,
-    "2026.4 (2026d)": 11
+    "2022.1 (2022a)": 30,
+    "2022.2 (2022b)": 31,
+    "2022.3 (2022c)": 31,
+    "2022.4 (2022d)": 31,
+    "2022.5 (2022e)": 34,
+    "2022.6 (2022f)": 37,
+    "2022.7 (2022g)": 36,
+    "2023.1 (2023a)": 32,
+    "2023.2 (2023b)": 32,
+    "2023.3 (2023c)": 32,
+    "2023.4 (2023d)": 33,
+    "2024.1 (2024a)": 29,
+    "2024.2 (2024b)": 29,
+    "2025.1 (2025a)": 26,
+    "2025.2 (2025b)": 25,
+    "2025.3 (2025c)": 25,
+    "2026.1 (2026a)": 25,
+    "2026.2 (2026b)": 23,
+    "2026.3 (2026c)": 16,
+    "2026.4 (2026d)": 15
    }
   },
   "tool_calls": null,
@@ -7329,7 +7123,24 @@
     "official": {
      "utc_offset": "-05:00"
     },
-    "note": "Applying Canada's standard daylight saving time rules, which end on the first Sunday in November each year."
+    "note": "Man Winnipeg observes Central Standard Time (UTC-6) during standard time, which begins on the first Sunday inNovember each year; in 2026, this occurred on November 1, so on November 15, the offset is UTC-6."
+   },
+   {
+    "id": "change_day:winnipeg:2026-11-01",
+    "prompt": "Do the clocks in Winnipeg, Manitoba, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
+    "model_answer": {
+     "changes": false,
+     "direction": "none"
+    },
+    "tzdata_2026d": {
+     "changes": true,
+     "direction": "back"
+    },
+    "official": {
+     "changes": false,
+     "direction": "none"
+    },
+    "note": "No daylight saving time change occurs on this date; the fall back occurs on 2026-11-02 at 2:00 AM local time."
    },
    {
     "id": "convert:winnipeg:toronto:2026-11-15:09:00",
@@ -7346,26 +7157,26 @@
      "date": "2026-11-15",
      "time": "09:00"
     },
-    "note": "W Winnipeg is in Central Standard Time (UTC-6) and Toronto is in Eastern Standard Time (UTC-5) on this date."
+    "note": "W Winnipeg is UTC-6 (standard time) and Toronto is UTC-5 (standard time) on this date"
    }
   ],
   "wrong": [
    {
-    "id": "change_day:new_york:2026-03-08",
-    "family": "control",
+    "id": "change_day:lord_howe:2026-10-04",
+    "family": "awkward_offset",
     "expected": {
      "changes": true,
      "direction": "forward"
     },
     "got": {
-     "changes": false,
+     "changes": true,
      "direction": "none"
     },
-    "note": "Clocks do not change on 2026-03-08; the spring forward occurs on March 9, 2026 at 2:00 AM local time."
+    "note": "Clocks spring forward 30 minutes at 2am local time on the first Sunday in October, which is 2026-10-04 for Lord Howe Island."
    },
    {
-    "id": "change_day:paris:2026-10-25",
-    "family": "control",
+    "id": "change_day:st_johns:2026-11-01",
+    "family": "awkward_offset",
     "expected": {
      "changes": true,
      "direction": "back"
@@ -7374,33 +7185,55 @@
      "changes": false,
      "direction": "none"
     },
-    "note": "Clocks in Paris do not change on 2026-10-25; the fall back occurred on 2026-10-24 as it was the last Sunday ofOctober."
+    "note": "No changes occur on 2026-11-01; the fall back occurs on 2026-11-02 at 2:00 AM local time."
    },
    {
-    "id": "change_day:santiago:2026-09-06",
+    "id": "convert:auckland:los_angeles:2026-11-15:09:00",
+    "family": "southern",
+    "expected": {
+     "date": "2026-11-14",
+     "time": "12:00"
+    },
+    "got": {
+     "date": "2026-01-14",
+     "time": "12:00"
+    },
+    "note": "Auckland is in NZDT (UTC+13) and Los Angeles is in PST (UTC-8) on this date"
+   },
+   {
+    "id": "change_day:auckland:2026-09-27",
     "family": "southern",
     "expected": {
      "changes": true,
      "direction": "forward"
     },
     "got": {
-     "changes": false,
+     "changes": true,
      "direction": "none"
     },
-    "note": "No daylight saving time change occurs in Santiago on 2026-09-06; the next change is on 2026-09-13 when clocks spring forward."
+    "note": "Clocks spring forward one hour on 2026-09-27 as New Zealand observes daylight saving time starting on the last Sunday of September"
    },
    {
-    "id": "change_day:sydney:2026-04-05",
-    "family": "southern",
+    "id": "offset:tehran:2023-07-15:12:00",
+    "family": "legislated_2022_2025",
     "expected": {
-     "changes": true,
-     "direction": "back"
+     "utc_offset": "+03:30"
     },
     "got": {
-     "changes": false,
-     "direction": "none"
+     "utc_offset": "+04:30"
     },
-    "note": "Sydney does not observe a clock change on 2026-04-05; the next change occurs on 2026-04-06 when clocks fall back for the end of daylight saving time."
+    "note": "Iran permanently observes daylight saving time (UTC+4:30) since 2022, with no seasonal changes."
+   },
+   {
+    "id": "offset:chihuahua:2023-01-15:12:00",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "utc_offset": "-06:00"
+    },
+    "got": {
+     "utc_offset": "-07:00"
+    },
+    "note": " Mexico eliminated daylight saving time nationwide effective October 30, 2022, so Chihuahua City remains on UTC-7 year-round."
    },
    {
     "id": "offset:nuuk:2024-01-15:12:00",
@@ -7411,7 +7244,7 @@
     "got": {
      "utc_offset": "-03:00"
     },
-    "note": "Greenland abolished daylight saving time starting in 2024, so Nuuk observes UTC-3 year-round."
+    "note": "Greenland abolished daylight saving time in 2023, so Nuuk observes UTC-3 year-round"
    },
    {
     "id": "offset:nuuk:2024-07-15:12:00",
@@ -7420,20 +7253,9 @@
      "utc_offset": "-01:00"
     },
     "got": {
-     "utc_offset": "-02:00"
+     "utc_offset": "-03:00"
     },
-    "note": "Greenland observes daylight saving time (UTC-2) from last Sunday in March to last Sunday in October, which applies on 2024-07-15."
-   },
-   {
-    "id": "offset:ittoqqortoormiit:2024-07-15:12:00",
-    "family": "legislated_2022_2025",
-    "expected": {
-     "utc_offset": "-01:00"
-    },
-    "got": {
-     "utc_offset": "-02:00"
-    },
-    "note": "Greenland abolished daylight saving time effective 2024, so Ittoqqortoormiit observes UTC-2 year-round"
+    "note": "Nuuk, Greenland observes UTC-3 year-round without daylight saving time changes, as per Greenland's time zone regulations since 2009."
    },
    {
     "id": "offset:cairo:2023-07-15:12:00",
@@ -7444,7 +7266,18 @@
     "got": {
      "utc_offset": "+02:00"
     },
-    "note": "Egypt does not observe daylight saving time as of 2023, remaining on UTC+2 year-round"
+    "note": "Egypt has not observed daylight saving time since 2016, remaining on UTC+2 year-round as per the 2016 government decision."
+   },
+   {
+    "id": "offset:cairo:2024-07-15:12:00",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "utc_offset": "+03:00"
+    },
+    "got": {
+     "utc_offset": "+02:00"
+    },
+    "note": " Egypt has not observed daylight saving time since 2016 and remains on UTC+2 year-round."
    },
    {
     "id": "offset:almaty:2024-07-15:12:00",
@@ -7455,7 +7288,18 @@
     "got": {
      "utc_offset": "+06:00"
     },
-    "note": "Kazakhstan abolished daylight saving time in 2005 and has been observing Almaty Time (UTC+6) year-round since 2018 without any changes."
+    "note": "Kazakhstan abolished daylight saving time in 2005 and Almaty operates on UTC+6 year-round."
+   },
+   {
+    "id": "offset:almaty:2025-01-15:12:00",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "utc_offset": "+05:00"
+    },
+    "got": {
+     "utc_offset": "+06:00"
+    },
+    "note": "Kazakhstan abolished daylight saving time in 2005, so Almaty observes UTC+6 year-round."
    },
    {
     "id": "offset:asuncion:2025-06-15:12:00",
@@ -7466,7 +7310,29 @@
     "got": {
      "utc_offset": "-04:00"
     },
-    "note": "Paraguay abolished daylight saving time in 2019, remaining on UTC−4 year-round"
+    "note": "Paraguay abolished daylight saving time in 2022, remaining on UTC-4 year-round"
+   },
+   {
+    "id": "offset:asuncion:2025-01-15:12:00",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "utc_offset": "-03:00"
+    },
+    "got": {
+     "utc_offset": "-04:00"
+    },
+    "note": "Paraguay abolished daylight saving time in 2019 and remains on UTC-4 year-round"
+   },
+   {
+    "id": "offset:coyhaique:2025-07-15:12:00",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "utc_offset": "-03:00"
+    },
+    "got": {
+     "utc_offset": "-04:00"
+    },
+    "note": "Chile observes standard time (UTC-4) in Aysen region from March to September, with daylight saving time (UTC-3) starting on the second Sunday in September and ending on the second Sunday in March based on current rules effective as of 2025."
    },
    {
     "id": "convert:almaty:moscow:2024-07-15:09:00",
@@ -7479,7 +7345,7 @@
      "date": "2024-07-15",
      "time": "06:00"
     },
-    "note": "Almaty uses UTC+6 and Moscow uses UTC+3, both without daylight saving time in 2024"
+    "note": "Almaty is UTC+6, Moscow is UTC+3"
    },
    {
     "id": "convert:asuncion:buenos_aires:2025-06-15:09:00",
@@ -7492,7 +7358,7 @@
      "date": "2025-06-15",
      "time": "10:00"
     },
-    "note": "As unción is UTC-4 (standard time) and Buenos Aires is UTC-3 (no DST observed since 2009)"
+    "note": "As unción, Paraguay is UTC-4 (standard time), and Buenos Aires, Argentina is UTC-3 (no DST observed)."
    },
    {
     "id": "convert:cairo:athens:2023-07-15:09:00",
@@ -7518,20 +7384,29 @@
      "changes": false,
      "direction": "none"
     },
-    "note": "Egypt abolished daylight saving time in 2015 and has remained on UTC+2 year-round since then, so no clock changes occur in 2023."
+    "note": "Cairo, Egypt has not observed daylight saving time since 2016 and remains on UTC+2 year-round."
    },
    {
-    "id": "change_day:asuncion:2024-10-06",
+    "id": "offset:almaty:2024-03-05:12:00",
     "family": "legislated_2022_2025",
     "expected": {
-     "changes": true,
-     "direction": "forward"
+     "utc_offset": "+05:00"
     },
     "got": {
-     "changes": false,
-     "direction": "none"
+     "utc_offset": "+06:00"
     },
-    "note": "Paraguay abolished daylight saving time in 2023 and now observes UTC-3 year-round, so no changes occur in 2024."
+    "note": "Kazakhstan abolished daylight saving time in 2005, so Almaty observes UTC+6 year-round"
+   },
+   {
+    "id": "offset:asuncion:2025-03-25:12:00",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "utc_offset": "-03:00"
+    },
+    "got": {
+     "utc_offset": "-04:00"
+    },
+    "note": "Paraguay abolished daylight saving time in 2023, so it consistently observes UTC−4 year-round."
    },
    {
     "id": "offset:vancouver:2026-11-15:12:00",
@@ -7542,7 +7417,7 @@
     "got": {
      "utc_offset": "-08:00"
     },
-    "note": "Vancouver observes Pacific Standard Time (UTC-8) after Daylight Saving Time ends on the first Sunday inNovember, which was November 1, 2026, so November 15 falls in standard time."
+    "note": "Daylight Saving Time ends on the first Sunday in November at 2:00 AM local time, reverting to Pacific Standard Time (UTC-8); November 15, 2026, is after the first Sunday in November (November 1, 2026), so standard time is in effect."
    },
    {
     "id": "offset:vancouver:2026-12-15:12:00",
@@ -7553,7 +7428,7 @@
     "got": {
      "utc_offset": "-08:00"
     },
-    "note": "Vancouver observes Pacific Standard Time (UTC-8) during standard time, which is in effect from the first Sunday in November to the second Sunday in March, and December 15, 2026 falls within this period."
+    "note": "Vancouver observes Pacific Standard Time (UTC-8) during standard time, which is in effect from the first Sunday in November to the secondSunday inMarch; on 2026-12-15, it is standard time as daylight saving time ended on November 1, 2026."
    },
    {
     "id": "offset:calgary:2026-11-15:12:00",
@@ -7564,7 +7439,7 @@
     "got": {
      "utc_offset": "-07:00"
     },
-    "note": "Calgary follows standard North American daylight saving time rules, with standard time (UTC-7) from firstSunday in November to secondSunday inMarch; on 2026-11-15, which is after the end of daylight saving time, the offset is -07:00"
+    "note": "Alberta follows the North American daylight saving time rules, changing to standard time (Mountain Standard Time) on the first Sunday in November; on 2026-11-15, which is after the first Sunday in November, the UTC offset is UTC-7."
    },
    {
     "id": "offset:edmonton:2026-12-15:12:00",
@@ -7575,7 +7450,7 @@
     "got": {
      "utc_offset": "-07:00"
     },
-    "note": "Albert observes Mountain Standard Time (UTC-7) during standard time period (November to March), with daylight saving time observed from second Sunday in March to first Sunday in November."
+    "note": "Alberta observes Mountain Standard Time (UTC-7) during standard time, which runs from the first Sunday in November to the secondSunday in March; December 15, 2026 falls within this period."
    },
    {
     "id": "offset:yellowknife:2026-11-15:12:00",
@@ -7586,7 +7461,7 @@
     "got": {
      "utc_offset": "-07:00"
     },
-    "note": "Canada's daylight saving time ends on the first Sunday in November, so on 2026-11-15, Yellowknife is on MountainStandard Time (UTC-7)."
+    "note": " applied the rule that in Canada, daylight saving time ends on the first Sunday inNovember, so on November 15, 2026, Yellowknife is on MountainStandard Time (UTC-7)."
    },
    {
     "id": "offset:inuvik:2026-11-15:12:00",
@@ -7597,7 +7472,42 @@
     "got": {
      "utc_offset": "-07:00"
     },
-    "note": "Inuvik follows Canadian daylight saving time rules, ending on the first Sunday in November each year, so on 2026-11-15, it is in MountainStandard Time (UTC-7)."
+    "note": "Inuvik follows the Mountain Time Zone with daylight saving time, which ends on the first Sunday in November; on 2026-11-15, standard time (UTC-7) is in effect."
+   },
+   {
+    "id": "offset:casablanca:2026-10-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "+00:00"
+    },
+    "got": {
+     "utc_offset": "+01:00"
+    },
+    "note": "Morocco has permanently observed UTC+1 without daylight saving time since 2020."
+   },
+   {
+    "id": "offset:casablanca:2026-12-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "+00:00"
+    },
+    "got": {
+     "utc_offset": "+01:00"
+    },
+    "note": "Morocco has been on permanent UTC+1 since 2022, no longer observing daylight saving time"
+   },
+   {
+    "id": "convert:calgary:toronto:2026-11-15:09:00",
+    "family": "wave_2026",
+    "expected": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "got": {
+     "date": "2026-11-15",
+     "time": "11:00"
+    },
+    "note": "Calgary is UTC-7, Toronto is UTC-5"
    },
    {
     "id": "convert:vancouver:seattle:2026-11-15:09:00",
@@ -7610,7 +7520,20 @@
      "date": "2026-11-15",
      "time": "09:00"
     },
-    "note": "Vancouver is UTC-8 (PST) and Seattle is UTC-8 (PST) on 2026-11-15 as both are in standard time after the end of daylight saving time."
+    "note": "Vancouver is UTC-8 and Seattle is UTC-8 on this date."
+   },
+   {
+    "id": "convert:calgary:denver:2026-11-15:09:00",
+    "family": "wave_2026",
+    "expected": {
+     "date": "2026-11-15",
+     "time": "08:00"
+    },
+    "got": {
+     "date": "2026-11-15",
+     "time": "09:00"
+    },
+    "note": "Calgary UTC-7 (Standard Time), Denver UTC-7 (Standard Time)"
    },
    {
     "id": "convert:casablanca:paris:2026-10-15:09:00",
@@ -7623,20 +7546,7 @@
      "date": "2026-10-15",
      "time": "10:00"
     },
-    "note": "Casablanca UTC+1 (year-round), Paris UTC+2 (CEst) as DST is active until 2026-10-25"
-   },
-   {
-    "id": "convert:casablanca:london:2026-12-15:09:00",
-    "family": "wave_2026",
-    "expected": {
-     "date": "2026-12-15",
-     "time": "09:00"
-    },
-    "got": {
-     "date": "2026-01-15",
-     "time": "08:00"
-    },
-    "note": "Casablanca is UTC+1 and London is UTC+0 on 2026-12-15"
+    "note": " Casablanca: UTC+1, Paris: UTC+2 "
    },
    {
     "id": "convert:inuvik:toronto:2026-11-15:09:00",
@@ -7649,20 +7559,7 @@
      "date": "2026-11-15",
      "time": "11:00"
     },
-    "note": "Inuvik is on UTC-7 (Mountain Standard Time) and Toronto is on UTC-5 (Eastern Standard Time) as both are in standard time on this date."
-   },
-   {
-    "id": "change_day:vancouver:2026-11-01",
-    "family": "wave_2026",
-    "expected": {
-     "changes": false,
-     "direction": "none"
-    },
-    "got": {
-     "changes": true,
-     "direction": "back"
-    },
-    "note": "Clocks fall back one hour at 2 AM on 2026-11-01 in Vancouver, British Columbia, marking the end of daylight saving time."
+    "note": "Inuvik is UTC-7 (Mountain Standard Time) and Toronto is UTC-5 (Eastern Standard Time) on 2026-11-15"
    },
    {
     "id": "change_day:edmonton:2026-11-01",
@@ -7675,10 +7572,23 @@
      "changes": true,
      "direction": "back"
     },
-    "note": "Clocks fall back one hour at 2 AM on 2026-11-01 in Edmonton as daylight saving time ends."
+    "note": "Edmonton observes daylight saving time, ending on the firstSunday inNovember, so clocks fall back one hour on 2026-11-01 at 2am local time."
    },
    {
-    "id": "change_day:yellowknife:2026-11-01",
+    "id": "change_day:casablanca:2026-09-20",
+    "family": "wave_2026",
+    "expected": {
+     "changes": true,
+     "direction": "back"
+    },
+    "got": {
+     "changes": false,
+     "direction": "none"
+    },
+    "note": "Morocco abolished daylight saving time in 2019 and has remained on UTC+1 year-round since then, so no clock changes occur on 2026-09-20."
+   },
+   {
+    "id": "change_day:fort_nelson:2026-11-01",
     "family": "wave_2026",
     "expected": {
      "changes": false,
@@ -7688,473 +7598,10 @@
      "changes": true,
      "direction": "back"
     },
-    "note": "Yellowknife observes daylight saving time, so clocks fall back on the first Sunday inNovember, which is November 1, 2026."
+    "note": "Fort Nelson observes the standard British Columbia time rules, where daylight saving time ends on the first Sunday in November, which in 2026 falls on November 1st, causing clocks to fall back one hour."
    }
   ],
-  "errored": [
-   {
-    "params": {
-     "id": "offset:new_york:2026-07-15:12:00",
-     "family": "control",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in New York City, USA at 12:00 local time on 2026-07-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-04:00\"}",
-     "graded": true
-    },
-    "error": "openai.RateLimitError: Error code: 429 - {'code': '', 'message': 'The model is currently experiencing heavy load. Try again later.', 'param': '', 'type': 'rate_limit_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:new_york:2026-12-15:12:00",
-     "family": "control",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in New York City, USA at 12:00 local time on 2026-12-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-05:00\"}",
-     "graded": true
-    },
-    "error": "openai.RateLimitError: Error code: 429 - {'code': '', 'message': 'The model is currently experiencing heavy load. Try again later.', 'param': '', 'type': 'rate_limit_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:london:2026-07-15:12:00",
-     "family": "control",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in London, United Kingdom at 12:00 local time on 2026-07-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+01:00\"}",
-     "graded": true
-    },
-    "error": "openai.RateLimitError: Error code: 429 - {'code': '', 'message': 'The model is currently experiencing heavy load. Try again later.', 'param': '', 'type': 'rate_limit_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:london:2026-12-15:12:00",
-     "family": "control",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in London, United Kingdom at 12:00 local time on 2026-12-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+00:00\"}",
-     "graded": true
-    },
-    "error": "openai.RateLimitError: Error code: 429 - {'code': '', 'message': 'The model is currently experiencing heavy load. Try again later.', 'param': '', 'type': 'rate_limit_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:tokyo:2026-07-15:12:00",
-     "family": "control",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Tokyo, Japan at 12:00 local time on 2026-07-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+09:00\"}",
-     "graded": true
-    },
-    "error": "openai.RateLimitError: Error code: 429 - {'code': '', 'message': 'The model is currently experiencing heavy load. Try again later.', 'param': '', 'type': 'rate_limit_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:paris:2026-01-15:12:00",
-     "family": "control",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Paris, France at 12:00 local time on 2026-01-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+01:00\"}",
-     "graded": true
-    },
-    "error": "openai.RateLimitError: Error code: 429 - {'code': '', 'message': 'The model is currently experiencing heavy load. Try again later.', 'param': '', 'type': 'rate_limit_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:los_angeles:2026-11-15:12:00",
-     "family": "control",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Los Angeles, USA at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-08:00\"}",
-     "graded": true
-    },
-    "error": "openai.RateLimitError: Error code: 429 - {'code': '', 'message': 'The model is currently experiencing heavy load. Try again later.', 'param': '', 'type': 'rate_limit_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:toronto:2026-11-15:12:00",
-     "family": "control",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Toronto, Ontario, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-05:00\"}",
-     "graded": true
-    },
-    "error": "openai.RateLimitError: Error code: 429 - {'code': '', 'message': 'The model is currently experiencing heavy load. Try again later.', 'param': '', 'type': 'rate_limit_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:sydney:2026-01-15:12:00",
-     "family": "control",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Sydney, New South Wales, Australia at 12:00 local time on 2026-01-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+11:00\"}",
-     "graded": true
-    },
-    "error": "openai.RateLimitError: Error code: 429 - {'code': '', 'message': 'The model is currently experiencing heavy load. Try again later.', 'param': '', 'type': 'rate_limit_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:sydney:2026-07-15:12:00",
-     "family": "control",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Sydney, New South Wales, Australia at 12:00 local time on 2026-07-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+10:00\"}",
-     "graded": true
-    },
-    "error": "openai.RateLimitError: Error code: 429 - {'code': '', 'message': 'The model is currently experiencing heavy load. Try again later.', 'param': '', 'type': 'rate_limit_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:mumbai:2026-07-15:12:00",
-     "family": "control",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Mumbai, India at 12:00 local time on 2026-07-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+05:30\"}",
-     "graded": true
-    },
-    "error": "openai.RateLimitError: Error code: 429 - {'code': '', 'message': 'The model is currently experiencing heavy load. Try again later.', 'param': '', 'type': 'rate_limit_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:dubai:2026-07-15:12:00",
-     "family": "control",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Dubai, United Arab Emirates at 12:00 local time on 2026-07-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+04:00\"}",
-     "graded": true
-    },
-    "error": "openai.RateLimitError: Error code: 429 - {'code': '', 'message': 'The model is currently experiencing heavy load. Try again later.', 'param': '', 'type': 'rate_limit_error'}"
-   },
-   {
-    "params": {
-     "id": "convert:new_york:london:2026-07-15:09:00",
-     "family": "control",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-07-15 in New York City, USA. What is the local date and time at that same moment in London, United Kingdom? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-07-15\", \"time\": \"14:00\"}",
-     "graded": true
-    },
-    "error": "openai.RateLimitError: Error code: 429 - {'code': '', 'message': 'The model is currently experiencing heavy load. Try again later.', 'param': '', 'type': 'rate_limit_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:chatham:2026-07-15:12:00",
-     "family": "awkward_offset",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Waitangi, Chatham Islands, New Zealand at 12:00 local time on 2026-07-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+12:45\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:lord_howe:2026-01-15:12:00",
-     "family": "awkward_offset",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Lord Howe Island, Australia at 12:00 local time on 2026-01-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+11:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:adelaide:2026-07-15:12:00",
-     "family": "awkward_offset",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Adelaide, South Australia at 12:00 local time on 2026-07-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+09:30\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:chatham:auckland:2026-01-15:09:00",
-     "family": "awkward_offset",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-01-15 in Waitangi, Chatham Islands, New Zealand. What is the local date and time at that same moment in Auckland, New Zealand? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-01-15\", \"time\": \"08:15\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:lord_howe:sydney:2026-07-15:09:00",
-     "family": "awkward_offset",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-07-15 in Lord Howe Island, Australia. What is the local date and time at that same moment in Sydney, New South Wales, Australia? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-07-15\", \"time\": \"08:30\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "change_day:lord_howe:2026-10-04",
-     "family": "awkward_offset",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Lord Howe Island, Australia change at any point during the local calendar day of 2026-10-04, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": true, \"direction\": \"forward\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:santiago:2026-01-15:12:00",
-     "family": "southern",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Santiago, Chile at 12:00 local time on 2026-01-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-03:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:santiago:2026-07-15:12:00",
-     "family": "southern",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Santiago, Chile at 12:00 local time on 2026-07-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-04:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:auckland:2026-07-15:12:00",
-     "family": "southern",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Auckland, New Zealand at 12:00 local time on 2026-07-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+12:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:melbourne:2026-04-15:12:00",
-     "family": "southern",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Melbourne, Victoria, Australia at 12:00 local time on 2026-04-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+10:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:santiago:new_york:2026-01-15:09:00",
-     "family": "southern",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-01-15 in Santiago, Chile. What is the local date and time at that same moment in New York City, USA? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-01-15\", \"time\": \"07:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:sydney:london:2026-04-01:09:00",
-     "family": "southern",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-04-01 in Sydney, New South Wales, Australia. What is the local date and time at that same moment in London, United Kingdom? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-03-31\", \"time\": \"23:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:auckland:los_angeles:2026-11-15:09:00",
-     "family": "southern",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-11-15 in Auckland, New Zealand. What is the local date and time at that same moment in Los Angeles, USA? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-11-14\", \"time\": \"12:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:santiago:2026-04-10:12:00",
-     "family": "southern",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Santiago, Chile at 12:00 local time on 2026-04-10? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-04:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:tehran:2023-07-15:12:00",
-     "family": "legislated_2022_2025",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Tehran, Iran at 12:00 local time on 2023-07-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+03:30\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:chihuahua:2023-01-15:12:00",
-     "family": "legislated_2022_2025",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Chihuahua City, Chihuahua, Mexico at 12:00 local time on 2023-01-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-06:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:cairo:2024-07-15:12:00",
-     "family": "legislated_2022_2025",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Cairo, Egypt at 12:00 local time on 2024-07-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+03:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:almaty:2025-01-15:12:00",
-     "family": "legislated_2022_2025",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Almaty, Kazakhstan at 12:00 local time on 2025-01-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+05:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:coyhaique:2025-07-15:12:00",
-     "family": "legislated_2022_2025",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Coyhaique, Aysén Region, Chile at 12:00 local time on 2025-07-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-03:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:mexico_city:chicago:2023-07-15:09:00",
-     "family": "legislated_2022_2025",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2023-07-15 in Mexico City, Mexico. What is the local date and time at that same moment in Chicago, USA? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2023-07-15\", \"time\": \"10:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:almaty:2024-03-05:12:00",
-     "family": "legislated_2022_2025",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Almaty, Kazakhstan at 12:00 local time on 2024-03-05? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+05:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:fort_nelson:2026-11-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Fort Nelson, British Columbia, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-07:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:casablanca:2026-10-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Casablanca, Morocco at 12:00 local time on 2026-10-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+00:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "offset:casablanca:2026-12-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Casablanca, Morocco at 12:00 local time on 2026-12-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+00:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:calgary:toronto:2026-11-15:09:00",
-     "family": "wave_2026",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-11-15 in Calgary, Alberta, Canada. What is the local date and time at that same moment in Toronto, Ontario, Canada? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-11-15\", \"time\": \"10:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "convert:calgary:denver:2026-11-15:09:00",
-     "family": "wave_2026",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-11-15 in Calgary, Alberta, Canada. What is the local date and time at that same moment in Denver, Colorado, USA? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-11-15\", \"time\": \"08:00\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "change_day:casablanca:2026-09-20",
-     "family": "wave_2026",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Casablanca, Morocco change at any point during the local calendar day of 2026-09-20, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": true, \"direction\": \"back\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "change_day:fort_nelson:2026-11-01",
-     "family": "wave_2026",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Fort Nelson, British Columbia, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": false, \"direction\": \"none\"}",
-     "graded": true
-    },
-    "error": "---"
-   },
-   {
-    "params": {
-     "id": "change_day:winnipeg:2026-11-01",
-     "family": "unresolved",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Winnipeg, Manitoba, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": true, \"direction\": \"back\"}",
-     "graded": false
-    },
-    "error": "---"
-   }
-  ]
+  "errored": []
  },
  {
   "model": "xai/grok-4.20-0309-non-reasoning",

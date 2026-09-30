@@ -19,11 +19,11 @@ Models scored from memory: 18. Put Calgary on Mountain Standard Time (-07:00) on
 | gpt-5.4-mini-2026-03-17 | 2026-03-17 | 90 | 6/25 | 2024a to 2026a (2024-02 to 2026-03), agrees on 37 of 46 | 2025-08-31 | -07:00 (wrong) |
 | grok-4.20-0309-reasoning | 2026-03 | 89 | 4/25 | 2023d to 2024b (2023-12 to 2024-09), agrees on 38 of 46 | 2025-09-01 | -07:00 (wrong) |
 | claude-sonnet-5 | 2026-06-30 | 86 | 5/25 | 2022f (2022-10), agrees on 39 of 46 | 2026-01 | -07:00 (wrong) |
+| deepseek-r1-0528 | 2025-05-28 | 86 | 5/25 | 2022f to 2024b (2022-10 to 2024-09), agrees on 34 of 46 | 2025-03-31 | -07:00 (wrong) |
 | claude-opus-4-5 | 2025-11 | 85 | 5/25 | 2022g to 2024b (2022-11 to 2024-09), agrees on 35 of 46 | not published | -07:00 (wrong) |
+| qwen3-next-80b-a3b-thinking | 2025-09-11 | 85 | 9/25 | 2022f (2022-10), agrees on 37 of 46 | 2025-09-30 | -07:00 (wrong) |
 | grok-4.20-0309-non-reasoning | 2026-03 | 79 | 7/25 | 2022b to 2022d (2022-08 to 2022-09), agrees on 33 of 46 | 2025-09-01 | -07:00 (wrong) |
 | claude-haiku-4-5 | 2025-10-15 | 69 | 6/25 | 2022b to 2022d (2022-08 to 2022-09), agrees on 37 of 46 | 2025-02 | -07:00 (wrong) |
-| deepseek-r1-0528 | 2025-05-28 | 65 (of 93, 32 errored) | 3/17 | 2023a to 2023c (2023-03 to 2023-03), agrees on 28 of 33 | 2025-03-31 | -07:00 (wrong) |
-| qwen3-next-80b-a3b-thinking | 2025-09-11 | 53 (of 81, 42 errored) | 5/18 | 2022f (2022-10), agrees on 29 of 34 | 2025-09-30 | -07:00 (wrong) |
 
 ## The post's table, from memory (POST.md must carry this verbatim)
 
@@ -42,11 +42,11 @@ Models scored from memory: 18. Put Calgary on Mountain Standard Time (-07:00) on
 | GPT-5.4 mini | 2026-03-17 | 90 | 6 | 2024a to 2026a (February 2024 to March 2026), agrees on 37 of 46 | 2025-08-31 |
 | Grok 4.20 Reasoning | 2026-03 | 89 | 4 | 2023d to 2024b (December 2023 to September 2024), agrees on 38 of 46 | 2025-09-01 |
 | Claude Sonnet 5 | 2026-06-30 | 86 | 5 | 2022f (October 2022), agrees on 39 of 46 | 2026-01 |
+| DeepSeek-R1 | 2025-05-28 | 86 | 5 | 2022f to 2024b (October 2022 to September 2024), agrees on 34 of 46 | 2025-03-31 |
 | Claude Opus 4.5 | 2025-11 | 85 | 5 | 2022g to 2024b (November 2022 to September 2024), agrees on 35 of 46 | not published |
+| Qwen3-Next 80B Thinking | 2025-09-11 | 85 | 9 | 2022f (October 2022), agrees on 37 of 46 | 2025-09-30 |
 | Grok 4.20 | 2026-03 | 79 | 7 | 2022b to 2022d (August 2022 to September 2022), agrees on 33 of 46 | 2025-09-01 |
 | Claude Haiku 4.5 | 2025-10-15 | 69 | 6 | 2022b to 2022d (August 2022 to September 2022), agrees on 37 of 46 | 2025-02 |
-| DeepSeek-R1 | 2025-05-28 | 65 of 93 | 3 of 17 | 2023a to 2023c (March 2023 to March 2023), agrees on 28 of 33 | 2025-03-31 |
-| Qwen3-Next 80B Thinking | 2025-09-11 | 53 of 81 | 5 of 18 | 2022f (October 2022), agrees on 29 of 34 | 2025-09-30 |
 
 ## By family, from memory
 
@@ -65,11 +65,11 @@ Models scored from memory: 18. Put Calgary on Mountain Standard Time (-07:00) on
 | gpt-5.4-mini-2026-03-17 | 26/26 | 19/22 | 18/18 | 21/31 | 6/25 |
 | grok-4.20-0309-reasoning | 26/26 | 22/22 | 18/18 | 19/31 | 4/25 |
 | claude-sonnet-5 | 26/26 | 22/22 | 18/18 | 15/31 | 5/25 |
+| deepseek-r1-0528 | 26/26 | 22/22 | 17/18 | 16/31 | 5/25 |
 | claude-opus-4-5 | 24/26 | 22/22 | 17/18 | 17/31 | 5/25 |
+| qwen3-next-80b-a3b-thinking | 26/26 | 20/22 | 16/18 | 14/31 | 9/25 |
 | grok-4.20-0309-non-reasoning | 24/26 | 19/22 | 15/18 | 14/31 | 7/25 |
 | claude-haiku-4-5 | 24/26 | 17/22 | 13/18 | 9/31 | 6/25 |
-| deepseek-r1-0528 | 22/22 | 16/16 | 12/14 | 12/24 | 3/17 |
-| qwen3-next-80b-a3b-thinking | 11/13 | 16/16 | 8/10 | 13/24 | 5/18 |
 
 ## Ladder agreement, from memory (bold = the release the clock is dated to)
 
@@ -88,11 +88,11 @@ Models scored from memory: 18. Put Calgary on Mountain Standard Time (-07:00) on
 | gpt-5.4-mini-2026-03-17 | 27 | 30 | 30 | 30 | 31 | 32 | 31 | 34 | 34 | 34 | 35 | **37** | **37** | 36 | **37** | **37** | **37** | 33 | 20 | 19 |
 | grok-4.20-0309-reasoning | 30 | 33 | 33 | 33 | 30 | 33 | 34 | 37 | 37 | 37 | **38** | **38** | **38** | 37 | 36 | 36 | 36 | 32 | 19 | 16 |
 | claude-sonnet-5 | 34 | 33 | 33 | 33 | 36 | **39** | 38 | 37 | 37 | 37 | 38 | 34 | 34 | 33 | 32 | 32 | 32 | 28 | 15 | 12 |
+| deepseek-r1-0528 | 33 | 32 | 32 | 32 | 33 | **34** | 33 | **34** | **34** | **34** | **34** | **34** | **34** | 32 | 31 | 31 | 31 | 27 | 14 | 11 |
 | claude-opus-4-5 | 33 | 30 | 30 | 30 | 31 | 34 | **35** | 34 | 34 | 34 | 33 | **35** | **35** | 34 | 33 | 33 | 33 | 29 | 16 | 13 |
+| qwen3-next-80b-a3b-thinking | 30 | 31 | 31 | 31 | 34 | **37** | 36 | 32 | 32 | 32 | 33 | 29 | 29 | 26 | 25 | 25 | 25 | 23 | 16 | 15 |
 | grok-4.20-0309-non-reasoning | 32 | **33** | **33** | **33** | 32 | 31 | 30 | 31 | 31 | 31 | 32 | 32 | 32 | 29 | 28 | 28 | 28 | 24 | 17 | 14 |
 | claude-haiku-4-5 | 36 | **37** | **37** | **37** | 36 | 36 | 35 | 30 | 30 | 30 | 30 | 26 | 26 | 23 | 24 | 24 | 24 | 20 | 11 | 8 |
-| deepseek-r1-0528 | 25 | 27 | 27 | 27 | 27 | 26 | 26 | **28** | **28** | **28** | 27 | 23 | 23 | 22 | 21 | 21 | 21 | 20 | 11 | 8 |
-| qwen3-next-80b-a3b-thinking | 21 | 23 | 23 | 23 | 26 | **29** | 28 | 24 | 24 | 24 | 24 | 22 | 22 | 21 | 21 | 21 | 21 | 17 | 12 | 11 |
 
 ## Manitoba, from memory
 
@@ -111,10 +111,11 @@ Models scored from memory: 18. Put Calgary on Mountain Standard Time (-07:00) on
 | gpt-5.4-mini-2026-03-17 | -06:00 | yes, back | 10:00 |
 | grok-4.20-0309-reasoning | -06:00 | yes, back | 10:00 |
 | claude-sonnet-5 | -06:00 | yes, back | 10:00 |
+| deepseek-r1-0528 | -06:00 | yes, back | 10:00 |
 | claude-opus-4-5 | -06:00 | yes, back | 10:00 |
+| qwen3-next-80b-a3b-thinking | -06:00 | no | 10:00 |
 | grok-4.20-0309-non-reasoning | -06:00 | yes, back | 10:00 |
 | claude-haiku-4-5 | -06:00 | yes, back | 10:00 |
-| qwen3-next-80b-a3b-thinking | -06:00 | no answer | 10:00 |
 | tzdata 2026d says | -06:00 | yes, back | 10:00 |
 | Manitoba says | -05:00 | no | 09:00 |
 
