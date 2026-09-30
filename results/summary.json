@@ -5294,6 +5294,566 @@
   "errored": []
  },
  {
+  "model": "google/gemma-4-31b",
+  "condition": "memory",
+  "task": "world-clock-from-memory",
+  "card": {
+   "vendor": "Google",
+   "released": "2026-04-02",
+   "stated_cutoff": "2025-01",
+   "cutoff_source": "third-party trackers (the proxy reports the run under this name; same model as gemma-4-31b-it)"
+  },
+  "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": true,
+  "source": "results\\raw\\world-clock-from-memory\\5\\gemma-4-31b-it\\3636603\\world_clock_answers.json",
+  "graded_correct": 87,
+  "graded_total": 122,
+  "unparsed_answers": 5,
+  "accuracy_pct": 71.3,
+  "per_family": {
+   "awkward_offset": {
+    "correct": 21,
+    "total": 22,
+    "pct": 95.5
+   },
+   "control": {
+    "correct": 25,
+    "total": 26,
+    "pct": 96.2
+   },
+   "legislated_2022_2025": {
+    "correct": 22,
+    "total": 31,
+    "pct": 71.0
+   },
+   "southern": {
+    "correct": 16,
+    "total": 18,
+    "pct": 88.9
+   },
+   "wave_2026": {
+    "correct": 3,
+    "total": 25,
+    "pct": 12.0
+   }
+  },
+  "clock": {
+   "ladder_cases": 46,
+   "best_agreement": 40,
+   "best_agreement_pct": 87.0,
+   "releases_tied": [
+    "2024.1 (2024a, 2024-02-01)",
+    "2024.2 (2024b, 2024-09-04)"
+   ],
+   "earliest": {
+    "pypi": "2024.1",
+    "iana": "2024a",
+    "date": "2024-02-01"
+   },
+   "latest": {
+    "pypi": "2024.2",
+    "iana": "2024b",
+    "date": "2024-09-04"
+   },
+   "current": false,
+   "agreement_by_release": {
+    "2022.1 (2022a)": 25,
+    "2022.2 (2022b)": 28,
+    "2022.3 (2022c)": 28,
+    "2022.4 (2022d)": 28,
+    "2022.5 (2022e)": 31,
+    "2022.6 (2022f)": 34,
+    "2022.7 (2022g)": 35,
+    "2023.1 (2023a)": 38,
+    "2023.2 (2023b)": 38,
+    "2023.3 (2023c)": 38,
+    "2023.4 (2023d)": 37,
+    "2024.1 (2024a)": 40,
+    "2024.2 (2024b)": 40,
+    "2025.1 (2025a)": 39,
+    "2025.2 (2025b)": 38,
+    "2025.3 (2025c)": 38,
+    "2026.1 (2026a)": 38,
+    "2026.2 (2026b)": 34,
+    "2026.3 (2026c)": 22,
+    "2026.4 (2026d)": 19
+   }
+  },
+  "tool_calls": null,
+  "unresolved": [
+   {
+    "id": "offset:winnipeg:2026-11-15:12:00",
+    "prompt": "What is the UTC offset in effect in Winnipeg, Manitoba, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
+    "model_answer": {
+     "utc_offset": "unparsed:''"
+    },
+    "tzdata_2026d": {
+     "utc_offset": "-06:00"
+    },
+    "official": {
+     "utc_offset": "-05:00"
+    },
+    "note": ""
+   },
+   {
+    "id": "change_day:winnipeg:2026-11-01",
+    "prompt": "Do the clocks in Winnipeg, Manitoba, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
+    "model_answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "tzdata_2026d": {
+     "changes": true,
+     "direction": "back"
+    },
+    "official": {
+     "changes": false,
+     "direction": "none"
+    },
+    "note": "On November 1, 2026, Winnipeg transitions from Central Daylight Time back to Central Standard Time as part of the annual end of daylight saving time."
+   },
+   {
+    "id": "convert:winnipeg:toronto:2026-11-15:09:00",
+    "prompt": "It is 09:00 on 2026-11-15 in Winnipeg, Manitoba, Canada. What is the local date and time at that same moment in Toronto, Ontario, Canada? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
+    "model_answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "tzdata_2026d": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "official": {
+     "date": "2026-11-15",
+     "time": "09:00"
+    },
+    "note": "Winnipeg is at UTC-6 and Toronto is at UTC-5."
+   }
+  ],
+  "wrong": [
+   {
+    "id": "offset:new_york:2026-12-15:12:00",
+    "family": "control",
+    "expected": {
+     "utc_offset": "-05:00"
+    },
+    "got": {
+     "utc_offset": "unparsed:''"
+    },
+    "note": ""
+   },
+   {
+    "id": "convert:chatham:auckland:2026-01-15:09:00",
+    "family": "awkward_offset",
+    "expected": {
+     "date": "2026-01-15",
+     "time": "08:15"
+    },
+    "got": {
+     "date": "2026-01-15",
+     "time": "14:15"
+    },
+    "note": "Waitangi is in CHADT (UTC+7:45) and Auckland is in NZDT (UTC+13:00)."
+   },
+   {
+    "id": "offset:auckland:2026-01-15:12:00",
+    "family": "southern",
+    "expected": {
+     "utc_offset": "+13:00"
+    },
+    "got": {
+     "utc_offset": "unparsed:''"
+    },
+    "note": ""
+   },
+   {
+    "id": "change_day:santiago:2026-09-06",
+    "family": "southern",
+    "expected": {
+     "changes": true,
+     "direction": "forward"
+    },
+    "got": {
+     "changes": false,
+     "direction": "none"
+    },
+    "note": ""
+   },
+   {
+    "id": "offset:chihuahua:2023-01-15:12:00",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "utc_offset": "-06:00"
+    },
+    "got": {
+     "utc_offset": "-07:00"
+    },
+    "note": "Chihuahua City follows Mountain Standard Time (MST) and ceased observing daylight saving time in 2022."
+   },
+   {
+    "id": "offset:nuuk:2024-07-15:12:00",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "utc_offset": "-01:00"
+    },
+    "got": {
+     "utc_offset": "-02:00"
+    },
+    "note": "Nuuk observes Daylight Saving Time (UTC-2) from March to October."
+   },
+   {
+    "id": "offset:ittoqqortoormiit:2024-07-15:12:00",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "utc_offset": "-01:00"
+    },
+    "got": {
+     "utc_offset": "+00:00"
+    },
+    "note": "Ittoqqortoormiit observes UTC-1 standard time and UTC+0 during daylight saving time, which is in effect on July 15."
+   },
+   {
+    "id": "offset:almaty:2025-01-15:12:00",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "utc_offset": "+05:00"
+    },
+    "got": {
+     "utc_offset": "unparsed:''"
+    },
+    "note": ""
+   },
+   {
+    "id": "offset:asuncion:2025-06-15:12:00",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "utc_offset": "-03:00"
+    },
+    "got": {
+     "utc_offset": "-04:00"
+    },
+    "note": "Asunción, Paraguay observes Standard Time (UTC-4) during the month of June."
+   },
+   {
+    "id": "offset:coyhaique:2025-07-15:12:00",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "utc_offset": "-03:00"
+    },
+    "got": {
+     "utc_offset": "-04:00"
+    },
+    "note": "Coyhaique follows continental Chile's time, which observes Standard Time (UTC-4) in July."
+   },
+   {
+    "id": "offset:suva:2023-01-15:12:00",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "utc_offset": "+12:00"
+    },
+    "got": {
+     "utc_offset": "+13:00"
+    },
+    "note": "Fiji was observing Daylight Saving Time on January 15, 2023."
+   },
+   {
+    "id": "convert:asuncion:buenos_aires:2025-06-15:09:00",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "date": "2025-06-15",
+     "time": "09:00"
+    },
+    "got": {
+     "date": "2025-06-15",
+     "time": "10:00"
+    },
+    "note": "Asunción is UTC-4 and Buenos Aires is UTC-3."
+   },
+   {
+    "id": "change_day:mexico_city:2022-10-30",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "changes": true,
+     "direction": "back"
+    },
+    "got": {
+     "changes": false,
+     "direction": "none"
+    },
+    "note": "Mexico City abolished Daylight Saving Time in 2022, meaning no clock changes occurred on this date."
+   },
+   {
+    "id": "offset:vancouver:2026-11-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "-07:00"
+    },
+    "got": {
+     "utc_offset": "-08:00"
+    },
+    "note": "Vancouver follows Pacific Standard Time (PST) on November 15, 2026, as daylight saving time ends on the first Sunday of November."
+   },
+   {
+    "id": "offset:vancouver:2026-12-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "-07:00"
+    },
+    "got": {
+     "utc_offset": "-08:00"
+    },
+    "note": "Vancouver is on Pacific Standard Time (PST) in December."
+   },
+   {
+    "id": "offset:fort_nelson:2026-11-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "-07:00"
+    },
+    "got": {
+     "utc_offset": "-08:00"
+    },
+    "note": "Fort Nelson, British Columbia, follows Pacific Standard Time during the month of November."
+   },
+   {
+    "id": "offset:calgary:2026-11-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "-06:00"
+    },
+    "got": {
+     "utc_offset": "-07:00"
+    },
+    "note": "Calgary observes Mountain Standard Time (MST) in November after Daylight Saving Time ends on the first Sunday of the month."
+   },
+   {
+    "id": "offset:edmonton:2026-12-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "-06:00"
+    },
+    "got": {
+     "utc_offset": "unparsed:''"
+    },
+    "note": ""
+   },
+   {
+    "id": "offset:yellowknife:2026-11-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "-06:00"
+    },
+    "got": {
+     "utc_offset": "-07:00"
+    },
+    "note": "Yellowknife observes Mountain Standard Time (MST) on November 15, as daylight saving time ends on the first Sunday of November."
+   },
+   {
+    "id": "offset:inuvik:2026-11-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "-06:00"
+    },
+    "got": {
+     "utc_offset": "-07:00"
+    },
+    "note": "Inuvik follows Mountain Standard Time (MST) during November."
+   },
+   {
+    "id": "offset:casablanca:2026-10-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "+00:00"
+    },
+    "got": {
+     "utc_offset": "+01:00"
+    },
+    "note": "Morocco observes UTC+1 year-round, except for a temporary return to UTC+0 during the month of Ramadan."
+   },
+   {
+    "id": "offset:casablanca:2026-12-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "+00:00"
+    },
+    "got": {
+     "utc_offset": "+01:00"
+    },
+    "note": "Morocco observes UTC+1 year-round, except during the month of Ramadan when it reverts to UTC+0."
+   },
+   {
+    "id": "convert:calgary:toronto:2026-11-15:09:00",
+    "family": "wave_2026",
+    "expected": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "got": {
+     "date": "2026-11-15",
+     "time": "11:00"
+    },
+    "note": "Calgary is UTC-7 and Toronto is UTC-5."
+   },
+   {
+    "id": "convert:vancouver:seattle:2026-11-15:09:00",
+    "family": "wave_2026",
+    "expected": {
+     "date": "2026-11-15",
+     "time": "08:00"
+    },
+    "got": {
+     "date": "2026-11-15",
+     "time": "09:00"
+    },
+    "note": "Both Vancouver and Seattle are in the Pacific Standard Time zone (UTC-8) on this date."
+   },
+   {
+    "id": "convert:calgary:denver:2026-11-15:09:00",
+    "family": "wave_2026",
+    "expected": {
+     "date": "2026-11-15",
+     "time": "08:00"
+    },
+    "got": {
+     "date": "2026-11-15",
+     "time": "09:00"
+    },
+    "note": "Both Calgary and Denver are in the Mountain Time Zone and use an offset of UTC-7."
+   },
+   {
+    "id": "convert:casablanca:paris:2026-10-15:09:00",
+    "family": "wave_2026",
+    "expected": {
+     "date": "2026-10-15",
+     "time": "11:00"
+    },
+    "got": {
+     "date": "2026-10-15",
+     "time": "10:00"
+    },
+    "note": "Casablanca is at UTC+1 and Paris is at UTC+2."
+   },
+   {
+    "id": "convert:casablanca:london:2026-12-15:09:00",
+    "family": "wave_2026",
+    "expected": {
+     "date": "2026-12-15",
+     "time": "09:00"
+    },
+    "got": {
+     "date": "2026-12-15",
+     "time": "08:00"
+    },
+    "note": "Casablanca is UTC+1 and London is UTC+0."
+   },
+   {
+    "id": "convert:inuvik:toronto:2026-11-15:09:00",
+    "family": "wave_2026",
+    "expected": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "got": {
+     "date": "2026-11-15",
+     "time": "11:00"
+    },
+    "note": "Inuvik is at UTC-7 and Toronto is at UTC-5."
+   },
+   {
+    "id": "change_day:vancouver:2026-11-01",
+    "family": "wave_2026",
+    "expected": {
+     "changes": false,
+     "direction": "none"
+    },
+    "got": {
+     "changes": true,
+     "direction": "back"
+    },
+    "note": "Vancouver follows North American Daylight Saving Time, and the clocks fall back on the first Sunday of November, which is November 1, 2026."
+   },
+   {
+    "id": "change_day:calgary:2026-11-01",
+    "family": "wave_2026",
+    "expected": {
+     "changes": false,
+     "direction": "none"
+    },
+    "got": {
+     "changes": true,
+     "direction": "back"
+    },
+    "note": "Clocks in Calgary fall back one hour on November 1, 2026, to end Daylight Saving Time."
+   },
+   {
+    "id": "change_day:edmonton:2026-11-01",
+    "family": "wave_2026",
+    "expected": {
+     "changes": false,
+     "direction": "none"
+    },
+    "got": {
+     "changes": true,
+     "direction": "back"
+    },
+    "note": "Clocks in Edmonton fall back one hour at 2:00 AM on November 1, 2026, to end Daylight Saving Time."
+   },
+   {
+    "id": "change_day:yellowknife:2026-11-01",
+    "family": "wave_2026",
+    "expected": {
+     "changes": false,
+     "direction": "none"
+    },
+    "got": {
+     "changes": true,
+     "direction": "back"
+    },
+    "note": "Clocks in Yellowknife move back one hour on November 1, 2026, to mark the end of Daylight Saving Time."
+   },
+   {
+    "id": "change_day:inuvik:2026-11-01",
+    "family": "wave_2026",
+    "expected": {
+     "changes": false,
+     "direction": "none"
+    },
+    "got": {
+     "changes": true,
+     "direction": "back"
+    },
+    "note": "Clocks move back one hour as Daylight Saving Time ends on the first Sunday of November."
+   },
+   {
+    "id": "change_day:casablanca:2026-09-20",
+    "family": "wave_2026",
+    "expected": {
+     "changes": true,
+     "direction": "back"
+    },
+    "got": {
+     "changes": false,
+     "direction": "none"
+    },
+    "note": "Morocco maintains a permanent UTC+1 offset throughout the year, with the only exception being a temporary shift back to UTC+0 during the month of Ramadan."
+   },
+   {
+    "id": "change_day:fort_nelson:2026-11-01",
+    "family": "wave_2026",
+    "expected": {
+     "changes": false,
+     "direction": "none"
+    },
+    "got": {
+     "changes": true,
+     "direction": "back"
+    },
+    "note": "Daylight Saving Time ends on the first Sunday of November in British Columbia, causing clocks to fall back one hour."
+   }
+  ],
+  "errored": []
+ },
+ {
   "model": "anthropic/claude-sonnet-5@default",
   "condition": "memory",
   "task": "world-clock-from-memory",

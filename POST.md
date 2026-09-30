@@ -1,5 +1,5 @@
 ---
-title: Alberta stopped changing its clocks in June. 18 of 18 frontier models still put Calgary on standard time in November.
+title: Alberta stopped changing its clocks in June. 19 of 19 frontier models still put Calgary on standard time in November.
 published: false
 tags: devchallenge, kagglechallenge, ai, machinelearning
 ---
@@ -10,7 +10,7 @@ On June 18, Alberta's [Official Time Act](https://www.alberta.ca/albertas-new-ti
 
 So I asked the question someone in Calgary is asking right now. It is 9 a.m. here on November 15. What time is that in Toronto?
 
-Then I put it to 18 models on Kaggle Benchmarks. All 18 said 11:00. The answer is 10:00.
+Then I put it to 19 models on Kaggle Benchmarks. All 19 said 11:00. The answer is 10:00.
 
 ## What I benchmarked and why
 
@@ -32,7 +32,7 @@ Answers are structured output, so grading is a string comparison after normalisi
 
 ## Which models I ran it against
 
-18 models, all through Kaggle Benchmarks, same prompt, temperature 0, no tools. I included 2025 models on purpose (Gemini 2.5 Pro from June, DeepSeek-R1 from May, Claude Haiku 4.5 from October) because a dating method that cannot date a 2025 model to 2025 is not worth reading. Then I ran the same questions a second time with a one-function tool the model was free to ignore: `zone_clock(iana_zone, local_datetime)`, which reads tzdata 2026d. Not "use this tool." Just "it is there."
+19 models, all through Kaggle Benchmarks, same prompt, temperature 0, no tools. I included 2025 models on purpose (Gemini 2.5 Pro from June, DeepSeek-R1 from May, Claude Haiku 4.5 from October) because a dating method that cannot date a 2025 model to 2025 is not worth reading. Then I ran the same questions a second time with a one-function tool the model was free to ignore: `zone_clock(iana_zone, local_datetime)`, which reads tzdata 2026d. Not "use this tool." Just "it is there."
 
 | Model | Released | Score (of 122) | 2026 questions right (of 25) | Clock dated by the ladder | Vendor's stated cutoff |
 |---|---|---|---|---|---|
@@ -48,6 +48,7 @@ Answers are structured output, so grading is a string comparison after normalisi
 | GLM-5 | 2026-02-11 | 90 | 5 | 2024a to 2024b (February 2024 to September 2024), agrees on 40 of 46 | not published |
 | GPT-5.4 mini | 2026-03-17 | 90 | 6 | 2024a to 2026a (February 2024 to March 2026), agrees on 37 of 46 | 2025-08-31 |
 | Grok 4.20 Reasoning | 2026-03 | 89 | 4 | 2023d to 2024b (December 2023 to September 2024), agrees on 38 of 46 | 2025-09-01 |
+| Gemma 4 31B | 2026-04-02 | 87 | 3 | 2024a to 2024b (February 2024 to September 2024), agrees on 40 of 46 | 2025-01 |
 | Claude Sonnet 5 | 2026-06-30 | 86 | 5 | 2022f (October 2022), agrees on 39 of 46 | 2026-01 |
 | DeepSeek-R1 | 2025-05-28 | 86 | 5 | 2022f to 2024b (October 2022 to September 2024), agrees on 34 of 46 | 2025-03-31 |
 | Claude Opus 4.5 | 2025-11 | 85 | 5 | 2022g to 2024b (November 2022 to September 2024), agrees on 35 of 46 | not published |
@@ -55,23 +56,23 @@ Answers are structured output, so grading is a string comparison after normalisi
 | Grok 4.20 | 2026-03 | 79 | 7 | 2022b to 2022d (August 2022 to September 2022), agrees on 33 of 46 | 2025-09-01 |
 | Claude Haiku 4.5 | 2025-10-15 | 69 | 6 | 2022b to 2022d (August 2022 to September 2022), agrees on 37 of 46 | 2025-02 |
 
-Claude Opus 5 scored 101 of 121 because one call died on its backend; every other model answered all 122. The vendor cutoffs are what each company publishes where it publishes one, and third-party trackers where it does not. Claude Opus 4.1 and Grok 4.6 are on Kaggle's list but return 404 from the proxy, so they are not here.
+Claude Opus 5 scored 101 of 121 because one call died on its backend; every other model answered all 122, though Gemma 4 left the answer field empty on five of them, and an empty answer counts as wrong. The vendor cutoffs are what each company publishes where it publishes one, and third-party trackers where it does not. Claude Opus 4.1 and Grok 4.6 are on Kaggle's list but return 404 from the proxy, so they are not here.
 
 ## What I found
 
 ### Everyone knows how clocks work
 
-Fourteen of the 18 answered all 26 control questions correctly, and nobody scored below 24 of 26. Fourteen got every awkward-offset question right, including Lord Howe Island's half-hour spring forward and the Chatham Islands at +13:45 in January. The southern hemisphere was nearly as clean. This is the part where the [Test of Time paper](https://arxiv.org/abs/2406.09170) found models scoring 74 to 90 percent on time-zone questions back in 2024 and attributed it to the amount of time-zone text on the internet. That reading holds. Time zones as a topic are learned.
+Fourteen of the 19 answered all 26 control questions correctly, and nobody scored below 24 of 26. Fourteen got every awkward-offset question right, including Lord Howe Island's half-hour spring forward and the Chatham Islands at +13:45 in January. The southern hemisphere was nearly as clean. This is the part where the [Test of Time paper](https://arxiv.org/abs/2406.09170) found models scoring 74 to 90 percent on time-zone questions back in 2024 and attributed it to the amount of time-zone text on the internet. That reading holds. Time zones as a topic are learned.
 
 Time zones as of a date are a different thing.
 
 ### Nobody knows about Alberta
 
-Twenty of the 25 questions about the 2026 wave have an answer that changed this year. The other five are controls inside the family, Vancouver in July or Fort Nelson in November, where nothing changed. Fourteen of the 18 got all five. Twelve of the 18 got none of the 20 changed answers right, including Claude Opus 5, GPT-5.5, GPT-5.6 Terra and four of the five Geminis.
+Twenty of the 25 questions about the 2026 wave have an answer that changed this year. The other five are controls inside the family, Vancouver in July or Fort Nelson in November, where nothing changed. Fourteen of the 19 got all five. Thirteen of the 19 got none of the 20 changed answers right, including Claude Opus 5, GPT-5.5, GPT-5.6 Terra and four of the five Geminis.
 
-On the 20 changed questions, across 18 models, there were 17 correct answers. GPT-6 Astra produced 4 of them, all about British Columbia, and gave the right reason: "British Columbia adopted permanent UTC−07:00 in March 2026, so Vancouver does not turn its clocks back in November." The other 13 came with reasons that were wrong, and not one of those 13 notes says that anything changed in 2026. Claude Haiku 4.5 put Casablanca on +00:00 in October because it believes Morocco never adopted +01:00 in the first place. Qwen said Calgary's clocks do not change on November 1 because "the fall back occurs on 2026-11-02". November 1 is the Sunday. I read every one of the thirteen. Not one model knew that Alberta, the Northwest Territories or Morocco had changed anything.
+On the 20 changed questions, across 19 models, there were 17 correct answers. GPT-6 Astra produced 4 of them, all about British Columbia, and gave the right reason: "British Columbia adopted permanent UTC−07:00 in March 2026, so Vancouver does not turn its clocks back in November." The other 13 came with reasons that were wrong, and not one of those 13 notes says that anything changed in 2026. Claude Haiku 4.5 put Casablanca on +00:00 in October because it believes Morocco never adopted +01:00 in the first place. Qwen said Calgary's clocks do not change on November 1 because "the fall back occurs on 2026-11-02". November 1 is the Sunday. I read every one of the thirteen. Not one model knew that Alberta, the Northwest Territories or Morocco had changed anything.
 
-The Calgary offset question is the one I would put in front of a judge, because it cannot be right by accident. Calgary at noon on November 15, 2026 is -06:00. All 18 models said -07:00.
+The Calgary offset question is the one I would put in front of a judge, because it cannot be right by accident. Calgary at noon on November 15, 2026 is -06:00. All 19 models said -07:00.
 
 ![How many of the 25 questions about the 2026 changes each model got right, from memory and with the tool](https://raw.githubusercontent.com/JonathanSolvesProblems/world-clock/main/results/wave.png)
 
@@ -97,7 +98,7 @@ The peak height matters as much as its position. A model at 46 of 46 has a sharp
 
 ### Manitoba, which nobody can know yet
 
-Manitoba announced on September 17 that it will not fall back on November 1. The tz maintainers have modelled it in their working tree, and no release carries it yet. Every model was asked what Winnipeg does on that morning. Seventeen said the clocks fall back, which is also what tzdata 2026d says today. Qwen said they do not, because it believes the fall-back is on November 2. The province says they will not. Winners of this challenge are announced November 5, four days after the answer becomes a fact, so whoever reads this after November 1 knows something neither the models nor the database did when I ran it.
+Manitoba announced on September 17 that it will not fall back on November 1. The tz maintainers have modelled it in their working tree, and no release carries it yet. Every model was asked what Winnipeg does on that morning. Eighteen said the clocks fall back, which is also what tzdata 2026d says today. Qwen said they do not, because it believes the fall-back is on November 2. The province says they will not. Winners of this challenge are announced November 5, four days after the answer becomes a fact, so whoever reads this after November 1 knows something neither the models nor the database did when I ran it.
 
 ## What surprised me
 
@@ -105,13 +106,13 @@ Release date is not the clock. Gemini 3.8 Flash shipped on September 2, 2026 wit
 
 Knowing about a law is not knowing its date. Opus 5 can tell you British Columbia passed a permanent daylight time law and still puts Vancouver on the wrong offset, because the fact it learned was "passed" and the fact that matters is "in force since March 9."
 
-The models agree with each other more than with the world. On the Calgary to Toronto question, all 18 models gave the same wrong answer, with the same confidence, and most of them cited the same rule: daylight saving ends on the first Sunday in November. That rule was true in Alberta for 55 years. It stopped being true on June 18.
+The models agree with each other more than with the world. On the Calgary to Toronto question, all 19 models gave the same wrong answer, with the same confidence, and most of them cited the same rule: daylight saving ends on the first Sunday in November. That rule was true in Alberta for 55 years. It stopped being true on June 18.
 
 ## What I would measure next
 
 Run the same 125 questions again after tzdata 2027a, without changing a line, and see which vendors' clocks moved. The answer key updates itself; the benchmark is designed to be re-run.
 
-Tell the model the current date in the prompt and see whether any of them hedge. Not one of the 18 said "as of my training data" on a question about November 2026.
+Tell the model the current date in the prompt and see whether any of them hedge. Not one of the 19 said "as of my training data" on a question about November 2026.
 
 Add a web-search condition beside the tzdata tool, because the interesting question is not whether a tool fixes it. It is whether a model that believes it knows the answer bothers to check.
 

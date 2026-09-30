@@ -14,6 +14,7 @@
 | zai/glm-5 | memory | 90/122 | 73.8% | 2024a (2024-02-01) to 2024b (2024-09-04) | 40/46 | not published | yes (wrong) |
 | openai/gpt-5.4-mini-2026-03-17 | memory | 90/122 | 73.8% | 2024a (2024-02-01) to 2026a (2026-03-01) | 37/46 | 2025-08-31 | yes (wrong) |
 | xai/grok-4.20-0309-reasoning | memory | 89/122 | 73.0% | 2023d (2023-12-21) to 2024b (2024-09-04) | 38/46 | 2025-09-01 | yes (wrong) |
+| google/gemma-4-31b | memory | 87/122 | 71.3% | 2024a (2024-02-01) to 2024b (2024-09-04) | 40/46 | 2025-01 | yes (wrong) |
 | anthropic/claude-sonnet-5@default | memory | 86/122 | 70.5% | 2022f (2022-10-28) to 2022f (2022-10-28) | 39/46 | 2026-01 | yes (wrong) |
 | deepseek-ai/deepseek-r1-0528 | memory | 86/122 | 70.5% | 2022f (2022-10-28) to 2024b (2024-09-04) | 34/46 | 2025-03-31 | yes (wrong) |
 | anthropic/claude-opus-4-5@20251101 | memory | 85/122 | 69.7% | 2022g (2022-11-29) to 2024b (2024-09-04) | 35/46 | not published | yes (wrong) |
@@ -39,6 +40,7 @@
 | zai/glm-5 | memory | 22/22 | 26/26 | 20/31 | 17/18 | 5/25 |
 | openai/gpt-5.4-mini-2026-03-17 | memory | 19/22 | 26/26 | 21/31 | 18/18 | 6/25 |
 | xai/grok-4.20-0309-reasoning | memory | 22/22 | 26/26 | 19/31 | 18/18 | 4/25 |
+| google/gemma-4-31b | memory | 21/22 | 25/26 | 22/31 | 16/18 | 3/25 |
 | anthropic/claude-sonnet-5@default | memory | 22/22 | 26/26 | 15/31 | 18/18 | 5/25 |
 | deepseek-ai/deepseek-r1-0528 | memory | 22/22 | 26/26 | 16/31 | 17/18 | 5/25 |
 | anthropic/claude-opus-4-5@20251101 | memory | 22/22 | 24/26 | 17/31 | 17/18 | 5/25 |
@@ -86,6 +88,9 @@
 - xai/grok-4.20-0309-reasoning [memory] offset:winnipeg:2026-11-15:12:00: model {"utc_offset": "-06:00"}; tzdata 2026d {"utc_offset": "-06:00"}; official {"utc_offset": "-05:00"}. Note: Winnipeg applies Central Standard Time (CST) after DST ends on the first Sunday in November.
 - xai/grok-4.20-0309-reasoning [memory] change_day:winnipeg:2026-11-01: model {"changes": true, "direction": "back"}; tzdata 2026d {"changes": true, "direction": "back"}; official {"changes": false, "direction": "none"}. Note: On the first Sunday in November 2026, clocks in Winnipeg fall back one hour at 2:00 a.m. local time.
 - xai/grok-4.20-0309-reasoning [memory] convert:winnipeg:toronto:2026-11-15:09:00: model {"date": "2026-11-15", "time": "10:00"}; tzdata 2026d {"date": "2026-11-15", "time": "10:00"}; official {"date": "2026-11-15", "time": "09:00"}. Note: Used UTC-6 for Winnipeg and UTC-5 for Toronto.
+- google/gemma-4-31b [memory] offset:winnipeg:2026-11-15:12:00: model {"utc_offset": "unparsed:''"}; tzdata 2026d {"utc_offset": "-06:00"}; official {"utc_offset": "-05:00"}. Note: 
+- google/gemma-4-31b [memory] change_day:winnipeg:2026-11-01: model {"changes": true, "direction": "back"}; tzdata 2026d {"changes": true, "direction": "back"}; official {"changes": false, "direction": "none"}. Note: On November 1, 2026, Winnipeg transitions from Central Daylight Time back to Central Standard Time as part of the annual end of daylight saving time.
+- google/gemma-4-31b [memory] convert:winnipeg:toronto:2026-11-15:09:00: model {"date": "2026-11-15", "time": "10:00"}; tzdata 2026d {"date": "2026-11-15", "time": "10:00"}; official {"date": "2026-11-15", "time": "09:00"}. Note: Winnipeg is at UTC-6 and Toronto is at UTC-5.
 - anthropic/claude-sonnet-5@default [memory] offset:winnipeg:2026-11-15:12:00: model {"utc_offset": "-06:00"}; tzdata 2026d {"utc_offset": "-06:00"}; official {"utc_offset": "-05:00"}. Note: On 2026-11-15 Winnipeg is on Central Standard Time, as daylight saving time ends on the first Sunday in November (November 1, 2026).
 - anthropic/claude-sonnet-5@default [memory] change_day:winnipeg:2026-11-01: model {"changes": true, "direction": "back"}; tzdata 2026d {"changes": true, "direction": "back"}; official {"changes": false, "direction": "none"}. Note: On November 1, 2026, Winnipeg clocks fall back one hour from 2:00 a.m. to 1:00 a.m. as daylight saving time ends.
 - anthropic/claude-sonnet-5@default [memory] convert:winnipeg:toronto:2026-11-15:09:00: model {"date": "2026-11-15", "time": "10:00"}; tzdata 2026d {"date": "2026-11-15", "time": "10:00"}; official {"date": "2026-11-15", "time": "09:00"}. Note: Winnipeg was on Central Standard Time (UTC-6) and Toronto was on Eastern Standard Time (UTC-5) since both had already ended daylight saving time by November 15, 2026.

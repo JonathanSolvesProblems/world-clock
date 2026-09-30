@@ -47,6 +47,7 @@ DISPLAY = {
     "gemini-3.1-pro-preview": "Gemini 3.1 Pro",
     "gemini-2.5-pro": "Gemini 2.5 Pro",
     "gemma-4-31b-it": "Gemma 4 31B",
+    "gemma-4-31b": "Gemma 4 31B",
     "grok-4.20-0309-reasoning": "Grok 4.20 Reasoning",
     "grok-4.20-0309-non-reasoning": "Grok 4.20",
     "deepseek-r1-0528": "DeepSeek-R1",

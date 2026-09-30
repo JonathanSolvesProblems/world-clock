@@ -12,6 +12,7 @@ X  gemini-3.5-flash-lite        {"changes": true, "direction": "back"}   Clocks 
 X  glm-5                        {"changes": true, "direction": "back"}   Daylight saving time ends on this date at 2:00 a.m., causing clocks to fall back one hour to 1:00 a.m.
 X  gpt-5.4-mini-2026-03-17      {"changes": true, "direction": "back"}   In Calgary, clocks fall back one hour on 2026-11-01 when daylight saving time ends, so the day includes a backward clock change.
 X  grok-4.20-0309-reasoning     {"changes": true, "direction": "back"}   Clocks fall back one hour at 2:00 a.m. local time on the first Sunday in November.
+X  gemma-4-31b                  {"changes": true, "direction": "back"}   Clocks in Calgary fall back one hour on November 1, 2026, to end Daylight Saving Time.
 X  claude-sonnet-5              {"changes": true, "direction": "back"}   Calgary observes the end of Daylight Saving Time on the first Sunday of November, and in 2026 that falls on November 1, when clocks fall back one hour at 2:00 a.m.
 X  deepseek-r1-0528             {"changes": true, "direction": "back"}   Clocks in Calgary fall back from 2:00 AM to 1:00 AM on November 1, 2026, ending daylight saving time.
 X  claude-opus-4-5              {"changes": true, "direction": "back"}   On November 1, 2026, clocks in Calgary fall back one hour at 2:00 AM local time as Daylight Saving Time ends, returning to Mountain Standard Time (UTC-7).
@@ -32,6 +33,7 @@ X  gemini-3.5-flash-lite        {"utc_offset": "-07:00"}                 Mountai
 X  glm-5                        {"utc_offset": "-07:00"}                 I applied the Canadian rule where daylight saving time ends on the first Sunday of November, returning the region to Mountain Standard Time.
 X  gpt-5.4-mini-2026-03-17      {"utc_offset": "-07:00"}                 Calgary uses Mountain Standard Time (UTC-07:00) on 2026-11-15 because daylight saving time has ended by mid-November.
 X  grok-4.20-0309-reasoning     {"utc_offset": "-07:00"}                 On 2026-11-15 Calgary uses MST (UTC-7) after DST ends on the first Sunday in November.
+X  gemma-4-31b                  {"utc_offset": "-07:00"}                 Calgary observes Mountain Standard Time (MST) in November after Daylight Saving Time ends on the first Sunday of the month.
 X  claude-sonnet-5              {"utc_offset": "-07:00"}                 On November 15, 2026, Calgary is on Mountain Standard Time since daylight saving time ends on the first Sunday of November (November 1, 2026).
 X  deepseek-r1-0528             {"utc_offset": "-07:00"}                 Applied Alberta's daylight saving time rule ending on the first Sunday of November (November 1, 2026), placing Calgary on Mountain Standard Time.
 X  claude-opus-4-5              {"utc_offset": "-07:00"}                 Calgary, Alberta observes Mountain Standard Time (MST) on November 15, 2026, as daylight saving time ended on the first Sunday of November (November 1, 2026).
@@ -52,6 +54,7 @@ X  gemini-3.5-flash-lite        {"utc_offset": "-08:00"}                 Vancouv
 X  glm-5                        {"utc_offset": "-08:00"}                 Vancouver observes Pacific Standard Time (UTC-8) during the winter months, and Daylight Saving Time ended on November 1, 2026.
 X  gpt-5.4-mini-2026-03-17      {"utc_offset": "-08:00"}                 Vancouver observes Pacific Standard Time on 2026-12-15, since daylight saving time ended in November and is not in effect in December.
 X  grok-4.20-0309-reasoning     {"utc_offset": "-08:00"}                 Vancouver uses Pacific Standard Time (PST) offset in mid-December.
+X  gemma-4-31b                  {"utc_offset": "-08:00"}                 Vancouver is on Pacific Standard Time (PST) in December.
 X  claude-sonnet-5              {"utc_offset": "-08:00"}                 On December 15, 2026, Vancouver observes Pacific Standard Time (PST) since daylight saving time ends in early November.
 X  deepseek-r1-0528             {"utc_offset": "-08:00"}                 Applied Pacific Standard Time (PST) rule as daylight saving time ended on November 1, 2026.
 X  claude-opus-4-5              {"utc_offset": "-08:00"}                 Vancouver, British Columbia observes Pacific Standard Time (PST) in December, as daylight saving time ends on the first Sunday of November.
@@ -72,6 +75,7 @@ X  gemini-3.5-flash-lite        {"utc_offset": "+01:00"}                 Morocco
 X  glm-5                        {"utc_offset": "+01:00"}                 Morocco observes daylight saving time from the last Sunday in March to the last Sunday in October (UTC+1), suspending it only during Ramadan.
 X  gpt-5.4-mini-2026-03-17      {"utc_offset": "+01:00"}                 Casablanca follows Morocco’s year-round UTC+1 standard time, with the annual Ramadan suspension of DST not applying on 2026-10-15.
 X  grok-4.20-0309-reasoning     {"utc_offset": "+01:00"}                 Permanent UTC+1 rule for Morocco outside of Ramadan (which does not fall in mid-October).
+X  gemma-4-31b                  {"utc_offset": "+01:00"}                 Morocco observes UTC+1 year-round, except for a temporary return to UTC+0 during the month of Ramadan.
 X  claude-sonnet-5              {"utc_offset": "+01:00"}                 Morocco observes permanent daylight time (UTC+1) year-round except for a brief return to standard time during Ramadan, and October 15, 2026 falls outside Ramadan, so UTC+1 applies.
 X  deepseek-r1-0528             {"utc_offset": "+01:00"}                 Since October 2023, Morocco observes permanent standard time (UTC+01:00) year-round without daylight saving time changes.
 X  claude-opus-4-5              {"utc_offset": "+01:00"}                 Morocco observes UTC+1 year-round since 2018, having permanently adopted Western European Summer Time (WEST) and no longer switching clocks for daylight saving time.
@@ -92,6 +96,7 @@ X  gemini-3.5-flash-lite        {"changes": false, "direction": "none"}  Morocco
 X  glm-5                        {"changes": false, "direction": "none"}  Morocco observes permanent UTC+1, suspending it only during Ramadan (which occurs in February and March in 2026), so there are no clock changes in September.
 X  gpt-5.4-mini-2026-03-17      {"changes": false, "direction": "none"}  Casablanca does not change clocks on 2026-09-20; Morocco remains on UTC+1 year-round except for the temporary Ramadan suspension, which is not in effect on this date.
 X  grok-4.20-0309-reasoning     {"changes": false, "direction": "none"}  Morocco maintains UTC+01:00 year-round outside of the Ramadan period, so no clock change occurs on or near September 20 2026.
+X  gemma-4-31b                  {"changes": false, "direction": "none"}  Morocco maintains a permanent UTC+1 offset throughout the year, with the only exception being a temporary shift back to UTC+0 during the month of Ramadan.
 X  claude-sonnet-5              {"changes": false, "direction": "none"}  Morocco's clock changes are tied to fixed dates (and a Ramadan pause) that do not fall on September 20, 2026, so Casablanca's clocks remain unchanged that day.
 X  deepseek-r1-0528             {"changes": false, "direction": "none"}  Morocco observes DST from late March to late October; on 2026-09-20, clocks remain on UTC+1 with no changes scheduled.
 X  claude-opus-4-5              {"changes": false, "direction": "none"}  Morocco abolished daylight saving time in 2018 and now permanently observes UTC+1 year-round, so no clock changes occur on September 20, 2026.
@@ -112,6 +117,7 @@ X  gemini-3.5-flash-lite        {"utc_offset": "-04:00"}                 Chile i
 X  glm-5                        {"utc_offset": "-04:00"}                 Coyhaique in the Aysén Region follows the America/Santiago timezone rules, and on July 15, 2025 it is during Chilean winter standard time.
 ok gpt-5.4-mini-2026-03-17      {"utc_offset": "-03:00"}                 Coyhaique, Aysén Region, Chile uses permanent Chile Summer Time (CLST) during July 2025, which is UTC−03:00.
 X  grok-4.20-0309-reasoning     {"utc_offset": "-04:00"}                 Coyhaique observes Chile Standard Time (CLT UTC-4) in July outside the DST period.
+X  gemma-4-31b                  {"utc_offset": "-04:00"}                 Coyhaique follows continental Chile's time, which observes Standard Time (UTC-4) in July.
 X  claude-sonnet-5              {"utc_offset": "-04:00"}                 Chile observes standard time (UTC-04:00) in July, as daylight saving time (UTC-03:00) does not apply during the Southern Hemisphere winter.
 X  deepseek-r1-0528             {"utc_offset": "-04:00"}                 Chile Standard Time (CLT)
 X  claude-opus-4-5              {"utc_offset": "-04:00"}                 Chile observes standard time (Chile Standard Time, CLT) during the Southern Hemisphere winter, which is UTC-04:00, as the country moved to permanent standard time in 2019 but later reinstated DST with winter standard time from the first Saturday of April to the first Saturday of September.
@@ -132,6 +138,7 @@ ok gemini-3.5-flash-lite        {"utc_offset": "+05:00"}                 Kazakhs
 ok glm-5                        {"utc_offset": "+05:00"}                 I applied Kazakhstan's time zone rule effective March 1, 2024, when the country consolidated to a single time zone at UTC+5 and Almaty moved from the former UTC+6 offset.
 ok gpt-5.4-mini-2026-03-17      {"utc_offset": "+05:00"}                 Almaty, Kazakhstan is on UTC+05:00 year-round after Kazakhstan’s 2024 nationwide time-zone change, so 12:00 local time on 2024-07-15 uses UTC+05:00.
 ok grok-4.20-0309-reasoning     {"utc_offset": "+05:00"}                 Kazakhstan unified its time zones to permanent UTC+05:00 effective 1 March 2024 with no DST observed.
+ok gemma-4-31b                  {"utc_offset": "+05:00"}                 As of March 1, 2024, all of Kazakhstan, including Almaty, moved to a single time zone of UTC+5.
 X  claude-sonnet-5              {"utc_offset": "+06:00"}                 Kazakhstan does not observe daylight saving time, and Almaty has used a fixed UTC+6 offset since 2024.
 X  deepseek-r1-0528             {"utc_offset": "+06:00"}                 Almaty observes Kazakhstan Time (UTC+06:00) year-round without daylight saving time since 2005.
 ok claude-opus-4-5              {"utc_offset": "+05:00"}                 Kazakhstan uses UTC+5 throughout the country since March 1, 2024, after abolishing time zones.
@@ -152,6 +159,7 @@ X  claude-haiku-4-5             {"utc_offset": "+06:00"}                 Kazakhs
 ~  glm-5                        {"changes": true, "direction": "back"}   Clocks in Winnipeg fall back one hour at 2:00 AM local time on November 1, 2026, ending daylight saving time.
 ~  gpt-5.4-mini-2026-03-17      {"changes": true, "direction": "back"}   Winnipeg ends daylight saving time on 2026-11-01, with clocks moving back one hour in the early morning.
 ~  grok-4.20-0309-reasoning     {"changes": true, "direction": "back"}   On the first Sunday in November 2026, clocks in Winnipeg fall back one hour at 2:00 a.m. local time.
+~  gemma-4-31b                  {"changes": true, "direction": "back"}   On November 1, 2026, Winnipeg transitions from Central Daylight Time back to Central Standard Time as part of the annual end of daylight saving time.
 ~  claude-sonnet-5              {"changes": true, "direction": "back"}   On November 1, 2026, Winnipeg clocks fall back one hour from 2:00 a.m. to 1:00 a.m. as daylight saving time ends.
 ~  deepseek-r1-0528             {"changes": true, "direction": "back"}   Clocks fall back one hour at 2:00 AM CDT to 1:00 AM CST on November 1, 2026, ending Daylight Saving Time.
 ~  claude-opus-4-5              {"changes": true, "direction": "back"}   On November 1, 2026, at 2:00 AM local time in Winnipeg, Manitoba, clocks fall back one hour to 1:00 AM as Daylight Saving Time ends and Central Standard Time begins.

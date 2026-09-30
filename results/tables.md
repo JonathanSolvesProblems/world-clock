@@ -1,6 +1,6 @@
 ﻿## Counts
 
-Models scored from memory: 18. Put Calgary on Mountain Standard Time (-07:00) on November 15, 2026: 18 of 18 that answered. Assert a fall-back on November 1: 17 of 18. Clocks dated current: 0 of 18.
+Models scored from memory: 19. Put Calgary on Mountain Standard Time (-07:00) on November 15, 2026: 19 of 19 that answered. Assert a fall-back on November 1: 18 of 19. Clocks dated current: 0 of 19.
 
 ## Headline, from memory
 
@@ -18,6 +18,7 @@ Models scored from memory: 18. Put Calgary on Mountain Standard Time (-07:00) on
 | glm-5 | 2026-02-11 | 90 | 5/25 | 2024a to 2024b (2024-02 to 2024-09), agrees on 40 of 46 | not published | -07:00 (wrong) |
 | gpt-5.4-mini-2026-03-17 | 2026-03-17 | 90 | 6/25 | 2024a to 2026a (2024-02 to 2026-03), agrees on 37 of 46 | 2025-08-31 | -07:00 (wrong) |
 | grok-4.20-0309-reasoning | 2026-03 | 89 | 4/25 | 2023d to 2024b (2023-12 to 2024-09), agrees on 38 of 46 | 2025-09-01 | -07:00 (wrong) |
+| gemma-4-31b | 2026-04-02 | 87 | 3/25 | 2024a to 2024b (2024-02 to 2024-09), agrees on 40 of 46 | 2025-01 | -07:00 (wrong) |
 | claude-sonnet-5 | 2026-06-30 | 86 | 5/25 | 2022f (2022-10), agrees on 39 of 46 | 2026-01 | -07:00 (wrong) |
 | deepseek-r1-0528 | 2025-05-28 | 86 | 5/25 | 2022f to 2024b (2022-10 to 2024-09), agrees on 34 of 46 | 2025-03-31 | -07:00 (wrong) |
 | claude-opus-4-5 | 2025-11 | 85 | 5/25 | 2022g to 2024b (2022-11 to 2024-09), agrees on 35 of 46 | not published | -07:00 (wrong) |
@@ -41,6 +42,7 @@ Models scored from memory: 18. Put Calgary on Mountain Standard Time (-07:00) on
 | GLM-5 | 2026-02-11 | 90 | 5 | 2024a to 2024b (February 2024 to September 2024), agrees on 40 of 46 | not published |
 | GPT-5.4 mini | 2026-03-17 | 90 | 6 | 2024a to 2026a (February 2024 to March 2026), agrees on 37 of 46 | 2025-08-31 |
 | Grok 4.20 Reasoning | 2026-03 | 89 | 4 | 2023d to 2024b (December 2023 to September 2024), agrees on 38 of 46 | 2025-09-01 |
+| Gemma 4 31B | 2026-04-02 | 87 | 3 | 2024a to 2024b (February 2024 to September 2024), agrees on 40 of 46 | 2025-01 |
 | Claude Sonnet 5 | 2026-06-30 | 86 | 5 | 2022f (October 2022), agrees on 39 of 46 | 2026-01 |
 | DeepSeek-R1 | 2025-05-28 | 86 | 5 | 2022f to 2024b (October 2022 to September 2024), agrees on 34 of 46 | 2025-03-31 |
 | Claude Opus 4.5 | 2025-11 | 85 | 5 | 2022g to 2024b (November 2022 to September 2024), agrees on 35 of 46 | not published |
@@ -64,6 +66,7 @@ Models scored from memory: 18. Put Calgary on Mountain Standard Time (-07:00) on
 | glm-5 | 26/26 | 22/22 | 17/18 | 20/31 | 5/25 |
 | gpt-5.4-mini-2026-03-17 | 26/26 | 19/22 | 18/18 | 21/31 | 6/25 |
 | grok-4.20-0309-reasoning | 26/26 | 22/22 | 18/18 | 19/31 | 4/25 |
+| gemma-4-31b | 25/26 | 21/22 | 16/18 | 22/31 | 3/25 |
 | claude-sonnet-5 | 26/26 | 22/22 | 18/18 | 15/31 | 5/25 |
 | deepseek-r1-0528 | 26/26 | 22/22 | 17/18 | 16/31 | 5/25 |
 | claude-opus-4-5 | 24/26 | 22/22 | 17/18 | 17/31 | 5/25 |
@@ -87,6 +90,7 @@ Models scored from memory: 18. Put Calgary on Mountain Standard Time (-07:00) on
 | glm-5 | 30 | 31 | 31 | 31 | 30 | 35 | 36 | 39 | 39 | 39 | 38 | **40** | **40** | 37 | 36 | 36 | 36 | 32 | 19 | 16 |
 | gpt-5.4-mini-2026-03-17 | 27 | 30 | 30 | 30 | 31 | 32 | 31 | 34 | 34 | 34 | 35 | **37** | **37** | 36 | **37** | **37** | **37** | 33 | 20 | 19 |
 | grok-4.20-0309-reasoning | 30 | 33 | 33 | 33 | 30 | 33 | 34 | 37 | 37 | 37 | **38** | **38** | **38** | 37 | 36 | 36 | 36 | 32 | 19 | 16 |
+| gemma-4-31b | 25 | 28 | 28 | 28 | 31 | 34 | 35 | 38 | 38 | 38 | 37 | **40** | **40** | 39 | 38 | 38 | 38 | 34 | 22 | 19 |
 | claude-sonnet-5 | 34 | 33 | 33 | 33 | 36 | **39** | 38 | 37 | 37 | 37 | 38 | 34 | 34 | 33 | 32 | 32 | 32 | 28 | 15 | 12 |
 | deepseek-r1-0528 | 33 | 32 | 32 | 32 | 33 | **34** | 33 | **34** | **34** | **34** | **34** | **34** | **34** | 32 | 31 | 31 | 31 | 27 | 14 | 11 |
 | claude-opus-4-5 | 33 | 30 | 30 | 30 | 31 | 34 | **35** | 34 | 34 | 34 | 33 | **35** | **35** | 34 | 33 | 33 | 33 | 29 | 16 | 13 |
@@ -110,6 +114,7 @@ Models scored from memory: 18. Put Calgary on Mountain Standard Time (-07:00) on
 | glm-5 | -06:00 | yes, back | 10:00 |
 | gpt-5.4-mini-2026-03-17 | -06:00 | yes, back | 10:00 |
 | grok-4.20-0309-reasoning | -06:00 | yes, back | 10:00 |
+| gemma-4-31b | unparsed:'' | yes, back | 10:00 |
 | claude-sonnet-5 | -06:00 | yes, back | 10:00 |
 | deepseek-r1-0528 | -06:00 | yes, back | 10:00 |
 | claude-opus-4-5 | -06:00 | yes, back | 10:00 |

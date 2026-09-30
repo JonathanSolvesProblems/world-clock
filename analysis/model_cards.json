@@ -21,5 +21,6 @@
   "deepseek/deepseek-r1-0528": {"vendor": "DeepSeek", "released": "2025-05-28", "stated_cutoff": "2025-03-31", "cutoff_source": "third-party trackers (reports vary)"},
   "zai/glm-5": {"vendor": "Z.ai (Zhipu)", "released": "2026-02-11", "stated_cutoff": null, "cutoff_source": "not found"},
   "qwen/qwen3-next-80b-a3b-thinking": {"vendor": "Alibaba Qwen", "released": "2025-09-11", "stated_cutoff": "2025-09-30", "cutoff_source": "third-party trackers"},
-  "google/gemma-4-31b-it": {"vendor": "Google", "released": "2026-04-02", "stated_cutoff": "2025-01", "cutoff_source": "third-party trackers"}
+  "google/gemma-4-31b-it": {"vendor": "Google", "released": "2026-04-02", "stated_cutoff": "2025-01", "cutoff_source": "third-party trackers"},
+  "google/gemma-4-31b": {"vendor": "Google", "released": "2026-04-02", "stated_cutoff": "2025-01", "cutoff_source": "third-party trackers (the proxy reports the run under this name; same model as gemma-4-31b-it)"}
 }

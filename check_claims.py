@@ -184,6 +184,11 @@ def check_results() -> None:
 
     # Lineup.
     expect(r"<N> models, all through Kaggle Benchmarks", n_mem)
+    gemma = row("Gemma 4 31B")
+    if gemma:
+        unparsed = gemma.get("unparsed_answers")
+        unparsed = len(unparsed) if isinstance(unparsed, list) else int(unparsed or 0)
+        expect(r"Gemma 4 left the answer field empty on <N> of them", unparsed)
 
     # Title and the Calgary offset question.
     standard = sum(1 for r in mem if r.get("calgary_on_standard_time_nov_15") is True)
