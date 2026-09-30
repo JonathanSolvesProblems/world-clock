@@ -9694,629 +9694,6 @@
   "errored": []
  },
  {
-  "model": "google/gemini-3.1-pro-preview",
-  "condition": "tool",
-  "task": "world-clock-tool-v2",
-  "card": {
-   "vendor": "Google",
-   "released": "2026-02-19",
-   "stated_cutoff": "2025-01",
-   "cutoff_source": "Google developer docs"
-  },
-  "calgary_still_falls_back_nov_1": null,
-  "calgary_on_standard_time_nov_15": null,
-  "source": "results\\raw\\world-clock-tool-v2\\4\\gemini-3.1-pro-preview\\3643794\\world_clock_answers.json",
-  "graded_correct": 15,
-  "graded_total": 15,
-  "unparsed_answers": 0,
-  "tool_subset": {
-   "correct": 15,
-   "total": 15
-  },
-  "accuracy_pct": 100.0,
-  "per_family": {
-   "awkward_offset": {
-    "correct": 2,
-    "total": 2,
-    "pct": 100.0
-   },
-   "control": {
-    "correct": 6,
-    "total": 6,
-    "pct": 100.0
-   },
-   "legislated_2022_2025": {
-    "correct": 5,
-    "total": 5,
-    "pct": 100.0
-   },
-   "southern": {
-    "correct": 2,
-    "total": 2,
-    "pct": 100.0
-   }
-  },
-  "clock": {
-   "ladder_cases": 5,
-   "best_agreement": 5,
-   "best_agreement_pct": 100.0,
-   "releases_tied": [
-    "2023.1 (2023a, 2023-03-22)",
-    "2023.2 (2023b, 2023-03-23)",
-    "2023.3 (2023c, 2023-03-28)",
-    "2023.4 (2023d, 2023-12-21)",
-    "2024.1 (2024a, 2024-02-01)",
-    "2024.2 (2024b, 2024-09-04)",
-    "2025.1 (2025a, 2025-01-15)",
-    "2025.2 (2025b, 2025-03-22)",
-    "2025.3 (2025c, 2025-12-10)",
-    "2026.1 (2026a, 2026-03-01)",
-    "2026.2 (2026b, 2026-04-22)",
-    "2026.3 (2026c, 2026-07-08)",
-    "2026.4 (2026d, 2026-09-11)"
-   ],
-   "earliest": {
-    "pypi": "2023.1",
-    "iana": "2023a",
-    "date": "2023-03-22"
-   },
-   "latest": {
-    "pypi": "2026.4",
-    "iana": "2026d",
-    "date": "2026-09-11"
-   },
-   "current": true,
-   "agreement_by_release": {
-    "2022.1 (2022a)": 0,
-    "2022.2 (2022b)": 1,
-    "2022.3 (2022c)": 1,
-    "2022.4 (2022d)": 1,
-    "2022.5 (2022e)": 2,
-    "2022.6 (2022f)": 3,
-    "2022.7 (2022g)": 3,
-    "2023.1 (2023a)": 5,
-    "2023.2 (2023b)": 5,
-    "2023.3 (2023c)": 5,
-    "2023.4 (2023d)": 5,
-    "2024.1 (2024a)": 5,
-    "2024.2 (2024b)": 5,
-    "2025.1 (2025a)": 5,
-    "2025.2 (2025b)": 5,
-    "2025.3 (2025c)": 5,
-    "2026.1 (2026a)": 5,
-    "2026.2 (2026b)": 5,
-    "2026.3 (2026c)": 5,
-    "2026.4 (2026d)": 5
-   }
-  },
-  "tool_calls": {
-   "cases": 15,
-   "cases_with_a_call": 12,
-   "total_calls": 14
-  },
-  "unresolved": [],
-  "wrong": [],
-  "errored": [
-   {
-    "params": {
-     "id": "offset:almaty:2024-07-15:12:00",
-     "family": "legislated_2022_2025",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Almaty, Kazakhstan at 12:00 local time on 2024-07-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+05:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.03256) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:asuncion:2025-06-15:12:00",
-     "family": "legislated_2022_2025",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Asunción, Paraguay at 12:00 local time on 2025-06-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-03:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032604) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:asuncion:2025-01-15:12:00",
-     "family": "legislated_2022_2025",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Asunción, Paraguay at 12:00 local time on 2025-01-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-03:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032232) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:coyhaique:2025-07-15:12:00",
-     "family": "legislated_2022_2025",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Coyhaique, Aysén Region, Chile at 12:00 local time on 2025-07-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-03:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032312) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:suva:2023-01-15:12:00",
-     "family": "legislated_2022_2025",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Suva, Fiji at 12:00 local time on 2023-01-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+12:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032192) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "convert:mexico_city:chicago:2023-07-15:09:00",
-     "family": "legislated_2022_2025",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2023-07-15 in Mexico City, Mexico. What is the local date and time at that same moment in Chicago, USA? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2023-07-15\", \"time\": \"10:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032592) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "convert:almaty:moscow:2024-07-15:09:00",
-     "family": "legislated_2022_2025",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2024-07-15 in Almaty, Kazakhstan. What is the local date and time at that same moment in Moscow, Russia? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2024-07-15\", \"time\": \"07:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032592) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "convert:asuncion:buenos_aires:2025-06-15:09:00",
-     "family": "legislated_2022_2025",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2025-06-15 in Asunción, Paraguay. What is the local date and time at that same moment in Buenos Aires, Argentina? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2025-06-15\", \"time\": \"09:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032652) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "convert:tehran:dubai:2023-07-15:09:00",
-     "family": "legislated_2022_2025",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2023-07-15 in Tehran, Iran. What is the local date and time at that same moment in Dubai, United Arab Emirates? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2023-07-15\", \"time\": \"09:30\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032632) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "convert:cairo:athens:2023-07-15:09:00",
-     "family": "legislated_2022_2025",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2023-07-15 in Cairo, Egypt. What is the local date and time at that same moment in Athens, Greece? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2023-07-15\", \"time\": \"09:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032572) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "convert:amman:jerusalem:2023-01-15:09:00",
-     "family": "legislated_2022_2025",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2023-01-15 in Amman, Jordan. What is the local date and time at that same moment in Jerusalem? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2023-01-15\", \"time\": \"08:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032552) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "change_day:mexico_city:2023-04-02",
-     "family": "legislated_2022_2025",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Mexico City, Mexico change at any point during the local calendar day of 2023-04-02, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": false, \"direction\": \"none\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032512) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "change_day:mexico_city:2022-10-30",
-     "family": "legislated_2022_2025",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Mexico City, Mexico change at any point during the local calendar day of 2022-10-30, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": true, \"direction\": \"back\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032512) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "change_day:tehran:2023-03-22",
-     "family": "legislated_2022_2025",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Tehran, Iran change at any point during the local calendar day of 2023-03-22, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": false, \"direction\": \"none\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032472) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "change_day:amman:2022-10-28",
-     "family": "legislated_2022_2025",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Amman, Jordan change at any point during the local calendar day of 2022-10-28, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": false, \"direction\": \"none\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032492) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "change_day:cairo:2023-04-28",
-     "family": "legislated_2022_2025",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Cairo, Egypt change at any point during the local calendar day of 2023-04-28, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": true, \"direction\": \"forward\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032472) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:almaty:2024-03-05:12:00",
-     "family": "legislated_2022_2025",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Almaty, Kazakhstan at 12:00 local time on 2024-03-05? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+05:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032232) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:asuncion:2025-03-25:12:00",
-     "family": "legislated_2022_2025",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Asunción, Paraguay at 12:00 local time on 2025-03-25? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-03:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032232) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "change_day:asuncion:2024-10-06",
-     "family": "legislated_2022_2025",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Asunción, Paraguay change at any point during the local calendar day of 2024-10-06, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": true, \"direction\": \"forward\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032512) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:vancouver:2026-11-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Vancouver, British Columbia, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-07:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032332) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:vancouver:2026-12-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Vancouver, British Columbia, Canada at 12:00 local time on 2026-12-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-07:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032332) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:vancouver:2026-07-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Vancouver, British Columbia, Canada at 12:00 local time on 2026-07-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-07:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032332) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:fort_nelson:2026-11-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Fort Nelson, British Columbia, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-07:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032332) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:calgary:2026-11-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Calgary, Alberta, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-06:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032272) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:edmonton:2026-12-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Edmonton, Alberta, Canada at 12:00 local time on 2026-12-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-06:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032272) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:yellowknife:2026-11-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Yellowknife, Northwest Territories, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-06:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032352) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:inuvik:2026-11-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Inuvik, Northwest Territories, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-06:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032332) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:casablanca:2026-10-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Casablanca, Morocco at 12:00 local time on 2026-10-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+00:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032232) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:casablanca:2026-12-15:12:00",
-     "family": "wave_2026",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Casablanca, Morocco at 12:00 local time on 2026-12-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"+00:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032232) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "convert:calgary:toronto:2026-11-15:09:00",
-     "family": "wave_2026",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-11-15 in Calgary, Alberta, Canada. What is the local date and time at that same moment in Toronto, Ontario, Canada? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-11-15\", \"time\": \"10:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032692) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "convert:vancouver:seattle:2026-11-15:09:00",
-     "family": "wave_2026",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-11-15 in Vancouver, British Columbia, Canada. What is the local date and time at that same moment in Seattle, Washington, USA? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-11-15\", \"time\": \"08:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032752) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "convert:calgary:denver:2026-11-15:09:00",
-     "family": "wave_2026",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-11-15 in Calgary, Alberta, Canada. What is the local date and time at that same moment in Denver, Colorado, USA? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-11-15\", \"time\": \"08:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032672) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "convert:casablanca:paris:2026-10-15:09:00",
-     "family": "wave_2026",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-10-15 in Casablanca, Morocco. What is the local date and time at that same moment in Paris, France? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-10-15\", \"time\": \"11:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032592) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "convert:casablanca:london:2026-12-15:09:00",
-     "family": "wave_2026",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-12-15 in Casablanca, Morocco. What is the local date and time at that same moment in London, United Kingdom? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-12-15\", \"time\": \"09:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032652) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "convert:inuvik:toronto:2026-11-15:09:00",
-     "family": "wave_2026",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-11-15 in Inuvik, Northwest Territories, Canada. What is the local date and time at that same moment in Toronto, Ontario, Canada? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-11-15\", \"time\": \"10:00\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032752) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "change_day:vancouver:2026-11-01",
-     "family": "wave_2026",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Vancouver, British Columbia, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": false, \"direction\": \"none\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032592) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "change_day:calgary:2026-11-01",
-     "family": "wave_2026",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Calgary, Alberta, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": false, \"direction\": \"none\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032552) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "change_day:edmonton:2026-11-01",
-     "family": "wave_2026",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Edmonton, Alberta, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": false, \"direction\": \"none\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032552) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "change_day:yellowknife:2026-11-01",
-     "family": "wave_2026",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Yellowknife, Northwest Territories, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": false, \"direction\": \"none\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032632) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "change_day:inuvik:2026-11-01",
-     "family": "wave_2026",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Inuvik, Northwest Territories, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": false, \"direction\": \"none\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032612) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "change_day:casablanca:2026-09-20",
-     "family": "wave_2026",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Casablanca, Morocco change at any point during the local calendar day of 2026-09-20, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": true, \"direction\": \"back\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032512) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "change_day:vancouver:2026-03-08",
-     "family": "wave_2026",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Vancouver, British Columbia, Canada change at any point during the local calendar day of 2026-03-08, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": true, \"direction\": \"forward\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032592) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "change_day:fort_nelson:2026-11-01",
-     "family": "wave_2026",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Fort Nelson, British Columbia, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": false, \"direction\": \"none\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032612) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "change_day:seattle:2026-11-01",
-     "family": "wave_2026",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Seattle, Washington, USA change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": true, \"direction\": \"back\"}",
-     "graded": true
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032552) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "offset:winnipeg:2026-11-15:12:00",
-     "family": "unresolved",
-     "kind": "offset",
-     "prompt": "What is the UTC offset in effect in Winnipeg, Manitoba, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
-     "expected_json": "{\"utc_offset\": \"-06:00\"}",
-     "graded": false
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032272) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "change_day:winnipeg:2026-11-01",
-     "family": "unresolved",
-     "kind": "change_day",
-     "prompt": "Do the clocks in Winnipeg, Manitoba, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
-     "expected_json": "{\"changes\": true, \"direction\": \"back\"}",
-     "graded": false
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032552) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   },
-   {
-    "params": {
-     "id": "convert:winnipeg:toronto:2026-11-15:09:00",
-     "family": "unresolved",
-     "kind": "convert",
-     "prompt": "It is 09:00 on 2026-11-15 in Winnipeg, Manitoba, Canada. What is the local date and time at that same moment in Toronto, Ontario, Canada? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
-     "expected_json": "{\"date\": \"2026-11-15\", \"time\": \"10:00\"}",
-     "graded": false
-    },
-    "error": "openai.PermissionDeniedError: Error code: 403 - {'code': '', 'message': 'The max estimated cost of operation ($0.032712) exceeds your available quota (based on max_output_tokens). Set max_output_tokens in your request to lower the reservation, or try again later.', 'param': '', 'type': 'permission_error'}"
-   }
-  ]
- },
- {
   "model": "anthropic/claude-haiku-4-5@20251001",
   "condition": "tool",
   "task": "world-clock-tool-v2",
@@ -11646,6 +11023,204 @@
   "errored": []
  },
  {
+  "model": "openai/gpt-5.5-2026-04-23",
+  "condition": "tool",
+  "task": "world-clock-tool-v2",
+  "card": {
+   "vendor": "OpenAI",
+   "released": "2026-04-23",
+   "stated_cutoff": "2025-12-01",
+   "cutoff_source": "OpenAI model docs"
+  },
+  "calgary_still_falls_back_nov_1": true,
+  "calgary_on_standard_time_nov_15": false,
+  "source": "results\\raw\\world-clock-tool-v2\\6\\gpt-5.5-2026-04-23\\3718009\\world_clock_answers.json",
+  "graded_correct": 39,
+  "graded_total": 43,
+  "unparsed_answers": 0,
+  "tool_subset": {
+   "correct": 39,
+   "total": 43
+  },
+  "accuracy_pct": 90.7,
+  "per_family": {
+   "awkward_offset": {
+    "correct": 2,
+    "total": 2,
+    "pct": 100.0
+   },
+   "control": {
+    "correct": 6,
+    "total": 6,
+    "pct": 100.0
+   },
+   "legislated_2022_2025": {
+    "correct": 8,
+    "total": 8,
+    "pct": 100.0
+   },
+   "southern": {
+    "correct": 2,
+    "total": 2,
+    "pct": 100.0
+   },
+   "wave_2026": {
+    "correct": 21,
+    "total": 25,
+    "pct": 84.0
+   }
+  },
+  "clock": {
+   "ladder_cases": 28,
+   "best_agreement": 24,
+   "best_agreement_pct": 85.7,
+   "releases_tied": [
+    "2026.4 (2026d, 2026-09-11)"
+   ],
+   "earliest": {
+    "pypi": "2026.4",
+    "iana": "2026d",
+    "date": "2026-09-11"
+   },
+   "latest": {
+    "pypi": "2026.4",
+    "iana": "2026d",
+    "date": "2026-09-11"
+   },
+   "current": true,
+   "agreement_by_release": {
+    "2022.1 (2022a)": 4,
+    "2022.2 (2022b)": 5,
+    "2022.3 (2022c)": 5,
+    "2022.4 (2022d)": 5,
+    "2022.5 (2022e)": 6,
+    "2022.6 (2022f)": 7,
+    "2022.7 (2022g)": 7,
+    "2023.1 (2023a)": 9,
+    "2023.2 (2023b)": 9,
+    "2023.3 (2023c)": 9,
+    "2023.4 (2023d)": 9,
+    "2024.1 (2024a)": 10,
+    "2024.2 (2024b)": 10,
+    "2025.1 (2025a)": 11,
+    "2025.2 (2025b)": 12,
+    "2025.3 (2025c)": 12,
+    "2026.1 (2026a)": 12,
+    "2026.2 (2026b)": 12,
+    "2026.3 (2026c)": 21,
+    "2026.4 (2026d)": 24
+   }
+  },
+  "tool_calls": {
+   "cases": 43,
+   "cases_with_a_call": 33,
+   "total_calls": 38
+  },
+  "unresolved": [
+   {
+    "id": "offset:winnipeg:2026-11-15:12:00",
+    "prompt": "What is the UTC offset in effect in Winnipeg, Manitoba, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
+    "model_answer": {
+     "utc_offset": "-06:00"
+    },
+    "tzdata_2026d": {
+     "utc_offset": "-06:00"
+    },
+    "official": {
+     "utc_offset": "-05:00"
+    },
+    "note": "Winnipeg is on Central Standard Time after daylight saving time ends on the first Sunday in November, so no DST is in effect on 2026-11-15."
+   },
+   {
+    "id": "change_day:winnipeg:2026-11-01",
+    "prompt": "Do the clocks in Winnipeg, Manitoba, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
+    "model_answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "tzdata_2026d": {
+     "changes": true,
+     "direction": "back"
+    },
+    "official": {
+     "changes": false,
+     "direction": "none"
+    },
+    "note": "In Winnipeg on 2026-11-01, clocks fall back from CDT (UTC-05:00) to CST (UTC-06:00)."
+   },
+   {
+    "id": "convert:winnipeg:toronto:2026-11-15:09:00",
+    "prompt": "It is 09:00 on 2026-11-15 in Winnipeg, Manitoba, Canada. What is the local date and time at that same moment in Toronto, Ontario, Canada? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
+    "model_answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "tzdata_2026d": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "official": {
+     "date": "2026-11-15",
+     "time": "09:00"
+    },
+    "note": "Winnipeg was on UTC-06:00 and Toronto was on UTC-05:00."
+   }
+  ],
+  "wrong": [
+   {
+    "id": "offset:vancouver:2026-12-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "-07:00"
+    },
+    "got": {
+     "utc_offset": "-08:00"
+    },
+    "note": "Vancouver observes Pacific Standard Time in mid-December, after daylight saving time has ended, so the applicable offset is UTC−08:00."
+   },
+   {
+    "id": "convert:calgary:toronto:2026-11-15:09:00",
+    "family": "wave_2026",
+    "expected": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "got": {
+     "date": "2026-11-15",
+     "time": "11:00"
+    },
+    "note": "I used UTC-07:00 for Calgary (MST) and UTC-05:00 for Toronto (EST)."
+   },
+   {
+    "id": "convert:vancouver:seattle:2026-11-15:09:00",
+    "family": "wave_2026",
+    "expected": {
+     "date": "2026-11-15",
+     "time": "08:00"
+    },
+    "got": {
+     "date": "2026-11-15",
+     "time": "09:00"
+    },
+    "note": "I used UTC-08:00 for Vancouver and UTC-08:00 for Seattle."
+   },
+   {
+    "id": "change_day:calgary:2026-11-01",
+    "family": "wave_2026",
+    "expected": {
+     "changes": false,
+     "direction": "none"
+    },
+    "got": {
+     "changes": true,
+     "direction": "back"
+    },
+    "note": "Calgary is scheduled to end daylight saving time on 2026-11-01, with clocks falling back one hour at 02:00 local time."
+   }
+  ],
+  "errored": []
+ },
+ {
   "model": "xai/grok-4.20-0309-non-reasoning",
   "condition": "tool",
   "task": "world-clock-tool-v2",
@@ -12324,6 +11899,246 @@
      "direction": "back"
     },
     "note": "Clocks fall back one hour at 2:00 AM local time on November 1, 2026, ending daylight saving time."
+   }
+  ],
+  "errored": []
+ },
+ {
+  "model": "google/gemini-3.1-pro-preview",
+  "condition": "tool",
+  "task": "world-clock-tool-v2",
+  "card": {
+   "vendor": "Google",
+   "released": "2026-02-19",
+   "stated_cutoff": "2025-01",
+   "cutoff_source": "Google developer docs"
+  },
+  "calgary_still_falls_back_nov_1": false,
+  "calgary_on_standard_time_nov_15": true,
+  "source": "results\\raw\\world-clock-tool-v2\\6\\gemini-3.1-pro-preview\\3718013\\world_clock_answers.json",
+  "graded_correct": 35,
+  "graded_total": 43,
+  "unparsed_answers": 0,
+  "tool_subset": {
+   "correct": 35,
+   "total": 43
+  },
+  "accuracy_pct": 81.4,
+  "per_family": {
+   "awkward_offset": {
+    "correct": 2,
+    "total": 2,
+    "pct": 100.0
+   },
+   "control": {
+    "correct": 6,
+    "total": 6,
+    "pct": 100.0
+   },
+   "legislated_2022_2025": {
+    "correct": 7,
+    "total": 8,
+    "pct": 87.5
+   },
+   "southern": {
+    "correct": 2,
+    "total": 2,
+    "pct": 100.0
+   },
+   "wave_2026": {
+    "correct": 18,
+    "total": 25,
+    "pct": 72.0
+   }
+  },
+  "clock": {
+   "ladder_cases": 28,
+   "best_agreement": 20,
+   "best_agreement_pct": 71.4,
+   "releases_tied": [
+    "2026.4 (2026d, 2026-09-11)"
+   ],
+   "earliest": {
+    "pypi": "2026.4",
+    "iana": "2026d",
+    "date": "2026-09-11"
+   },
+   "latest": {
+    "pypi": "2026.4",
+    "iana": "2026d",
+    "date": "2026-09-11"
+   },
+   "current": true,
+   "agreement_by_release": {
+    "2022.1 (2022a)": 8,
+    "2022.2 (2022b)": 9,
+    "2022.3 (2022c)": 9,
+    "2022.4 (2022d)": 9,
+    "2022.5 (2022e)": 10,
+    "2022.6 (2022f)": 11,
+    "2022.7 (2022g)": 11,
+    "2023.1 (2023a)": 13,
+    "2023.2 (2023b)": 13,
+    "2023.3 (2023c)": 13,
+    "2023.4 (2023d)": 13,
+    "2024.1 (2024a)": 14,
+    "2024.2 (2024b)": 14,
+    "2025.1 (2025a)": 15,
+    "2025.2 (2025b)": 14,
+    "2025.3 (2025c)": 14,
+    "2026.1 (2026a)": 14,
+    "2026.2 (2026b)": 18,
+    "2026.3 (2026c)": 17,
+    "2026.4 (2026d)": 20
+   }
+  },
+  "tool_calls": {
+   "cases": 43,
+   "cases_with_a_call": 41,
+   "total_calls": 72
+  },
+  "unresolved": [
+   {
+    "id": "offset:winnipeg:2026-11-15:12:00",
+    "prompt": "What is the UTC offset in effect in Winnipeg, Manitoba, Canada at 12:00 local time on 2026-11-15? Answer with the offset in the form +HH:MM or -HH:MM.",
+    "model_answer": {
+     "utc_offset": "-06:00"
+    },
+    "tzdata_2026d": {
+     "utc_offset": "-06:00"
+    },
+    "official": {
+     "utc_offset": "-05:00"
+    },
+    "note": "Winnipeg observes Central Standard Time (UTC-06:00) during this period since daylight saving time ends on the first Sunday of November."
+   },
+   {
+    "id": "change_day:winnipeg:2026-11-01",
+    "prompt": "Do the clocks in Winnipeg, Manitoba, Canada change at any point during the local calendar day of 2026-11-01, either springing forward or falling back? Answer whether they change and, if so, in which direction.",
+    "model_answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "tzdata_2026d": {
+     "changes": true,
+     "direction": "back"
+    },
+    "official": {
+     "changes": false,
+     "direction": "none"
+    },
+    "note": "On November 1, 2026, the clocks in Winnipeg fall back by one hour as Daylight Saving Time ends."
+   },
+   {
+    "id": "convert:winnipeg:toronto:2026-11-15:09:00",
+    "prompt": "It is 09:00 on 2026-11-15 in Winnipeg, Manitoba, Canada. What is the local date and time at that same moment in Toronto, Ontario, Canada? Give the date as YYYY-MM-DD and the time as HH:MM in 24-hour format.",
+    "model_answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "tzdata_2026d": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "official": {
+     "date": "2026-11-15",
+     "time": "09:00"
+    },
+    "note": "Winnipeg is UTC-06:00 and Toronto is UTC-05:00."
+   }
+  ],
+  "wrong": [
+   {
+    "id": "offset:coyhaique:2025-07-15:12:00",
+    "family": "legislated_2022_2025",
+    "expected": {
+     "utc_offset": "-03:00"
+    },
+    "got": {
+     "utc_offset": "-04:00"
+    },
+    "note": "Coyhaique, in the Aysén Region, observes standard Chile time, which is UTC-04:00 during the winter months."
+   },
+   {
+    "id": "offset:calgary:2026-11-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "-06:00"
+    },
+    "got": {
+     "utc_offset": "-07:00"
+    },
+    "note": "Calgary is in the Mountain Time Zone and observes Mountain Standard Time (UTC-7) in November, as daylight saving time ends on the first Sunday of November."
+   },
+   {
+    "id": "offset:edmonton:2026-12-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "-06:00"
+    },
+    "got": {
+     "utc_offset": "-07:00"
+    },
+    "note": "Alberta observes Mountain Standard Time (MST) during the winter months."
+   },
+   {
+    "id": "offset:yellowknife:2026-11-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "-06:00"
+    },
+    "got": {
+     "utc_offset": "-07:00"
+    },
+    "note": "Yellowknife observes Mountain Standard Time (UTC-07:00) after daylight saving time ends on the first Sunday in November."
+   },
+   {
+    "id": "offset:casablanca:2026-10-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "+00:00"
+    },
+    "got": {
+     "utc_offset": "+01:00"
+    },
+    "note": "Morocco observes UTC+01:00 year-round except for a temporary suspension during the month of Ramadan, which does not fall in October."
+   },
+   {
+    "id": "offset:casablanca:2026-12-15:12:00",
+    "family": "wave_2026",
+    "expected": {
+     "utc_offset": "+00:00"
+    },
+    "got": {
+     "utc_offset": "+01:00"
+    },
+    "note": "Morocco observes UTC+01:00 year-round except during the month of Ramadan."
+   },
+   {
+    "id": "convert:casablanca:london:2026-12-15:09:00",
+    "family": "wave_2026",
+    "expected": {
+     "date": "2026-12-15",
+     "time": "09:00"
+    },
+    "got": {
+     "date": "2026-12-15",
+     "time": "08:00"
+    },
+    "note": "I used UTC+01:00 for Casablanca and UTC+00:00 for London."
+   },
+   {
+    "id": "change_day:edmonton:2026-11-01",
+    "family": "wave_2026",
+    "expected": {
+     "changes": false,
+     "direction": "none"
+    },
+    "got": {
+     "changes": true,
+     "direction": "back"
+    },
+    "note": "Clocks in Edmonton, Alberta, fall back one hour on November 1, 2026, as daylight saving time ends."
    }
   ],
   "errored": []

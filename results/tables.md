@@ -136,13 +136,14 @@ Models scored from memory: 19. Put Calgary on Mountain Standard Time (-07:00) on
 | Claude Opus 5 | 23 | 41 | 43 of 43 | 2 | 0 | 3 |
 | GPT-5.4 mini | 22 | 41 | 43 of 43 | 2 | 0 | 3 |
 | Gemini 3.7 Flash | 21 | 39 | 43 of 43 | 3 | 1 | 1 |
+| GPT-5.5 | 23 | 39 | 33 of 43 | 1 | 0 | 1 |
 | Gemma 4 31B | 17 | 36 | 43 of 43 | 6 | 3 | 4 |
 | GLM-5 | 18 | 36 | 43 of 43 | 6 | 1 | 4 |
 | Grok 4.20 | 21 | 36 | 43 of 43 | 6 | 1 | 7 |
+| Gemini 3.1 Pro | 22 | 35 | 41 of 43 | 7 | 1 | 7 |
 | Claude Sonnet 5 | 17 | 34 | 40 of 43 | 6 | 2 | 6 |
 | Gemini 3.5 Flash-Lite | 22 | 31 | 43 of 43 | 11 | 4 | 2 |
 | Qwen3-Next 80B Thinking | 21 | 19 | 2 of 43 | 0 | 1 | 0 |
-| Gemini 3.1 Pro | 22 | 15 of 15 | 12 of 15 | 0 | 0 | 0 |
 
 ## By family, with the tool
 
@@ -156,10 +157,11 @@ Models scored from memory: 19. Put Calgary on Mountain Standard Time (-07:00) on
 | claude-opus-5 | 6/6 | 2/2 | 2/2 | 8/8 | 23/25 |
 | gpt-5.4-mini-2026-03-17 | 6/6 | 2/2 | 2/2 | 8/8 | 23/25 |
 | gemini-3.7-flash | 6/6 | 2/2 | 2/2 | 7/8 | 22/25 |
+| gpt-5.5-2026-04-23 | 6/6 | 2/2 | 2/2 | 8/8 | 21/25 |
 | grok-4.20-0309-non-reasoning | 6/6 | 2/2 | 2/2 | 7/8 | 19/25 |
 | gemma-4-31b | 6/6 | 2/2 | 2/2 | 7/8 | 19/25 |
 | glm-5 | 6/6 | 2/2 | 2/2 | 7/8 | 19/25 |
+| gemini-3.1-pro-preview | 6/6 | 2/2 | 2/2 | 7/8 | 18/25 |
 | claude-sonnet-5 | 6/6 | 2/2 | 2/2 | 7/8 | 17/25 |
 | gemini-3.5-flash-lite | 6/6 | 2/2 | 2/2 | 7/8 | 14/25 |
 | qwen3-next-80b-a3b-thinking | 6/6 | 2/2 | 2/2 | 2/8 | 7/25 |
-| gemini-3.1-pro-preview | 6/6 | 2/2 | 2/2 | 5/5 |  |

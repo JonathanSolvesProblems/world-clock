@@ -34,6 +34,7 @@ Entry for the DEV x Kaggle Benchmarking Challenge (September 23 to October 11, 2
 | `analysis/make_cover.py` | The post's cover image. The count on it is read from the runs, and the script refuses to draw "N of N" if any model answered differently. |
 | `analysis/quotes.py`, `analysis/wave_detail.py`, `analysis/inspect_runs.py` | Pull each model's own notes for the cases the post talks about, list which 2026 answers each model got right, and eyeball a downloaded run. |
 | `analysis/tool_trace.py` | Reads the tool-run conversations: which zone each model asked about, whether it followed or overrode the tool, and whether its answer changed when the SDK asked it to restate the answer in the schema. Writes `results/tool_trace.json`. |
+| `analysis/tool_facts.py` | Computes every number the post's tool section states (who asked, who overrode, the restating counts, Coyhaique) from `summary.json` and `tool_trace.json`. `check_claims.py` holds the prose to it. |
 | `analysis/dump_conversation.py` | Prints one case's full conversation from a downloaded run, tool calls included. |
 | `analysis/run_costs.py` | Sums what each downloaded run cost from the per-request costs in its `.run.json`, and totals per day. |
 | `analysis/quota.py` | Prints the account's model quota (used and allowed, in dollars) through the SDK call the CLI does not expose. Run both before launching a lineup: the quota is $10 a day, and once it is gone every queued run fails all its questions on a 403. |

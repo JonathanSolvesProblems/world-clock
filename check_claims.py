@@ -359,13 +359,16 @@ def check_results() -> None:
     qwen = "Qwen3-Next 80B Thinking"
     expect(r"<N> models finished it", n_full)
     expect(r"<N> of the <N> asked the tool on every one of the <N> questions", len(f["asked_every_question"]), n_full, N_SUBSET_GRADED)
-    expect(r"GPT-5\.6 Terra on <N> and Claude Sonnet 5 on <N>", f["asked"].get("GPT-5.6 Terra", -1), f["asked"].get("Claude Sonnet 5", -1))
+    expect(
+        r"GPT-5\.6 Terra asked on <N>, Gemini 3\.1 Pro on <N>, Claude Sonnet 5 on <N> and GPT-5\.5 on <N>",
+        f["asked"].get("GPT-5.6 Terra", -1), f["asked"].get("Gemini 3.1 Pro", -1), f["asked"].get("Claude Sonnet 5", -1), f["asked"].get("GPT-5.5", -1),
+    )
     expect(
         r"Qwen asked on <N>, answered the rest from memory, and scored <N>, which is lower than the <N> it got without the tool",
         f["asked"].get(qwen, -1), f["tool_score"].get(qwen, -1), f["memory_score"].get(qwen, -1),
     )
     not_all = sorted(set(f["models"]) - set(f["asked_every_question"]))
-    data(not_all == sorted(["GPT-5.6 Terra", "Claude Sonnet 5", qwen]), f"the post names Terra, Sonnet 5 and Qwen as the ones that did not ask on every question; the data says {not_all}")
+    data(not_all == sorted(["GPT-5.6 Terra", "Gemini 3.1 Pro", "Claude Sonnet 5", "GPT-5.5", qwen]), f"the post names Terra, Gemini 3.1 Pro, Sonnet 5, GPT-5.5 and Qwen as the ones that did not ask on every question; the data says {not_all}")
     expect(r"<N> of the <N> got at least 34 of 43 with the tool", len(f["at_least_34"]), n_full)
     expect(r"nobody got more than <N> from memory", f["max_memory"])
     data(f["perfect"] == ["Claude Haiku 4.5"], f"the post says Claude Haiku 4.5 is the only model with all {N_SUBSET_GRADED}; the data says {f['perfect']}")
