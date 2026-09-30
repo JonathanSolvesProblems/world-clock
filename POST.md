@@ -1,7 +1,9 @@
 ---
 title: Alberta stopped changing its clocks in June. 19 of 19 frontier models still put Calgary on standard time in November.
 published: false
+description: I asked 19 models what time it is. The IANA tz database graded them and dated each one's world clock to the month.
 tags: devchallenge, kagglechallenge, ai, machinelearning
+cover_image: https://raw.githubusercontent.com/JonathanSolvesProblems/world-clock/main/results/cover.png
 ---
 
 *This is a submission for the [Kaggle Benchmarking Challenge](https://dev.to/challenges/kaggle-2026-09-23)*

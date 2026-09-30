@@ -31,6 +31,7 @@ Entry for the DEV x Kaggle Benchmarking Challenge (September 23 to October 11, 2
 | `analysis/render_tables.py` | Renders every table from `summary.json`, including the post's tables with the display names the post uses. |
 | `analysis/paste_tables.py` | Pastes the generated tables into `POST.md` over the ones already there. |
 | `analysis/plot_ladder.py`, `analysis/plot_wave.py` | The two charts in the post. |
+| `analysis/make_cover.py` | The post's cover image. The count on it is read from the runs, and the script refuses to draw "N of N" if any model answered differently. |
 | `analysis/quotes.py`, `analysis/wave_detail.py`, `analysis/inspect_runs.py` | Pull each model's own notes for the cases the post talks about, list which 2026 answers each model got right, and eyeball a downloaded run. |
 | `analysis/tool_trace.py` | Reads the tool-run conversations: which zone each model asked about, whether it followed or overrode the tool, and whether its answer changed when the SDK asked it to restate the answer in the schema. Writes `results/tool_trace.json`. |
 | `analysis/dump_conversation.py` | Prints one case's full conversation from a downloaded run, tool calls included. |

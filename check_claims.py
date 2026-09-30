@@ -184,6 +184,7 @@ def check_results() -> None:
 
     # Lineup.
     expect(r"<N> models, all through Kaggle Benchmarks", n_mem)
+    expect(r"I asked <N> models what time it is", n_mem)
     gemma = row("Gemma 4 31B")
     if gemma:
         unparsed = gemma.get("unparsed_answers")
