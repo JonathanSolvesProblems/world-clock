@@ -15,6 +15,10 @@ world clock stopped.
 
 Entry for the DEV x Kaggle Benchmarking Challenge (September 23 to October 11, 2026).
 
+On Kaggle: the [World Clock benchmark](https://www.kaggle.com/benchmarks/jonathanandrei/world-clock), made of two tasks,
+[from memory](https://www.kaggle.com/benchmarks/tasks/jonathanandrei/world-clock-from-memory) and
+[with a tzdata tool](https://www.kaggle.com/benchmarks/tasks/jonathanandrei/world-clock-tool-v2).
+
 ## Layout
 
 | Path | What it is |

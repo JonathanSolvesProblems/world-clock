@@ -159,8 +159,8 @@ Grade the model's own words as well as the restated answer, as two scores. The g
 
 ## Where to see it
 
-- Benchmark on Kaggle, from memory: https://www.kaggle.com/benchmarks/tasks/jonathanandrei/world-clock-from-memory
-- Benchmark on Kaggle, with the tzdata tool: https://www.kaggle.com/benchmarks/tasks/jonathanandrei/world-clock-tool-v2
+- The benchmark on Kaggle: https://www.kaggle.com/benchmarks/jonathanandrei/world-clock
+- Its two tasks: [from memory](https://www.kaggle.com/benchmarks/tasks/jonathanandrei/world-clock-from-memory) and [with the tzdata tool](https://www.kaggle.com/benchmarks/tasks/jonathanandrei/world-clock-tool-v2)
 - Code, answer key, every result and both charts: https://github.com/JonathanSolvesProblems/world-clock
 
 The repo has a script called `check_claims.py`. It reads the results and fails if any number in this post disagrees with them. It ran before this was published.
