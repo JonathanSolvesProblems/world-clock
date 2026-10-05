@@ -36,10 +36,15 @@ for seg in tr["segments"]:
 
 shutil.copy(ROOT / "short" / "thumbnail-short.jpg", ROOT / "broll" / "vertical" / "s00.jpg")
 
+import wave as _wave
+
+with _wave.open(str(ROOT / "short" / "narration.short.wav")) as _w:
+    END = round(_w.getnframes() / _w.getframerate(), 2)  # the narration ends on 1.6 s of tail after the last word
+
 SEG = [
     ("s00", 0.0, 0.5), ("v02_question", 0.5, 5.5), ("v03_answer", 5.5, 9.25), ("v04_kaggle", 9.25, 12.85),
     ("v05_tzdb", 12.85, 18.0), ("v06_key", 18.0, 23.1), ("v07_know", 23.1, 28.15), ("v08_none", 28.15, 36.6),
-    ("v12_tool", 36.6, 42.45), ("v13_half", 42.45, 45.4), ("v14_opus", 45.4, 49.45), ("v15_end", 49.45, 50.78),
+    ("v12_tool", 36.6, 42.45), ("v13_half", 42.45, 45.4), ("v14_opus", 45.4, 49.45), ("v15_end", 49.45, END),
 ]
 plan = {
     "project_name": "World Clock",
