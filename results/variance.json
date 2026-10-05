@@ -1,0 +1,545 @@
+{
+ "models": {
+  "Claude Haiku 4.5": {
+   "runs": [
+    {
+     "version": 2,
+     "run_id": 3262511,
+     "score": 69,
+     "clock": "2022b..2022d",
+     "peak": 37,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 5,
+     "run_id": 3721109,
+     "score": 59,
+     "clock": "2022e..2022e",
+     "peak": 39,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 6,
+     "run_id": 4094098,
+     "score": 59,
+     "clock": "2022a..2022d",
+     "peak": 39,
+     "calgary_minus_7": true
+    }
+   ],
+   "n_runs": 3,
+   "min": 59,
+   "max": 69,
+   "spread": 10,
+   "clocks": [
+    "2022a..2022d",
+    "2022b..2022d",
+    "2022e..2022e"
+   ],
+   "calgary_minus_7_every_run": true
+  },
+  "Claude Sonnet 5": {
+   "runs": [
+    {
+     "version": 2,
+     "run_id": 3262428,
+     "score": 86,
+     "clock": "2022f..2022f",
+     "peak": 39,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 5,
+     "run_id": 3721112,
+     "score": 87,
+     "clock": "2022f..2022f",
+     "peak": 41,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 6,
+     "run_id": 4094097,
+     "score": 87,
+     "clock": "2022f..2022f",
+     "peak": 39,
+     "calgary_minus_7": true
+    }
+   ],
+   "n_runs": 3,
+   "min": 86,
+   "max": 87,
+   "spread": 1,
+   "clocks": [
+    "2022f..2022f"
+   ],
+   "calgary_minus_7_every_run": true
+  },
+  "Gemini 2.5 Pro": {
+   "runs": [
+    {
+     "version": 2,
+     "run_id": 3261849,
+     "score": 98,
+     "clock": "2025a..2025a",
+     "peak": 44,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 6,
+     "run_id": 4094108,
+     "score": 99,
+     "clock": "2025a..2025a",
+     "peak": 42,
+     "calgary_minus_7": true
+    }
+   ],
+   "n_runs": 2,
+   "min": 98,
+   "max": 99,
+   "spread": 1,
+   "clocks": [
+    "2025a..2025a"
+   ],
+   "calgary_minus_7_every_run": true
+  },
+  "Gemini 3.1 Pro": {
+   "runs": [
+    {
+     "version": 2,
+     "run_id": 3261848,
+     "score": 100,
+     "clock": "2025a..2025a",
+     "peak": 45,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 6,
+     "run_id": 4094107,
+     "score": 98,
+     "clock": "2025a..2025a",
+     "peak": 43,
+     "calgary_minus_7": true
+    }
+   ],
+   "n_runs": 2,
+   "min": 98,
+   "max": 100,
+   "spread": 2,
+   "clocks": [
+    "2025a..2025a"
+   ],
+   "calgary_minus_7_every_run": true
+  },
+  "Gemini 3.5 Flash-Lite": {
+   "runs": [
+    {
+     "version": 2,
+     "run_id": 3262426,
+     "score": 91,
+     "clock": "2024a..2024b",
+     "peak": 36,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 5,
+     "run_id": 3721108,
+     "score": 94,
+     "clock": "2024a..2024b",
+     "peak": 38,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 6,
+     "run_id": 4094109,
+     "score": 91,
+     "clock": "2024a..2024b",
+     "peak": 39,
+     "calgary_minus_7": true
+    }
+   ],
+   "n_runs": 3,
+   "min": 91,
+   "max": 94,
+   "spread": 3,
+   "clocks": [
+    "2024a..2024b"
+   ],
+   "calgary_minus_7_every_run": true
+  },
+  "Gemini 3.7 Flash": {
+   "runs": [
+    {
+     "version": 2,
+     "run_id": 3261826,
+     "score": 99,
+     "clock": "2025a..2025a",
+     "peak": 44,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 3,
+     "run_id": 3502091,
+     "score": 99,
+     "clock": "2025a..2025a",
+     "peak": 44,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 4,
+     "run_id": 3613350,
+     "score": 100,
+     "clock": "2025a..2025a",
+     "peak": 45,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 5,
+     "run_id": 3623698,
+     "score": 99,
+     "clock": "2025a..2025a",
+     "peak": 44,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 6,
+     "run_id": 3728275,
+     "score": 99,
+     "clock": "2025a..2025a",
+     "peak": 44,
+     "calgary_minus_7": true
+    }
+   ],
+   "n_runs": 5,
+   "min": 99,
+   "max": 100,
+   "spread": 1,
+   "clocks": [
+    "2025a..2025a"
+   ],
+   "calgary_minus_7_every_run": true
+  },
+  "Gemini 3.8 Flash": {
+   "runs": [
+    {
+     "version": 2,
+     "run_id": 3261829,
+     "score": 99,
+     "clock": "2025a..2025a",
+     "peak": 44,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 5,
+     "run_id": 3721110,
+     "score": 98,
+     "clock": "2025a..2025a",
+     "peak": 43,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 6,
+     "run_id": 4094106,
+     "score": 99,
+     "clock": "2025a..2025a",
+     "peak": 44,
+     "calgary_minus_7": true
+    }
+   ],
+   "n_runs": 3,
+   "min": 98,
+   "max": 99,
+   "spread": 1,
+   "clocks": [
+    "2025a..2025a"
+   ],
+   "calgary_minus_7_every_run": true
+  },
+  "Claude Opus 4.5": {
+   "runs": [
+    {
+     "version": 3,
+     "run_id": 3517983,
+     "score": 85,
+     "clock": "2022g..2024b",
+     "peak": 35,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 5,
+     "run_id": 3721114,
+     "score": 85,
+     "clock": "2022g..2022g",
+     "peak": 38,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 6,
+     "run_id": 4094099,
+     "score": 87,
+     "clock": "2022g..2022g",
+     "peak": 37,
+     "calgary_minus_7": true
+    }
+   ],
+   "n_runs": 3,
+   "min": 85,
+   "max": 87,
+   "spread": 2,
+   "clocks": [
+    "2022g..2022g",
+    "2022g..2024b"
+   ],
+   "calgary_minus_7_every_run": true
+  },
+  "GPT-5.4 mini": {
+   "runs": [
+    {
+     "version": 3,
+     "run_id": 3512030,
+     "score": 90,
+     "clock": "2024a..2026a",
+     "peak": 37,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 5,
+     "run_id": 3721106,
+     "score": 90,
+     "clock": "2024a..2026a",
+     "peak": 36,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 6,
+     "run_id": 4094095,
+     "score": 88,
+     "clock": "2024a..2024b",
+     "peak": 39,
+     "calgary_minus_7": true
+    }
+   ],
+   "n_runs": 3,
+   "min": 88,
+   "max": 90,
+   "spread": 2,
+   "clocks": [
+    "2024a..2024b",
+    "2024a..2026a"
+   ],
+   "calgary_minus_7_every_run": true
+  },
+  "GPT-5.5": {
+   "runs": [
+    {
+     "version": 3,
+     "run_id": 3503934,
+     "score": 102,
+     "clock": "2025b..2026a",
+     "peak": 46,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 6,
+     "run_id": 4094094,
+     "score": 102,
+     "clock": "2025b..2026a",
+     "peak": 46,
+     "calgary_minus_7": true
+    }
+   ],
+   "n_runs": 2,
+   "min": 102,
+   "max": 102,
+   "spread": 0,
+   "clocks": [
+    "2025b..2026a"
+   ],
+   "calgary_minus_7_every_run": true
+  },
+  "GPT-5.6 Terra": {
+   "runs": [
+    {
+     "version": 3,
+     "run_id": 3503039,
+     "score": 102,
+     "clock": "2025b..2026a",
+     "peak": 46,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 5,
+     "run_id": 3721111,
+     "score": 102,
+     "clock": "2025b..2026a",
+     "peak": 46,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 6,
+     "run_id": 4094093,
+     "score": 102,
+     "clock": "2025b..2026a",
+     "peak": 46,
+     "calgary_minus_7": true
+    }
+   ],
+   "n_runs": 3,
+   "min": 102,
+   "max": 102,
+   "spread": 0,
+   "clocks": [
+    "2025b..2026a"
+   ],
+   "calgary_minus_7_every_run": true
+  },
+  "GPT-6 Astra": {
+   "runs": [
+    {
+     "version": 3,
+     "run_id": 3502591,
+     "score": 106,
+     "clock": "2026b..2026b",
+     "peak": 46,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 6,
+     "run_id": 4094092,
+     "score": 107,
+     "clock": "2026b..2026b",
+     "peak": 45,
+     "calgary_minus_7": true
+    }
+   ],
+   "n_runs": 2,
+   "min": 106,
+   "max": 107,
+   "spread": 1,
+   "clocks": [
+    "2026b..2026b"
+   ],
+   "calgary_minus_7_every_run": true
+  },
+  "Grok 4.20": {
+   "runs": [
+    {
+     "version": 3,
+     "run_id": 3529908,
+     "score": 79,
+     "clock": "2022b..2022d",
+     "peak": 33,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 5,
+     "run_id": 3721107,
+     "score": 76,
+     "clock": "2022b..2022d",
+     "peak": 35,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 6,
+     "run_id": 4094101,
+     "score": 77,
+     "clock": "2022e..2022e",
+     "peak": 34,
+     "calgary_minus_7": true
+    }
+   ],
+   "n_runs": 3,
+   "min": 76,
+   "max": 79,
+   "spread": 3,
+   "clocks": [
+    "2022b..2022d",
+    "2022e..2022e"
+   ],
+   "calgary_minus_7_every_run": true
+  },
+  "Grok 4.20 Reasoning": {
+   "runs": [
+    {
+     "version": 3,
+     "run_id": 3519322,
+     "score": 89,
+     "clock": "2023d..2024b",
+     "peak": 38,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 5,
+     "run_id": 3721113,
+     "score": 92,
+     "clock": "2024a..2024b",
+     "peak": 41,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 6,
+     "run_id": 4094100,
+     "score": 89,
+     "clock": "2023a..2023c",
+     "peak": 40,
+     "calgary_minus_7": true
+    }
+   ],
+   "n_runs": 3,
+   "min": 89,
+   "max": 92,
+   "spread": 3,
+   "clocks": [
+    "2023a..2023c",
+    "2023d..2024b",
+    "2024a..2024b"
+   ],
+   "calgary_minus_7_every_run": true
+  },
+  "Gemma 4 31B": {
+   "runs": [
+    {
+     "version": 5,
+     "run_id": 3636603,
+     "score": 87,
+     "clock": "2024a..2024b",
+     "peak": 40,
+     "calgary_minus_7": true
+    },
+    {
+     "version": 6,
+     "run_id": 4094105,
+     "score": 90,
+     "clock": "2024a..2024b",
+     "peak": 41,
+     "calgary_minus_7": true
+    }
+   ],
+   "n_runs": 2,
+   "min": 87,
+   "max": 90,
+   "spread": 3,
+   "clocks": [
+    "2024a..2024b"
+   ],
+   "calgary_minus_7_every_run": true
+  }
+ },
+ "n_models": 15,
+ "n_runs": 42,
+ "max_spread": 10,
+ "max_spread_model": "Claude Haiku 4.5",
+ "median_spread": 2,
+ "same_clock_every_run": [
+  "Claude Sonnet 5",
+  "GPT-5.5",
+  "GPT-5.6 Terra",
+  "GPT-6 Astra",
+  "Gemini 2.5 Pro",
+  "Gemini 3.1 Pro",
+  "Gemini 3.5 Flash-Lite",
+  "Gemini 3.7 Flash",
+  "Gemini 3.8 Flash",
+  "Gemma 4 31B"
+ ],
+ "calgary_minus_7_every_run_all_models": true
+}

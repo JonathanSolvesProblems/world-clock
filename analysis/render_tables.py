@@ -98,7 +98,8 @@ def dated_post(r: dict) -> str:
         return ("current (2026d)" if e["iana"] == "2026d" else f"{e['iana']} to current") + peak
     if e["iana"] == l["iana"]:
         return f"{e['iana']} ({month(e['date'])})" + peak
-    return f"{e['iana']} to {l['iana']} ({month(e['date'])} to {month(l['date'])})" + peak
+    span = month(e["date"]) if month(e["date"]) == month(l["date"]) else f"{month(e['date'])} to {month(l['date'])}"
+    return f"{e['iana']} to {l['iana']} ({span})" + peak
 
 
 def post_table(condition: str = "memory") -> str:

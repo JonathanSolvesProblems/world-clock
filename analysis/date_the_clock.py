@@ -86,7 +86,12 @@ def card_for(model: str) -> dict | None:
 
 
 # Versions below these ran with a broken harness (no retry, per-job timeout) and are history.
-MIN_VERSION = {"world-clock-from-memory": 2, "world-clock-tool-v2": 1}
+# From-memory results come from version 6, the version Kaggle's public leaderboard shows,
+# except Qwen3-Next, whose version 6 run stalled on an overloaded backend; it falls back to
+# its complete version 5 run. Versions 5 and 6 ask the same questions and grade them the
+# same way; they differ only in the score format Kaggle's leaderboard reads. Tool results come from the 46-question versions (5 and
+# later); a model's latest complete tool run wins. Earlier runs on disk feed analysis/variance.py.
+MIN_VERSION = {"world-clock-from-memory": 5, "world-clock-tool-v2": 5}
 
 
 def find_answer_files(root: Path) -> list[Path]:

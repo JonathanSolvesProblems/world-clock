@@ -185,6 +185,10 @@ def check_results() -> None:
     # Lineup.
     expect(r"<N> models, all through Kaggle Benchmarks", n_mem)
     expect(r"I asked <N> models what time it is", n_mem)
+    short_runs = sorted(display(r["model"]) for r in mem if r["graded_total"] != len([c for c in CASES if c["graded"]]))
+    data(short_runs == ["DeepSeek-R1", "GLM-5"], f"the post says GLM-5 and DeepSeek-R1 are the only models short of 122; the data says {short_runs}")
+    require_text("GLM-5 and DeepSeek-R1 each lost one call to their backends, so each is scored on 121 questions")
+    expect(r"A model at <N> of 46 has a blurry one", min(r["clock"]["best_agreement"] for r in mem if r.get("clock")))
     gemma = row("Gemma 4 31B")
     if gemma:
         unparsed = gemma.get("unparsed_answers")
@@ -234,7 +238,7 @@ def check_results() -> None:
     expect(r"<N> of the <N> Geminis", gemini_zero, len(gemini))
     expect(r"there were <N> correct answers", total_changed_right)
     expect(r"GPT-6 Astra produced <N> of them", astra_changed)
-    expect(r"The other <N> came with reasons", total_changed_right - astra_changed)
+    expect(r"The other <N> came from models that did not know", total_changed_right - astra_changed)
     expect(r"not one of those <N> notes says that anything changed in 2026", total_changed_right - astra_changed)
     expect(r"I read every one of the <N>\.", total_changed_right - astra_changed)
     astra_model = (row("GPT-6 Astra") or {}).get("model")
@@ -248,8 +252,11 @@ def check_results() -> None:
                 failures.append(f"{display(m)}'s note on {i} does describe a 2026 change; the post says none of the non-Astra correct notes do: {r['note'][:120]}")
     for name in ("Claude Opus 5", "GPT-5.5", "GPT-5.6 Terra"):
         data(n_right(rows_of(name), changed_ids) == 0, f"{name} got a changed 2026 answer right; the post says it got none")
-    astra_bc = [i for i in changed_ids if i in rows_of("GPT-6 Astra") and rows_of("GPT-6 Astra")[i]["correct"]]
-    data(astra_bc and all(":vancouver" in i for i in astra_bc), f"GPT-6 Astra's correct 2026 answers are not all about Vancouver: {astra_bc}")
+    astra_right = [i for i in changed_ids if i in rows_of("GPT-6 Astra") and rows_of("GPT-6 Astra")[i]["correct"]]
+    astra_bc = [i for i in astra_right if ":vancouver" in i]
+    data(len(astra_bc) == 4 and [i for i in astra_right if i not in astra_bc] == ["convert:inuvik:toronto:2026-11-15:09:00"], f"the post says GPT-6 Astra got four British Columbia answers and one Inuvik conversion; the data says {astra_right}")
+    g25 = rows_of("Gemini 2.5 Pro")
+    data(g25.get("change_day:inuvik:2026-11-01", {}).get("correct") and g25.get("offset:inuvik:2026-11-15:12:00", {}).get("answer", {}).get("utc_offset") == "-07:00", "the post says Gemini 2.5 Pro said Inuvik keeps UTC-6 and then put it on UTC-7; the data disagrees")
 
     # The ladder.
     def assert_clock(name: str, earliest: str, latest: str, agreement: int) -> None:
@@ -260,24 +267,27 @@ def check_results() -> None:
         got = (c["earliest"]["iana"], c["latest"]["iana"], c["best_agreement"])
         data(got == (earliest, latest, agreement), f"{name}: post says clock {earliest}..{latest} at {agreement}, data says {got[0]}..{got[1]} at {got[2]}")
 
-    assert_clock("GPT-6 Astra", "2026b", "2026b", 46)
+    assert_clock("GPT-6 Astra", "2026b", "2026b", 45)
     for name in ("GPT-5.5", "GPT-5.6 Terra", "Claude Opus 5"):
         assert_clock(name, "2025b", "2026a", 46)
-    for name in ("Gemini 2.5 Pro", "Gemini 3.7 Flash", "Gemini 3.8 Flash"):
+    for name in ("Gemini 3.7 Flash", "Gemini 3.8 Flash"):
         assert_clock(name, "2025a", "2025a", 44)
-    assert_clock("Gemini 3.1 Pro", "2025a", "2025a", 45)
-    assert_clock("Gemini 3.5 Flash-Lite", "2024a", "2024b", 36)
+    assert_clock("Gemini 2.5 Pro", "2025a", "2025a", 42)
+    assert_clock("Gemini 3.1 Pro", "2025a", "2025a", 43)
+    assert_clock("Gemini 3.5 Flash-Lite", "2024a", "2024b", 39)
     assert_clock("Claude Sonnet 5", "2022f", "2022f", 39)
-    assert_clock("Claude Haiku 4.5", "2022b", "2022d", 37)
-    expect(r"agrees with tzdata 2026b on all <N> changed answers", 46)
-    expect(r"identical, point for point, <N> of <N> at the peak", 44, 46)
-    expect(r"at 2024a to 2024b with a blurry <N> of <N>", 36, 46)
+    assert_clock("Claude Haiku 4.5", "2022a", "2022d", 39)
+    expect(r"agrees with tzdata 2026b on <N> of the <N> changed answers", 45, 46)
+    expect(r"at 2024a to 2024b with a blurry <N> of <N>", 39, 46)
 
     def curve(name: str) -> str:
         r = row(name)
         return json.dumps(r["clock"]["agreement_by_release"], sort_keys=True) if r else ""
 
-    data(len({curve(n) for n in ("Gemini 2.5 Pro", "Gemini 3.7 Flash", "Gemini 3.8 Flash")}) == 1, "the three Gemini curves the post calls identical are not identical")
+    c37, c38 = row("Gemini 3.7 Flash"), row("Gemini 3.8 Flash")
+    if c37 and c38:
+        a37, a38 = c37["clock"]["agreement_by_release"], c38["clock"]["agreement_by_release"]
+        data(max(abs(a37[k] - a38[k]) for k in a37) <= 1, "the post says the two Gemini Flash curves never differ by more than one answer; they do")
     data(len({curve(n) for n in ("GPT-5.5", "GPT-5.6 Terra", "Claude Opus 5")}) == 1, "GPT-5.5, GPT-5.6 Terra and Claude Opus 5 do not share one curve")
     astra = row("GPT-6 Astra")
     if astra:
@@ -300,8 +310,8 @@ def check_results() -> None:
     sonnet, haiku = row("Claude Sonnet 5"), row("Claude Haiku 4.5")
     if sonnet and haiku:
         data(month(sonnet["clock"]["earliest"]["date"]) == "October 2022", "Sonnet 5's clock is no longer dated October 2022")
-        data(month(haiku["clock"]["earliest"]["date"]) == "August 2022" and month(haiku["clock"]["latest"]["date"]) == "September 2022", "Haiku 4.5's clock is no longer dated August to September 2022")
-    require_text("Claude Sonnet 5 dates to October 2022 and Claude Haiku 4.5 to August or September 2022")
+        data(month(haiku["clock"]["earliest"]["date"]) == "March 2022" and month(haiku["clock"]["latest"]["date"]) == "September 2022", "Haiku 4.5's clock is no longer dated March to September 2022")
+    require_text("Claude Sonnet 5 dates to October 2022 and Claude Haiku 4.5 to somewhere between March and September 2022")
 
     # Legislated changes 2022 to 2025.
     s_ok, s_total = fam("Claude Sonnet 5", "legislated_2022_2025")
@@ -431,6 +441,16 @@ def check_results() -> None:
     # The daily quota the post names is what analysis/quota.py read from Kaggle's API on
     # 2026-09-30 ($9.9939 used of $10.00). It cannot be re-read offline; the sentence is pinned.
     require_text("a model quota of $10 a day")
+
+    # Run-to-run variance, from analysis/variance.py over every complete from-memory run on disk.
+    from variance import summary as variance_summary
+
+    v = variance_summary()
+    expect(r"<N> models ran the from-memory questions at least twice, <N> runs in all", v["n_models"], v["n_runs"])
+    expect(r"The median model's score moved by <N> question", v["median_spread"])
+    expect(r"the largest swing was <N> questions", v["max_spread"])
+    expect(r"the release its clock dates to stayed the same in <N> of the <N>", len(v["same_clock_every_run"]), v["n_models"])
+    data(v["calgary_minus_7_every_run_all_models"], "the post says every repeat run put Calgary on -07:00; variance.py says otherwise")
 
     # Tables.
     data(post_table("memory") in text, "POST.md's headline table differs from analysis/render_tables.py post_table(); regenerate it and paste")
