@@ -4,10 +4,18 @@
 *.env
 kaggle.json
 
-# tzdata ladder is re-downloadable; keep only the index
+# editor and tool folders
+.claude/
+.vscode/
+.idea/
+.pytest_cache/
+tmp/
+
+# tzdata releases are re-downloadable; keep only the index
 tzhist/wheels/
 tzhist/releases/*/
 !tzhist/releases/index.json
+tzhist/after/
 
 # SDK run artefacts and caches
 *.run.json
@@ -19,13 +27,12 @@ __pycache__/
 # downloaded Kaggle run outputs land here; summaries are committed separately
 results/raw/
 
-# demo video working files
+# video, thumbnails, previews and submission working files
 broll/
 *.webm
+*.mp4
 *.edit-plan.json
-demo.mp4
-tzhist/after/
-demo-final.mp4
 thumbnail/
 preview/
 short/
+submit/
