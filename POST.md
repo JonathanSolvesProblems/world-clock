@@ -8,6 +8,8 @@ cover_image: https://raw.githubusercontent.com/JonathanSolvesProblems/world-cloc
 
 *This is a submission for the [Kaggle Benchmarking Challenge](https://dev.to/challenges/kaggle-2026-09-23)*
 
+{% youtube oTj1_WVNkIg %}
+
 On June 18, Alberta's [Official Time Act](https://www.alberta.ca/albertas-new-time-system-abt) came into force and the province stopped changing its clocks. British Columbia had done it in March. The [Northwest Territories followed in August](https://www.gov.nt.ca/en/newsroom/northwest-territories-ends-seasonal-time-change), [Morocco went back to plain UTC on September 20](https://www.timeanddate.com/news/time/morocco-abolish-dst.html), and on September 17 [Manitoba announced](https://news.gov.mb.ca/news/index.html?item=75397) it will not fall back on November 1 either. [CBC is running stories](https://www.cbc.ca/news/canada/calgary/alberta-permanent-daylight-savings-businesses-calendars-9.7331872) about a Calgary hairstylist whose winter bookings all moved an hour. [Microsoft published interim guidance](https://techcommunity.microsoft.com/blog/dstblog/interim-guidance-for-alberta-time-zone-changes-2026/4545015) for Windows.
 
 So I asked the question someone in Calgary is asking right now. It is 9 a.m. here on November 15. What time is that in Toronto?
@@ -168,5 +170,6 @@ Grade the model's own words as well as the restated answer, as two scores. The g
 - The benchmark on Kaggle: https://www.kaggle.com/benchmarks/jonathanandrei/world-clock
 - Its two tasks: [from memory](https://www.kaggle.com/benchmarks/tasks/jonathanandrei/world-clock-from-memory) and [with the tzdata tool](https://www.kaggle.com/benchmarks/tasks/jonathanandrei/world-clock-tool-v2)
 - Code, answer key, every result and both charts: https://github.com/JonathanSolvesProblems/world-clock
+- The 90-second demo: https://www.youtube.com/watch?v=oTj1_WVNkIg
 
 The repo has a script called `check_claims.py`. It reads the results and fails if any number in this post disagrees with them. It ran before this was published.
