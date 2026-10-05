@@ -26,7 +26,7 @@ The answer key is tzdata 2026d, the September release of the same database that 
 - It is 09:00 on November 15 in Calgary. What is the local date and time in Toronto?
 - Do the clocks in Calgary change at any point during November 1, 2026, and in which direction?
 
-Six families of places and dates. Textbook controls (New York, London, Tokyo). Awkward offsets (Kathmandu at +05:45, the Chatham Islands at +12:45, Lord Howe Island's 30-minute daylight saving). Southern-hemisphere daylight saving. Changes legislated between 2022 and 2025 (Iran, Jordan, Syria, Mexico, Greenland, Egypt, Kazakhstan, Paraguay, Chile's Aysén region). The 2026 wave (British Columbia, Alberta, Northwest Territories, Morocco). And Manitoba, which is announced but in no tzdata release yet, so its three questions are asked, recorded, and never counted. That leaves 122 graded questions.
+Six families of places and dates. Textbook controls (New York, London, Tokyo). Awkward offsets (Kathmandu at +05:45, the Chatham Islands at +12:45, Lord Howe Island's 30-minute daylight saving). Southern-hemisphere daylight saving. Changes legislated between 2022 and 2025 (Iran, Jordan, Syria, Mexico, Greenland, Egypt, Kazakhstan, Paraguay, Chile's Aysén region). The 2026 wave (British Columbia, Alberta, Northwest Territories, Morocco). And Manitoba, which announced its change on September 17, after the release I graded against, so its three questions are asked, recorded, and not counted in the score. That leaves 122 graded questions.
 
 The part I care about most is the dating trick. Of the 122, 46 have an answer that changed between one tzdata release and another. I keep every release since 2022a unpacked, twenty of them, score each model's answer sheet against all twenty, and the release a model agrees with most is the month its world clock stopped. A model that still puts Almaty at +06:00 has a clock from before February 2024. One that puts Vancouver at -08:00 in December 2026 has a clock from before April 2026.
 
@@ -135,9 +135,13 @@ Claude Opus 5 argued with the tool in so many words. On Calgary's offset it wrot
 
 **Why a subset, and who is missing.** Kaggle gives each account a model quota of $10 a day, and a tool loop is expensive because every round sends the whole conversation again. Gemini 3.8 Flash cost $0.16 for the 125 questions from memory and $0.99 for the same 125 with the tool. My first full tool lineup ran out of quota partway through, and the runs queued behind it failed on a 403 from the proxy. So the tool half is 46 questions. GPT-6 Astra is missing for a different reason: the API refuses function tools for that model unless reasoning is off, and refuses to switch its reasoning off, so Kaggle's SDK has no way to hand it a tool. GPT-5.6 Terra has the same rule and does allow reasoning off, so it ran this half that way. DeepSeek-R1 does not support tool calling at all.
 
-### Manitoba, which nobody can know yet
+### Manitoba, which the database caught up with
 
-Manitoba announced on September 17 that it will not fall back on November 1. The tz maintainers have modelled it in their working tree, and no release carries it yet. Every model was asked what Winnipeg does on that morning. Eighteen said the clocks fall back, which is also what tzdata 2026d says today. Qwen said they do not, because it believes the fall-back is on November 2. The province says they will not. Winners of this challenge are announced November 5, four days after the answer becomes a fact, so whoever reads this after November 1 knows something neither the models nor the database did when I ran it.
+Manitoba announced on September 17 that it will not fall back on November 1. When I built the answer key no release had it, so its three questions were asked, recorded, and left out of the score. Then, on September 30, the tz maintainers shipped tzdata 2026e: "Manitoba moves to permanent -05 on 2026-10-31".
+
+So I graded those three answers against 2026e. Winnipeg at noon on November 15 is -05:00, and 9 a.m. in Winnipeg is 9 a.m. in Toronto. All 19 models said -06:00, and all 19 said 10:00. Asked whether Winnipeg's clocks change on November 1, 18 said they fall back. Qwen said they do not, and it only got that right because it believes the fall-back is on November 2.
+
+The benchmark ran before the database knew, and the database caught up a week later. The models will take a training run.
 
 ## What surprised me
 

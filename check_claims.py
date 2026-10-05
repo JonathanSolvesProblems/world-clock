@@ -114,7 +114,7 @@ def check_case_set() -> None:
 
     # The post.
     expect(r"<N> questions, three kinds", n_cases)
-    expect(r"its <N> questions are asked, recorded, and never counted", n_unresolved)
+    expect(r"its <N> questions are asked, recorded, and not counted in the score", n_unresolved)
     expect(r"That leaves <N> graded questions", n_graded)
     expect(r"Of the <N>, <N> have an answer that changed between one tzdata release and another", n_graded, n_ladder)
     expect(r"unpacked, <N> of them", len(INDEX))
@@ -325,7 +325,15 @@ def check_results() -> None:
     mb = "change_day:winnipeg:2026-11-01"
     mb_rows = {m: rows[mb] for m, rows in rows_mem.items() if mb in rows}
     mb_back = sum(1 for r in mb_rows.values() if (r.get("answer") or {}).get("changes") is True and (r.get("answer") or {}).get("direction") == "back")
-    expect(r"<N> said the clocks fall back, which is also what tzdata 2026d says", mb_back)
+    expect(r"Asked whether Winnipeg's clocks change on November 1, <N> said they fall back", mb_back)
+    m26e = json.loads((ROOT / "results" / "manitoba_2026e.json").read_text(encoding="utf-8"))
+    data(m26e["truth"]["offset:winnipeg:2026-11-15:12:00"]["utc_offset"] == "-05:00" and m26e["truth"]["convert:winnipeg:toronto:2026-11-15:09:00"]["time"] == "09:00", "the post says tzdata 2026e puts Winnipeg on -05:00 and 09:00 Winnipeg at 09:00 Toronto; manitoba_2026e.json disagrees")
+    data(m26e["n_models"] == n_mem and m26e["right_count"]["offset:winnipeg:2026-11-15:12:00"] == 0 and m26e["right_count"]["convert:winnipeg:toronto:2026-11-15:09:00"] == 0, "the post says all models got the Winnipeg offset and conversion wrong under 2026e; the data disagrees")
+    mb_off = {(r.get("answer") or {}).get("utc_offset") for rows in rows_mem.values() for k, r in rows.items() if k == "offset:winnipeg:2026-11-15:12:00"}
+    mb_conv = {(r.get("answer") or {}).get("time") for rows in rows_mem.values() for k, r in rows.items() if k == "convert:winnipeg:toronto:2026-11-15:09:00"}
+    data(mb_off == {"-06:00"} and mb_conv == {"10:00"}, f"the post says all 19 said -06:00 and 10:00 for Winnipeg; the data says {mb_off} and {mb_conv}")
+    expect(r"All <N> models said -06:00, and all <N> said 10:00", n_mem, n_mem)
+    require_text("Manitoba moves to permanent -05 on 2026-10-31")
     data(len(mb_rows) == n_mem, f"the post says every model answered the Winnipeg question; {len(mb_rows)} of {n_mem} did")
     not_back = [display(m) for m, r in mb_rows.items() if not ((r.get("answer") or {}).get("changes") is True and (r.get("answer") or {}).get("direction") == "back")]
     data(not_back == ["Qwen3-Next 80B Thinking"], f"the post says only Qwen denied the Winnipeg fall-back; the data says {not_back}")
@@ -473,7 +481,7 @@ def check_results() -> None:
                 notes.add(norm(c["note"]))
     body = text.split("---", 2)[-1]
     for q in re.findall(r'"([^"\n]{40,})"', body):
-        if q == FORMAT_PROMPT:
+        if q in (FORMAT_PROMPT, "Manitoba moves to permanent -05 on 2026-10-31"):
             continue  # the SDK's own message, quoted from analysis/tool_trace.py, not a model's words
         nq = norm(q)
         if not any(nq in n for n in notes):

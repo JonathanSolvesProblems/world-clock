@@ -18,3 +18,9 @@ __pycache__/
 
 # downloaded Kaggle run outputs land here; summaries are committed separately
 results/raw/
+
+# demo video working files
+broll/
+*.webm
+*.edit-plan.json
+demo.mp4

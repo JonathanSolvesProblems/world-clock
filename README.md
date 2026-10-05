@@ -89,6 +89,15 @@ it appears in the from-memory table only.
 
 ## What is not in the answer key
 
-Manitoba. The province announced permanent daylight time on September 17, 2026, the tz
-maintainers have modelled it in their working tree, and no release carries it yet. The three
-Manitoba cases are asked, recorded, shown beside the official announcement, and never counted.
+Manitoba. The province announced permanent daylight time on September 17, 2026. The
+answer key is tzdata 2026d, which predates that, so the three Manitoba cases are asked,
+recorded and never counted. tzdata 2026e (September 30, 2026) added Manitoba, and
+`analysis/manitoba_2026e.py` grades those three answers against 2026e separately.
+
+## Sources
+
+- Alberta's Official Time Act in force June 18, 2026: Government of Alberta, [Alberta's new time system](https://www.alberta.ca/albertas-new-time-system-abt)
+- GPT-6 Astra knowledge cutoff, April 30, 2026: OpenAI, [GPT-6 Astra model page](https://developers.openai.com/api/docs/models/gpt-6-astra)
+- Gemini 3.8 Flash released September 2, 2026, knowledge cutoff March 2026 with some domains limited to January 2025: Google DeepMind, [Gemini 3.8 Flash model card](https://deepmind.google/models/model-cards/gemini-3-8-flash/)
+- Manitoba moves to permanent -05: IANA tz-announce, tzdata 2026e release, September 30, 2026
+- Every other figure in the post and the demo video comes from this repository's results, and `check_claims.py` verifies it.

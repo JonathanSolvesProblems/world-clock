@@ -1,0 +1,443 @@
+{
+ "tzdata": "2026e",
+ "released": "2026-09-30",
+ "truth": {
+  "offset:winnipeg:2026-11-15:12:00": {
+   "utc_offset": "-05:00"
+  },
+  "change_day:winnipeg:2026-11-01": {
+   "changes": false,
+   "direction": "none"
+  },
+  "convert:winnipeg:toronto:2026-11-15:09:00": {
+   "date": "2026-11-15",
+   "time": "09:00"
+  }
+ },
+ "models": {
+  "Qwen3-Next 80B Thinking": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": false,
+     "direction": "none"
+    },
+    "right_under_2026e": true
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  },
+  "Claude Haiku 4.5": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "right_under_2026e": false
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  },
+  "Claude Opus 4.5": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "right_under_2026e": false
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  },
+  "Claude Opus 5": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "right_under_2026e": false
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  },
+  "Claude Sonnet 5": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "right_under_2026e": false
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  },
+  "DeepSeek-R1": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "right_under_2026e": false
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  },
+  "Gemini 2.5 Pro": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "right_under_2026e": false
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  },
+  "Gemini 3.1 Pro": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "right_under_2026e": false
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  },
+  "Gemini 3.5 Flash-Lite": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "right_under_2026e": false
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  },
+  "Gemini 3.7 Flash": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "right_under_2026e": false
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  },
+  "Gemini 3.8 Flash": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "right_under_2026e": false
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  },
+  "Gemma 4 31B": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "right_under_2026e": false
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  },
+  "GLM-5": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "right_under_2026e": false
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  },
+  "GPT-5.4 mini": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "right_under_2026e": false
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  },
+  "GPT-5.5": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "right_under_2026e": false
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  },
+  "GPT-5.6 Terra": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "right_under_2026e": false
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  },
+  "GPT-6 Astra": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "right_under_2026e": false
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  },
+  "Grok 4.20": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "right_under_2026e": false
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  },
+  "Grok 4.20 Reasoning": {
+   "offset:winnipeg:2026-11-15:12:00": {
+    "answer": {
+     "utc_offset": "-06:00"
+    },
+    "right_under_2026e": false
+   },
+   "change_day:winnipeg:2026-11-01": {
+    "answer": {
+     "changes": true,
+     "direction": "back"
+    },
+    "right_under_2026e": false
+   },
+   "convert:winnipeg:toronto:2026-11-15:09:00": {
+    "answer": {
+     "date": "2026-11-15",
+     "time": "10:00"
+    },
+    "right_under_2026e": false
+   }
+  }
+ },
+ "n_models": 19,
+ "right_count": {
+  "offset:winnipeg:2026-11-15:12:00": 0,
+  "change_day:winnipeg:2026-11-01": 1,
+  "convert:winnipeg:toronto:2026-11-15:09:00": 0
+ }
+}
