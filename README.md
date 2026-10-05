@@ -40,6 +40,7 @@ On Kaggle: the [World Clock benchmark](https://www.kaggle.com/benchmarks/jonatha
 | `analysis/tool_trace.py` | Reads the tool-run conversations: which zone each model asked about, whether it followed or overrode the tool, and whether its answer changed when the SDK asked it to restate the answer in the schema. Writes `results/tool_trace.json`. |
 | `analysis/tool_facts.py` | Computes every number the post's tool section states (who asked, who overrode, the restating counts, Coyhaique) from `summary.json` and `tool_trace.json`. `check_claims.py` holds the prose to it. |
 | `analysis/variance.py` | Scores every complete from-memory run on disk to show how much a model's score and dated clock move between runs of the same questions. |
+| `scripts/check_broll.py` | Recomputes every number and quotation the demo video's b-roll puts on screen and fails if any disagrees with the data. |
 | `scripts/kg.py` | Runs the Kaggle CLI through Python, for machines where the `kaggle.exe` launcher is blocked. |
 | `analysis/dump_conversation.py` | Prints one case's full conversation from a downloaded run, tool calls included. |
 | `analysis/run_costs.py` | Sums what each downloaded run cost from the per-request costs in its `.run.json`, and totals per day. |
