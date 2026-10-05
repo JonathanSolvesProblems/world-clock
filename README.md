@@ -19,6 +19,12 @@ On Kaggle: the [World Clock benchmark](https://www.kaggle.com/benchmarks/jonatha
 [from memory](https://www.kaggle.com/benchmarks/tasks/jonathanandrei/world-clock-from-memory) and
 [with a tzdata tool](https://www.kaggle.com/benchmarks/tasks/jonathanandrei/world-clock-tool-v2).
 
+## Watch and read
+
+- [The 90-second demo on YouTube](https://www.youtube.com/watch?v=oTj1_WVNkIg)
+- [The write-up](https://jonathanandrei.com/blog/world-clock-benchmark-graded-by-the-iana-tz-database/): every finding, the charts, and what surprised me
+- `POST.md` in this repository is the same write-up as submitted to the challenge, and `check_claims.py` fails if any number in it disagrees with the results
+
 ## Layout
 
 | Path | What it is |

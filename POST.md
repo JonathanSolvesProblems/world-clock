@@ -171,5 +171,6 @@ Grade the model's own words as well as the restated answer, as two scores. The g
 - Its two tasks: [from memory](https://www.kaggle.com/benchmarks/tasks/jonathanandrei/world-clock-from-memory) and [with the tzdata tool](https://www.kaggle.com/benchmarks/tasks/jonathanandrei/world-clock-tool-v2)
 - Code, answer key, every result and both charts: https://github.com/JonathanSolvesProblems/world-clock
 - The 90-second demo: https://www.youtube.com/watch?v=oTj1_WVNkIg
+- This write-up on my site: https://jonathanandrei.com/blog/world-clock-benchmark-graded-by-the-iana-tz-database/
 
 The repo has a script called `check_claims.py`. It reads the results and fails if any number in this post disagrees with them. It ran before this was published.
