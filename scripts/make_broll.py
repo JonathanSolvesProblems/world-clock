@@ -428,6 +428,13 @@ def screencast(name: str, url: str, seconds: float, scroll_px: int, wait: float 
         page = ctx.new_page()
         page.goto(url, wait_until="domcontentloaded", timeout=60000)
         page.wait_for_timeout(int(wait * 1000))
+        for label in ("OK, Got it.", "OK, Got it", "Accept", "Got it"):
+            try:
+                page.get_by_text(label, exact=True).first.click(timeout=1500)
+                page.wait_for_timeout(600)
+                break
+            except Exception:  # noqa: BLE001
+                pass
         for sel in selector_hide or []:
             try:
                 page.add_style_tag(content=f"{sel}{{display:none !important}}")
@@ -453,8 +460,8 @@ JOBS = {
     "b01_alberta": lambda: screencast("b01_alberta", "https://www.alberta.ca/albertas-new-time-system-abt", 11, 900, selector_hide=["#onetrust-banner-sdk", ".goa-cookie-banner"]),
     "b02_question": lambda: question(8.0),
     "b03_answer": lambda: answer(6.0),
-    "b04_kaggle": lambda: screencast("b04_kaggle", "https://www.kaggle.com/benchmarks/jonathanandrei/world-clock", 6, 500, wait=8, selector_hide=["[data-testid='cookie-banner']", ".cookie-banner"]),
-    "b05_tzdb": lambda: screencast("b05_tzdb", "https://www.iana.org/time-zones", 7, 400),
+    "b04_kaggle": lambda: screencast("b04_kaggle", "https://www.kaggle.com/benchmarks/tasks/jonathanandrei/world-clock-from-memory", 6, 300, wait=8),
+    "b05_tzdb": lambda: screencast("b05_tzdb", "https://www.iana.org/time-zones", 7, 120),
     "b06_script": lambda: screencast("b06_script", "https://github.com/JonathanSolvesProblems/world-clock/blob/main/cases/build_cases.py", 7.5, 1400, wait=4),
     "b07_controls": lambda: controls_vs_wave(7.5),
     "b08_wave": lambda: wave_zero(9.5),
@@ -464,7 +471,7 @@ JOBS = {
     "b12_tool": lambda: tool_asked(7.5),
     "b13_half": lambda: half(6.0),
     "b14_opus": lambda: opus(6.0),
-    "b15_close": lambda: screencast("b15_close", "https://www.kaggle.com/benchmarks/jonathanandrei/world-clock", 8.5, 1200, wait=8),
+    "b15_close": lambda: screencast("b15_close", "https://github.com/JonathanSolvesProblems/world-clock", 8.5, 900, wait=4),
 }
 
 if __name__ == "__main__":
