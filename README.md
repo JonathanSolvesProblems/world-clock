@@ -21,6 +21,7 @@ On Kaggle: the [World Clock benchmark](https://www.kaggle.com/benchmarks/jonatha
 
 ## Watch and read
 
+- [The challenge submission on DEV](https://dev.to/jonathansolvesstuff/alberta-stopped-changing-its-clocks-in-june-19-of-19-frontier-models-still-put-calgary-on-standard-3b33)
 - [The 90-second demo on YouTube](https://www.youtube.com/watch?v=oTj1_WVNkIg)
 - [The write-up](https://jonathanandrei.com/blog/world-clock-benchmark-graded-by-the-iana-tz-database/): every finding, the charts, and what surprised me
 - `POST.md` in this repository is the same write-up as submitted to the challenge, and `check_claims.py` fails if any number in it disagrees with the results
