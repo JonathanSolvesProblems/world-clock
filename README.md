@@ -10,10 +10,13 @@ of those changes is in a public record and in the tz database that runs the cloc
 phone. None of them is in a model trained before mid-2026.
 
 This benchmark measures that gap, and then dates it: the same answer sheet is scored against
-every tzdata release since 2022, and the release a model agrees with most is the month its
-world clock stopped.
+every tzdata release since 2022, and the release a model's answers agree with most dates its
+world clock. Read that date as a range rather than a month: [results/error_kinds.md](results/error_kinds.md)
+shows why.
 
-Entry for the DEV x Kaggle Benchmarking Challenge (September 23 to October 11, 2026).
+Winner of the DEV x Kaggle Benchmarking Challenge, one of five ([announcement](https://dev.to/devteam/congrats-to-the-kaggle-benchmarking-challenge-winners-2moh)).
+The challenge ran September 23 to October 11, 2026, and this repository is finished: it stays up
+as the record of the entry, and nothing in it needs a paid service to read or to reproduce.
 
 On Kaggle: the [World Clock benchmark](https://www.kaggle.com/benchmarks/jonathanandrei/world-clock), made of two tasks,
 [from memory](https://www.kaggle.com/benchmarks/tasks/jonathanandrei/world-clock-from-memory) and
@@ -46,6 +49,7 @@ On Kaggle: the [World Clock benchmark](https://www.kaggle.com/benchmarks/jonatha
 | `analysis/quotes.py`, `analysis/wave_detail.py`, `analysis/inspect_runs.py` | Pull each model's own notes for the cases the post talks about, list which 2026 answers each model got right, and eyeball a downloaded run. |
 | `analysis/tool_trace.py` | Reads the tool-run conversations: which zone each model asked about, whether it followed or overrode the tool, and whether its answer changed when the SDK asked it to restate the answer in the schema. Writes `results/tool_trace.json`. |
 | `analysis/tool_facts.py` | Computes every number the post's tool section states (who asked, who overrode, the restating counts, Coyhaique) from `summary.json` and `tool_trace.json`. `check_claims.py` holds the prose to it. |
+| `analysis/error_kinds.py` | Tests whether the ladder dates what a model remembers or only what it answers, a test suggested by Arhan Canli on the DEV post. Hand labels every wrong answer that names the real change, reruns the ladder without them, dates each model by legal change instead of by question, and checks what the tool runs did on those questions. Writes `results/error_kinds.json` and `results/error_kinds.md`. |
 | `analysis/variance.py` | Scores every complete from-memory run on disk to show how much a model's score and dated clock move between runs of the same questions. |
 | `scripts/check_broll.py` | Recomputes every number and quotation the demo video's b-roll puts on screen and fails if any disagrees with the data. |
 | `scripts/kg.py` | Runs the Kaggle CLI through Python, for machines where the `kaggle.exe` launcher is blocked. |

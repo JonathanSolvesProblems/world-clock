@@ -1,0 +1,984 @@
+{
+ "ladder_questions": 46,
+ "places": 16,
+ "legal_changes": 12,
+ "wrong_answers_on_ladder": 515,
+ "wrong_answers_legislated": 153,
+ "named_the_change": 26,
+ "dated_the_same_by_change": 19,
+ "peak_won_by_at_most_one_change": 19,
+ "peak_won_by_at_most_half_a_change": 10,
+ "tool_on_legislated_questions_wrong_from_memory": {
+  "named": {
+   "asked": 10,
+   "fixed": 8,
+   "fixed_with_a_call": 8,
+   "missed_without_a_call": 2
+  },
+  "no mention": {
+   "asked": 35,
+   "fixed": 23
+  }
+ },
+ "models": [
+  {
+   "model": "GPT-6 Astra",
+   "stated_cutoff": "2026-04-30",
+   "named_wrong_date": 0,
+   "named_right_date": 0,
+   "ladder": {
+    "agree": 45,
+    "of": 46,
+    "from": "2026b",
+    "to": "2026b"
+   },
+   "without_named_questions": {
+    "agree": 45,
+    "of": 46,
+    "from": "2026b",
+    "to": "2026b"
+   },
+   "without_named_jurisdictions": {
+    "agree": 45,
+    "of": 46,
+    "from": "2026b",
+    "to": "2026b"
+   },
+   "by_change": {
+    "score": 11.8,
+    "of": 12,
+    "from": "2026b",
+    "to": "2026b",
+    "margin": 1.0
+   }
+  },
+  {
+   "model": "Claude Opus 5",
+   "stated_cutoff": "2026-05",
+   "named_wrong_date": 0,
+   "named_right_date": 0,
+   "ladder": {
+    "agree": 46,
+    "of": 46,
+    "from": "2025b",
+    "to": "2026a"
+   },
+   "without_named_questions": {
+    "agree": 46,
+    "of": 46,
+    "from": "2025b",
+    "to": "2026a"
+   },
+   "without_named_jurisdictions": {
+    "agree": 46,
+    "of": 46,
+    "from": "2025b",
+    "to": "2026a"
+   },
+   "by_change": {
+    "score": 12.0,
+    "of": 12,
+    "from": "2025b",
+    "to": "2026a",
+    "margin": 1.0
+   }
+  },
+  {
+   "model": "GPT-5.5",
+   "stated_cutoff": "2025-12-01",
+   "named_wrong_date": 0,
+   "named_right_date": 0,
+   "ladder": {
+    "agree": 46,
+    "of": 46,
+    "from": "2025b",
+    "to": "2026a"
+   },
+   "without_named_questions": {
+    "agree": 46,
+    "of": 46,
+    "from": "2025b",
+    "to": "2026a"
+   },
+   "without_named_jurisdictions": {
+    "agree": 46,
+    "of": 46,
+    "from": "2025b",
+    "to": "2026a"
+   },
+   "by_change": {
+    "score": 12.0,
+    "of": 12,
+    "from": "2025b",
+    "to": "2026a",
+    "margin": 1.0
+   }
+  },
+  {
+   "model": "GPT-5.6 Terra",
+   "stated_cutoff": "2026-02-16",
+   "named_wrong_date": 0,
+   "named_right_date": 0,
+   "ladder": {
+    "agree": 46,
+    "of": 46,
+    "from": "2025b",
+    "to": "2026a"
+   },
+   "without_named_questions": {
+    "agree": 46,
+    "of": 46,
+    "from": "2025b",
+    "to": "2026a"
+   },
+   "without_named_jurisdictions": {
+    "agree": 46,
+    "of": 46,
+    "from": "2025b",
+    "to": "2026a"
+   },
+   "by_change": {
+    "score": 12.0,
+    "of": 12,
+    "from": "2025b",
+    "to": "2026a",
+    "margin": 1.0
+   }
+  },
+  {
+   "model": "Gemini 2.5 Pro",
+   "stated_cutoff": "2025-01",
+   "named_wrong_date": 0,
+   "named_right_date": 1,
+   "ladder": {
+    "agree": 42,
+    "of": 46,
+    "from": "2025a",
+    "to": "2025a"
+   },
+   "without_named_questions": {
+    "agree": 42,
+    "of": 45,
+    "from": "2025a",
+    "to": "2025a"
+   },
+   "without_named_jurisdictions": {
+    "agree": 41,
+    "of": 43,
+    "from": "2025a",
+    "to": "2025a"
+   },
+   "by_change": {
+    "score": 10.8,
+    "of": 12,
+    "from": "2025a",
+    "to": "2025a",
+    "margin": 0.33
+   }
+  },
+  {
+   "model": "Gemini 3.7 Flash",
+   "stated_cutoff": "2026-03",
+   "named_wrong_date": 0,
+   "named_right_date": 2,
+   "ladder": {
+    "agree": 44,
+    "of": 46,
+    "from": "2025a",
+    "to": "2025a"
+   },
+   "without_named_questions": {
+    "agree": 44,
+    "of": 44,
+    "from": "2025a",
+    "to": "2025a"
+   },
+   "without_named_jurisdictions": {
+    "agree": 43,
+    "of": 43,
+    "from": "2025a",
+    "to": "2025a"
+   },
+   "by_change": {
+    "score": 11.33,
+    "of": 12,
+    "from": "2025a",
+    "to": "2025a",
+    "margin": 1.0
+   }
+  },
+  {
+   "model": "Gemini 3.8 Flash",
+   "stated_cutoff": "2026-03",
+   "named_wrong_date": 0,
+   "named_right_date": 0,
+   "ladder": {
+    "agree": 44,
+    "of": 46,
+    "from": "2025a",
+    "to": "2025a"
+   },
+   "without_named_questions": {
+    "agree": 44,
+    "of": 46,
+    "from": "2025a",
+    "to": "2025a"
+   },
+   "without_named_jurisdictions": {
+    "agree": 44,
+    "of": 46,
+    "from": "2025a",
+    "to": "2025a"
+   },
+   "by_change": {
+    "score": 11.33,
+    "of": 12,
+    "from": "2025a",
+    "to": "2025a",
+    "margin": 1.0
+   }
+  },
+  {
+   "model": "Gemini 3.1 Pro",
+   "stated_cutoff": "2025-01",
+   "named_wrong_date": 0,
+   "named_right_date": 2,
+   "ladder": {
+    "agree": 43,
+    "of": 46,
+    "from": "2025a",
+    "to": "2025a"
+   },
+   "without_named_questions": {
+    "agree": 43,
+    "of": 44,
+    "from": "2025a",
+    "to": "2025a"
+   },
+   "without_named_jurisdictions": {
+    "agree": 37,
+    "of": 38,
+    "from": "2025a",
+    "to": "2025a"
+   },
+   "by_change": {
+    "score": 11.13,
+    "of": 12,
+    "from": "2025a",
+    "to": "2025a",
+    "margin": 0.33
+   }
+  },
+  {
+   "model": "GLM-5",
+   "stated_cutoff": null,
+   "named_wrong_date": 2,
+   "named_right_date": 1,
+   "ladder": {
+    "agree": 42,
+    "of": 46,
+    "from": "2024a",
+    "to": "2024b"
+   },
+   "without_named_questions": {
+    "agree": 41,
+    "of": 43,
+    "from": "2024a",
+    "to": "2024b"
+   },
+   "without_named_jurisdictions": {
+    "agree": 32,
+    "of": 34,
+    "from": "2024a",
+    "to": "2025a"
+   },
+   "by_change": {
+    "score": 10.88,
+    "of": 12,
+    "from": "2024a",
+    "to": "2024b",
+    "margin": 0.67
+   }
+  },
+  {
+   "model": "Gemini 3.5 Flash-Lite",
+   "stated_cutoff": null,
+   "named_wrong_date": 1,
+   "named_right_date": 1,
+   "ladder": {
+    "agree": 39,
+    "of": 46,
+    "from": "2024a",
+    "to": "2024b"
+   },
+   "without_named_questions": {
+    "agree": 39,
+    "of": 44,
+    "from": "2024a",
+    "to": "2024b"
+   },
+   "without_named_jurisdictions": {
+    "agree": 34,
+    "of": 38,
+    "from": "2024a",
+    "to": "2024b"
+   },
+   "by_change": {
+    "score": 10.2,
+    "of": 12,
+    "from": "2024a",
+    "to": "2024b",
+    "margin": 1.0
+   }
+  },
+  {
+   "model": "Gemma 4 31B",
+   "stated_cutoff": "2025-01",
+   "named_wrong_date": 0,
+   "named_right_date": 1,
+   "ladder": {
+    "agree": 41,
+    "of": 46,
+    "from": "2024a",
+    "to": "2024b"
+   },
+   "without_named_questions": {
+    "agree": 41,
+    "of": 45,
+    "from": "2024a",
+    "to": "2024b"
+   },
+   "without_named_jurisdictions": {
+    "agree": 37,
+    "of": 41,
+    "from": "2024a",
+    "to": "2024b"
+   },
+   "by_change": {
+    "score": 9.93,
+    "of": 12,
+    "from": "2024a",
+    "to": "2024b",
+    "margin": 0.67
+   }
+  },
+  {
+   "model": "Grok 4.20 Reasoning",
+   "stated_cutoff": "2025-09-01",
+   "named_wrong_date": 0,
+   "named_right_date": 1,
+   "ladder": {
+    "agree": 40,
+    "of": 46,
+    "from": "2023a",
+    "to": "2023c"
+   },
+   "without_named_questions": {
+    "agree": 40,
+    "of": 45,
+    "from": "2023a",
+    "to": "2023c"
+   },
+   "without_named_jurisdictions": {
+    "agree": 36,
+    "of": 41,
+    "from": "2023a",
+    "to": "2023c"
+   },
+   "by_change": {
+    "score": 10.22,
+    "of": 12,
+    "from": "2023a",
+    "to": "2023c",
+    "margin": 0.33
+   }
+  },
+  {
+   "model": "GPT-5.4 mini",
+   "stated_cutoff": "2025-08-31",
+   "named_wrong_date": 0,
+   "named_right_date": 0,
+   "ladder": {
+    "agree": 39,
+    "of": 46,
+    "from": "2024a",
+    "to": "2024b"
+   },
+   "without_named_questions": {
+    "agree": 39,
+    "of": 46,
+    "from": "2024a",
+    "to": "2024b"
+   },
+   "without_named_jurisdictions": {
+    "agree": 39,
+    "of": 46,
+    "from": "2024a",
+    "to": "2024b"
+   },
+   "by_change": {
+    "score": 10.1,
+    "of": 12,
+    "from": "2024a",
+    "to": "2024b",
+    "margin": 0.33
+   }
+  },
+  {
+   "model": "Claude Opus 4.5",
+   "stated_cutoff": null,
+   "named_wrong_date": 0,
+   "named_right_date": 2,
+   "ladder": {
+    "agree": 37,
+    "of": 46,
+    "from": "2022g",
+    "to": "2022g"
+   },
+   "without_named_questions": {
+    "agree": 36,
+    "of": 44,
+    "from": "2022g",
+    "to": "2022g"
+   },
+   "without_named_jurisdictions": {
+    "agree": 30,
+    "of": 38,
+    "from": "2022a",
+    "to": "2024b"
+   },
+   "by_change": {
+    "score": 9.47,
+    "of": 12,
+    "from": "2022g",
+    "to": "2022g",
+    "margin": 0.33
+   }
+  },
+  {
+   "model": "Claude Sonnet 5",
+   "stated_cutoff": "2026-01",
+   "named_wrong_date": 1,
+   "named_right_date": 3,
+   "ladder": {
+    "agree": 39,
+    "of": 46,
+    "from": "2022f",
+    "to": "2022f"
+   },
+   "without_named_questions": {
+    "agree": 36,
+    "of": 42,
+    "from": "2022f",
+    "to": "2023d"
+   },
+   "without_named_jurisdictions": {
+    "agree": 32,
+    "of": 35,
+    "from": "2022f",
+    "to": "2022f"
+   },
+   "by_change": {
+    "score": 9.97,
+    "of": 12,
+    "from": "2022f",
+    "to": "2022f",
+    "margin": 0.33
+   }
+  },
+  {
+   "model": "Qwen3-Next 80B Thinking",
+   "stated_cutoff": "2025-09-30",
+   "named_wrong_date": 2,
+   "named_right_date": 3,
+   "ladder": {
+    "agree": 37,
+    "of": 46,
+    "from": "2022f",
+    "to": "2022f"
+   },
+   "without_named_questions": {
+    "agree": 34,
+    "of": 41,
+    "from": "2022f",
+    "to": "2022g"
+   },
+   "without_named_jurisdictions": {
+    "agree": 27,
+    "of": 32,
+    "from": "2022e",
+    "to": "2022g"
+   },
+   "by_change": {
+    "score": 9.78,
+    "of": 12,
+    "from": "2022f",
+    "to": "2022f",
+    "margin": 0.33
+   }
+  },
+  {
+   "model": "DeepSeek-R1",
+   "stated_cutoff": "2025-03-31",
+   "named_wrong_date": 0,
+   "named_right_date": 1,
+   "ladder": {
+    "agree": 36,
+    "of": 46,
+    "from": "2022a",
+    "to": "2022a"
+   },
+   "without_named_questions": {
+    "agree": 35,
+    "of": 45,
+    "from": "2022a",
+    "to": "2022a"
+   },
+   "without_named_jurisdictions": {
+    "agree": 33,
+    "of": 41,
+    "from": "2022a",
+    "to": "2022a"
+   },
+   "by_change": {
+    "score": 8.87,
+    "of": 12,
+    "from": "2022a",
+    "to": "2022a",
+    "margin": 0.33
+   }
+  },
+  {
+   "model": "Grok 4.20",
+   "stated_cutoff": "2025-09-01",
+   "named_wrong_date": 0,
+   "named_right_date": 1,
+   "ladder": {
+    "agree": 34,
+    "of": 46,
+    "from": "2022e",
+    "to": "2022e"
+   },
+   "without_named_questions": {
+    "agree": 33,
+    "of": 45,
+    "from": "2022e",
+    "to": "2024b"
+   },
+   "without_named_jurisdictions": {
+    "agree": 33,
+    "of": 43,
+    "from": "2023a",
+    "to": "2024b"
+   },
+   "by_change": {
+    "score": 9.08,
+    "of": 12,
+    "from": "2022e",
+    "to": "2022e",
+    "margin": 0.2
+   }
+  },
+  {
+   "model": "Claude Haiku 4.5",
+   "stated_cutoff": "2025-02",
+   "named_wrong_date": 1,
+   "named_right_date": 0,
+   "ladder": {
+    "agree": 39,
+    "of": 46,
+    "from": "2022a",
+    "to": "2022d"
+   },
+   "without_named_questions": {
+    "agree": 38,
+    "of": 45,
+    "from": "2022a",
+    "to": "2022d"
+   },
+   "without_named_jurisdictions": {
+    "agree": 37,
+    "of": 43,
+    "from": "2022a",
+    "to": "2022d"
+   },
+   "by_change": {
+    "score": 9.27,
+    "of": 12,
+    "from": "2022a",
+    "to": "2022d",
+    "margin": 0.33
+   }
+  }
+ ],
+ "named": [
+  {
+   "model": "Gemini 2.5 Pro",
+   "case": "offset:nuuk:2024-07-15:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "-02:00"
+   },
+   "expected": {
+    "utc_offset": "-01:00"
+   },
+   "note": "Greenland adopted UTC-02:00 year-round for Nuuk starting in March 2023, abolishing seasonal clock changes.",
+   "with_tool": null
+  },
+  {
+   "model": "Gemini 3.7 Flash",
+   "case": "offset:nuuk:2024-07-15:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "-02:00"
+   },
+   "expected": {
+    "utc_offset": "-01:00"
+   },
+   "note": "Nuuk observes standard time UTC-2 year-round following Greenland's 2023 time zone reform.",
+   "with_tool": {
+    "correct": true,
+    "tool_calls": 1
+   }
+  },
+  {
+   "model": "Gemini 3.7 Flash",
+   "case": "offset:ittoqqortoormiit:2024-07-15:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "-02:00"
+   },
+   "expected": {
+    "utc_offset": "-01:00"
+   },
+   "note": "Ittoqqortoormiit changed its time zone to UTC-2 year-round on March 31, 2024, aligning with western Greenland.",
+   "with_tool": null
+  },
+  {
+   "model": "Gemini 3.1 Pro",
+   "case": "offset:chihuahua:2023-01-15:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "-07:00"
+   },
+   "expected": {
+    "utc_offset": "-06:00"
+   },
+   "note": "Chihuahua City observed UTC-7 standard time on this date following the November 2022 amendment to Mexico's time zone law which reverted most of the state to the Pacific Time Zone.",
+   "with_tool": null
+  },
+  {
+   "model": "Gemini 3.1 Pro",
+   "case": "offset:ittoqqortoormiit:2024-07-15:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "-02:00"
+   },
+   "expected": {
+    "utc_offset": "-01:00"
+   },
+   "note": "On March 31, 2024, Ittoqqortoormiit permanently changed its time zone to UTC-2 to align with the rest of Greenland.",
+   "with_tool": null
+  },
+  {
+   "model": "GLM-5",
+   "case": "offset:chihuahua:2023-01-15:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "-07:00"
+   },
+   "expected": {
+    "utc_offset": "-06:00"
+   },
+   "note": "Chihuahua City is located in the Mexican Pacific Zone (Zona Pacífico), which observes Mountain Standard Time (UTC-7) year-round following the elimination of Daylight Saving Time in most of Mexico by decree in late 2022.",
+   "with_tool": null
+  },
+  {
+   "model": "GLM-5",
+   "case": "offset:cairo:2024-07-15:12:00",
+   "kind": "wrong date",
+   "answer": {
+    "utc_offset": "+02:00"
+   },
+   "expected": {
+    "utc_offset": "+03:00"
+   },
+   "note": "Egypt cancelled daylight saving time for 2024, remaining on Eastern European Standard Time year-round.",
+   "with_tool": null
+  },
+  {
+   "model": "GLM-5",
+   "case": "offset:asuncion:2025-06-15:12:00",
+   "kind": "wrong date",
+   "answer": {
+    "utc_offset": "-04:00"
+   },
+   "expected": {
+    "utc_offset": "-03:00"
+   },
+   "note": "Paraguay abolished Daylight Saving Time in March 2024, establishing permanent standard time.",
+   "with_tool": {
+    "correct": true,
+    "tool_calls": 1
+   }
+  },
+  {
+   "model": "Gemini 3.5 Flash-Lite",
+   "case": "offset:chihuahua:2023-01-15:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "-07:00"
+   },
+   "expected": {
+    "utc_offset": "-06:00"
+   },
+   "note": "On January 15, 2023, Chihuahua observed standard time at UTC-07:00, following the federal time zone changes enacted in late 2022 that abolished daylight saving time for most of the state.",
+   "with_tool": null
+  },
+  {
+   "model": "Gemini 3.5 Flash-Lite",
+   "case": "offset:nuuk:2024-07-15:12:00",
+   "kind": "wrong date",
+   "answer": {
+    "utc_offset": "-02:00"
+   },
+   "expected": {
+    "utc_offset": "-01:00"
+   },
+   "note": "Nuuk, Greenland adopted UTC-2 year-round starting in November 2023, so standard daylight saving rules no longer apply.",
+   "with_tool": {
+    "correct": true,
+    "tool_calls": 1
+   }
+  },
+  {
+   "model": "Gemma 4 31B",
+   "case": "offset:chihuahua:2023-01-15:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "-07:00"
+   },
+   "expected": {
+    "utc_offset": "-06:00"
+   },
+   "note": "Chihuahua follows Mountain Standard Time (MST) and abolished daylight saving time in 2022.",
+   "with_tool": null
+  },
+  {
+   "model": "Grok 4.20 Reasoning",
+   "case": "offset:chihuahua:2023-01-15:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "-07:00"
+   },
+   "expected": {
+    "utc_offset": "-06:00"
+   },
+   "note": "Chihuahua City follows Mexico's 2022 DST elimination rule for non-border areas, remaining on fixed Mountain Standard Time all year.",
+   "with_tool": null
+  },
+  {
+   "model": "Claude Opus 4.5",
+   "case": "offset:chihuahua:2023-01-15:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "-07:00"
+   },
+   "expected": {
+    "utc_offset": "-06:00"
+   },
+   "note": "Chihuahua, Mexico observes Mountain Standard Time (UTC-07:00) during winter months, as Mexico ended daylight saving time in most of the country in 2022 but Chihuahua being a northern border state near the US continued observing standard time in January.",
+   "with_tool": null
+  },
+  {
+   "model": "Claude Opus 4.5",
+   "case": "offset:nuuk:2024-07-15:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "-02:00"
+   },
+   "expected": {
+    "utc_offset": "-01:00"
+   },
+   "note": "Greenland abolished daylight saving time in 2023 and moved permanently to UTC-2, so Nuuk observes year-round Western Greenland Time at UTC-2.",
+   "with_tool": {
+    "correct": true,
+    "tool_calls": 1
+   }
+  },
+  {
+   "model": "Claude Sonnet 5",
+   "case": "offset:tehran:2023-07-15:12:00",
+   "kind": "wrong date",
+   "answer": {
+    "utc_offset": "+04:30"
+   },
+   "expected": {
+    "utc_offset": "+03:30"
+   },
+   "note": "Iran observed daylight saving time (UTC+4:30) during summer 2023 before abolishing DST later that year.",
+   "with_tool": {
+    "correct": true,
+    "tool_calls": 1
+   }
+  },
+  {
+   "model": "Claude Sonnet 5",
+   "case": "offset:cairo:2023-07-15:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "+02:00"
+   },
+   "expected": {
+    "utc_offset": "+03:00"
+   },
+   "note": "Egypt abolished DST and has remained on Eastern European Time (UTC+2) year-round since 2014 (with a brief 2023 reinstatement of DST starting in late April, but offset remains +02:00 as Egypt does not observe DST in July 2023 per standard time).",
+   "with_tool": {
+    "correct": true,
+    "tool_calls": 1
+   }
+  },
+  {
+   "model": "Claude Sonnet 5",
+   "case": "offset:almaty:2024-07-15:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "+06:00"
+   },
+   "expected": {
+    "utc_offset": "+05:00"
+   },
+   "note": "Kazakhstan does not observe daylight saving time, and Almaty has used the UTC+6 time zone year-round since 2024-03-01.",
+   "with_tool": {
+    "correct": true,
+    "tool_calls": 1
+   }
+  },
+  {
+   "model": "Claude Sonnet 5",
+   "case": "offset:almaty:2024-03-05:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "+06:00"
+   },
+   "expected": {
+    "utc_offset": "+05:00"
+   },
+   "note": "Kazakhstan does not observe daylight saving time, and Almaty has used UTC+6 since 2024, as the country shifted to a two-zone system (UTC+5 and UTC+6) in March 2024.",
+   "with_tool": null
+  },
+  {
+   "model": "Qwen3-Next 80B Thinking",
+   "case": "offset:tehran:2023-07-15:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "+04:30"
+   },
+   "expected": {
+    "utc_offset": "+03:30"
+   },
+   "note": "Iran permanently observes daylight saving time (UTC+4:30) since 2022, with no seasonal changes.",
+   "with_tool": {
+    "correct": false,
+    "tool_calls": 0
+   }
+  },
+  {
+   "model": "Qwen3-Next 80B Thinking",
+   "case": "offset:chihuahua:2023-01-15:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "-07:00"
+   },
+   "expected": {
+    "utc_offset": "-06:00"
+   },
+   "note": " Mexico eliminated daylight saving time nationwide effective October 30, 2022, so Chihuahua City remains on UTC-7 year-round.",
+   "with_tool": null
+  },
+  {
+   "model": "Qwen3-Next 80B Thinking",
+   "case": "offset:nuuk:2024-01-15:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "-03:00"
+   },
+   "expected": {
+    "utc_offset": "-02:00"
+   },
+   "note": "Greenland abolished daylight saving time in 2023, so Nuuk observes UTC-3 year-round",
+   "with_tool": null
+  },
+  {
+   "model": "Qwen3-Next 80B Thinking",
+   "case": "offset:asuncion:2025-06-15:12:00",
+   "kind": "wrong date",
+   "answer": {
+    "utc_offset": "-04:00"
+   },
+   "expected": {
+    "utc_offset": "-03:00"
+   },
+   "note": "Paraguay abolished daylight saving time in 2022, remaining on UTC-4 year-round",
+   "with_tool": {
+    "correct": false,
+    "tool_calls": 0
+   }
+  },
+  {
+   "model": "Qwen3-Next 80B Thinking",
+   "case": "offset:asuncion:2025-03-25:12:00",
+   "kind": "wrong date",
+   "answer": {
+    "utc_offset": "-04:00"
+   },
+   "expected": {
+    "utc_offset": "-03:00"
+   },
+   "note": "Paraguay abolished daylight saving time in 2023, so it consistently observes UTC−4 year-round.",
+   "with_tool": null
+  },
+  {
+   "model": "DeepSeek-R1",
+   "case": "offset:chihuahua:2023-01-15:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "-07:00"
+   },
+   "expected": {
+    "utc_offset": "-06:00"
+   },
+   "note": "Applied Mexico's 2022 time zone reform: Chihuahua City (non-border) uses Mountain Standard Time (UTC-7) year-round without daylight saving.",
+   "with_tool": null
+  },
+  {
+   "model": "Grok 4.20",
+   "case": "offset:nuuk:2024-07-15:12:00",
+   "kind": "right date",
+   "answer": {
+    "utc_offset": "-02:00"
+   },
+   "expected": {
+    "utc_offset": "-01:00"
+   },
+   "note": "Greenland observes daylight saving time in summer, so on 2024-07-15 Nuuk was using UTC-02:00 under the post-2023 rules that keep it on DST from March to November.",
+   "with_tool": {
+    "correct": true,
+    "tool_calls": 1
+   }
+  },
+  {
+   "model": "Claude Haiku 4.5",
+   "case": "offset:nuuk:2024-01-15:12:00",
+   "kind": "wrong date",
+   "answer": {
+    "utc_offset": "-03:00"
+   },
+   "expected": {
+    "utc_offset": "-02:00"
+   },
+   "note": "Greenland observes West Greenland Time (WGT), which is UTC-3, year-round as daylight saving time was abolished in Greenland.",
+   "with_tool": null
+  }
+ ]
+}
