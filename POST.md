@@ -174,3 +174,5 @@ Grade the model's own words as well as the restated answer, as two scores. The g
 - This write-up on my site: https://jonathanandrei.com/blog/world-clock-benchmark-graded-by-the-iana-tz-database/
 
 The repo has a script called `check_claims.py`. It reads the results and fails if any number in this post disagrees with them. It ran before this was published.
+
+**Update, November 5, 2026:** a reader pointed out that the ladder dates a model's answers, not what it remembers. Sonnet 5 knows the date of Kazakhstan's 2024 change and still gets the offset wrong. I ran the test: treat each ladder date as a range, not a month. Results: https://github.com/JonathanSolvesProblems/world-clock/blob/main/results/error_kinds.md
